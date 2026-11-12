@@ -60,7 +60,8 @@ header.top{padding:28px 0 18px; display:flex; flex-wrap:wrap; gap:16px; align-it
 .brand h1{font-size:30px; font-weight:800; line-height:1.1}
 .brand p{margin:2px 0 0; color:var(--muted); font-size:14px}
 nav.tabs{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px}
-nav.tabs a{padding:8px 16px; border-radius:999px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px}
+nav.tabs a{padding:8px 16px; border-radius:999px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px; white-space:nowrap}
+@media (max-width:520px){ nav.tabs{width:100%; overflow-x:auto} nav.tabs a{padding:8px 12px; font-size:13px; flex:1 0 auto; text-align:center} }
 nav.tabs a[aria-current="page"]{background:var(--ink); color:var(--bg)}
 
 /* Pipeline */
@@ -129,6 +130,68 @@ select.sort{padding:9px 12px; border:1px solid var(--line); border-radius:999px;
 .guide ol{margin:0; padding:0 18px 16px 36px; display:grid; gap:8px; max-width:80ch}
 .guide li b{color:var(--ink)}
 .guide p{margin:0 18px 16px; font-size:13px; color:var(--muted)}
+/* ICE badge */
+.ice{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink)}
+.ice .bar{width:46px; height:6px; border-radius:999px; background:var(--line); overflow:hidden}
+.ice .bar i{display:block; height:100%; background:var(--accent)}
+.ice.hi .bar i{background:var(--ok)}
+/* Top 5 */
+.top5{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; margin-bottom:14px}
+.top5-head{display:flex; justify-content:space-between; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:8px}
+.top5-head h3{font-size:16px}
+#top5{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:8px; counter-reset:t}
+#top5 li{counter-increment:t}
+#top5 a{display:flex; gap:10px; align-items:flex-start; padding:8px 10px; border:1px solid var(--line); border-radius:8px; text-decoration:none; color:var(--ink); background:var(--bg); height:100%}
+#top5 a:hover{border-color:var(--accent)}
+#top5 a::before{content:counter(t); font-family:var(--display); font-weight:800; font-size:20px; line-height:1; color:var(--accent); min-width:16px}
+#top5 .t{font-size:13px; font-weight:600; line-height:1.35; display:block}
+#top5 .s{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.listbar{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap}
+.card.flash{outline:3px solid var(--spark); outline-offset:2px}
+/* Matrix */
+.matrix{display:grid; grid-template-columns:auto 1fr 1fr; grid-template-rows:auto auto auto; gap:10px}
+.matrix .ax{font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; display:flex; align-items:center; justify-content:center}
+.matrix .ax.y{writing-mode:vertical-rl; transform:rotate(180deg)}
+.quad{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:12px 14px; min-height:160px; min-width:0}
+.quad h3{font-size:16px; display:flex; justify-content:space-between; gap:8px}
+.quad h3 span{font-variant-numeric:tabular-nums; color:var(--muted); font-size:14px}
+.quad p{margin:2px 0 8px; font-size:12px; color:var(--muted)}
+.quad ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px}
+.quad a{font-size:13px; color:var(--ink); text-decoration:none; display:flex; justify-content:space-between; gap:8px; padding:3px 0; border-bottom:1px dashed var(--line)}
+.quad a:hover{color:var(--accent)}
+.quad a b{font-variant-numeric:tabular-nums; color:var(--muted); font-weight:600}
+.quad.qw{border-top:4px solid var(--ok)} .quad.sb{border-top:4px solid var(--accent)} .quad.fi{border-top:4px solid var(--spark)} .quad.mo{border-top:4px solid var(--stop)}
+#matrix-nocap{margin-top:12px}
+@media (max-width:640px){ .matrix{grid-template-columns:1fr} .matrix .ax{display:none} }
+/* Kanban */
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; background:var(--surface)}
+.seg button{border:0; background:none; padding:8px 14px; cursor:pointer; font-weight:600; font-size:13px; color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.kanban{display:grid; grid-template-columns:repeat(5,minmax(240px,1fr)); gap:12px; overflow-x:auto; padding-bottom:6px}
+.kcol{background:var(--bg); border:1px solid var(--line); border-radius:var(--r); padding:10px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.kcol h3{font-size:14px; display:flex; justify-content:space-between}
+.kcol h3 span{color:var(--muted); font-variant-numeric:tabular-nums}
+.kcol .empty{padding:14px; font-size:12px}
+/* Dialog extras */
+dialog.wide{width:min(1000px,calc(100vw - 32px))}
+.flabel{font-size:13px; font-weight:600}
+.reco{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px}
+.reco li a{display:block; padding:10px 12px; border:1px solid var(--line); border-radius:8px; text-decoration:none; color:var(--ink); background:var(--bg)}
+.reco li a:hover{border-color:var(--accent)}
+.reco b{display:block; font-size:14px}
+.reco span{font-size:12px; color:var(--muted)}
+.lc-head{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; flex-wrap:wrap}
+.lc{display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:auto auto auto; gap:8px}
+.lc .box{border:1px solid var(--line); border-radius:8px; padding:8px; display:flex; flex-direction:column; gap:4px; background:var(--bg); min-width:0}
+.lc .box label{font-size:12px; font-weight:700}
+.lc .box textarea{border:0; background:transparent; resize:vertical; min-height:80px; font-size:13px; padding:0}
+.lc .b-problem{grid-column:1; grid-row:1/3} .lc .b-solution{grid-column:2; grid-row:1} .lc .b-metrics{grid-column:2; grid-row:2}
+.lc .b-uvp{grid-column:3; grid-row:1/3} .lc .b-advantage{grid-column:4; grid-row:1} .lc .b-channels{grid-column:4; grid-row:2}
+.lc .b-segments{grid-column:5; grid-row:1/3} .lc .b-costs{grid-column:1/3; grid-row:3} .lc .b-revenue{grid-column:3/6; grid-row:3}
+@media (max-width:760px){ .lc{grid-template-columns:1fr} .lc .box{grid-column:auto !important; grid-row:auto !important} }
+#lc-risks ul{margin:6px 0 0; padding-left:18px; font-size:13px}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:999px; font-size:13px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .2s; z-index:10}
+.toast.show{opacity:1}
 .linkbtn{background:none; border:0; padding:4px 6px; color:var(--accent); font-weight:600; font-size:13px; cursor:pointer}
 .linkbtn.del{color:var(--stop)}
 
@@ -187,6 +250,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     </div>
     <nav class="tabs" aria-label="Chuyển trang">
       <a href="#y-tuong" data-view="y-tuong">Ý tưởng</a>
+      <a href="#ma-tran" data-view="ma-tran">Ma trận ưu tiên</a>
       <a href="#du-an" data-view="du-an">Dự án đang thực thi</a>
     </nav>
   </header>
@@ -206,7 +270,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   <section id="view-y-tuong">
     <div class="sechead">
       <h2>Ngân hàng ý tưởng</h2>
-      <p>Mỗi người có thể gửi ý tưởng và bấm ủng hộ ý tưởng mình thấy đáng làm. Ý tưởng được ủng hộ nhiều sẽ được xem xét chuyển thành dự án.</p>
+      <p>Mỗi ý tưởng có điểm ưu tiên ICE, lộ trình bắt đầu và nguồn kiểm chứng. Bấm "Gợi ý cho tôi" để lọc theo vốn và lĩnh vực của bạn, hoặc mở "Lean Canvas" để lập kế hoạch 1 trang. Phím tắt: / để tìm kiếm.</p>
     </div>
     <div class="toolbar">
       <div class="grow"><input id="q" class="search" type="search" placeholder="Tìm ý tưởng…" aria-label="Tìm ý tưởng"></div>
@@ -214,9 +278,12 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
         <option value="all">Trong nước + Quốc tế</option><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option>
       </select>
       <select id="sort" class="sort" aria-label="Sắp xếp">
+        <option value="ice">Điểm ưu tiên ICE</option>
         <option value="votes">Nhiều ủng hộ nhất</option>
         <option value="new">Mới nhất</option>
+        <option value="ease">Dễ bắt đầu nhất (vốn thấp)</option>
       </select>
+      <button class="btn ghost" id="btn-reco" type="button">✦ Gợi ý cho tôi</button>
       <button class="btn write-only" id="btn-new-idea" type="button">+ Gửi ý tưởng</button>
     </div>
     <div class="chips" id="cat-chips" style="margin-bottom:16px" role="group" aria-label="Lọc theo lĩnh vực"></div>
@@ -231,7 +298,37 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       </ol>
       <p>Mỗi ý tưởng kinh doanh bên dưới có mục "Bắt đầu từ đâu" với các bước cụ thể và nhãn mức vốn khởi đầu (ước tính tương đối, cần tự khảo sát lại theo khu vực của bạn).</p>
     </details>
+    <section class="top5" aria-labelledby="top5-h">
+      <div class="top5-head"><h3 id="top5-h">Top 5 đáng làm nhất theo điểm ICE</h3><span class="hint">trong bộ lọc hiện tại · bấm để xem thẻ</span></div>
+      <ol id="top5"></ol>
+    </section>
+    <div class="listbar">
+      <span id="count" class="hint"></span>
+      <span class="acts">
+        <button class="linkbtn" id="btn-copy-md" type="button">Sao chép bảng (Markdown)</button>
+        <button class="linkbtn static-only hidden" id="btn-csv" type="button">Tải CSV</button>
+      </span>
+    </div>
     <div class="grid" id="ideas"></div>
+  </section>
+
+  <!-- MATRIX -->
+  <section id="view-ma-tran" class="hidden">
+    <div class="sechead">
+      <h2>Ma trận ưu tiên: Tác động × Vốn</h2>
+      <p>Xếp mỗi ý tưởng theo mức tác động và vốn khởi đầu để thấy nên làm gì trước. Bộ lọc lĩnh vực và khu vực ở tab Ý tưởng cũng áp dụng ở đây.</p>
+    </div>
+    <div class="matrix" id="matrix"></div>
+    <div id="matrix-nocap"></div>
+    <details class="guide" style="margin-top:16px">
+      <summary>Điểm ICE được tính thế nào?<span>Impact · Confidence · Ease, mỗi yếu tố thang 1–10, lấy trung bình</span></summary>
+      <ol>
+        <li><b>Impact (Tác động):</b> nhỏ = 4, vừa = 7, lớn = 10.</li>
+        <li><b>Confidence (Độ tin cậy):</b> bắt đầu từ 4; +3 nếu có nguồn kiểm chứng; +2 nếu đã có các bước bắt đầu cụ thể; +1 nếu được cộng đồng ủng hộ.</li>
+        <li><b>Ease (Độ dễ):</b> vốn thấp = 9, vốn vừa = 6, vốn cao = 3, chưa rõ = 5.</li>
+      </ol>
+      <p>ICE là cách chấm nhanh, phù hợp giai đoạn ý tưởng khi chưa có nhiều số liệu. Điểm chỉ giúp so sánh các ý tưởng với nhau, không phải dự báo lợi nhuận. Hãy dùng nó để mở đầu cuộc thảo luận, không phải để thay cho quyết định.</p>
+    </details>
   </section>
 
   <!-- PROJECTS -->
@@ -245,6 +342,10 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       <select id="region-p" class="sort" aria-label="Lọc dự án theo khu vực">
         <option value="all">Trong nước + Quốc tế</option><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option>
       </select>
+      <div class="seg" role="group" aria-label="Kiểu hiển thị">
+        <button type="button" id="pv-grid" aria-pressed="true">Lưới</button>
+        <button type="button" id="pv-kanban" aria-pressed="false">Kanban</button>
+      </div>
       <button class="btn edit-only" id="btn-new-proj" type="button">+ Dự án mới</button>
     </div>
     <div class="grid" id="projects"></div>
@@ -307,6 +408,53 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
 </dialog>
 
 <!-- Confirm dialog -->
+<!-- Recommend dialog -->
+<dialog id="dlg-reco">
+  <form id="f-reco" method="dialog">
+    <h3>Gợi ý ý tưởng phù hợp với bạn</h3>
+    <p class="hint" style="margin:0">Chọn điều kiện của bạn, trang sẽ xếp hạng các ý tưởng theo độ phù hợp và điểm ICE.</p>
+    <div class="field"><span class="flabel">Vốn bạn có thể bỏ ra</span>
+      <div class="chips" id="r-cap" role="group" aria-label="Vốn"></div></div>
+    <div class="field"><span class="flabel">Lĩnh vực bạn quan tâm (chọn nhiều)</span>
+      <div class="chips" id="r-cats" role="group" aria-label="Lĩnh vực quan tâm"></div></div>
+    <div class="field"><label for="r-region">Ưu tiên</label>
+      <select id="r-region"><option value="all">Cả trong nước và quốc tế</option><option value="vn">Áp dụng được ngay ở Việt Nam</option><option value="intl">Mô hình quốc tế để học hỏi</option></select></div>
+    <ol class="reco" id="reco-out"></ol>
+    <div class="dlg-actions"><button class="btn ghost" type="button" data-close>Đóng</button></div>
+  </form>
+</dialog>
+
+<!-- Lean Canvas dialog -->
+<dialog id="dlg-lc" class="wide">
+  <form id="f-lc" method="dialog">
+    <div class="lc-head">
+      <div><h3>Lean Canvas</h3><p class="hint" id="lc-title" style="margin:2px 0 0"></p></div>
+      <button class="btn small" type="button" id="lc-ai">✦ AI điền gợi ý</button>
+    </div>
+    <p class="hint" id="lc-ai-note" style="margin:0"></p>
+    <div class="lc" id="lc-grid"></div>
+    <div id="lc-risks"></div>
+    <p class="hint" style="margin:0">Bản nháp được lưu trên trình duyệt của bạn. Lean Canvas là bản kế hoạch kinh doanh 1 trang do Ash Maurya phát triển từ Business Model Canvas.</p>
+    <div class="dlg-actions">
+      <button class="btn ghost" type="button" id="lc-clear">Xóa nháp</button>
+      <button class="btn ghost" type="button" id="lc-copy">Sao chép Markdown</button>
+      <button class="btn" type="button" data-close>Xong</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Copy fallback dialog -->
+<dialog id="dlg-copy">
+  <form method="dialog">
+    <h3>Sao chép nội dung</h3>
+    <p class="hint" style="margin:0">Trình duyệt chặn sao chép tự động. Hãy chọn toàn bộ và sao chép thủ công.</p>
+    <textarea id="copy-area" rows="12" style="width:100%;font-family:ui-monospace,monospace;font-size:12px"></textarea>
+    <div class="dlg-actions"><button class="btn">Đóng</button></div>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
 <dialog id="dlg-confirm">
   <form method="dialog">
     <h3 id="c-title">Xóa?</h3>
@@ -344,7 +492,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   const IDEA_ST = {new:"Mới", review:"Đang xem xét", project:"Đã thành dự án"};
   const IMPACT = {1:"Tác động nhỏ",2:"Tác động vừa",3:"Tác động lớn"};
 
-  const state = { ideas:[], projects:[], votes:[], me:null, canWrite:false, canEdit:false, cat:"all", stage:"all", region:"all", q:"", sort:"votes", names:{}, editingProj:null, fromIdea:null };
+  const state = { ideas:[], projects:[], votes:[], me:null, canWrite:false, canEdit:false, cat:"all", stage:"all", region:"all", q:"", sort:"ice", projView:"grid", sample:null, names:{}, editingProj:null, fromIdea:null };
   let db=null, user=null;
 
   const $ = s=>document.querySelector(s);
@@ -355,20 +503,63 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   const setStatus = (msg)=>{ const s=$("#status"); if(!msg){ s.classList.add("hidden"); return;} s.textContent=msg; s.classList.remove("hidden"); };
 
   /* ---------- Views (hash routing) ---------- */
+  const VIEWS = ["y-tuong","ma-tran","du-an"];
   function route(){
     const h = (location.hash||"#y-tuong").slice(1);
-    const v = h==="du-an" ? "du-an" : "y-tuong";
+    const focusId = h.startsWith("idea-") ? h.slice(5) : null;
+    const v = focusId ? "y-tuong" : (VIEWS.includes(h) ? h : "y-tuong");
     document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current", a.dataset.view===v?"page":"false"));
-    $("#view-y-tuong").classList.toggle("hidden", v!=="y-tuong");
-    $("#view-du-an").classList.toggle("hidden", v!=="du-an");
+    VIEWS.forEach(k=> $("#view-"+k).classList.toggle("hidden", v!==k));
+    if(focusId) requestAnimationFrame(()=>focusCard(focusId));
   }
+  function focusCard(id){
+    let card = document.getElementById("card-"+id);
+    if(!card && (state.cat!=="all" || state.region!=="all" || state.q)){
+      state.cat="all"; state.region="all"; state.q=""; $("#q").value=""; $("#region").value="all"; $("#region-p").value="all"; buildChips(); renderIdeas();
+      card = document.getElementById("card-"+id);
+    }
+    if(!card) return;
+    card.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"center"});
+    card.classList.add("flash"); setTimeout(()=>card.classList.remove("flash"), 2200);
+  }
+  function goIdea(id){ if(location.hash==="#idea-"+id) focusCard(id); else location.hash = "idea-"+id; }
+
+  /* ---------- Scoring (ICE: Impact, Confidence, Ease; mean of 1–10) ---------- */
+  const IMP10 = {1:4, 2:7, 3:10}, EASE10 = {1:9, 2:6, 3:3};
+  function iceParts(i){
+    const I = IMP10[i.impact] || 5;
+    let C = 4; if(safeUrl(i.sourceUrl)) C += 3; if(Array.isArray(i.steps) && i.steps.length) C += 2; if(voteCount(i.id) > 0) C += 1;
+    const E = EASE10[i.capital] || 5;
+    return {I, C:Math.min(10,C), E};
+  }
+  function ice(i){ const p = iceParts(i); return Math.round((p.I+p.C+p.E)/3*10)/10; }
+  function iceBadge(i){
+    const p = iceParts(i), s = ice(i);
+    return el("span",{class:"ice"+(s>=7.5?" hi":""), title:`ICE ${s} = trung bình (Tác động ${p.I}, Tin cậy ${p.C}, Dễ làm ${p.E})`, "aria-label":`Điểm ICE ${s} trên 10`},
+      "ICE "+s.toFixed(1), el("span",{class:"bar"}, el("i",{style:"width:"+(s*10)+"%"})));
+  }
+  function filteredIdeas(){
+    let list = state.ideas.slice();
+    if(state.cat!=="all") list = list.filter(i=>i.category===state.cat);
+    if(state.region!=="all") list = list.filter(i=>i.region===state.region);
+    if(state.q) list = list.filter(i=>(i.title+" "+(i.summary||"")+" "+(i.steps||[]).join(" ")).toLowerCase().includes(state.q));
+    return list;
+  }
+  let toastT; function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove("show"),2200); }
+  async function copyText(text, okMsg){
+    try{ await navigator.clipboard.writeText(text); toast(okMsg||"Đã sao chép"); }
+    catch(e){ $("#copy-area").value = text; $("#dlg-copy").showModal(); $("#copy-area").select(); }
+  }
+  function pageUrl(){ return location.href.split("#")[0]; }
   window.addEventListener("hashchange", route); route();
 
   /* ---------- Filters ---------- */
   function buildChips(){
     const cc = $("#cat-chips"); cc.replaceChildren();
     [["all","Tất cả"], ...CATS.map(c=>[c,c])].forEach(([k,l])=>{
-      cc.append(el("button",{class:"chip",type:"button","aria-pressed":String(state.cat===k),onclick:()=>{state.cat=k; buildChips(); renderIdeas();}},l));
+      const n = k==="all" ? state.ideas.length : state.ideas.filter(i=>i.category===k).length;
+      if(k!=="all" && state.ideas.length && n===0 && state.cat!==k) return;
+      cc.append(el("button",{class:"chip",type:"button","aria-pressed":String(state.cat===k),onclick:()=>{state.cat=k; buildChips(); renderIdeas(); renderMatrix();}}, l+(state.ideas.length? " · "+n : "")));
     });
     const sc = $("#stage-chips"); sc.replaceChildren();
     [["all","Tất cả giai đoạn"], ...STAGES.map(s=>[s.k,s.l])].forEach(([k,l])=>{
@@ -377,9 +568,10 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   }
   ["#i-cat","#pj-cat"].forEach(s=>{ CATS.forEach(c=>$(s).append(el("option",{value:c},c))); });
   STAGES.forEach(s=>$("#pj-stage").append(el("option",{value:s.k},s.l)));
-  $("#q").addEventListener("input", e=>{ state.q=e.target.value.trim().toLowerCase(); renderIdeas(); });
+  $("#q").addEventListener("input", e=>{ state.q=e.target.value.trim().toLowerCase(); renderIdeas(); renderMatrix(); });
   $("#sort").addEventListener("change", e=>{ state.sort=e.target.value; renderIdeas(); });
-  ["#region","#region-p"].forEach(s=>$(s).addEventListener("change", e=>{ state.region=e.target.value; $("#region").value=state.region; $("#region-p").value=state.region; renderIdeas(); renderProjects(); }));
+  ["#region","#region-p"].forEach(s=>$(s).addEventListener("change", e=>{ state.region=e.target.value; $("#region").value=state.region; $("#region-p").value=state.region; renderIdeas(); renderMatrix(); renderProjects(); }));
+  document.addEventListener("keydown", e=>{ if(e.key==="/" && !/input|textarea|select/i.test(document.activeElement.tagName)){ e.preventDefault(); location.hash="y-tuong"; $("#q").focus(); } });
 
   /* ---------- Names ---------- */
   async function resolveNames(ids){
@@ -403,11 +595,17 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
 
   function renderIdeas(){
     const box = $("#ideas"); box.replaceChildren();
-    let list = state.ideas.slice();
-    if(state.cat!=="all") list = list.filter(i=>i.category===state.cat);
-    if(state.region!=="all") list = list.filter(i=>i.region===state.region);
-    if(state.q) list = list.filter(i=>(i.title+" "+(i.summary||"")).toLowerCase().includes(state.q));
-    list.sort((a,b)=> state.sort==="votes" ? (voteCount(b.id)-voteCount(a.id)) || ((b.createdAt||0)-(a.createdAt||0)) : (b.createdAt||0)-(a.createdAt||0));
+    const list = filteredIdeas();
+    const byNew = (a,b)=>(b.createdAt||0)-(a.createdAt||0);
+    const sorters = {
+      ice: (a,b)=> ice(b)-ice(a) || byNew(a,b),
+      votes: (a,b)=> voteCount(b.id)-voteCount(a.id) || byNew(a,b),
+      new: byNew,
+      ease: (a,b)=> (EASE10[b.capital]||5)-(EASE10[a.capital]||5) || ice(b)-ice(a)
+    };
+    list.sort(sorters[state.sort] || sorters.ice);
+    $("#count").textContent = list.length + " / " + state.ideas.length + " ý tưởng";
+    renderTop5(list);
     if(!list.length){
       box.append(el("div",{class:"empty",style:"grid-column:1/-1"}, state.ideas.length? "Không có ý tưởng nào khớp bộ lọc." : "Chưa có ý tưởng nào. Hãy là người đầu tiên gửi ý tưởng!"));
       return;
@@ -426,30 +624,60 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
         }
         acts.append(el("button",{class:"linkbtn del",type:"button",onclick:()=>confirmDel("Xóa ý tưởng?", "“"+i.title+"” sẽ bị xóa khỏi ngân hàng ý tưởng.", ()=>delIdea(i))},"Xóa"));
       }
-      box.append(el("article",{class:"card"},
+      const tools = el("div",{class:"acts"},
+        el("button",{class:"linkbtn",type:"button",onclick:()=>openLC(i)},"Lean Canvas"),
+        el("button",{class:"linkbtn",type:"button",onclick:()=>copyText(pageUrl()+"#idea-"+i.id,"Đã sao chép link ý tưởng")},"Sao chép link"));
+      box.append(el("article",{class:"card", id:"card-"+i.id},
         el("div",{class:"meta"}, el("span",{class:"tag"}, i.category||"Khác"), regionTag(i.region), capTag(i.capital), el("span",{class:"pill s-"+st}, IDEA_ST[st]||st)),
         el("h3",{}, i.title),
+        iceBadge(i),
         i.summary? el("p",{class:"sum"}, i.summary) : null,
         stepsEl(i),
         sourceEl(i),
         el("div",{class:"meta"}, (i.createdBy? nameOf(i.createdBy) : "Tổng hợp từ nguồn công khai")+" · "+fmtDate(i.createdAt)+(i.impact? " · "+IMPACT[i.impact] : "")),
-        state.isStatic ? null : el("div",{class:"foot"}, voteBtn, acts)
+        el("div",{class:"foot"}, state.isStatic ? null : voteBtn, tools, acts.childNodes.length ? acts : null)
       ));
     }
   }
 
-  function renderProjects(){
-    const box = $("#projects"); box.replaceChildren();
-    const order = Object.fromEntries(STAGES.map((s,i)=>[s.k,i]));
-    let list = state.projects.slice();
-    if(state.stage!=="all") list = list.filter(p=>p.stage===state.stage);
-    if(state.region!=="all") list = list.filter(p=>p.region===state.region);
-    list.sort((a,b)=> (order[a.stage]??9)-(order[b.stage]??9) || (b.updatedAt||0)-(a.updatedAt||0));
-    if(!list.length){
-      box.append(el("div",{class:"empty",style:"grid-column:1/-1"}, state.projects.length? "Không có dự án ở giai đoạn này." : (state.canEdit? "Chưa có dự án nào. Tạo dự án mới hoặc chuyển một ý tưởng thành dự án." : "Chưa có dự án nào đang thực thi.")));
-      return;
-    }
-    for(const p of list){
+  function renderTop5(list){
+    const ol = $("#top5"); ol.replaceChildren();
+    const top = list.slice().sort((a,b)=>ice(b)-ice(a)).slice(0,5);
+    $(".top5").classList.toggle("hidden", top.length < 3);
+    top.forEach(i=> ol.append(el("li",{}, el("a",{href:"#idea-"+i.id, onclick:(e)=>{e.preventDefault(); goIdea(i.id);}},
+      el("span",{}, el("span",{class:"t"}, i.title), el("span",{class:"s"}, "ICE "+ice(i).toFixed(1)+" · "+(i.category||""))) ))));
+  }
+
+  function renderMatrix(){
+    const box = $("#matrix"); if(!box) return; box.replaceChildren();
+    const list = filteredIdeas();
+    const withCap = list.filter(i=>CAP_L[i.capital]);
+    const hiImpact = i => (i.impact||2) >= 3;
+    const lowCap = i => i.capital === 1;
+    const Q = [
+      {k:"qw", t:"Thắng nhanh", d:"Tác động lớn, vốn thấp: nên làm trước.", f:i=>hiImpact(i)&&lowCap(i)},
+      {k:"sb", t:"Đặt cược chiến lược", d:"Tác động lớn, cần vốn vừa hoặc cao: lập kế hoạch kỹ, tìm đối tác.", f:i=>hiImpact(i)&&!lowCap(i)},
+      {k:"fi", t:"Thử nghiệm nhỏ", d:"Tác động vừa/nhỏ, vốn thấp: làm thử để học, ít rủi ro.", f:i=>!hiImpact(i)&&lowCap(i)},
+      {k:"mo", t:"Cân nhắc kỹ", d:"Tác động vừa/nhỏ, vốn vừa/cao: chỉ làm khi có lợi thế riêng.", f:i=>!hiImpact(i)&&!lowCap(i)}
+    ];
+    const quad = q => {
+      const items = withCap.filter(q.f).sort((a,b)=>ice(b)-ice(a));
+      return el("div",{class:"quad "+q.k}, el("h3",{}, q.t, el("span",{}, items.length)), el("p",{}, q.d),
+        items.length ? el("ul",{}, items.map(i=>el("li",{}, el("a",{href:"#idea-"+i.id}, el("span",{}, i.title), el("b",{}, ice(i).toFixed(1))))))
+                     : el("p",{}, "Chưa có ý tưởng nào ở ô này."));
+    };
+    box.append(
+      el("div",{class:"ax y"}, "Tác động lớn"), quad(Q[0]), quad(Q[1]),
+      el("div",{class:"ax y"}, "Tác động vừa/nhỏ"), quad(Q[2]), quad(Q[3]),
+      el("div",{}), el("div",{class:"ax"}, "Vốn thấp ←"), el("div",{class:"ax"}, "→ Vốn vừa / cao")
+    );
+    const noCap = list.filter(i=>!CAP_L[i.capital]);
+    const nc = $("#matrix-nocap"); nc.replaceChildren();
+    if(noCap.length) nc.append(el("details",{class:"steps"}, el("summary",{}, noCap.length+" ý tưởng chưa ước tính vốn (chủ yếu là xu hướng, chính sách)"),
+      el("ol",{}, noCap.sort((a,b)=>ice(b)-ice(a)).map(i=>el("li",{}, el("a",{href:"#idea-"+i.id, class:"src"}, i.title+" · ICE "+ice(i).toFixed(1)))))));
+  }
+
+  function projectCard(p){
       const ms = Array.isArray(p.milestones)? p.milestones : [];
       const done = ms.filter(m=>m.done).length;
       const pct = p.stage==="done" ? 100 : (ms.length? Math.round(done/ms.length*100) : 0);
@@ -468,7 +696,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       const add=(k,v)=>{ if(v){ kv.append(el("dt",{},k), el("dd",{},v)); } };
       add("Phụ trách", p.lead); add("Chỉ tiêu", p.kpi);
       const range = [fmtDate(p.start), fmtDate(p.end)].filter(Boolean).join(" → "); add("Thời gian", range);
-      box.append(el("article",{class:"card proj st-"+(p.stage||"kickoff")},
+      return el("article",{class:"card proj st-"+(p.stage||"kickoff")},
         el("div",{class:"meta"}, el("span",{class:"tag"}, STAGE_L[p.stage]||"Khởi động"), regionTag(p.region), el("span",{}, p.category||"")),
         el("h3",{}, p.title),
         p.summary? el("p",{class:"sum"}, p.summary) : null,
@@ -477,14 +705,150 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
         kv.childNodes.length? kv : null,
         ms.length? msList : null,
         el("div",{class:"foot"}, el("span",{class:"meta"}, "Cập nhật "+fmtDate(p.updatedAt||p.createdAt)), acts)
-      ));
-    }
+      );
   }
+
+  function renderProjects(){
+    const box = $("#projects"); box.replaceChildren();
+    const order = Object.fromEntries(STAGES.map((s,i)=>[s.k,i]));
+    let list = state.projects.slice();
+    if(state.region!=="all") list = list.filter(p=>p.region===state.region);
+    list.sort((a,b)=> (order[a.stage]??9)-(order[b.stage]??9) || (b.updatedAt||0)-(a.updatedAt||0));
+    const kanban = state.projView==="kanban";
+    box.className = kanban ? "kanban" : "grid";
+    $("#stage-chips").classList.toggle("hidden", kanban);
+    if(kanban){
+      STAGES.forEach(s=>{
+        const items = list.filter(p=>(p.stage||"kickoff")===s.k);
+        box.append(el("div",{class:"kcol"}, el("h3",{}, s.l, el("span",{}, items.length)),
+          items.length ? items.map(projectCard) : el("div",{class:"empty"}, "Trống")));
+      });
+      return;
+    }
+    if(state.stage!=="all") list = list.filter(p=>p.stage===state.stage);
+    if(!list.length){
+      box.append(el("div",{class:"empty",style:"grid-column:1/-1"}, state.projects.length? "Không có dự án ở giai đoạn này." : (state.canEdit? "Chưa có dự án nào. Tạo dự án mới hoặc chuyển một ý tưởng thành dự án." : "Chưa có dự án nào đang thực thi.")));
+      return;
+    }
+    list.forEach(p=>box.append(projectCard(p)));
+  }
+  ["grid","kanban"].forEach(k=>$("#pv-"+k).addEventListener("click", ()=>{
+    state.projView=k; $("#pv-grid").setAttribute("aria-pressed", String(k==="grid")); $("#pv-kanban").setAttribute("aria-pressed", String(k==="kanban")); renderProjects();
+  }));
+
+  /* ---------- Export ---------- */
+  const REG_TXT = {vn:"Việt Nam", intl:"Quốc tế"};
+  function currentSorted(){ const l = filteredIdeas(); return l.sort((a,b)=>ice(b)-ice(a)); }
+  $("#btn-copy-md").addEventListener("click", ()=>{
+    const rows = currentSorted();
+    const esc = s=>String(s||"").replace(/\|/g,"/").replace(/\n/g," ");
+    const md = ["| # | Ý tưởng | Lĩnh vực | Khu vực | Vốn | ICE | Nguồn |","|---|---|---|---|---|---|---|"]
+      .concat(rows.map((i,k)=>`| ${k+1} | ${esc(i.title)} | ${esc(i.category)} | ${REG_TXT[i.region]||""} | ${CAP_L[i.capital]||"—"} | ${ice(i).toFixed(1)} | ${safeUrl(i.sourceUrl)||""} |`)).join("\n");
+    copyText(md, "Đã sao chép "+rows.length+" ý tưởng dạng bảng Markdown");
+  });
+  $("#btn-csv").addEventListener("click", ()=>{
+    const rows = currentSorted();
+    const q = s=>'"'+String(s??"").replace(/"/g,'""')+'"';
+    const csv = "﻿" + [["Hạng","Ý tưởng","Lĩnh vực","Khu vực","Vốn","ICE","Tóm tắt","Bắt đầu từ đâu","Nguồn"].map(q).join(",")]
+      .concat(rows.map((i,k)=>[k+1,i.title,i.category,REG_TXT[i.region]||"",CAP_L[i.capital]||"",ice(i).toFixed(1),i.summary,(i.steps||[]).join(" → "),safeUrl(i.sourceUrl)||""].map(q).join(","))).join("\r\n");
+    const a = el("a",{href:URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"})), download:"y-tuong-doi-moi-sang-tao.csv"});
+    document.body.append(a); a.click(); a.remove();
+  });
+
+  /* ---------- Recommender ---------- */
+  const reco = {cap:1, cats:new Set()};
+  function buildReco(){
+    const rc = $("#r-cap"); rc.replaceChildren();
+    [[1,"Thấp"],[2,"Vừa"],[3,"Cao"]].forEach(([v,l])=> rc.append(el("button",{class:"chip",type:"button","aria-pressed":String(reco.cap===v), onclick:()=>{reco.cap=v; buildReco();}}, l)));
+    const rk = $("#r-cats"); rk.replaceChildren();
+    CATS.filter(c=>c!=="Khác").forEach(c=> rk.append(el("button",{class:"chip",type:"button","aria-pressed":String(reco.cats.has(c)), onclick:()=>{ reco.cats.has(c)?reco.cats.delete(c):reco.cats.add(c); buildReco(); }}, c)));
+    runReco();
+  }
+  function runReco(){
+    const region = $("#r-region").value;
+    const scored = state.ideas.map(i=>{
+      let s = ice(i), why = [];
+      if(i.capital && i.capital > reco.cap) return null;
+      if(i.capital){ s += 1.5; why.push(CAP_L[i.capital]+", vừa ngân sách"); } else { s -= 1; why.push("chưa ước tính vốn"); }
+      if(reco.cats.size){ if(reco.cats.has(i.category)){ s += 3; why.push("đúng lĩnh vực bạn chọn"); } else s -= 2; }
+      if(region!=="all"){ if(i.region===region){ s += 1; why.push(region==="vn"?"áp dụng được tại VN":"mô hình quốc tế"); } else s -= 1.5; }
+      if(Array.isArray(i.steps) && i.steps.length) why.push("có lộ trình "+i.steps.length+" bước");
+      return {i, s, why};
+    }).filter(Boolean).sort((a,b)=>b.s-a.s).slice(0,5);
+    const out = $("#reco-out"); out.replaceChildren();
+    if(!scored.length){ out.append(el("li",{class:"hint"}, "Không có ý tưởng phù hợp. Hãy nới rộng mức vốn hoặc bỏ bớt lĩnh vực.")); return; }
+    scored.forEach(({i,why})=> out.append(el("li",{}, el("a",{href:"#idea-"+i.id, onclick:(e)=>{e.preventDefault(); $("#dlg-reco").close(); goIdea(i.id);}},
+      el("b",{}, i.title), el("span",{}, "ICE "+ice(i).toFixed(1)+" · "+why.join(" · "))))));
+  }
+  $("#r-region").addEventListener("change", runReco);
+  $("#btn-reco").addEventListener("click", ()=>{ buildReco(); $("#dlg-reco").showModal(); });
+
+  /* ---------- Lean Canvas ---------- */
+  const LC = [
+    ["problem","1. Vấn đề","3 vấn đề lớn nhất khách hàng gặp"],
+    ["solution","4. Giải pháp","Cách bạn giải quyết từng vấn đề"],
+    ["metrics","8. Chỉ số then chốt","Con số cho biết bạn đang đi đúng hướng"],
+    ["uvp","3. Giá trị độc nhất","Một câu: vì sao khách chọn bạn"],
+    ["advantage","9. Lợi thế khó sao chép","Thứ đối thủ không dễ mua hay copy"],
+    ["channels","5. Kênh tiếp cận","Khách biết đến và mua từ đâu"],
+    ["segments","2. Khách hàng mục tiêu","Ai trả tiền? Ai dùng sớm nhất?"],
+    ["costs","7. Cơ cấu chi phí","Chi phí cố định và biến đổi chính"],
+    ["revenue","6. Dòng doanh thu","Thu tiền thế nào, giá bao nhiêu"]
+  ];
+  let lcIdea = null;
+  const lcKey = id => "dmst-lc-"+id;
+  function lcLoad(i){
+    try{ const s = localStorage.getItem(lcKey(i.id)); if(s) return JSON.parse(s); }catch(e){}
+    return { solution: i.title, channels: (i.steps||[]).filter(s=>/sàn|kênh|livestream|tiktok|shopee|amazon|etsy|mạng xã hội|zalo|messenger/i.test(s)).join("\n") };
+  }
+  function lcSave(){ if(!lcIdea) return; const d={}; LC.forEach(([k])=>d[k]=$("#lc-"+k).value); try{ localStorage.setItem(lcKey(lcIdea.id), JSON.stringify(d)); }catch(e){} }
+  function openLC(i){
+    lcIdea = i; const d = lcLoad(i);
+    $("#lc-title").textContent = i.title;
+    const g = $("#lc-grid"); g.replaceChildren();
+    LC.forEach(([k,l,h])=> g.append(el("div",{class:"box b-"+k}, el("label",{for:"lc-"+k}, l), el("textarea",{id:"lc-"+k, placeholder:h, oninput:lcSave}))));
+    LC.forEach(([k])=> $("#lc-"+k).value = d[k]||"");
+    $("#lc-risks").replaceChildren(); $("#lc-ai-note").textContent = "";
+    $("#lc-ai").classList.toggle("hidden", !state.sample);
+    $("#dlg-lc").showModal();
+  }
+  $("#lc-clear").addEventListener("click", ()=>{ if(!lcIdea) return; try{ localStorage.removeItem(lcKey(lcIdea.id)); }catch(e){} openLC(lcIdea); });
+  $("#lc-copy").addEventListener("click", ()=>{
+    if(!lcIdea) return;
+    const md = "# Lean Canvas: "+lcIdea.title+"\n\n"+LC.map(([k,l])=>"## "+l.replace(/^\d+\.\s*/,"")+"\n"+($("#lc-"+k).value.trim()||"_(chưa điền)_")).join("\n\n");
+    copyText(md, "Đã sao chép Lean Canvas");
+  });
+  $("#lc-ai").addEventListener("click", async ()=>{
+    if(!state.sample || !lcIdea) return;
+    const btn = $("#lc-ai"), note = $("#lc-ai-note");
+    btn.disabled = true; note.textContent = "AI đang phân tích ý tưởng…";
+    const i = lcIdea;
+    const prompt = `Bạn là cố vấn khởi nghiệp am hiểu thị trường Việt Nam. Hãy lập Lean Canvas bằng tiếng Việt cho ý tưởng sau, cụ thể, thực tế, mỗi ô 2–4 gạch đầu dòng ngắn (dùng "- " đầu dòng).
+Tên: ${i.title}
+Lĩnh vực: ${i.category||""}; Khu vực: ${REG_TXT[i.region]||""}; Vốn ước tính: ${CAP_L[i.capital]||"chưa rõ"}
+Mô tả: ${i.summary||""}
+Các bước đã gợi ý: ${(i.steps||[]).join("; ")}
+Trả về DUY NHẤT một JSON object với các khóa: problem, segments, uvp, solution, channels, revenue, costs, metrics, advantage (mỗi khóa là chuỗi), và risks (mảng 3 chuỗi: rủi ro lớn nhất và cách giảm). Không bịa số liệu thị trường cụ thể; nếu cần con số, ghi rõ là giả định cần kiểm chứng.`;
+    try{
+      const r = await state.sample.json(prompt, {modelTier:"default"});
+      const v = (r && typeof r==="object" && "value" in r && !("problem" in r)) ? r.value : r;
+      LC.forEach(([k])=>{ if(typeof v[k]==="string" && v[k].trim()) $("#lc-"+k).value = v[k].trim(); });
+      lcSave();
+      const rk = Array.isArray(v.risks) ? v.risks.filter(x=>typeof x==="string") : [];
+      $("#lc-risks").replaceChildren(...(rk.length ? [el("b",{}, "Rủi ro cần lưu ý"), el("ul",{}, rk.map(x=>el("li",{},x)))] : []));
+      note.textContent = "AI đã điền gợi ý. Hãy chỉnh lại theo hiểu biết thực tế của bạn.";
+    }catch(e){
+      if(e && e.code==="not_granted"){ state.sample=null; btn.classList.add("hidden"); note.textContent="Tính năng AI chưa được cấp quyền trên trang này."; }
+      else if(e && e.code==="rate_limited") note.textContent="AI đang bận, thử lại sau ít phút.";
+      else note.textContent="AI chưa trả lời được, hãy thử lại.";
+    }finally{ btn.disabled = false; }
+  });
 
   function renderAll(){
     document.querySelectorAll(".write-only").forEach(b=>b.classList.toggle("hidden", !state.canWrite));
     document.querySelectorAll(".edit-only").forEach(b=>b.classList.toggle("hidden", !state.canEdit));
-    renderPipeline(); renderIdeas(); renderProjects();
+    document.querySelectorAll(".static-only").forEach(b=>b.classList.toggle("hidden", !state.isStatic));
+    buildChips(); renderPipeline(); renderIdeas(); renderMatrix(); renderProjects();
   }
 
   /* ---------- Writes ---------- */
@@ -587,8 +951,9 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     }catch(e){
       setStatus("Không tải được dữ liệu (data.json). Hãy mở trang qua một máy chủ web, ví dụ GitHub Pages.");
     }
-    renderAll();
+    renderAll(); focusFromHash();
   }
+  function focusFromHash(){ if(location.hash.startsWith("#idea-")) focusCard(location.hash.slice(6)); }
 
   /* ---------- Boot ---------- */
   buildChips(); renderAll();
@@ -604,7 +969,9 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     try{ state.canEdit = user ? !!(await user.canEdit()) : false; }catch(e){}
     try{ const c = user && user.can ? await user.can("data.write") : null; state.canWrite = c===null ? true : !!c; }catch(e){ state.canWrite = true; }
     if(state.canEdit) state.canWrite = true;
+    claude.use("sample").then(s=>{ state.sample = s || null; }).catch(()=>{});
     renderAll();
+    let firstIdeas = true;
 
     let loaded = {ideas:false, projects:false, votes:false};
     const done = (k)=>{ loaded[k]=true; if(loaded.ideas&&loaded.projects&&loaded.votes){ clearTimeout(timer); setStatus(""); } };
@@ -613,6 +980,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     db.collection("ideas").onSnapshot(async snap=>{
       state.ideas = docsOf(snap); done("ideas");
       await resolveNames(state.ideas.map(i=>i.createdBy)); renderAll();
+      if(firstIdeas){ firstIdeas = false; focusFromHash(); }
     }, onErr);
     db.collection("projects").onSnapshot(snap=>{ state.projects = docsOf(snap); done("projects"); renderAll(); }, onErr);
     db.collection("votes").onSnapshot(snap=>{ state.votes = docsOf(snap); done("votes"); renderIdeas(); }, onErr);
