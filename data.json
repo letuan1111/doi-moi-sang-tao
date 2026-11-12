@@ -428,7 +428,14 @@
    "sourceUrl": "https://thitruongtaichinhtiente.vn/5-xu-huong-mang-xa-hoi-danh-cho-doanh-nghiep-viet-nam-nam-2026-77488.html",
    "status": "new",
    "summary": "Nhắn tin (Messenger, WhatsApp, Zalo) trở thành trung tâm bán hàng: AI trả lời, tư vấn, chốt đơn 24/7. Theo Meta Việt Nam, giải pháp AI và tự động hóa đã giúp nhà quảng cáo tại Việt Nam tăng 22% hiệu quả ROAS. Cơ hội: dịch vụ dựng chatbot bán hàng cho shop nhỏ.",
-   "title": "Kinh doanh hội thoại: bán hàng ngay trong tin nhắn"
+   "title": "Kinh doanh hội thoại: bán hàng ngay trong tin nhắn",
+   "capital": 1,
+   "steps": [
+    "Chọn một nhóm shop nhỏ cùng ngành (thời trang, mỹ phẩm, đồ ăn)",
+    "Dựng chatbot trả lời câu hỏi thường gặp, báo giá, nhận đơn trên Messenger/Zalo",
+    "Tính phí theo tháng hoặc theo số đơn chốt được",
+    "Lấy số liệu trước/sau (tỷ lệ chốt đơn, thời gian phản hồi) làm minh chứng để bán cho shop khác"
+   ]
   },
   {
    "id": "kd08",
@@ -441,7 +448,14 @@
    "sourceUrl": "https://www.brandsvietnam.com/congdong/topic/tiktok-shop-affiliate-mua-cuoi-nam-2026-koc-can-chuan-bi-gi-khi-luat-choi-da-doi",
    "status": "new",
    "summary": "Phí hoa hồng TikTok Shop tăng lên khoảng 9–17,8% từ tháng 5/2026, quy định thay đổi liên tục. Nhãn hàng cần KOC có tài khoản sạch và hiểu dữ liệu hơn là KOC nhiều follower. Cơ hội: đơn vị đào tạo, quản trị tài khoản, dùng AI sản xuất nội dung hàng loạt và đo hiệu quả theo doanh số (GMV).",
-   "title": "Agency đào tạo và quản lý KOC cho TikTok Shop"
+   "title": "Agency đào tạo và quản lý KOC cho TikTok Shop",
+   "capital": 1,
+   "steps": [
+    "Tự làm KOC một ngách trước để hiểu luật chơi và thuật toán",
+    "Giữ tài khoản sạch, không vi phạm chính sách nền tảng",
+    "Tập hợp nhóm KOC nhỏ, xây quy trình kịch bản, dựng video bằng AI",
+    "Ký hợp đồng với nhãn hàng theo hoa hồng trên doanh số thay vì phí đăng bài"
+   ]
   },
   {
    "id": "kd09",
@@ -454,7 +468,14 @@
    "sourceUrl": "https://affninja.com/vietnam-affiliate-marketing-statistics/",
    "status": "new",
    "summary": "Khảo sát Q&Me 2026: livestream chiếm khoảng 67% chi tiêu mua sắm online của người được hỏi. GMV bốn sàn lớn quý I/2026 đạt khoảng 5,64 tỷ USD, tăng 47%. Mô hình: studio livestream cho thuê, đội host chuyên nghiệp bán hộ cho thương hiệu theo hoa hồng.",
-   "title": "Livestream bán hàng chuyên nghiệp (live commerce)"
+   "title": "Livestream bán hàng chuyên nghiệp (live commerce)",
+   "capital": 2,
+   "steps": [
+    "Làm host livestream cho chính sản phẩm của mình hoặc người quen trước",
+    "Chuẩn bị bộ thiết bị cơ bản: điện thoại tốt, đèn, mic, mạng ổn định",
+    "Lên kịch bản: ưu đãi rõ ràng, trình diễn sản phẩm, trả lời bình luận",
+    "Khi có số liệu doanh thu theo phiên, chào dịch vụ livestream bán hộ theo hoa hồng"
+   ]
   },
   {
    "id": "kd10",
@@ -467,7 +488,14 @@
    "sourceUrl": "https://vietnamnews.vn/society/1778516/medically-standardised-home-care-for-the-elderly-gains-ground-in-viet-nam.html",
    "status": "new",
    "summary": "Dịch vụ chăm sóc tại nhà chuẩn hóa y khoa đang mở rộng nhanh, mở ra phân khúc hàng tỷ USD trong nền kinh tế bạc của Việt Nam. Ví dụ: Bluecare áp dụng quy trình theo chuẩn Hà Lan; eDoctor triển khai mô hình một bác sĩ – một điều dưỡng khép kín.",
-   "title": "Chăm sóc người cao tuổi tại nhà theo chuẩn y khoa"
+   "title": "Chăm sóc người cao tuổi tại nhà theo chuẩn y khoa",
+   "capital": 3,
+   "steps": [
+    "Hợp tác với bác sĩ, điều dưỡng có chứng chỉ hành nghề; không tự làm dịch vụ y tế khi chưa đủ điều kiện",
+    "Bắt đầu với dịch vụ đơn giản: chăm sóc sau xuất viện, vật lý trị liệu tại nhà",
+    "Chuẩn hóa quy trình, nhật ký chăm sóc gửi cho con cái ở xa",
+    "Bán theo gói tháng; mở rộng sang khám định kỳ, tư vấn dinh dưỡng"
+   ]
   },
   {
    "id": "kd11",
@@ -493,7 +521,14 @@
    "sourceUrl": "https://newmarketpitch.com/blogs/news/circular-economy-market-news",
    "status": "new",
    "summary": "Recommerce gồm bán lại, sửa chữa, cho thuê, refill, đổi trả và phân phối lại hàng hóa. eBay mua Depop (sàn đồ cũ của Gen Z) giá 1,2 tỷ USD tháng 2/2026. Ý tưởng tại VN: sàn đồ cũ có kiểm định, dịch vụ thu mua lại cho thương hiệu thời trang.",
-   "title": "Thương mại tuần hoàn: bán lại, sửa chữa, cho thuê"
+   "title": "Thương mại tuần hoàn: bán lại, sửa chữa, cho thuê",
+   "capital": 1,
+   "steps": [
+    "Bắt đầu với một mặt hàng dễ kiểm định: sách, đồ điện tử cũ, quần áo thương hiệu",
+    "Đặt tiêu chuẩn kiểm tra, phân loại, chụp ảnh thật từng món",
+    "Bán qua mạng xã hội, sàn TMĐT; có chính sách đổi trả rõ ràng",
+    "Khi đủ lượng, chào dịch vụ thu mua lại cho thương hiệu thời trang"
+   ]
   },
   {
    "id": "kd13",
@@ -506,7 +541,14 @@
    "sourceUrl": "https://shopappy.com/?p=6797",
    "status": "new",
    "summary": "Bán chất tẩy rửa, mỹ phẩm theo hình thức đổ đầy vỏ cũ. Khó nhất là khâu thu hồi vỏ rỗng, nên phần lớn mô hình gắn refill với điểm trả vỏ tại cửa hàng thay vì gửi qua bưu điện. Phù hợp chuỗi tạp hóa, siêu thị mini ở đô thị.",
-   "title": "Trạm refill (đổ đầy lại) tại cửa hàng"
+   "title": "Trạm refill (đổ đầy lại) tại cửa hàng",
+   "capital": 2,
+   "steps": [
+    "Thử một góc refill nhỏ trong cửa hàng tạp hóa sẵn có thay vì mở cửa hàng mới",
+    "Chọn 3–5 mặt hàng dùng nhiều: nước giặt, nước rửa chén, dầu gội",
+    "Khuyến khích khách mang vỏ quay lại bằng giảm giá hoặc tích điểm",
+    "Theo dõi tỷ lệ khách quay lại trước khi mở rộng"
+   ]
   },
   {
    "id": "kd14",
@@ -519,7 +561,14 @@
    "sourceUrl": "https://vnbusiness.vn/minh-bach-hoa-nguon-goc-tam-ho-chieu-so-nang-tam-nong-san-viet.html",
    "status": "new",
    "summary": "Nhiều nước coi truy xuất nguồn gốc là điều kiện bắt buộc với hàng nhập khẩu; doanh nghiệp có dữ liệu minh bạch sẽ có lợi thế. Mô hình: dịch vụ trọn gói giúp HTX, nông hộ số hóa nhật ký sản xuất, dán tem và kết nối hệ thống truy xuất quốc gia, thu phí theo lô hàng.",
-   "title": "Dịch vụ \"hộ chiếu số\" truy xuất nguồn gốc cho HTX nông sản"
+   "title": "Dịch vụ \"hộ chiếu số\" truy xuất nguồn gốc cho HTX nông sản",
+   "capital": 1,
+   "steps": [
+    "Tìm hiểu kỹ yêu cầu truy xuất nguồn gốc của thị trường xuất khẩu mục tiêu",
+    "Bắt đầu với một HTX và một loại nông sản",
+    "Hướng dẫn số hóa nhật ký canh tác, dán tem, cập nhật lên hệ thống truy xuất quốc gia",
+    "Thu phí theo lô hàng hoặc theo năm; nhân rộng sang HTX khác cùng vùng"
+   ]
   },
   {
    "id": "kd15",
@@ -545,7 +594,14 @@
    "sourceUrl": "https://dodopayments.com/blogs/micro-saas-ideas-2026",
    "status": "new",
    "summary": "Phần mềm nhỏ giải đúng một vấn đề cho một nhóm khách hẹp, thu phí thuê bao tháng. Nhờ công cụ AI viết code (\"vibe coding\"), một người có thể ra sản phẩm trong vài tuần với vốn rất nhỏ. Nguyên tắc: kiểm chứng nhu cầu bằng tiền thật trước khi làm nhiều.",
-   "title": "Micro-SaaS do một người làm nhờ AI viết code"
+   "title": "Micro-SaaS do một người làm nhờ AI viết code",
+   "capital": 1,
+   "steps": [
+    "Tìm một việc lặp đi lặp lại, gây khó chịu của một nhóm nghề hẹp",
+    "Hỏi ít nhất 10 người trong nghề, xin họ đặt cọc hoặc đăng ký trước",
+    "Dùng công cụ AI viết code làm bản nhỏ nhất chỉ giải đúng việc đó",
+    "Thu phí từ ngày đầu, không thêm tính năng khi chưa có người dùng trả tiền yêu cầu"
+   ]
   },
   {
    "id": "kd17",
@@ -558,7 +614,14 @@
    "sourceUrl": "https://theleader.vn/news-1701344268722.htm",
    "status": "new",
    "summary": "Việt Nam có khoảng 16 triệu hộ kinh doanh. Sổ Bán Hàng thu phí thuê bao 100.000–300.000 đồng/tháng cho tính năng chuyên sâu theo từng ngành. Hướng mở rộng: gắn hóa đơn điện tử, kê khai thuế, vay vốn nhỏ từ dữ liệu bán hàng.",
-   "title": "Phần mềm bán hàng thuê bao cho hộ kinh doanh"
+   "title": "Phần mềm bán hàng thuê bao cho hộ kinh doanh",
+   "capital": 2,
+   "steps": [
+    "Chọn một ngành hộ kinh doanh cụ thể: tạp hóa, quán ăn, cửa hàng vật liệu",
+    "Ngồi cùng chủ hộ vài ngày để hiểu cách họ ghi chép, bán hàng",
+    "Làm ứng dụng đơn giản trên điện thoại, miễn phí bản cơ bản",
+    "Thu phí bản nâng cao: báo cáo, hóa đơn điện tử, quản lý công nợ"
+   ]
   },
   {
    "id": "kd18",
@@ -585,6 +648,111 @@
    "status": "new",
    "summary": "Sau giai đoạn vốn đầu tư trầm lắng, startup Việt kỷ luật hơn, tập trung mô hình hiệu quả và dịch chuyển từ thị trường nội địa sang toàn cầu, nhất là mảng AI. Mô hình: đội kỹ sư tại VN, sản phẩm và giá bán cho khách quốc tế.",
    "title": "Startup Việt hướng ra thị trường toàn cầu từ ngày đầu"
+  },
+  {
+   "id": "bm01",
+   "title": "Xuất khẩu hàng Việt qua Amazon",
+   "category": "Mô hình kinh doanh",
+   "region": "vn",
+   "impact": 3,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497000000,
+   "summary": "Bán thẳng sản phẩm mang thương hiệu Việt tới người tiêu dùng nước ngoài qua sàn TMĐT xuyên biên giới. Trong 12 tháng, số sản phẩm của doanh nghiệp Việt bán trên Amazon tăng 35%; Amazon cùng Cục Xúc tiến thương mại, VECOM và nhiều địa phương đang có chương trình hỗ trợ doanh nghiệp nhỏ, doanh nhân trẻ.",
+   "steps": [
+    "Chọn 1–3 sản phẩm Việt Nam có lợi thế (thủ công, đồ gỗ, cà phê, đặc sản khô) và kiểm tra nhu cầu, giá đối thủ trên Amazon",
+    "Đăng ký bảo hộ nhãn hiệu trước khi bán để được bảo vệ trên sàn",
+    "Đăng ký chương trình hỗ trợ của Amazon Global Selling / Vietrade / VECOM để được hướng dẫn và giảm chi phí ban đầu",
+    "Gửi lô hàng nhỏ thử nghiệm, viết trang sản phẩm bằng tiếng Anh chuẩn, ảnh đẹp",
+    "Theo dõi đánh giá và lợi nhuận sau phí sàn, vận chuyển, quảng cáo rồi mới tăng hàng"
+   ],
+   "sourceUrl": "https://thuehaiquan.tapchikinhtetaichinh.vn/amazon-ho-tro-viet-nam-thanh-cu-diem-xuat-khau-qua-thuong-mai-dien-tu-cua-khu-vuc-128416.html",
+   "sourceName": "Thuế Hải quan"
+  },
+  {
+   "id": "bm02",
+   "title": "Nhượng quyền kiosk F&B: cơ hội và bẫy",
+   "category": "Mô hình kinh doanh",
+   "region": "vn",
+   "impact": 2,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496900000,
+   "summary": "F&B chiếm khoảng 80% số thương hiệu nhượng quyền tại Việt Nam; nhượng quyền dạng kiosk, cửa hàng nhỏ là xu hướng mạnh năm 2026 vì hợp túi tiền nhà đầu tư cá nhân. Nhưng biên lợi nhuận gộp nhà hàng chỉ khoảng 10–15% và thị trường đang thanh lọc mạnh: ngay cả Mixue cũng đóng hàng trăm cửa hàng.",
+   "steps": [
+    "Yêu cầu thương hiệu cung cấp số liệu doanh thu, lợi nhuận thật của các điểm đang chạy, gọi điện hỏi trực tiếp 3–5 chủ điểm",
+    "Tự tính điểm hòa vốn: tiền mặt bằng + phí nhượng quyền + nhân sự so với số ly/ngày cần bán",
+    "Chọn mặt bằng theo dòng khách thực tế (đếm người qua lại vào giờ cao điểm), ưu tiên phục vụ cả mang đi và giao hàng",
+    "Chuẩn hóa sổ sách, thuế, bảo hiểm ngay từ đầu vì quy định ngày càng chặt",
+    "Chạy thử 3–6 tháng ở một điểm trước khi mở điểm thứ hai"
+   ],
+   "sourceUrl": "https://vcci.com.vn/news/nganh-fb-chiem-80-so-thuong-hieu-nhuong-quyen-tai-viet-nam",
+   "sourceName": "VCCI"
+  },
+  {
+   "id": "bm03",
+   "title": "Bán sản phẩm in theo yêu cầu (print-on-demand)",
+   "category": "Mô hình kinh doanh",
+   "region": "intl",
+   "impact": 1,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496800000,
+   "summary": "Bạn thiết kế hình in cho áo, cốc, tranh, sticker; xưởng chỉ in khi có đơn và giao hộ, nên không cần ôm hàng tồn kho. Phù hợp sinh viên, người làm thiết kế, người hiểu một cộng đồng ngách (thú cưng, nghề nghiệp, sở thích).",
+   "steps": [
+    "Chọn một ngách bạn hiểu rõ, ví dụ người nuôi mèo, dân IT, fan một môn thể thao",
+    "Làm 10–20 mẫu thiết kế đầu tiên, có thể dùng AI hỗ trợ nhưng phải tự chỉnh để có bản quyền rõ ràng",
+    "Mở gian hàng trên Etsy hoặc Shopify kết nối với xưởng in theo yêu cầu",
+    "Kéo khách bằng nội dung ngắn trên TikTok, Pinterest cho đúng ngách",
+    "Giữ lại mẫu bán chạy, bỏ mẫu không bán, rồi mới đầu tư cửa hàng thương hiệu riêng"
+   ],
+   "sourceUrl": "https://printful.com/blog/how-to-start-a-print-on-demand-business",
+   "sourceName": "Printful"
+  },
+  {
+   "id": "bm04",
+   "title": "Dịch vụ triển khai AI cho doanh nghiệp nhỏ",
+   "category": "Mô hình kinh doanh",
+   "region": "vn",
+   "impact": 3,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496700000,
+   "summary": "Doanh nghiệp nhỏ và vừa chiếm hơn 95% số doanh nghiệp Việt Nam nhưng ít người biết dùng AI. Chuyên gia khuyên phải giúp họ chuẩn hóa quy trình, dữ liệu trước rồi mới đưa vào AI. Cơ hội cho nhóm nhỏ làm dịch vụ: cài chatbot chốt đơn, tự động hóa báo giá, soạn nội dung.",
+   "steps": [
+    "Chọn một ngành hẹp để làm sâu: spa, nha khoa, trung tâm tiếng Anh, môi giới bất động sản…",
+    "Thiết kế một gói cố định: chatbot trả lời khách + tự động ghi đơn/đặt lịch + báo cáo tuần",
+    "Làm miễn phí hoặc giá rẻ cho 2–3 khách đầu để có kết quả thật làm minh chứng",
+    "Thu phí cài đặt một lần và phí duy trì hằng tháng",
+    "Đóng gói quy trình thành mẫu để nhân bản sang khách cùng ngành"
+   ],
+   "sourceUrl": "https://voh.com.vn/cong-nghe/ai-va-tu-dong-hoa-co-hoi-cho-doanh-nghiep-vua-va-nho-viet-nam-but-pha-658679.html",
+   "sourceName": "VOH"
+  },
+  {
+   "id": "bm05",
+   "title": "Đưa đặc sản OCOP quê nhà lên sàn và livestream",
+   "category": "Mô hình kinh doanh",
+   "region": "vn",
+   "impact": 2,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496600000,
+   "summary": "Cả nước có hơn 20.000 sản phẩm OCOP đạt từ 3 sao trở lên, nhưng nhiều hợp tác xã còn yếu khâu bán online. Muốn bán online phải nâng chuẩn: bao bì chuyên nghiệp, nhãn mác chuẩn, mã QR truy xuất nguồn gốc. Người trẻ có thể làm cầu nối: phân phối độc quyền online cho đặc sản quê mình.",
+   "steps": [
+    "Chọn 1–2 sản phẩm OCOP ở quê có chất lượng ổn định và nguồn hàng đều",
+    "Thỏa thuận với HTX làm nhà phân phối online, thống nhất giá sỉ và chính sách đổi trả",
+    "Làm lại bao bì, ảnh, câu chuyện sản phẩm (vùng đất, người làm), gắn QR truy xuất",
+    "Mở gian hàng trên Shopee/TikTok Shop, livestream từ vườn, xưởng",
+    "Nhắm quà Tết, quà doanh nghiệp để có đơn lớn đầu tiên"
+   ],
+   "sourceUrl": "https://vneconomy.vn/san-pham-ocop-tung-buoc-chinh-phuc-cho-so.htm",
+   "sourceName": "VnEconomy"
   }
  ],
  "projects": [

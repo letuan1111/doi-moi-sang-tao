@@ -115,6 +115,20 @@ select.sort{padding:9px 12px; border:1px solid var(--line); border-radius:999px;
 .src:hover{text-decoration:underline}
 .tag.rg-vn{border-color:var(--stop); color:var(--stop)}
 .tag.rg-intl{border-color:var(--accent); color:var(--accent)}
+.steps{border:1px solid var(--line); border-radius:8px; background:var(--bg); font-size:13px}
+.steps summary{cursor:pointer; padding:8px 10px; font-weight:700; color:var(--ink); list-style:none; display:flex; justify-content:space-between; gap:8px}
+.steps summary::-webkit-details-marker{display:none}
+.steps summary::after{content:"+"; color:var(--accent); font-weight:800}
+.steps[open] summary::after{content:"–"}
+.steps ol{margin:0; padding:0 12px 10px 30px; display:flex; flex-direction:column; gap:4px}
+.tag.cap{border-style:dashed}
+.guide{background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--spark); border-radius:var(--r); margin-bottom:16px}
+.guide summary{cursor:pointer; padding:14px 16px; font-family:var(--display); font-weight:700; font-size:17px; list-style:none}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary span{display:block; font-family:var(--body); font-weight:400; font-size:13px; color:var(--muted); margin-top:2px}
+.guide ol{margin:0; padding:0 18px 16px 36px; display:grid; gap:8px; max-width:80ch}
+.guide li b{color:var(--ink)}
+.guide p{margin:0 18px 16px; font-size:13px; color:var(--muted)}
 .linkbtn{background:none; border:0; padding:4px 6px; color:var(--accent); font-weight:600; font-size:13px; cursor:pointer}
 .linkbtn.del{color:var(--stop)}
 
@@ -206,6 +220,17 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       <button class="btn write-only" id="btn-new-idea" type="button">+ Gửi ý tưởng</button>
     </div>
     <div class="chips" id="cat-chips" style="margin-bottom:16px" role="group" aria-label="Lọc theo lĩnh vực"></div>
+    <details class="guide">
+      <summary>Muốn kinh doanh nhưng chưa biết bắt đầu từ đâu?<span>5 bước kiểm chứng ý tưởng trước khi bỏ nhiều tiền · bấm để mở</span></summary>
+      <ol>
+        <li><b>Chọn một vấn đề có người sẵn sàng trả tiền.</b> Bắt đầu từ thứ bạn hiểu rõ (ngành học, quê hương, nghề của gia đình) và một nhóm khách hàng cụ thể, không phải "mọi người".</li>
+        <li><b>Nói chuyện với 10–20 khách hàng tiềm năng.</b> Hỏi họ đang giải quyết vấn đề đó thế nào, tốn bao nhiêu tiền, thời gian. Đừng hỏi "bạn có mua không?", hãy hỏi về việc họ đã làm.</li>
+        <li><b>Thử bán trước khi làm.</b> Một trang giới thiệu, bài đăng hoặc video demo kèm nút đặt trước. Ví dụ kinh điển: Dropbox thử nhu cầu bằng một video demo trước khi viết code.</li>
+        <li><b>Làm bản nhỏ nhất bán được (MVP).</b> 1 sản phẩm, 1 kênh bán, 1 nhóm khách. Ghi lại từng đơn hàng và phản hồi.</li>
+        <li><b>Đo 3 con số rồi mới mở rộng:</b> lãi gộp mỗi đơn, chi phí để có một khách, tỷ lệ khách mua lại. Nếu chưa ổn, sửa hoặc đổi hướng; nếu ổn, mới tăng vốn, thuê người, mở thêm kênh.</li>
+      </ol>
+      <p>Mỗi ý tưởng kinh doanh bên dưới có mục "Bắt đầu từ đâu" với các bước cụ thể và nhãn mức vốn khởi đầu (ước tính tương đối, cần tự khảo sát lại theo khu vực của bạn).</p>
+    </details>
     <div class="grid" id="ideas"></div>
   </section>
 
@@ -244,6 +269,9 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       <div class="field"><label for="i-region">Khu vực</label><select id="i-region"><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option></select></div>
       <div class="field"><label for="i-src">Link nguồn (nếu có)</label><input id="i-src" type="url" placeholder="https://…"></div>
     </div>
+    <div class="field"><label for="i-cap">Vốn khởi đầu (ước tính)</label>
+      <select id="i-cap"><option value="">Chưa rõ</option><option value="1">Thấp</option><option value="2">Vừa</option><option value="3">Cao</option></select></div>
+    <div class="field"><label for="i-steps">Bắt đầu từ đâu? (mỗi dòng một bước, có thể bỏ trống)</label><textarea id="i-steps" maxlength="1500" placeholder="Khảo sát 10 khách hàng&#10;Làm thử 1 sản phẩm&#10;Bán thử trên 1 kênh"></textarea></div>
     <div class="err" id="i-err"></div>
     <div class="dlg-actions"><button class="btn ghost" type="button" data-close>Hủy</button><button class="btn" type="submit" id="i-save">Gửi ý tưởng</button></div>
   </form>
@@ -297,6 +325,13 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     const u = safeUrl(o.sourceUrl); if(!u) return null;
     return el("a",{class:"src",href:u,target:"_blank",rel:"noopener noreferrer"}, "Nguồn: "+(o.sourceName||hostOf(u)));
   }
+  const CAP_L = {1:"Vốn thấp", 2:"Vốn vừa", 3:"Vốn cao"};
+  function stepsEl(o){
+    const s = Array.isArray(o.steps) ? o.steps.filter(x=>typeof x==="string" && x.trim()) : [];
+    if(!s.length) return null;
+    return el("details",{class:"steps"}, el("summary",{}, "Bắt đầu từ đâu ("+s.length+" bước)"), el("ol",{}, s.map(t=>el("li",{},t))));
+  }
+  const capTag = c => CAP_L[c] ? el("span",{class:"tag cap"}, CAP_L[c]) : null;
   const regionTag = r => REGION_L[r] ? el("span",{class:"tag rg-"+r}, REGION_L[r]) : null;
   const STAGES = [
     {k:"kickoff", l:"Khởi động"},
@@ -392,9 +427,10 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
         acts.append(el("button",{class:"linkbtn del",type:"button",onclick:()=>confirmDel("Xóa ý tưởng?", "“"+i.title+"” sẽ bị xóa khỏi ngân hàng ý tưởng.", ()=>delIdea(i))},"Xóa"));
       }
       box.append(el("article",{class:"card"},
-        el("div",{class:"meta"}, el("span",{class:"tag"}, i.category||"Khác"), regionTag(i.region), el("span",{class:"pill s-"+st}, IDEA_ST[st]||st)),
+        el("div",{class:"meta"}, el("span",{class:"tag"}, i.category||"Khác"), regionTag(i.region), capTag(i.capital), el("span",{class:"pill s-"+st}, IDEA_ST[st]||st)),
         el("h3",{}, i.title),
         i.summary? el("p",{class:"sum"}, i.summary) : null,
+        stepsEl(i),
         sourceEl(i),
         el("div",{class:"meta"}, (i.createdBy? nameOf(i.createdBy) : "Tổng hợp từ nguồn công khai")+" · "+fmtDate(i.createdAt)+(i.impact? " · "+IMPACT[i.impact] : "")),
         state.isStatic ? null : el("div",{class:"foot"}, voteBtn, acts)
@@ -488,7 +524,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
     try{
       const id=uid();
       const src = safeUrl($("#i-src").value.trim());
-      await db.doc("ideas/"+id).set({title, summary, category:$("#i-cat").value, impact:Number($("#i-impact").value), region:$("#i-region").value, sourceUrl:src, sourceName: src? hostOf(src) : null, status:"new", createdBy:state.me||null, createdAt:Date.now()});
+      await db.doc("ideas/"+id).set({title, summary, category:$("#i-cat").value, impact:Number($("#i-impact").value), region:$("#i-region").value, capital: Number($("#i-cap").value)||null, steps: $("#i-steps").value.split("\n").map(s=>s.trim()).filter(Boolean).slice(0,10), sourceUrl:src, sourceName: src? hostOf(src) : null, status:"new", createdBy:state.me||null, createdAt:Date.now()});
       $("#dlg-idea").close();
     }catch(err){ $("#i-err").textContent="Không gửi được: bạn có thể chưa có quyền đóng góp trên trang này."; }
     finally{ $("#i-save").disabled=false; }
