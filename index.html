@@ -517,6 +517,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   </form>
 </dialog>
 
+<script src="ai-chat.js"></script>
 <script>
 (function(){
   const CATS = ["Giáo dục","Nền tảng giao dịch","Mô hình kinh doanh","Ngân hàng – Fintech","Bảo mật – Chống lừa đảo","Dữ liệu cá nhân","Khoa học – Công nghệ","Chính sách – Thể chế","Khác"];
@@ -905,27 +906,13 @@ Trả về DUY NHẤT một JSON object với các khóa: problem, segments, uvp
     "eKYC bằng khuôn mặt có bị deepfake qua mặt không? Cần thêm lớp bảo vệ nào?",
     "Số hóa hồ sơ khách hàng thế nào để đúng Luật Bảo vệ dữ liệu cá nhân 2025?",
     "Gợi ý 3 ý tưởng startup về chống lừa đảo cho thị trường Việt Nam, kèm cách bắt đầu.",
-    "Người lớn tuổi cần làm gì để không bị lừa “hỗ trợ cài sinh trắc học”?"
+    "Người lớn tuổi cần làm gì để không bị lừa “hỗ trợ cài sinh trắc học”?",
+    "Vay 500 triệu, lãi 9%/năm trong 15 năm thì mỗi tháng trả bao nhiêu? So sánh trả đều và dư nợ giảm dần.",
+    "Tóm tắt tiến độ các dự án đang thực thi."
   ];
-  const AI_BRIEF = `Bạn là "Trợ lý Đổi mới sáng tạo – Ngân hàng & Bảo mật", chuyên gia tư vấn ý tưởng khoa học kỹ thuật cho ngân hàng, tài chính tại Việt Nam và quốc tế, tập trung vào: tăng cường bảo mật, chống lừa đảo (lừa đảo chuyển khoản, giả danh, deepfake, tài khoản "rác"/tài khoản thuê), xác thực mạnh, và số hóa, bảo vệ dữ liệu cá nhân an toàn.
-
-Cách trả lời:
-- Trả lời bằng tiếng Việt, rõ ràng, có cấu trúc (tiêu đề ngắn bằng "### ", gạch đầu dòng "- "), thực tế, ưu tiên điều làm được ngay.
-- Với mỗi đề xuất, nêu: làm gì, ai làm (ngân hàng / fintech / người dùng / cơ quan quản lý), mức độ khó, và chỉ số đo hiệu quả.
-- Khi cần dẫn chứng, gọi công cụ search_ideas để tra kho ý tưởng của trang và dẫn nguồn bằng link trong kết quả. Chỉ đưa số liệu có trong kho hoặc trong phần "Dữ kiện nền" dưới đây; nếu không chắc, nói rõ là cần kiểm chứng. Không bịa số liệu, tên văn bản pháp luật hay link.
-- Nhắc rằng đây là thông tin tham khảo, không thay thế tư vấn pháp lý hay quy định chính thức khi câu hỏi liên quan pháp luật.
-- An toàn: không bao giờ yêu cầu người dùng cung cấp mật khẩu, OTP, số thẻ, số tài khoản. Nếu người dùng dán thông tin nhạy cảm, nhắc họ xóa và đổi mật khẩu. Từ chối hướng dẫn cách lừa đảo, vượt qua xác thực, thuê/mua bán tài khoản, tạo deepfake hay tấn công hệ thống; chỉ phân tích thủ đoạn ở mức đủ để phòng tránh.
-
-Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/2026):
-- Việt Nam: Hệ thống SIMO của NHNN chia sẻ thông tin tài khoản nghi ngờ lừa đảo giữa các tổ chức tín dụng, trung gian thanh toán; đến 20/10/2026 hơn 6 triệu lượt khách nhận cảnh báo, hơn 2 triệu lượt dừng/hủy giao dịch.
-- Việt Nam: Quyết định 2345/QĐ-NHNN (từ 1/7/2024) yêu cầu xác thực sinh trắc học với giao dịch trên 10 triệu đồng/lần hoặc trên 20 triệu đồng/ngày; NHNN cho biết số vụ lừa đảo chiếm đoạt tiền trong tài khoản giảm hơn 50%. Kẻ gian đã lợi dụng bằng cách giả danh nhân viên ngân hàng "hỗ trợ cài sinh trắc học".
-- Việt Nam: Luật Bảo vệ dữ liệu cá nhân (Luật 91/2025/QH15) và Nghị định 356/2025/NĐ-CP có hiệu lực từ 1/1/2026, thay thế Nghị định 13/2023; yêu cầu nghiêm ngặt với tài chính – ngân hàng; đánh giá tuân thủ định kỳ hằng năm và ghi nhật ký xử lý dữ liệu; doanh nghiệp nhỏ, khởi nghiệp được ân hạn 5 năm.
-- Anh: Bắt buộc hoàn tiền cho nạn nhân lừa đảo chuyển khoản (APP fraud) từ 10/2024; đánh giá độc lập năm 2026 cho thấy giá trị lừa đảo APP giảm và đây là động lực chính khiến ngân hàng đầu tư phòng chống; dịch vụ kiểm tra tên người nhận (Confirmation of Payee) phủ hơn 99% giao dịch.
-- Singapore: Khung chia sẻ trách nhiệm (SRF) từ 16/12/2024 giữa ngân hàng và nhà mạng với lừa đảo phishing; ngân hàng ngừng gửi link có thể bấm, nhà mạng lọc SMS chứa link độc; bên nào vi phạm nghĩa vụ phải bồi thường.
-- Deepfake: tấn công "injection" đưa video giả thẳng vào luồng dữ liệu có thể vượt qua kiểm tra liveness; cần phòng thủ nhiều lớp (thiết bị, hành vi, giao dịch, toàn vẹn luồng camera). Passkey (FIDO, mật mã khóa công khai) được xem là giải pháp chống tấn công bằng AI tạo sinh tốt hơn OTP.`;
   const aiHistory = [];
   let aiBusy = false, aiAbort = null;
-  function mdLite(s){
+  function mdLite(s){ if(window.FinAI) return window.FinAI.md(s);
     const esc = String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     const lines = esc.split("\n"); let html = "", list = null;
     const inline = t => t.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")
@@ -951,23 +938,9 @@ Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/
   function aiWelcome(){
     $("#ai-log").replaceChildren();
     const w = el("div",{class:"msg a welcome"});
-    w.innerHTML = mdLite("Xin chào! Mình là trợ lý chuyên về **ý tưởng đổi mới cho ngân hàng và tài chính**: chống lừa đảo, xác thực mạnh, chống deepfake, và số hóa dữ liệu cá nhân an toàn theo Luật Bảo vệ dữ liệu cá nhân 2025.\n\nHãy chọn một câu hỏi gợi ý bên cạnh hoặc tự đặt câu hỏi. Mình sẽ tra kho ý tưởng của trang và dẫn nguồn.");
+    w.innerHTML = mdLite("Xin chào! Mình là **Trợ lý AI tài chính** của trang, đã được nạp toàn bộ ý tưởng và dự án. Mình trả lời về ngân hàng, fintech, vay và tiết kiệm (có công cụ tính), đầu tư (kiến thức nền), tài chính doanh nghiệp, chống lừa đảo và dữ liệu cá nhân.\n\nHãy chọn một câu hỏi gợi ý bên cạnh hoặc tự đặt câu hỏi. Mình sẽ dẫn nguồn từ kho ý tưởng khi có.");
     $("#ai-log").append(w);
   }
-  const AI_TOOLS = [{
-    name:"search_ideas",
-    description:"Tìm trong kho ý tưởng và dự án của trang theo từ khóa tiếng Việt (ví dụ: 'lừa đảo', 'sinh trắc', 'dữ liệu cá nhân', 'deepfake', 'SIMO'). Trả về tối đa 6 mục gồm tiêu đề, tóm tắt, lĩnh vực, khu vực, nguồn.",
-    inputSchema:{type:"object", properties:{query:{type:"string", description:"Từ khóa tìm kiếm"}}, required:["query"]},
-    execute: async ({query})=>{
-      const words = String(query||"").toLowerCase().split(/[\s,;]+/).filter(w=>w.length>1);
-      const items = state.ideas.map(i=>({k:"Ý tưởng", ...i})).concat(state.projects.map(p=>({k:"Dự án đang thực thi", ...p})));
-      const scored = items.map(it=>{
-        const hay = (it.title+" "+(it.summary||"")+" "+(it.category||"")+" "+(it.steps||[]).join(" ")+" "+(it.milestones||[]).map(m=>m.t).join(" ")).toLowerCase();
-        return {it, s: words.reduce((a,w)=>a+(hay.includes(w)?1:0),0)};
-      }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,6);
-      return scored.map(({it})=>({loai:it.k, tieu_de:it.title, tom_tat:it.summary, linh_vuc:it.category, khu_vuc:REG_TXT[it.region]||"", nguon:safeUrl(it.sourceUrl)||"", ten_nguon:it.sourceName||""}));
-    }
-  }];
   async function aiAsk(q){
     q = String(q||"").trim(); if(!q || aiBusy) return;
     if(!state.sample){ aiOffNotice(); return; }
@@ -976,13 +949,14 @@ Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/
     }
     aiBusy = true; $("#ai-send").disabled = true; $("#ai-q").value = "";
     aiBubble("user", q);
-    aiHistory.push({role:"user", content: aiHistory.length ? q : AI_BRIEF + "\n\n---\nCâu hỏi đầu tiên của người dùng: " + q});
+    window.FinAI.setData(state.ideas, state.projects);
+    aiHistory.push({role:"user", content: aiHistory.length ? q : window.FinAI.brief() + "\n\n---\nCâu hỏi đầu tiên của người dùng: " + q});
     const out = aiBubble("assistant", "Đang suy nghĩ…");
     aiAbort = new AbortController();
     try{
-      const msgs = aiHistory.length > 11 ? [aiHistory[0], ...aiHistory.slice(-10)] : aiHistory.slice();
+      const msgs = aiHistory.length > 13 ? [aiHistory[0], ...aiHistory.slice(-12)] : aiHistory.slice();
       const r = await state.sample(msgs, {
-        signal: aiAbort.signal, cache:false, modelTier:"default", tools: AI_TOOLS,
+        signal: aiAbort.signal, cache:false, modelTier:"default", tools: window.FinAI.TOOLS,
         onText: ({text})=>{ out.innerHTML = mdLite(text || "Đang suy nghĩ…"); $("#ai-log").scrollTop = $("#ai-log").scrollHeight; }
       });
       const text = (r && r.text) || "";
@@ -1020,6 +994,7 @@ Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/
   }
 
   function renderAll(){
+    if(window.FinAI) window.FinAI.setData(state.ideas, state.projects);
     aiAvailability();
     document.querySelectorAll(".write-only").forEach(b=>b.classList.toggle("hidden", !state.canWrite));
     document.querySelectorAll(".edit-only").forEach(b=>b.classList.toggle("hidden", !state.canEdit));
@@ -1133,6 +1108,7 @@ Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/
 
   /* ---------- Boot ---------- */
   buildChips(); renderAll();
+  if(window.FinAI) window.FinAI.mountWidget({hideWhen: ()=>location.hash==="#tro-ly"});
 
   (async function boot(){
     if(!window.claude || !window.claude.use){ return loadStatic(); }

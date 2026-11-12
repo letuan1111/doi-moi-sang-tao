@@ -565,5 +565,7 @@ footer{color:var(--muted); font-size:12px; padding-top:20px}
   if(window.claude && window.claude.use){ claude.use("sample").then(s=>{ if(s){ sample=s; $("#sc-ai").classList.remove("hidden"); } }).catch(()=>{}); }
 })();
 </script>
+<script src="ai-chat.js"></script>
+<script>if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }</script>
 </body>
 </html>
