@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đổi mới sáng tạo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: phòng thí nghiệm ý tưởng — nền lưới blueprint, dải "phễu" đổi mới ở trên, hai không gian: Ý tưởng (bảng) và Dự án (danh mục đang thực thi) */
+:root{
+  --bg:#eef1f7;
+  --surface:#ffffff;
+  --ink:#141a2e;
+  --muted:#5b6480;
+  --line:#d6dbe8;
+  --accent:#2440d6;
+  --accent-ink:#ffffff;
+  --spark:#f2b200;
+  --ok:#14805e; --warn:#b26a00; --stop:#b3261e;
+  --grid:rgba(36,64,214,.06);
+  --display:"Bricolage Grotesque", "Be Vietnam Pro", system-ui, sans-serif;
+  --body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --r:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152;
+    --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933;
+    --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152;
+  --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933;
+  --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--bg);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+  color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0; letter-spacing:-.01em}
+button,input,select,textarea{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+/* Header */
+header.top{padding:28px 0 18px; display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; justify-content:space-between}
+.brand{display:flex; gap:14px; align-items:center}
+.mark{width:44px; height:44px; border-radius:12px; background:var(--accent); display:grid; place-items:center; flex:none}
+.mark svg{width:26px; height:26px}
+.brand h1{font-size:30px; font-weight:800; line-height:1.1}
+.brand p{margin:2px 0 0; color:var(--muted); font-size:14px}
+nav.tabs{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px}
+nav.tabs a{padding:8px 16px; border-radius:999px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px}
+nav.tabs a[aria-current="page"]{background:var(--ink); color:var(--bg)}
+
+/* Pipeline */
+.pipeline{display:grid; grid-template-columns:repeat(5,1fr); gap:0; background:var(--surface); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; margin-bottom:22px}
+.stage{padding:14px 16px 16px; position:relative; border-right:1px solid var(--line)}
+.stage:last-child{border-right:0}
+.stage .n{font-family:var(--display); font-size:34px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums}
+.stage .l{font-size:13px; color:var(--muted); font-weight:600; margin-top:6px}
+.stage .step{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px}
+.stage .bar{position:absolute; left:0; right:0; bottom:0; height:4px; background:var(--line)}
+.stage .bar i{display:block; height:100%; background:var(--accent)}
+.stage.hot .bar i{background:var(--spark)}
+@media (max-width:760px){ .pipeline{grid-template-columns:repeat(2,1fr)} .stage{border-bottom:1px solid var(--line)} .stage:nth-child(2n){border-right:0} .stage:last-child{grid-column:1/-1} }
+
+/* Toolbar */
+.toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:16px}
+.toolbar .grow{flex:1 1 220px}
+.search{width:100%; padding:10px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{border:1px solid var(--line); background:var(--surface); padding:6px 12px; border-radius:999px; font-size:13px; cursor:pointer; color:var(--muted); font-weight:500}
+.chip[aria-pressed="true"]{border-color:var(--ink); color:var(--ink); background:var(--bg); font-weight:700}
+select.sort{padding:9px 12px; border:1px solid var(--line); border-radius:999px; background:var(--surface)}
+.btn{border:0; background:var(--accent); color:var(--accent-ink); padding:10px 18px; border-radius:999px; font-weight:700; cursor:pointer; white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.btn.small{padding:6px 12px; font-size:13px}
+.btn.danger{background:var(--stop); color:#fff}
+.btn[disabled]{opacity:.5; cursor:not-allowed}
+
+/* Section heads */
+.sechead{display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin:6px 0 14px; flex-wrap:wrap}
+.sechead h2{font-size:24px; font-weight:700}
+.sechead p{margin:0; color:var(--muted); font-size:14px; max-width:60ch}
+
+/* Grid of cards */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:16px 16px 14px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.card h3{font-size:18px; font-weight:700; line-height:1.3; overflow-wrap:anywhere}
+.card .sum{margin:0; color:var(--muted); font-size:14px; overflow-wrap:anywhere; white-space:pre-line}
+.meta{display:flex; flex-wrap:wrap; gap:6px; align-items:center; font-size:12px; color:var(--muted)}
+.tag{font-size:12px; font-weight:600; padding:2px 9px; border-radius:999px; border:1px solid var(--line); color:var(--ink)}
+.pill{font-size:12px; font-weight:700; padding:2px 9px; border-radius:999px; color:#fff}
+.pill.s-new{background:var(--muted)}
+.pill.s-review{background:var(--warn)}
+.pill.s-project{background:var(--accent); color:var(--accent-ink)}
+.card .foot{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:auto; padding-top:10px; border-top:1px dashed var(--line); flex-wrap:wrap}
+.vote{display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); background:var(--bg); border-radius:999px; padding:5px 12px 5px 9px; cursor:pointer; font-weight:700; font-variant-numeric:tabular-nums}
+.vote svg{width:16px; height:16px}
+.vote[aria-pressed="true"]{background:var(--spark); border-color:var(--spark); color:#1a1400}
+.acts{display:flex; gap:6px; flex-wrap:wrap}
+.src{font-size:12px; color:var(--accent); font-weight:600; text-decoration:none; overflow-wrap:anywhere}
+.src:hover{text-decoration:underline}
+.tag.rg-vn{border-color:var(--stop); color:var(--stop)}
+.tag.rg-intl{border-color:var(--accent); color:var(--accent)}
+.linkbtn{background:none; border:0; padding:4px 6px; color:var(--accent); font-weight:600; font-size:13px; cursor:pointer}
+.linkbtn.del{color:var(--stop)}
+
+/* Project card */
+.proj{border-left:5px solid var(--accent)}
+.proj.st-pilot{border-left-color:var(--spark)}
+.proj.st-scale{border-left-color:var(--accent)}
+.proj.st-done{border-left-color:var(--ok)}
+.proj.st-paused{border-left-color:var(--stop)}
+.proj.st-kickoff{border-left-color:var(--muted)}
+.prog{display:flex; align-items:center; gap:10px}
+.prog .track{flex:1; height:8px; background:var(--bg); border:1px solid var(--line); border-radius:999px; overflow:hidden}
+.prog .track i{display:block; height:100%; background:var(--accent)}
+.prog b{font-variant-numeric:tabular-nums; font-size:13px; min-width:3.2em; text-align:right}
+.kv{display:grid; grid-template-columns:auto 1fr; gap:2px 12px; font-size:13px}
+.kv dt{color:var(--muted)} .kv dd{margin:0; font-weight:500; overflow-wrap:anywhere}
+.ms{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; font-size:13px}
+.ms label{display:flex; gap:8px; align-items:flex-start; cursor:pointer}
+.ms input{margin-top:3px; accent-color:var(--accent)}
+.ms .done span{text-decoration:line-through; color:var(--muted)}
+
+.empty{background:var(--surface); border:1px dashed var(--line); border-radius:var(--r); padding:28px; text-align:center; color:var(--muted)}
+.notice{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--warn); border-radius:var(--r); padding:12px 14px; margin-bottom:16px; font-size:14px}
+.hidden{display:none !important}
+
+/* Dialog */
+dialog{border:1px solid var(--line); border-radius:14px; padding:0; background:var(--surface); color:var(--ink); width:min(560px,calc(100vw - 32px)); max-height:calc(100vh - 32px)}
+dialog::backdrop{background:rgba(10,14,30,.45)}
+dialog form{padding:20px; display:flex; flex-direction:column; gap:12px}
+dialog h3{font-size:20px}
+.field{display:flex; flex-direction:column; gap:4px}
+.field label{font-size:13px; font-weight:600}
+.field input,.field select,.field textarea{padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg)}
+.field textarea{min-height:90px; resize:vertical}
+.row2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:480px){ .row2{grid-template-columns:1fr} }
+.dlg-actions{display:flex; justify-content:flex-end; gap:8px; margin-top:4px}
+.hint{font-size:12px; color:var(--muted)}
+.err{color:var(--stop); font-size:13px; min-height:1em}
+
+footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
+@media (prefers-reduced-motion:no-preference){ .card{transition:border-color .15s} .card:hover{border-color:var(--muted)} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.5.4.9 1 .9 1.7V16h5.4v-.5c0-.7.4-1.3.9-1.7A6 6 0 0 0 12 3z"/></svg>
+      </div>
+      <div>
+        <h1>Đổi mới sáng tạo</h1>
+        <p>Ý tưởng và dự án đổi mới trong giáo dục, nền tảng giao dịch, ngân hàng và mô hình kinh doanh, ở Việt Nam và thế giới</p>
+      </div>
+    </div>
+    <nav class="tabs" aria-label="Chuyển trang">
+      <a href="#y-tuong" data-view="y-tuong">Ý tưởng</a>
+      <a href="#du-an" data-view="du-an">Dự án đang thực thi</a>
+    </nav>
+  </header>
+
+  <section class="pipeline" aria-label="Phễu đổi mới">
+    <div class="stage"><div class="step">01 · Ý tưởng</div><div class="n" id="p-ideas">0</div><div class="l">ý tưởng đã gửi</div><div class="bar"><i id="b-ideas" style="width:0"></i></div></div>
+    <div class="stage"><div class="step">02 · Khởi động</div><div class="n" id="p-kickoff">0</div><div class="l">dự án chuẩn bị</div><div class="bar"><i id="b-kickoff" style="width:0"></i></div></div>
+    <div class="stage hot"><div class="step">03 · Thử nghiệm</div><div class="n" id="p-pilot">0</div><div class="l">đang chạy thử (pilot)</div><div class="bar"><i id="b-pilot" style="width:0"></i></div></div>
+    <div class="stage"><div class="step">04 · Mở rộng</div><div class="n" id="p-scale">0</div><div class="l">đang triển khai rộng</div><div class="bar"><i id="b-scale" style="width:0"></i></div></div>
+    <div class="stage"><div class="step">05 · Hoàn thành</div><div class="n" id="p-done">0</div><div class="l">đã đưa vào vận hành</div><div class="bar"><i id="b-done" style="width:0"></i></div></div>
+  </section>
+
+  <div id="status" class="notice">Đang tải dữ liệu…</div>
+
+  <!-- IDEAS -->
+  <main>
+  <section id="view-y-tuong">
+    <div class="sechead">
+      <h2>Ngân hàng ý tưởng</h2>
+      <p>Mỗi người có thể gửi ý tưởng và bấm ủng hộ ý tưởng mình thấy đáng làm. Ý tưởng được ủng hộ nhiều sẽ được xem xét chuyển thành dự án.</p>
+    </div>
+    <div class="toolbar">
+      <div class="grow"><input id="q" class="search" type="search" placeholder="Tìm ý tưởng…" aria-label="Tìm ý tưởng"></div>
+      <select id="region" class="sort" aria-label="Lọc theo khu vực">
+        <option value="all">Trong nước + Quốc tế</option><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option>
+      </select>
+      <select id="sort" class="sort" aria-label="Sắp xếp">
+        <option value="votes">Nhiều ủng hộ nhất</option>
+        <option value="new">Mới nhất</option>
+      </select>
+      <button class="btn write-only" id="btn-new-idea" type="button">+ Gửi ý tưởng</button>
+    </div>
+    <div class="chips" id="cat-chips" style="margin-bottom:16px" role="group" aria-label="Lọc theo lĩnh vực"></div>
+    <div class="grid" id="ideas"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="view-du-an" class="hidden">
+    <div class="sechead">
+      <h2>Dự án đổi mới đang thực thi</h2>
+      <p>Theo dõi giai đoạn, tiến độ và các mốc của từng dự án. Đánh dấu mốc hoàn thành để cập nhật tiến độ.</p>
+    </div>
+    <div class="toolbar">
+      <div class="chips grow" id="stage-chips" role="group" aria-label="Lọc theo giai đoạn"></div>
+      <select id="region-p" class="sort" aria-label="Lọc dự án theo khu vực">
+        <option value="all">Trong nước + Quốc tế</option><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option>
+      </select>
+      <button class="btn edit-only" id="btn-new-proj" type="button">+ Dự án mới</button>
+    </div>
+    <div class="grid" id="projects"></div>
+  </section>
+  </main>
+
+  <footer>Ý tưởng và dự án mẫu được tổng hợp từ báo chí, báo cáo công khai trong và ngoài nước (cập nhật 11/2026); bấm "Nguồn" trên từng thẻ để đọc bài gốc. Dữ liệu được lưu chung cho mọi người được chia sẻ trang này. Chủ trang và người có quyền chỉnh sửa quản lý dự án.</footer>
+</div>
+
+<!-- Idea dialog -->
+<dialog id="dlg-idea">
+  <form id="f-idea" method="dialog">
+    <h3>Gửi ý tưởng đổi mới</h3>
+    <div class="field"><label for="i-title">Tên ý tưởng</label><input id="i-title" maxlength="120" required placeholder="VD: Chatbot trả lời câu hỏi nội bộ"></div>
+    <div class="field"><label for="i-sum">Mô tả: vấn đề gì, giải pháp ra sao, lợi ích là gì?</label><textarea id="i-sum" maxlength="1200" required></textarea></div>
+    <div class="row2">
+      <div class="field"><label for="i-cat">Lĩnh vực</label><select id="i-cat"></select></div>
+      <div class="field"><label for="i-impact">Mức tác động dự kiến</label>
+        <select id="i-impact"><option value="1">Nhỏ, cải tiến cục bộ</option><option value="2" selected>Vừa, cả bộ phận</option><option value="3">Lớn, toàn tổ chức</option></select></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="i-region">Khu vực</label><select id="i-region"><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option></select></div>
+      <div class="field"><label for="i-src">Link nguồn (nếu có)</label><input id="i-src" type="url" placeholder="https://…"></div>
+    </div>
+    <div class="err" id="i-err"></div>
+    <div class="dlg-actions"><button class="btn ghost" type="button" data-close>Hủy</button><button class="btn" type="submit" id="i-save">Gửi ý tưởng</button></div>
+  </form>
+</dialog>
+
+<!-- Project dialog -->
+<dialog id="dlg-proj">
+  <form id="f-proj" method="dialog">
+    <h3 id="p-head">Dự án mới</h3>
+    <div class="field"><label for="pj-title">Tên dự án</label><input id="pj-title" maxlength="120" required></div>
+    <div class="field"><label for="pj-sum">Mục tiêu và mô tả</label><textarea id="pj-sum" maxlength="1500"></textarea></div>
+    <div class="row2">
+      <div class="field"><label for="pj-cat">Lĩnh vực</label><select id="pj-cat"></select></div>
+      <div class="field"><label for="pj-stage">Giai đoạn</label><select id="pj-stage"></select></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="pj-lead">Người phụ trách</label><input id="pj-lead" maxlength="80" placeholder="Tên trưởng nhóm"></div>
+      <div class="field"><label for="pj-kpi">Chỉ tiêu (KPI)</label><input id="pj-kpi" maxlength="120" placeholder="VD: giảm 30% thời gian xử lý"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="pj-start">Bắt đầu</label><input id="pj-start" type="date"></div>
+      <div class="field"><label for="pj-end">Dự kiến xong</label><input id="pj-end" type="date"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><label for="pj-region">Khu vực</label><select id="pj-region"><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option></select></div>
+      <div class="field"><label for="pj-src">Link nguồn (nếu có)</label><input id="pj-src" type="url" placeholder="https://…"></div>
+    </div>
+    <div class="field"><label for="pj-ms">Các mốc (mỗi dòng một mốc)</label><textarea id="pj-ms" placeholder="Khảo sát nhu cầu&#10;Làm bản mẫu&#10;Chạy thử 1 phòng ban&#10;Đánh giá kết quả"></textarea>
+      <span class="hint">Tiến độ được tính theo tỷ lệ mốc đã hoàn thành.</span></div>
+    <div class="err" id="pj-err"></div>
+    <div class="dlg-actions"><button class="btn ghost" type="button" data-close>Hủy</button><button class="btn" type="submit" id="pj-save">Lưu dự án</button></div>
+  </form>
+</dialog>
+
+<!-- Confirm dialog -->
+<dialog id="dlg-confirm">
+  <form method="dialog">
+    <h3 id="c-title">Xóa?</h3>
+    <p id="c-text" style="margin:0;color:var(--muted)"></p>
+    <div class="dlg-actions"><button class="btn ghost" value="no">Hủy</button><button class="btn danger" value="yes" id="c-yes">Xóa</button></div>
+  </form>
+</dialog>
+
+<script>
+(function(){
+  const CATS = ["Giáo dục","Nền tảng giao dịch","Mô hình kinh doanh","Ngân hàng – Fintech","Khoa học – Công nghệ","Chính sách – Thể chế","Khác"];
+  const REGION_L = {vn:"Việt Nam", intl:"Quốc tế"};
+  const safeUrl = u => (typeof u==="string" && /^https?:\/\/[^\s]+$/i.test(u)) ? u : null;
+  const hostOf = u => { try{ return new URL(u).hostname.replace(/^www\./,""); }catch(e){ return ""; } };
+  function sourceEl(o){
+    const u = safeUrl(o.sourceUrl); if(!u) return null;
+    return el("a",{class:"src",href:u,target:"_blank",rel:"noopener noreferrer"}, "Nguồn: "+(o.sourceName||hostOf(u)));
+  }
+  const regionTag = r => REGION_L[r] ? el("span",{class:"tag rg-"+r}, REGION_L[r]) : null;
+  const STAGES = [
+    {k:"kickoff", l:"Khởi động"},
+    {k:"pilot",   l:"Thử nghiệm"},
+    {k:"scale",   l:"Mở rộng"},
+    {k:"done",    l:"Hoàn thành"},
+    {k:"paused",  l:"Tạm dừng"}
+  ];
+  const STAGE_L = Object.fromEntries(STAGES.map(s=>[s.k,s.l]));
+  const IDEA_ST = {new:"Mới", review:"Đang xem xét", project:"Đã thành dự án"};
+  const IMPACT = {1:"Tác động nhỏ",2:"Tác động vừa",3:"Tác động lớn"};
+
+  const state = { ideas:[], projects:[], votes:[], me:null, canWrite:false, canEdit:false, cat:"all", stage:"all", region:"all", q:"", sort:"votes", names:{}, editingProj:null, fromIdea:null };
+  let db=null, user=null;
+
+  const $ = s=>document.querySelector(s);
+  const el = (tag, attrs={}, ...kids)=>{ const n=document.createElement(tag); for(const [k,v] of Object.entries(attrs)){ if(v==null) continue; if(k==="class") n.className=v; else if(k.startsWith("on")) n.addEventListener(k.slice(2),v); else n.setAttribute(k,v);} for(const c of kids.flat()){ if(c==null||c===false) continue; n.append(c.nodeType?c:document.createTextNode(String(c))); } return n; };
+  const uid = ()=> Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+  const fmtDate = (v)=>{ if(!v) return ""; const d = typeof v==="number"? new Date(v) : new Date(v+(String(v).length===10?"T00:00:00":"")); if(isNaN(d)) return ""; return d.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit",year:"numeric"}); };
+  const docsOf = (snap)=>{ if(!snap) return []; const arr = Array.isArray(snap)? snap : (snap.docs||[]); return arr.map(d=> (d && typeof d.data==="function") ? Object.assign({id:d.id}, d.data()) : d).filter(Boolean); };
+  const setStatus = (msg)=>{ const s=$("#status"); if(!msg){ s.classList.add("hidden"); return;} s.textContent=msg; s.classList.remove("hidden"); };
+
+  /* ---------- Views (hash routing) ---------- */
+  function route(){
+    const h = (location.hash||"#y-tuong").slice(1);
+    const v = h==="du-an" ? "du-an" : "y-tuong";
+    document.querySelectorAll("nav.tabs a").forEach(a=>a.setAttribute("aria-current", a.dataset.view===v?"page":"false"));
+    $("#view-y-tuong").classList.toggle("hidden", v!=="y-tuong");
+    $("#view-du-an").classList.toggle("hidden", v!=="du-an");
+  }
+  window.addEventListener("hashchange", route); route();
+
+  /* ---------- Filters ---------- */
+  function buildChips(){
+    const cc = $("#cat-chips"); cc.replaceChildren();
+    [["all","Tất cả"], ...CATS.map(c=>[c,c])].forEach(([k,l])=>{
+      cc.append(el("button",{class:"chip",type:"button","aria-pressed":String(state.cat===k),onclick:()=>{state.cat=k; buildChips(); renderIdeas();}},l));
+    });
+    const sc = $("#stage-chips"); sc.replaceChildren();
+    [["all","Tất cả giai đoạn"], ...STAGES.map(s=>[s.k,s.l])].forEach(([k,l])=>{
+      sc.append(el("button",{class:"chip",type:"button","aria-pressed":String(state.stage===k),onclick:()=>{state.stage=k; buildChips(); renderProjects();}},l));
+    });
+  }
+  ["#i-cat","#pj-cat"].forEach(s=>{ CATS.forEach(c=>$(s).append(el("option",{value:c},c))); });
+  STAGES.forEach(s=>$("#pj-stage").append(el("option",{value:s.k},s.l)));
+  $("#q").addEventListener("input", e=>{ state.q=e.target.value.trim().toLowerCase(); renderIdeas(); });
+  $("#sort").addEventListener("change", e=>{ state.sort=e.target.value; renderIdeas(); });
+  ["#region","#region-p"].forEach(s=>$(s).addEventListener("change", e=>{ state.region=e.target.value; $("#region").value=state.region; $("#region-p").value=state.region; renderIdeas(); renderProjects(); }));
+
+  /* ---------- Names ---------- */
+  async function resolveNames(ids){
+    if(!user || !user.profiles) return;
+    const need = [...new Set(ids.filter(Boolean))];
+    if(!need.length) return;
+    try{ const ps = await user.profiles(need); for(const id of need){ state.names[id] = (ps && ps[id] && ps[id].name) || ""; } }catch(e){}
+  }
+  const nameOf = id => (id && state.names[id]) || "Thành viên";
+
+  /* ---------- Render ---------- */
+  function voteCount(ideaId){ return state.votes.filter(v=>v.ideaId===ideaId).length; }
+  function myVote(ideaId){ return state.me && state.votes.some(v=>v.ideaId===ideaId && v.uid===state.me); }
+
+  function renderPipeline(){
+    const c = {ideas: state.ideas.length, kickoff:0,pilot:0,scale:0,done:0};
+    state.projects.forEach(p=>{ if(c[p.stage]!=null) c[p.stage]++; });
+    const max = Math.max(1, ...Object.values(c));
+    for(const k of Object.keys(c)){ $("#p-"+k).textContent=c[k]; $("#b-"+k).style.width = (c[k]/max*100)+"%"; }
+  }
+
+  function renderIdeas(){
+    const box = $("#ideas"); box.replaceChildren();
+    let list = state.ideas.slice();
+    if(state.cat!=="all") list = list.filter(i=>i.category===state.cat);
+    if(state.region!=="all") list = list.filter(i=>i.region===state.region);
+    if(state.q) list = list.filter(i=>(i.title+" "+(i.summary||"")).toLowerCase().includes(state.q));
+    list.sort((a,b)=> state.sort==="votes" ? (voteCount(b.id)-voteCount(a.id)) || ((b.createdAt||0)-(a.createdAt||0)) : (b.createdAt||0)-(a.createdAt||0));
+    if(!list.length){
+      box.append(el("div",{class:"empty",style:"grid-column:1/-1"}, state.ideas.length? "Không có ý tưởng nào khớp bộ lọc." : "Chưa có ý tưởng nào. Hãy là người đầu tiên gửi ý tưởng!"));
+      return;
+    }
+    for(const i of list){
+      const st = i.status||"new";
+      const n = voteCount(i.id), mine = myVote(i.id);
+      const voteBtn = el("button",{class:"vote",type:"button","aria-pressed":String(!!mine),"aria-label":(mine?"Bỏ ủng hộ":"Ủng hộ")+" ý tưởng "+i.title, disabled: state.canWrite?null:"", onclick:()=>toggleVote(i.id)});
+      voteBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>';
+      voteBtn.append(el("span",{},n));
+      const acts = el("div",{class:"acts"});
+      if(state.canEdit){
+        if(st!=="project"){
+          if(st==="new") acts.append(el("button",{class:"linkbtn",type:"button",onclick:()=>setIdeaStatus(i,"review")},"Xem xét"));
+          acts.append(el("button",{class:"linkbtn",type:"button",onclick:()=>openProj(null,i)},"→ Thành dự án"));
+        }
+        acts.append(el("button",{class:"linkbtn del",type:"button",onclick:()=>confirmDel("Xóa ý tưởng?", "“"+i.title+"” sẽ bị xóa khỏi ngân hàng ý tưởng.", ()=>delIdea(i))},"Xóa"));
+      }
+      box.append(el("article",{class:"card"},
+        el("div",{class:"meta"}, el("span",{class:"tag"}, i.category||"Khác"), regionTag(i.region), el("span",{class:"pill s-"+st}, IDEA_ST[st]||st)),
+        el("h3",{}, i.title),
+        i.summary? el("p",{class:"sum"}, i.summary) : null,
+        sourceEl(i),
+        el("div",{class:"meta"}, (i.createdBy? nameOf(i.createdBy) : "Tổng hợp từ nguồn công khai")+" · "+fmtDate(i.createdAt)+(i.impact? " · "+IMPACT[i.impact] : "")),
+        state.isStatic ? null : el("div",{class:"foot"}, voteBtn, acts)
+      ));
+    }
+  }
+
+  function renderProjects(){
+    const box = $("#projects"); box.replaceChildren();
+    const order = Object.fromEntries(STAGES.map((s,i)=>[s.k,i]));
+    let list = state.projects.slice();
+    if(state.stage!=="all") list = list.filter(p=>p.stage===state.stage);
+    if(state.region!=="all") list = list.filter(p=>p.region===state.region);
+    list.sort((a,b)=> (order[a.stage]??9)-(order[b.stage]??9) || (b.updatedAt||0)-(a.updatedAt||0));
+    if(!list.length){
+      box.append(el("div",{class:"empty",style:"grid-column:1/-1"}, state.projects.length? "Không có dự án ở giai đoạn này." : (state.canEdit? "Chưa có dự án nào. Tạo dự án mới hoặc chuyển một ý tưởng thành dự án." : "Chưa có dự án nào đang thực thi.")));
+      return;
+    }
+    for(const p of list){
+      const ms = Array.isArray(p.milestones)? p.milestones : [];
+      const done = ms.filter(m=>m.done).length;
+      const pct = p.stage==="done" ? 100 : (ms.length? Math.round(done/ms.length*100) : 0);
+      const msList = el("ul",{class:"ms"}, ms.map((m,idx)=>{
+        const id = "ms-"+p.id+"-"+idx;
+        return el("li",{class:m.done?"done":""}, el("label",{for:id},
+          el("input",{type:"checkbox",id, checked: m.done?"":null, disabled: state.canEdit?null:"", onchange:(e)=>toggleMs(p, idx, e.target.checked)}),
+          el("span",{}, m.t)));
+      }));
+      const acts = el("div",{class:"acts"});
+      if(state.canEdit){
+        acts.append(el("button",{class:"linkbtn",type:"button",onclick:()=>openProj(p)},"Sửa"));
+        acts.append(el("button",{class:"linkbtn del",type:"button",onclick:()=>confirmDel("Xóa dự án?", "“"+p.title+"” và các mốc của dự án sẽ bị xóa.", ()=>delProj(p))},"Xóa"));
+      }
+      const kv = el("dl",{class:"kv"});
+      const add=(k,v)=>{ if(v){ kv.append(el("dt",{},k), el("dd",{},v)); } };
+      add("Phụ trách", p.lead); add("Chỉ tiêu", p.kpi);
+      const range = [fmtDate(p.start), fmtDate(p.end)].filter(Boolean).join(" → "); add("Thời gian", range);
+      box.append(el("article",{class:"card proj st-"+(p.stage||"kickoff")},
+        el("div",{class:"meta"}, el("span",{class:"tag"}, STAGE_L[p.stage]||"Khởi động"), regionTag(p.region), el("span",{}, p.category||"")),
+        el("h3",{}, p.title),
+        p.summary? el("p",{class:"sum"}, p.summary) : null,
+        sourceEl(p),
+        el("div",{class:"prog"}, el("div",{class:"track",role:"progressbar","aria-valuenow":pct,"aria-valuemin":0,"aria-valuemax":100,"aria-label":"Tiến độ"}, el("i",{style:"width:"+pct+"%"})), el("b",{}, pct+"%")),
+        kv.childNodes.length? kv : null,
+        ms.length? msList : null,
+        el("div",{class:"foot"}, el("span",{class:"meta"}, "Cập nhật "+fmtDate(p.updatedAt||p.createdAt)), acts)
+      ));
+    }
+  }
+
+  function renderAll(){
+    document.querySelectorAll(".write-only").forEach(b=>b.classList.toggle("hidden", !state.canWrite));
+    document.querySelectorAll(".edit-only").forEach(b=>b.classList.toggle("hidden", !state.canEdit));
+    renderPipeline(); renderIdeas(); renderProjects();
+  }
+
+  /* ---------- Writes ---------- */
+  const busy = new Set();
+  async function guard(key, fn){ if(busy.has(key)) return; busy.add(key); try{ await fn(); }catch(e){ setStatus("Không lưu được: "+(e&&e.message||"bạn có thể chưa có quyền ghi. Hãy nhờ chủ trang cấp quyền.")); } finally{ busy.delete(key);} }
+
+  function toggleVote(ideaId){
+    if(!db||!state.me) return;
+    const id = ideaId+"__"+state.me;
+    guard("v"+id, async()=>{
+      if(myVote(ideaId)) await db.doc("votes/"+id).delete();
+      else await db.doc("votes/"+id).set({ideaId, uid:state.me, at:Date.now()});
+    });
+  }
+  function setIdeaStatus(i, st){ guard("i"+i.id, ()=> db.doc("ideas/"+i.id).update({status:st})); }
+  async function delIdea(i){
+    await guard("i"+i.id, async()=>{
+      await db.doc("ideas/"+i.id).delete();
+      for(const v of state.votes.filter(v=>v.ideaId===i.id)){ try{ await db.doc("votes/"+v.id).delete(); }catch(e){} }
+    });
+  }
+  function delProj(p){ guard("p"+p.id, ()=> db.doc("projects/"+p.id).delete()); }
+  function toggleMs(p, idx, val){
+    const ms = (p.milestones||[]).map((m,i)=> i===idx? {t:m.t, done:val} : m);
+    guard("p"+p.id, ()=> db.doc("projects/"+p.id).update({milestones:ms, updatedAt:Date.now()}));
+  }
+
+  /* ---------- Dialogs ---------- */
+  document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click", ()=>b.closest("dialog").close()));
+  $("#btn-new-idea").addEventListener("click", ()=>{ $("#f-idea").reset(); $("#i-err").textContent=""; $("#dlg-idea").showModal(); });
+  $("#f-idea").addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    const title=$("#i-title").value.trim(), summary=$("#i-sum").value.trim();
+    if(!title||!summary){ $("#i-err").textContent="Hãy nhập tên và mô tả ý tưởng."; return; }
+    if(!db){ $("#i-err").textContent="Chưa kết nối được nơi lưu dữ liệu. Hãy mở trang khi đã đăng nhập claude.ai."; return; }
+    $("#i-save").disabled=true;
+    try{
+      const id=uid();
+      const src = safeUrl($("#i-src").value.trim());
+      await db.doc("ideas/"+id).set({title, summary, category:$("#i-cat").value, impact:Number($("#i-impact").value), region:$("#i-region").value, sourceUrl:src, sourceName: src? hostOf(src) : null, status:"new", createdBy:state.me||null, createdAt:Date.now()});
+      $("#dlg-idea").close();
+    }catch(err){ $("#i-err").textContent="Không gửi được: bạn có thể chưa có quyền đóng góp trên trang này."; }
+    finally{ $("#i-save").disabled=false; }
+  });
+
+  $("#btn-new-proj").addEventListener("click", ()=>openProj(null,null));
+  function openProj(p, fromIdea){
+    state.editingProj = p; state.fromIdea = fromIdea||null;
+    $("#f-proj").reset(); $("#pj-err").textContent="";
+    $("#p-head").textContent = p? "Sửa dự án" : (fromIdea? "Chuyển ý tưởng thành dự án" : "Dự án mới");
+    const src = p || (fromIdea? {title:fromIdea.title, summary:fromIdea.summary, category:fromIdea.category, region:fromIdea.region, sourceUrl:fromIdea.sourceUrl, sourceName:fromIdea.sourceName, stage:"kickoff"} : {stage:"kickoff"});
+    $("#pj-region").value = src.region||"vn"; $("#pj-src").value = src.sourceUrl||"";
+    $("#pj-title").value = src.title||""; $("#pj-sum").value = src.summary||"";
+    $("#pj-cat").value = src.category||CATS[0]; $("#pj-stage").value = src.stage||"kickoff";
+    $("#pj-lead").value = src.lead||""; $("#pj-kpi").value = src.kpi||"";
+    $("#pj-start").value = src.start||""; $("#pj-end").value = src.end||"";
+    $("#pj-ms").value = (src.milestones||[]).map(m=>m.t).join("\n");
+    $("#dlg-proj").showModal();
+  }
+  $("#f-proj").addEventListener("submit", async(e)=>{
+    e.preventDefault();
+    const title=$("#pj-title").value.trim();
+    if(!title){ $("#pj-err").textContent="Hãy nhập tên dự án."; return; }
+    if(!db){ $("#pj-err").textContent="Chưa kết nối được nơi lưu dữ liệu."; return; }
+    const old = state.editingProj;
+    const oldMs = (old && old.milestones)||[];
+    const ms = $("#pj-ms").value.split("\n").map(s=>s.trim()).filter(Boolean).map(t=>({t, done: !!(oldMs.find(m=>m.t===t)||{}).done}));
+    const data = {title, summary:$("#pj-sum").value.trim(), category:$("#pj-cat").value, stage:$("#pj-stage").value, lead:$("#pj-lead").value.trim(), kpi:$("#pj-kpi").value.trim(), start:$("#pj-start").value, end:$("#pj-end").value, milestones:ms, region:$("#pj-region").value, updatedAt:Date.now()};
+    const pSrc = safeUrl($("#pj-src").value.trim());
+    data.sourceUrl = pSrc; data.sourceName = pSrc ? ((old && old.sourceUrl===pSrc && old.sourceName) || (state.fromIdea && state.fromIdea.sourceUrl===pSrc && state.fromIdea.sourceName) || hostOf(pSrc)) : null;
+    $("#pj-save").disabled=true;
+    try{
+      if(old){ await db.doc("projects/"+old.id).update(data); }
+      else{
+        const id=uid();
+        await db.doc("projects/"+id).set(Object.assign(data,{createdAt:Date.now(), createdBy:state.me||null, ideaId: state.fromIdea? state.fromIdea.id : null}));
+        if(state.fromIdea){ await db.doc("ideas/"+state.fromIdea.id).update({status:"project"}); }
+      }
+      $("#dlg-proj").close();
+      if(!old){ location.hash="#du-an"; }
+    }catch(err){ $("#pj-err").textContent="Không lưu được: chỉ chủ trang và người có quyền chỉnh sửa mới quản lý dự án."; }
+    finally{ $("#pj-save").disabled=false; }
+  });
+
+  let confirmFn=null;
+  function confirmDel(t, txt, fn){ $("#c-title").textContent=t; $("#c-text").textContent=txt; confirmFn=fn; $("#dlg-confirm").showModal(); }
+  $("#dlg-confirm").addEventListener("close", ()=>{ if($("#dlg-confirm").returnValue==="yes" && confirmFn) confirmFn(); confirmFn=null; });
+
+  /* ---------- Static mode (GitHub Pages / any web host): read-only from data.json ---------- */
+  async function loadStatic(){
+    state.isStatic = true; state.canWrite = false; state.canEdit = false;
+    try{
+      const res = await fetch("data.json", {cache:"no-cache"});
+      if(!res.ok) throw new Error(res.status);
+      const d = await res.json();
+      state.ideas = Array.isArray(d.ideas)? d.ideas : [];
+      state.projects = Array.isArray(d.projects)? d.projects : [];
+      state.votes = [];
+      setStatus(d.updated ? "Bản công khai chỉ xem · dữ liệu cập nhật "+d.updated : "");
+    }catch(e){
+      setStatus("Không tải được dữ liệu (data.json). Hãy mở trang qua một máy chủ web, ví dụ GitHub Pages.");
+    }
+    renderAll();
+  }
+
+  /* ---------- Boot ---------- */
+  buildChips(); renderAll();
+
+  (async function boot(){
+    if(!window.claude || !window.claude.use){ return loadStatic(); }
+    const timer = setTimeout(()=>setStatus("Tải dữ liệu lâu hơn bình thường. Hãy kiểm tra kết nối mạng."), 10000);
+    try{
+      [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    }catch(e){ db=null; }
+    if(!db){ clearTimeout(timer); setStatus("Hãy đăng nhập claude.ai để xem và gửi ý tưởng."); return; }
+    try{ state.me = user && user.id ? await user.id() : null; }catch(e){}
+    try{ state.canEdit = user ? !!(await user.canEdit()) : false; }catch(e){}
+    try{ const c = user && user.can ? await user.can("data.write") : null; state.canWrite = c===null ? true : !!c; }catch(e){ state.canWrite = true; }
+    if(state.canEdit) state.canWrite = true;
+    renderAll();
+
+    let loaded = {ideas:false, projects:false, votes:false};
+    const done = (k)=>{ loaded[k]=true; if(loaded.ideas&&loaded.projects&&loaded.votes){ clearTimeout(timer); setStatus(""); } };
+    const onErr = (e)=>{ clearTimeout(timer); setStatus("Không đọc được dữ liệu. Bạn có thể chưa được chia sẻ trang này."); };
+
+    db.collection("ideas").onSnapshot(async snap=>{
+      state.ideas = docsOf(snap); done("ideas");
+      await resolveNames(state.ideas.map(i=>i.createdBy)); renderAll();
+    }, onErr);
+    db.collection("projects").onSnapshot(snap=>{ state.projects = docsOf(snap); done("projects"); renderAll(); }, onErr);
+    db.collection("votes").onSnapshot(snap=>{ state.votes = docsOf(snap); done("votes"); renderIdeas(); }, onErr);
+  })();
+})();
+</script>
+</body>
+</html>
