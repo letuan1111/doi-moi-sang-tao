@@ -753,6 +753,226 @@
    ],
    "sourceUrl": "https://vneconomy.vn/san-pham-ocop-tung-buoc-chinh-phuc-cho-so.htm",
    "sourceName": "VnEconomy"
+  },
+  {
+   "id": "bs01",
+   "title": "Kiểm tra tên người nhận trước khi chuyển tiền (Confirmation of Payee)",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794498000000,
+   "summary": "Ở Anh, trước khi chuyển khoản, hệ thống đối chiếu tên người nhận với tài khoản và báo khớp, gần khớp hoặc không khớp. Cơ quan quản lý thanh toán Anh đã đẩy dịch vụ này phủ hơn 99% giao dịch. Ý tưởng cho Việt Nam: ngoài hiển thị tên, thêm cảnh báo mức rủi ro ngay màn hình xác nhận, kết hợp dữ liệu tài khoản nghi ngờ từ SIMO.",
+   "steps": [
+    "Bổ sung trạng thái 'gần khớp / không khớp' và giải thích dễ hiểu trên màn hình xác nhận chuyển tiền",
+    "Kết hợp cảnh báo tài khoản nghi ngờ (SIMO) và tài khoản mới mở, nhận nhiều tiền bất thường",
+    "Thêm bước 'dừng lại 10 giây' với giao dịch lần đầu, giá trị lớn",
+    "Đo tỷ lệ khách hủy giao dịch sau cảnh báo và số vụ lừa đảo được báo cáo"
+   ],
+   "sourceUrl": "https://ffnews.com/newsarticle/paytech/international-fraud-awareness-week-psr-research-shows-reimbursed-fraud-victims-feel-more-vigilant-about-fraud-risks-not-less",
+   "sourceName": "FF News"
+  },
+  {
+   "id": "bs02",
+   "title": "Bắt buộc hoàn tiền cho nạn nhân lừa đảo chuyển khoản (mô hình Anh)",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497900000,
+   "summary": "Từ 10/2024, Anh buộc các tổ chức thanh toán hoàn tiền cho nạn nhân lừa đảo chuyển khoản tự nguyện (APP fraud). Đến cuối 2025 đã hoàn 243 triệu bảng. Đánh giá độc lập (7/2026) cho thấy giá trị lừa đảo APP giảm và quy định này là động lực chính khiến ngân hàng đầu tư phòng chống. Lưu ý: một phần lừa đảo có thể dịch chuyển sang kênh khác, nên cần đi kèm giải pháp kỹ thuật.",
+   "sourceUrl": "https://www.psr.org.uk/news-and-updates/latest-news/news/fraud-victims-get-243-million-back-as-psr-marks-a-year-of-progress/",
+   "sourceName": "Payment Systems Regulator (Anh)"
+  },
+  {
+   "id": "bs03",
+   "title": "Chia sẻ trách nhiệm ngân hàng – nhà mạng khi khách bị lừa (mô hình Singapore)",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497800000,
+   "summary": "Khung SRF của Singapore (từ 16/12/2024) giao nghĩa vụ cụ thể cho cả ngân hàng và nhà mạng: ngân hàng giám sát giao dịch theo thời gian thực, ngừng gửi link có thể bấm; nhà mạng chặn tin nhắn từ đầu số không được phép và lọc SMS chứa link độc. Bên nào không làm đúng nghĩa vụ phải bồi thường cho nạn nhân. Gợi ý cho Việt Nam: phối hợp ngân hàng – nhà mạng – nền tảng mạng xã hội theo trách nhiệm rõ ràng.",
+   "sourceUrl": "https://www.maribank.sg/info/shared-responsibility-framework",
+   "sourceName": "MariBank Singapore"
+  },
+  {
+   "id": "bs04",
+   "title": "eKYC chống deepfake nhiều lớp, không chỉ dựa vào kiểm tra 'người thật'",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "capital": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497700000,
+   "summary": "Kiểm tra liveness (nháy mắt, quay đầu) ngày càng bị vượt qua: kẻ gian bơm video deepfake thẳng vào luồng camera (injection attack). Báo cáo của FATF (12/2025) cảnh báo công nghệ phát hiện chưa theo kịp AI tạo sinh. Với Việt Nam, nơi sinh trắc học là lớp xác thực chính, cần thêm lớp kiểm tra toàn vẹn thiết bị và luồng camera, phân tích hành vi, đối chiếu dữ liệu chip CCCD/VNeID.",
+   "steps": [
+    "Kiểm tra toàn vẹn ứng dụng và thiết bị (phát hiện giả lập, camera ảo, root/jailbreak) trước khi chụp khuôn mặt",
+    "Đối chiếu khuôn mặt với ảnh trong chip CCCD/VNeID thay vì chỉ so với ảnh chụp giấy tờ",
+    "Kết hợp tín hiệu hành vi và giao dịch: thiết bị mới + chuyển khoản lớn + người nhận mới = cần xác minh thêm",
+    "Thuê đơn vị độc lập kiểm thử tấn công deepfake định kỳ, cập nhật mô hình phát hiện"
+   ],
+   "sourceUrl": "https://www.duckduckgoose.ai/blog/how-deepfakes-bypass-liveness-checks-in-real-identity-verification-systems",
+   "sourceName": "DuckDuckGoose AI"
+  },
+  {
+   "id": "bs05",
+   "title": "Passkey thay OTP qua SMS",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 2,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497600000,
+   "summary": "OTP qua SMS dễ bị lừa lấy hoặc bị chặn. Passkey (chuẩn FIDO) dùng mật mã khóa công khai gắn với thiết bị và tên miền thật, nên trang giả mạo không thể lấy được. Giới chuyên gia xem đây là giải pháp có thể chống được các cuộc tấn công dùng AI tạo sinh. Phù hợp đăng nhập ngân hàng điện tử, ví và sàn giao dịch.",
+   "steps": [
+    "Cho phép khách đăng ký passkey song song với cách đăng nhập cũ",
+    "Ưu tiên passkey cho đăng nhập, giữ sinh trắc học cho giao dịch giá trị lớn",
+    "Thiết kế quy trình khôi phục khi mất máy an toàn (không chỉ dựa vào SMS)",
+    "Đo tỷ lệ chiếm đoạt tài khoản trước và sau khi áp dụng"
+   ],
+   "sourceUrl": "https://www.biometricupdate.com/202601/passkeys-offer-potential-solution-to-increased-deepfake-attacks-on-financial-services",
+   "sourceName": "Biometric Update"
+  },
+  {
+   "id": "bs06",
+   "title": "Động cơ chấm điểm rủi ro theo thời gian thực: danh tính + thiết bị + hành vi + giao dịch",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "capital": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497500000,
+   "summary": "Không tín hiệu đơn lẻ nào còn đủ tin cậy. Phòng thủ hiệu quả cần hợp nhất và đối chiếu tín hiệu danh tính, thiết bị, hành vi và giao dịch theo thời gian thực để quyết định cho qua, hỏi thêm hay chặn. Ví dụ dấu hiệu: đang trong cuộc gọi khi chuyển tiền, thao tác bất thường, người nhận mới nhận tiền từ nhiều nạn nhân.",
+   "steps": [
+    "Thu thập tín hiệu thiết bị và hành vi trong app (tuân thủ Luật BVDLCN, có sự đồng ý)",
+    "Bắt đầu bằng bộ quy tắc rõ ràng, sau đó bổ sung mô hình học máy",
+    "Phân tầng phản ứng: cảnh báo, hỏi thêm câu xác minh, tạm giữ giao dịch, chặn",
+    "Theo dõi tỷ lệ báo động nhầm để không làm phiền khách hàng thật"
+   ],
+   "sourceUrl": "https://oscilar.com/blog/deepfakes",
+   "sourceName": "Oscilar"
+  },
+  {
+   "id": "bs07",
+   "title": "Làm sạch tài khoản rác, tài khoản doanh nghiệp 'ma' bằng đối chiếu VNeID",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "impact": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497400000,
+   "summary": "Kẻ gian lập 'công ty ma', thuê người đứng tên để mở hàng loạt tài khoản doanh nghiệp rồi giao cho người khác điều khiển, phục vụ nhận tiền lừa đảo. Ngành ngân hàng đang đối chiếu thông tin với VNeID để loại bỏ tài khoản rác, tài khoản ảo. Hướng mở rộng: xác thực người đại diện pháp luật bằng sinh trắc, giám sát tài khoản doanh nghiệp mới mở có dòng tiền bất thường.",
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/loai-bo-tai-khoan-ao-tai-khoan-rac-ngan-chan-lua-dao-trong-linh-vuc-ngan-hang-86857.html",
+   "sourceName": "Thị trường Tài chính Tiền tệ"
+  },
+  {
+   "id": "bs08",
+   "title": "Kênh xác minh 'nhân viên ngân hàng thật' chống giả danh hỗ trợ sinh trắc học",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "impact": 2,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497300000,
+   "summary": "Lợi dụng việc nhiều người gặp khó khi cập nhật sinh trắc học, kẻ xấu giả danh cán bộ ngân hàng gọi điện 'hỗ trợ cài đặt' để chiếm đoạt tiền. Ý tưởng: trong app có mục 'Ngân hàng đang gọi cho bạn?' để khách kiểm tra cuộc gọi là thật hay giả, kết hợp nguyên tắc truyền thông nhất quán: ngân hàng không bao giờ yêu cầu cài ứng dụng lạ hay đọc OTP.",
+   "steps": [
+    "Ghi nhận mọi cuộc gọi chủ động của nhân viên vào hệ thống để khách tra cứu được trong app",
+    "Gửi thông báo trong app trước khi nhân viên gọi",
+    "Chiến dịch truyền thông cho người lớn tuổi tại quầy và qua con cháu",
+    "Đo số vụ lừa giả danh được khách báo cáo trước và sau"
+   ],
+   "sourceUrl": "https://tapchinganhang.gov.vn/ngan-hang-nang-cap-cong-nghe-bao-mat-kip-thoi-ngan-chan-toi-pham-cong-nghe-va-lua-dao-9257.html",
+   "sourceName": "Tạp chí Ngân hàng"
+  },
+  {
+   "id": "bs09",
+   "title": "Chống đánh tráo và bóc tách chip thẻ ngân hàng",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "impact": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497200000,
+   "summary": "NHNN yêu cầu các tổ chức tín dụng tăng cường cảnh báo khách về nguy cơ đánh tráo chip và nghiên cứu giải pháp kỹ thuật ngăn bóc tách chip khỏi phôi thẻ. Hướng đổi mới: thẻ có cấu trúc chống bóc tách, khuyến khích thẻ phi vật lý trên điện thoại, thông báo tức thì mọi giao dịch thẻ.",
+   "sourceUrl": "https://baovanhoa.vn/kinh-te/hang-trieu-giao-dich-duoc-dung-sau-canh-bao-he-thong-phat-hien-lua-dao-hoat-dong-ra-sao-252075.html",
+   "sourceName": "Báo Văn hóa"
+  },
+  {
+   "id": "dl01",
+   "title": "Cổng tự phục vụ quyền dữ liệu cá nhân ngay trong app ngân hàng",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "impact": 2,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497100000,
+   "summary": "Luật Bảo vệ dữ liệu cá nhân 2025 trao cho người dân quyền được biết về hoạt động xử lý dữ liệu, đồng ý hoặc rút lại sự đồng ý, yêu cầu xem, sửa, xóa dữ liệu. Ý tưởng: một màn hình 'Dữ liệu của tôi' trong app để khách tự xem ngân hàng đang giữ gì, chia sẻ cho ai (đối tác, Open API), bật/tắt đồng ý theo mục đích, gửi yêu cầu và theo dõi thời hạn xử lý.",
+   "steps": [
+    "Lập bản đồ dữ liệu: ngân hàng đang thu thập gì, lưu ở đâu, chia sẻ cho ai",
+    "Thiết kế màn hình đồng ý theo từng mục đích, ngôn ngữ dễ hiểu",
+    "Tự động hóa tiếp nhận và theo dõi thời hạn xử lý yêu cầu của khách",
+    "Ghi nhật ký để phục vụ đánh giá tuân thủ hằng năm"
+   ],
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/luat-bao-ve-du-lieu-ca-nhan-tao-lap-moi-truong-so-an-toan-bao-ve-quyen-loi-hop-phap-cua-nguoi-dan-75245.html",
+   "sourceName": "Thị trường Tài chính Tiền tệ"
+  },
+  {
+   "id": "dl02",
+   "title": "Dịch vụ tuân thủ bảo vệ dữ liệu cá nhân cho fintech và doanh nghiệp nhỏ",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "impact": 2,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794497000000,
+   "summary": "Luật Bảo vệ dữ liệu cá nhân đặt yêu cầu đặc biệt nghiêm ngặt với tài chính – ngân hàng, quảng cáo, y tế, dữ liệu lớn và AI. Doanh nghiệp nhỏ, khởi nghiệp được ân hạn 5 năm, còn lại phải tuân thủ ngay từ 1/1/2026. Cơ hội kinh doanh: gói dịch vụ trọn gói giúp fintech, ví điện tử, công ty nhỏ lập hồ sơ, quy trình, đào tạo và đánh giá tuân thủ.",
+   "steps": [
+    "Học kỹ Luật 91/2025 và Nghị định 356/2025, hợp tác với luật sư chuyên về dữ liệu",
+    "Thiết kế bộ mẫu: chính sách quyền riêng tư, mẫu đồng ý, bản đồ dữ liệu, quy trình xử lý sự cố",
+    "Bán theo gói: đánh giá nhanh, khắc phục, rồi duy trì hằng năm",
+    "Bắt đầu với một ngành hẹp như fintech cho vay hoặc thương mại điện tử"
+   ],
+   "sourceUrl": "https://www.vcci.com.vn/tin-tuc/luat-bao-ve-du-lieu-ca-nhan-luu-y-ve-hanh-lang-phap-ly-moi-cho-doanh-nghiep",
+   "sourceName": "VCCI"
+  },
+  {
+   "id": "dl03",
+   "title": "Bảo vệ dữ liệu sinh trắc học: so khớp trên thiết bị, giảm lưu trữ tập trung",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "impact": 3,
+   "capital": 3,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496950000,
+   "summary": "Chuyên gia cảnh báo dữ liệu sinh trắc học của hàng chục triệu người nếu bị thu thập hàng loạt và lọt ra ngoài là mối đe dọa an ninh dữ liệu lớn, và nếu thiết bị bị chiếm quyền điều khiển thì kẻ gian cũng có thể vượt qua sinh trắc. Hướng kỹ thuật: lưu mẫu sinh trắc đã mã hóa thay vì ảnh gốc, so khớp trong vùng bảo mật của thiết bị khi có thể, phân quyền chặt và giám sát truy cập kho dữ liệu.",
+   "sourceUrl": "https://vnexpress.net/cong-kenh-nhan-dien-chuyen-tien-4761703.html",
+   "sourceName": "VnExpress"
+  },
+  {
+   "id": "dl04",
+   "title": "Tự động hóa nhật ký xử lý dữ liệu và đánh giá tuân thủ hằng năm",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "impact": 2,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794496900000,
+   "summary": "Nghị định 356/2025 yêu cầu đơn vị đánh giá tuân thủ bảo vệ dữ liệu cá nhân định kỳ mỗi năm một lần và ghi nhật ký toàn bộ hoạt động xử lý dữ liệu cá nhân. Ý tưởng: công cụ tự ghi nhật ký truy cập, chia sẻ dữ liệu từ các hệ thống lõi, tự sinh báo cáo đánh giá, cảnh báo khi có truy cập bất thường.",
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/du-lieu-duoc-bao-ve-nguoi-dung-yen-tam-hon-trong-thanh-toan-75974.html",
+   "sourceName": "Thị trường Tài chính Tiền tệ"
   }
  ],
  "projects": [
@@ -1043,6 +1263,158 @@
    "summary": "Bộ Nông nghiệp và Môi trường vận hành hệ thống truy xuất nguồn gốc nông sản, thí điểm trước với sầu riêng xuất khẩu. Đến giữa tháng 6/2026 đã truy xuất 18.500 sản phẩm của 547 nông hộ; Bộ đã gửi công hàm tới Hải quan Trung Quốc để hướng tới công nhận dữ liệu. Đây là nền tảng cho nhiều mô hình dịch vụ xuất khẩu.",
    "title": "Hệ thống truy xuất nguồn gốc nông sản quốc gia",
    "updatedAt": 1794496000000
+  },
+  {
+   "id": "pj09",
+   "title": "Hệ thống SIMO: chia sẻ cảnh báo tài khoản nghi ngờ lừa đảo",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "stage": "scale",
+   "lead": "Ngân hàng Nhà nước Việt Nam",
+   "kpi": "Số lượt khách dừng/hủy giao dịch sau cảnh báo",
+   "start": "",
+   "end": "",
+   "createdBy": null,
+   "createdAt": 1794497950000,
+   "updatedAt": 1794498000000,
+   "summary": "Hệ thống SIMO của NHNN giúp các tổ chức tín dụng, trung gian thanh toán chia sẻ thông tin tài khoản, ví có dấu hiệu nghi ngờ lừa đảo theo thời gian thực để chặn hoặc yêu cầu xác thực thêm. Đến 20/10/2026, hơn 6 triệu lượt khách nhận cảnh báo, hơn 2 triệu lượt đã tạm dừng hoặc hủy giao dịch.",
+   "milestones": [
+    {
+     "t": "Đưa hệ thống vào vận hành, kết nối các tổ chức tín dụng và trung gian thanh toán",
+     "done": true
+    },
+    {
+     "t": "149 đơn vị kết nối, hơn 688 nghìn bản ghi tài khoản nghi ngờ (3/2026)",
+     "done": true
+    },
+    {
+     "t": "Dịch vụ truy vấn trạng thái tài khoản nghi ngờ, cảnh báo khách trước khi chuyển tiền",
+     "done": true
+    },
+    {
+     "t": "Hơn 6 triệu lượt cảnh báo, hơn 2 triệu lượt dừng/hủy giao dịch (10/2026)",
+     "done": true
+    },
+    {
+     "t": "Mở rộng truy vấn cho toàn bộ tổ chức, phối hợp sâu với Bộ Công an",
+     "done": false
+    }
+   ],
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/loai-bo-tai-khoan-ao-tai-khoan-rac-ngan-chan-lua-dao-trong-linh-vuc-ngan-hang-86857.html",
+   "sourceName": "Thị trường Tài chính Tiền tệ"
+  },
+  {
+   "id": "pj10",
+   "title": "Xác thực sinh trắc học giao dịch trực tuyến (Quyết định 2345/QĐ-NHNN)",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "stage": "scale",
+   "lead": "Ngân hàng Nhà nước Việt Nam",
+   "kpi": "Số vụ lừa đảo chiếm đoạt tiền trong tài khoản",
+   "start": "2024-07-01",
+   "end": "",
+   "createdBy": null,
+   "createdAt": 1794497940000,
+   "updatedAt": 1794498000000,
+   "summary": "Từ 1/7/2024, giao dịch trên 10 triệu đồng/lần hoặc trên 20 triệu đồng/ngày phải xác thực bằng sinh trắc học; đăng nhập trên thiết bị mới cũng phải xác thực. NHNN cho biết số vụ lừa đảo chiếm đoạt tiền trong tài khoản giảm hơn 50% kể từ khi áp dụng. Thách thức mới: giả danh nhân viên hỗ trợ cài sinh trắc học và deepfake.",
+   "milestones": [
+    {
+     "t": "Quyết định 2345 có hiệu lực (1/7/2024)",
+     "done": true
+    },
+    {
+     "t": "84,7 triệu khách hàng cá nhân đã xác thực sinh trắc học (1/2025)",
+     "done": true
+    },
+    {
+     "t": "Thông tư 17, 18 về đối chiếu sinh trắc học có hiệu lực (1/1/2025)",
+     "done": true
+    },
+    {
+     "t": "Làm sạch tài khoản rác, đối chiếu với VNeID",
+     "done": false
+    },
+    {
+     "t": "Nâng cấp chống deepfake và tấn công giả lập camera",
+     "done": false
+    }
+   ],
+   "sourceUrl": "https://doanhnghiephoinhap.vn/nhieu-giai-phap-chong-lua-dao-lay-tien-trong-tai-khoan-ngan-hang-nam-2025-94372.html",
+   "sourceName": "Doanh nghiệp Hội nhập"
+  },
+  {
+   "id": "pj11",
+   "title": "Thi hành Luật Bảo vệ dữ liệu cá nhân 2025 trong ngành ngân hàng",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "stage": "scale",
+   "lead": "Ngân hàng Nhà nước / các tổ chức tín dụng",
+   "kpi": "Đánh giá tuân thủ hằng năm, nhật ký xử lý dữ liệu đầy đủ",
+   "start": "2026-01-01",
+   "end": "",
+   "createdBy": null,
+   "createdAt": 1794497930000,
+   "updatedAt": 1794498000000,
+   "summary": "Luật 91/2025/QH15 có hiệu lực từ 1/1/2026 cùng Nghị định 356/2025/NĐ-CP (thay thế Nghị định 13/2023). Ngân hàng phải thực hiện đầy đủ quy định về dữ liệu cá nhân nhạy cảm và tiêu chuẩn an toàn, bảo mật trong hoạt động tài chính, ngân hàng.",
+   "milestones": [
+    {
+     "t": "Quốc hội thông qua Luật (26/6/2025)",
+     "done": true
+    },
+    {
+     "t": "Kế hoạch triển khai thi hành Luật (QĐ 2623/QĐ-TTg, 29/11/2025)",
+     "done": true
+    },
+    {
+     "t": "Luật và Nghị định 356 có hiệu lực (1/1/2026)",
+     "done": true
+    },
+    {
+     "t": "Đánh giá tuân thủ định kỳ lần đầu tại các tổ chức",
+     "done": false
+    }
+   ],
+   "sourceUrl": "https://sbv.gov.vn/en/w/tri%E1%BB%83n-khai-thi-h%C3%A0nh-lu%E1%BA%ADt-b%E1%BA%A3o-v%E1%BB%87-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-1",
+   "sourceName": "Ngân hàng Nhà nước"
+  },
+  {
+   "id": "pj12",
+   "title": "Anh: hoàn tiền bắt buộc cho nạn nhân lừa đảo chuyển khoản",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "stage": "scale",
+   "lead": "Payment Systems Regulator (Anh)",
+   "kpi": "Giá trị lừa đảo APP và tỷ lệ hoàn tiền",
+   "start": "2024-10-07",
+   "end": "",
+   "createdBy": null,
+   "createdAt": 1794497920000,
+   "updatedAt": 1794498000000,
+   "summary": "Quy định hoàn tiền bắt buộc có hiệu lực 7/10/2024. Đến cuối 2025, các tổ chức thanh toán đã hoàn 243 triệu bảng cho nạn nhân. Đánh giá độc lập công bố 7/2026 kết luận lợi ích lớn hơn chi phí trong ngắn hạn và giá trị lừa đảo APP đã giảm.",
+   "milestones": [
+    {
+     "t": "Quy định có hiệu lực (7/10/2024)",
+     "done": true
+    },
+    {
+     "t": "Hoàn 243 triệu bảng cho nạn nhân (cuối 2025)",
+     "done": true
+    },
+    {
+     "t": "Phạt ngân hàng chậm triển khai Confirmation of Payee (2/2026)",
+     "done": true
+    },
+    {
+     "t": "Đánh giá độc lập công bố (7/2026)",
+     "done": true
+    },
+    {
+     "t": "Xử lý lừa đảo dịch chuyển sang kênh quốc tế",
+     "done": false
+    }
+   ],
+   "sourceUrl": "https://www.psr.org.uk/news-and-updates/latest-news/news/fraud-victims-get-243-million-back-as-psr-marks-a-year-of-progress/",
+   "sourceName": "Payment Systems Regulator (Anh)"
   }
  ]
 }

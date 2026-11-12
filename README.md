@@ -4,7 +4,7 @@ Trang tổng hợp **ý tưởng** và **dự án đổi mới sáng tạo đang
 
 **Xem trực tuyến:** https://letuan1111.github.io/doi-moi-sang-tao/
 
-- 50 ý tưởng, 8 dự án đang thực thi, mỗi mục có link tới nguồn gốc.
+- 63 ý tưởng, 12 dự án đang thực thi, mỗi mục có link tới nguồn gốc; có chuyên mục Bảo mật – Chống lừa đảo và Dữ liệu cá nhân.
 - Ý tưởng kinh doanh có mục "Bắt đầu từ đâu" và nhãn mức vốn khởi đầu.
 
 ## Tính năng
@@ -20,6 +20,7 @@ Trang tổng hợp **ý tưởng** và **dự án đổi mới sáng tạo đang
 | Link tới từng ý tưởng | `#idea-<id>` mở và làm nổi bật đúng thẻ, nút "Sao chép link" | Idea Tracker (copy-link) |
 | Xuất dữ liệu | Sao chép bảng Markdown, tải CSV (bản GitHub) | Idea Tracker, rice-ice-tool |
 | Phím tắt | `/` để tìm kiếm | — |
+| Trợ lý AI ngân hàng & bảo mật | Chat về ý tưởng chống lừa đảo, xác thực mạnh, deepfake, bảo vệ dữ liệu cá nhân; tự tra kho ý tưởng và dẫn nguồn; chặn gửi số thẻ, mật khẩu. Chỉ chạy trên bản claude.ai (bản GitHub là trang tĩnh, không có máy chủ AI) | Ideation Tool (AI assistance) |
 
 ## Cấu trúc
 

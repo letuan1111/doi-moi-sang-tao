@@ -190,6 +190,29 @@ dialog.wide{width:min(1000px,calc(100vw - 32px))}
 .lc .b-segments{grid-column:5; grid-row:1/3} .lc .b-costs{grid-column:1/3; grid-row:3} .lc .b-revenue{grid-column:3/6; grid-row:3}
 @media (max-width:760px){ .lc{grid-template-columns:1fr} .lc .box{grid-column:auto !important; grid-row:auto !important} }
 #lc-risks ul{margin:6px 0 0; padding-left:18px; font-size:13px}
+/* AI assistant */
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+.ai-wrap{display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:14px; align-items:start}
+@media (max-width:860px){ .ai-wrap{grid-template-columns:1fr} }
+.ai-main{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); display:flex; flex-direction:column; min-height:520px}
+.ai-log{flex:1; padding:16px; display:flex; flex-direction:column; gap:12px; overflow-y:auto; max-height:62vh}
+.msg{max-width:88%; padding:10px 14px; border-radius:12px; font-size:14px; line-height:1.6; overflow-wrap:anywhere}
+.msg.u{align-self:flex-end; background:var(--accent); color:var(--accent-ink); border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start; background:var(--bg); border:1px solid var(--line); border-bottom-left-radius:4px}
+.msg.a p{margin:0 0 8px} .msg.a p:last-child{margin:0}
+.msg.a ul,.msg.a ol{margin:4px 0 8px; padding-left:20px}
+.msg.a h4{font-family:var(--display); font-size:15px; margin:10px 0 4px}
+.msg.a a{color:var(--accent)}
+.msg .tool{font-size:12px; color:var(--muted); font-style:italic}
+.msg.welcome{max-width:100%}
+.ai-form{border-top:1px solid var(--line); padding:12px; display:flex; flex-direction:column; gap:8px}
+.ai-form textarea{width:100%; border:1px solid var(--line); border-radius:8px; padding:10px 12px; background:var(--bg); resize:vertical; min-height:56px}
+.ai-actions{display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap}
+.ai-side{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:14px}
+.ai-side h3{font-size:15px; margin-bottom:8px}
+.ai-sugg{display:flex; flex-direction:column; gap:6px}
+.ai-sugg button{text-align:left; border:1px solid var(--line); background:var(--bg); border-radius:8px; padding:8px 10px; font-size:13px; cursor:pointer; color:var(--ink)}
+.ai-sugg button:hover{border-color:var(--accent)}
 .toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:999px; font-size:13px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .2s; z-index:10}
 .toast.show{opacity:1}
 .linkbtn{background:none; border:0; padding:4px 6px; color:var(--accent); font-weight:600; font-size:13px; cursor:pointer}
@@ -252,6 +275,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       <a href="#y-tuong" data-view="y-tuong">Ý tưởng</a>
       <a href="#ma-tran" data-view="ma-tran">Ma trận ưu tiên</a>
       <a href="#du-an" data-view="du-an">Dự án đang thực thi</a>
+      <a href="#tro-ly" data-view="tro-ly">✦ Trợ lý AI</a>
     </nav>
   </header>
 
@@ -329,6 +353,35 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       </ol>
       <p>ICE là cách chấm nhanh, phù hợp giai đoạn ý tưởng khi chưa có nhiều số liệu. Điểm chỉ giúp so sánh các ý tưởng với nhau, không phải dự báo lợi nhuận. Hãy dùng nó để mở đầu cuộc thảo luận, không phải để thay cho quyết định.</p>
     </details>
+  </section>
+
+  <!-- AI ASSISTANT -->
+  <section id="view-tro-ly" class="hidden">
+    <div class="sechead">
+      <h2>Trợ lý AI: Ngân hàng, bảo mật và chống lừa đảo</h2>
+      <p>Hỏi về ý tưởng khoa học kỹ thuật trong và ngoài nước cho ngân hàng, tài chính: tăng bảo mật, chống lừa đảo, deepfake, số hóa và bảo vệ dữ liệu cá nhân. Trợ lý tra cứu kho ý tưởng của trang và dẫn nguồn.</p>
+    </div>
+    <div class="ai-wrap">
+      <div class="ai-main">
+        <div class="ai-log" id="ai-log" aria-live="polite"></div>
+        <form class="ai-form" id="ai-form">
+          <label for="ai-q" class="sr">Câu hỏi cho trợ lý</label>
+          <textarea id="ai-q" rows="2" maxlength="2000" placeholder="Ví dụ: Ngân hàng nhỏ nên ưu tiên giải pháp chống lừa đảo nào trong 6 tháng tới?"></textarea>
+          <div class="ai-actions">
+            <span class="hint">Không nhập mật khẩu, OTP, số thẻ hay số tài khoản vào đây.</span>
+            <span class="acts"><button class="btn ghost small" type="button" id="ai-clear">Cuộc trò chuyện mới</button><button class="btn" type="submit" id="ai-send">Gửi</button></span>
+          </div>
+        </form>
+        <div class="notice hidden" id="ai-off"></div>
+      </div>
+      <aside class="ai-side">
+        <h3>Gợi ý câu hỏi</h3>
+        <div class="ai-sugg" id="ai-sugg"></div>
+        <h3 style="margin-top:14px">Xem nhanh trong kho</h3>
+        <div class="chips" id="ai-cats"></div>
+        <p class="hint" style="margin-top:12px">Trợ lý đưa ra thông tin tham khảo, không thay thế tư vấn pháp lý, tư vấn an ninh chuyên nghiệp hay quy định chính thức của Ngân hàng Nhà nước.</p>
+      </aside>
+    </div>
   </section>
 
   <!-- PROJECTS -->
@@ -465,7 +518,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
 
 <script>
 (function(){
-  const CATS = ["Giáo dục","Nền tảng giao dịch","Mô hình kinh doanh","Ngân hàng – Fintech","Khoa học – Công nghệ","Chính sách – Thể chế","Khác"];
+  const CATS = ["Giáo dục","Nền tảng giao dịch","Mô hình kinh doanh","Ngân hàng – Fintech","Bảo mật – Chống lừa đảo","Dữ liệu cá nhân","Khoa học – Công nghệ","Chính sách – Thể chế","Khác"];
   const REGION_L = {vn:"Việt Nam", intl:"Quốc tế"};
   const safeUrl = u => (typeof u==="string" && /^https?:\/\/[^\s]+$/i.test(u)) ? u : null;
   const hostOf = u => { try{ return new URL(u).hostname.replace(/^www\./,""); }catch(e){ return ""; } };
@@ -503,7 +556,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
   const setStatus = (msg)=>{ const s=$("#status"); if(!msg){ s.classList.add("hidden"); return;} s.textContent=msg; s.classList.remove("hidden"); };
 
   /* ---------- Views (hash routing) ---------- */
-  const VIEWS = ["y-tuong","ma-tran","du-an"];
+  const VIEWS = ["y-tuong","ma-tran","du-an","tro-ly"];
   function route(){
     const h = (location.hash||"#y-tuong").slice(1);
     const focusId = h.startsWith("idea-") ? h.slice(5) : null;
@@ -844,7 +897,129 @@ Trả về DUY NHẤT một JSON object với các khóa: problem, segments, uvp
     }finally{ btn.disabled = false; }
   });
 
+  /* ---------- AI assistant (banking security, anti-fraud, personal data) ---------- */
+  const AI_SUGG = [
+    "Ngân hàng nhỏ nên ưu tiên 5 giải pháp chống lừa đảo nào trong 6 tháng tới?",
+    "So sánh cơ chế hoàn tiền nạn nhân của Anh và chia sẻ trách nhiệm ngân hàng – nhà mạng của Singapore. Việt Nam có thể học gì?",
+    "eKYC bằng khuôn mặt có bị deepfake qua mặt không? Cần thêm lớp bảo vệ nào?",
+    "Số hóa hồ sơ khách hàng thế nào để đúng Luật Bảo vệ dữ liệu cá nhân 2025?",
+    "Gợi ý 3 ý tưởng startup về chống lừa đảo cho thị trường Việt Nam, kèm cách bắt đầu.",
+    "Người lớn tuổi cần làm gì để không bị lừa “hỗ trợ cài sinh trắc học”?"
+  ];
+  const AI_BRIEF = `Bạn là "Trợ lý Đổi mới sáng tạo – Ngân hàng & Bảo mật", chuyên gia tư vấn ý tưởng khoa học kỹ thuật cho ngân hàng, tài chính tại Việt Nam và quốc tế, tập trung vào: tăng cường bảo mật, chống lừa đảo (lừa đảo chuyển khoản, giả danh, deepfake, tài khoản "rác"/tài khoản thuê), xác thực mạnh, và số hóa, bảo vệ dữ liệu cá nhân an toàn.
+
+Cách trả lời:
+- Trả lời bằng tiếng Việt, rõ ràng, có cấu trúc (tiêu đề ngắn bằng "### ", gạch đầu dòng "- "), thực tế, ưu tiên điều làm được ngay.
+- Với mỗi đề xuất, nêu: làm gì, ai làm (ngân hàng / fintech / người dùng / cơ quan quản lý), mức độ khó, và chỉ số đo hiệu quả.
+- Khi cần dẫn chứng, gọi công cụ search_ideas để tra kho ý tưởng của trang và dẫn nguồn bằng link trong kết quả. Chỉ đưa số liệu có trong kho hoặc trong phần "Dữ kiện nền" dưới đây; nếu không chắc, nói rõ là cần kiểm chứng. Không bịa số liệu, tên văn bản pháp luật hay link.
+- Nhắc rằng đây là thông tin tham khảo, không thay thế tư vấn pháp lý hay quy định chính thức khi câu hỏi liên quan pháp luật.
+- An toàn: không bao giờ yêu cầu người dùng cung cấp mật khẩu, OTP, số thẻ, số tài khoản. Nếu người dùng dán thông tin nhạy cảm, nhắc họ xóa và đổi mật khẩu. Từ chối hướng dẫn cách lừa đảo, vượt qua xác thực, thuê/mua bán tài khoản, tạo deepfake hay tấn công hệ thống; chỉ phân tích thủ đoạn ở mức đủ để phòng tránh.
+
+Dữ kiện nền (đã kiểm chứng từ nguồn công khai, cập nhật 11/2026):
+- Việt Nam: Hệ thống SIMO của NHNN chia sẻ thông tin tài khoản nghi ngờ lừa đảo giữa các tổ chức tín dụng, trung gian thanh toán; đến 20/10/2026 hơn 6 triệu lượt khách nhận cảnh báo, hơn 2 triệu lượt dừng/hủy giao dịch.
+- Việt Nam: Quyết định 2345/QĐ-NHNN (từ 1/7/2024) yêu cầu xác thực sinh trắc học với giao dịch trên 10 triệu đồng/lần hoặc trên 20 triệu đồng/ngày; NHNN cho biết số vụ lừa đảo chiếm đoạt tiền trong tài khoản giảm hơn 50%. Kẻ gian đã lợi dụng bằng cách giả danh nhân viên ngân hàng "hỗ trợ cài sinh trắc học".
+- Việt Nam: Luật Bảo vệ dữ liệu cá nhân (Luật 91/2025/QH15) và Nghị định 356/2025/NĐ-CP có hiệu lực từ 1/1/2026, thay thế Nghị định 13/2023; yêu cầu nghiêm ngặt với tài chính – ngân hàng; đánh giá tuân thủ định kỳ hằng năm và ghi nhật ký xử lý dữ liệu; doanh nghiệp nhỏ, khởi nghiệp được ân hạn 5 năm.
+- Anh: Bắt buộc hoàn tiền cho nạn nhân lừa đảo chuyển khoản (APP fraud) từ 10/2024; đánh giá độc lập năm 2026 cho thấy giá trị lừa đảo APP giảm và đây là động lực chính khiến ngân hàng đầu tư phòng chống; dịch vụ kiểm tra tên người nhận (Confirmation of Payee) phủ hơn 99% giao dịch.
+- Singapore: Khung chia sẻ trách nhiệm (SRF) từ 16/12/2024 giữa ngân hàng và nhà mạng với lừa đảo phishing; ngân hàng ngừng gửi link có thể bấm, nhà mạng lọc SMS chứa link độc; bên nào vi phạm nghĩa vụ phải bồi thường.
+- Deepfake: tấn công "injection" đưa video giả thẳng vào luồng dữ liệu có thể vượt qua kiểm tra liveness; cần phòng thủ nhiều lớp (thiết bị, hành vi, giao dịch, toàn vẹn luồng camera). Passkey (FIDO, mật mã khóa công khai) được xem là giải pháp chống tấn công bằng AI tạo sinh tốt hơn OTP.`;
+  const aiHistory = [];
+  let aiBusy = false, aiAbort = null;
+  function mdLite(s){
+    const esc = String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const lines = esc.split("\n"); let html = "", list = null;
+    const inline = t => t.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>")
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+    const close = ()=>{ if(list){ html += "</"+list+">"; list=null; } };
+    for(const raw of lines){
+      const l = raw.trim();
+      let m;
+      if(!l){ close(); continue; }
+      if((m = l.match(/^#{1,4}\s+(.*)/))){ close(); html += "<h4>"+inline(m[1])+"</h4>"; continue; }
+      if((m = l.match(/^[-*•]\s+(.*)/))){ if(list!=="ul"){ close(); html+="<ul>"; list="ul"; } html += "<li>"+inline(m[1])+"</li>"; continue; }
+      if((m = l.match(/^\d+[.)]\s+(.*)/))){ if(list!=="ol"){ close(); html+="<ol>"; list="ol"; } html += "<li>"+inline(m[1])+"</li>"; continue; }
+      close(); html += "<p>"+inline(l)+"</p>";
+    }
+    close(); return html;
+  }
+  function aiBubble(role, text){
+    const b = el("div",{class:"msg "+(role==="user"?"u":"a")});
+    if(role==="user") b.textContent = text; else b.innerHTML = mdLite(text);
+    $("#ai-log").append(b); $("#ai-log").scrollTop = $("#ai-log").scrollHeight; return b;
+  }
+  function aiWelcome(){
+    $("#ai-log").replaceChildren();
+    const w = el("div",{class:"msg a welcome"});
+    w.innerHTML = mdLite("Xin chào! Mình là trợ lý chuyên về **ý tưởng đổi mới cho ngân hàng và tài chính**: chống lừa đảo, xác thực mạnh, chống deepfake, và số hóa dữ liệu cá nhân an toàn theo Luật Bảo vệ dữ liệu cá nhân 2025.\n\nHãy chọn một câu hỏi gợi ý bên cạnh hoặc tự đặt câu hỏi. Mình sẽ tra kho ý tưởng của trang và dẫn nguồn.");
+    $("#ai-log").append(w);
+  }
+  const AI_TOOLS = [{
+    name:"search_ideas",
+    description:"Tìm trong kho ý tưởng và dự án của trang theo từ khóa tiếng Việt (ví dụ: 'lừa đảo', 'sinh trắc', 'dữ liệu cá nhân', 'deepfake', 'SIMO'). Trả về tối đa 6 mục gồm tiêu đề, tóm tắt, lĩnh vực, khu vực, nguồn.",
+    inputSchema:{type:"object", properties:{query:{type:"string", description:"Từ khóa tìm kiếm"}}, required:["query"]},
+    execute: async ({query})=>{
+      const words = String(query||"").toLowerCase().split(/[\s,;]+/).filter(w=>w.length>1);
+      const items = state.ideas.map(i=>({k:"Ý tưởng", ...i})).concat(state.projects.map(p=>({k:"Dự án đang thực thi", ...p})));
+      const scored = items.map(it=>{
+        const hay = (it.title+" "+(it.summary||"")+" "+(it.category||"")+" "+(it.steps||[]).join(" ")+" "+(it.milestones||[]).map(m=>m.t).join(" ")).toLowerCase();
+        return {it, s: words.reduce((a,w)=>a+(hay.includes(w)?1:0),0)};
+      }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,6);
+      return scored.map(({it})=>({loai:it.k, tieu_de:it.title, tom_tat:it.summary, linh_vuc:it.category, khu_vuc:REG_TXT[it.region]||"", nguon:safeUrl(it.sourceUrl)||"", ten_nguon:it.sourceName||""}));
+    }
+  }];
+  async function aiAsk(q){
+    q = String(q||"").trim(); if(!q || aiBusy) return;
+    if(!state.sample){ aiOffNotice(); return; }
+    if(/(^|\D)\d{12,19}(\D|$)/.test(q.replace(/(\d)[\s.-](?=\d)/g,"$1")) ||/\b(otp|mật khẩu|password)\s*[:=]?\s*\S{4,}/i.test(q)){
+      toast("Câu hỏi có vẻ chứa số thẻ, số tài khoản hoặc mật khẩu. Hãy xóa thông tin đó trước khi gửi."); return;
+    }
+    aiBusy = true; $("#ai-send").disabled = true; $("#ai-q").value = "";
+    aiBubble("user", q);
+    aiHistory.push({role:"user", content: aiHistory.length ? q : AI_BRIEF + "\n\n---\nCâu hỏi đầu tiên của người dùng: " + q});
+    const out = aiBubble("assistant", "Đang suy nghĩ…");
+    aiAbort = new AbortController();
+    try{
+      const msgs = aiHistory.length > 11 ? [aiHistory[0], ...aiHistory.slice(-10)] : aiHistory.slice();
+      const r = await state.sample(msgs, {
+        signal: aiAbort.signal, cache:false, modelTier:"default", tools: AI_TOOLS,
+        onText: ({text})=>{ out.innerHTML = mdLite(text || "Đang suy nghĩ…"); $("#ai-log").scrollTop = $("#ai-log").scrollHeight; }
+      });
+      const text = (r && r.text) || "";
+      out.innerHTML = mdLite(text + (r && r.truncated ? "\n\n(Câu trả lời bị cắt bớt vì quá dài. Hãy hỏi tiếp để xem phần còn lại.)" : ""));
+      aiHistory.push({role:"assistant", content:text});
+    }catch(e){
+      aiHistory.pop();
+      if(e && e.code==="not_granted"){ state.sample=null; out.innerHTML = mdLite("Trang chưa được cấp quyền dùng AI. Hãy cho phép khi được hỏi, rồi thử lại."); }
+      else if(e && e.code==="rate_limited") out.innerHTML = mdLite("Trợ lý đang bận vì quá nhiều yêu cầu. Hãy thử lại sau ít phút.");
+      else if(e && e.name==="AbortError") out.innerHTML = mdLite("Đã dừng.");
+      else out.innerHTML = mdLite("Chưa nhận được câu trả lời. Hãy thử lại." + (e && e.text ? "\n\n" + e.text : ""));
+    }finally{ aiBusy = false; $("#ai-send").disabled = false; aiAbort = null; }
+  }
+  function aiOffNotice(){
+    const n = $("#ai-off");
+    n.textContent = state.isStatic
+      ? "Trợ lý AI chạy trên bản claude.ai của trang (cần đăng nhập Claude). Bản GitHub công khai chỉ để xem, không có máy chủ AI. Bạn vẫn có thể xem các ý tưởng về bảo mật, chống lừa đảo và dữ liệu cá nhân bằng các nút bên cạnh."
+      : "Trợ lý AI chưa sẵn sàng. Hãy đảm bảo bạn đã đăng nhập claude.ai và cho phép trang dùng AI khi được hỏi.";
+    n.classList.remove("hidden");
+  }
+  function buildAI(){
+    const sg = $("#ai-sugg"); sg.replaceChildren();
+    AI_SUGG.forEach(s=> sg.append(el("button",{type:"button", onclick:()=>{ if(state.sample) aiAsk(s); else { $("#ai-q").value = s; aiOffNotice(); } }}, s)));
+    const ac = $("#ai-cats"); ac.replaceChildren();
+    ["Bảo mật – Chống lừa đảo","Dữ liệu cá nhân","Ngân hàng – Fintech"].forEach(c=> ac.append(el("button",{class:"chip",type:"button", onclick:()=>{ state.cat=c; buildChips(); renderIdeas(); renderMatrix(); location.hash="y-tuong"; }}, c)));
+  }
+  $("#ai-form").addEventListener("submit", e=>{ e.preventDefault(); aiAsk($("#ai-q").value); });
+  $("#ai-q").addEventListener("keydown", e=>{ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); aiAsk($("#ai-q").value); } });
+  $("#ai-clear").addEventListener("click", ()=>{ if(aiAbort) aiAbort.abort(); aiHistory.length = 0; aiWelcome(); });
+  buildAI(); aiWelcome();
+  function aiAvailability(){
+    const on = !!state.sample;
+    $("#ai-form").classList.toggle("hidden", !on);
+    if(on) $("#ai-off").classList.add("hidden"); else aiOffNotice();
+  }
+
   function renderAll(){
+    aiAvailability();
     document.querySelectorAll(".write-only").forEach(b=>b.classList.toggle("hidden", !state.canWrite));
     document.querySelectorAll(".edit-only").forEach(b=>b.classList.toggle("hidden", !state.canEdit));
     document.querySelectorAll(".static-only").forEach(b=>b.classList.toggle("hidden", !state.isStatic));
@@ -969,7 +1144,7 @@ Trả về DUY NHẤT một JSON object với các khóa: problem, segments, uvp
     try{ state.canEdit = user ? !!(await user.canEdit()) : false; }catch(e){}
     try{ const c = user && user.can ? await user.can("data.write") : null; state.canWrite = c===null ? true : !!c; }catch(e){ state.canWrite = true; }
     if(state.canEdit) state.canWrite = true;
-    claude.use("sample").then(s=>{ state.sample = s || null; }).catch(()=>{});
+    claude.use("sample").then(s=>{ state.sample = s || null; aiAvailability(); }).catch(()=>{});
     renderAll();
     let firstIdeas = true;
 
