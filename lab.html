@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phòng thử nghiệm chống lừa đảo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: bàn thí nghiệm — thanh công cụ dọc bên trái, mỗi công cụ một "bàn làm việc" gồm ô nhập liệu và bảng kết quả có thang rủi ro */
+:root{
+  --bg:#eef1f7; --surface:#ffffff; --ink:#141a2e; --muted:#5b6480; --line:#d6dbe8;
+  --accent:#2440d6; --accent-ink:#ffffff; --spark:#f2b200;
+  --ok:#14805e; --warn:#b26a00; --stop:#b3261e; --grid:rgba(36,64,214,.06);
+  --display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07); color-scheme:dark; } }
+:root[data-theme="dark"]{ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07); color-scheme:dark; }
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 40px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.01em}
+button,input,select,textarea{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+a{color:var(--accent)}
+header.top{padding:24px 0 14px; display:flex; gap:14px; justify-content:space-between; align-items:flex-end; flex-wrap:wrap}
+header.top h1{font-size:28px; font-weight:800}
+header.top p{margin:4px 0 0; color:var(--muted); font-size:14px; max-width:70ch}
+.back{font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px}
+.privacy{display:flex; gap:10px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--ok); border-radius:var(--r); padding:12px 14px; margin-bottom:16px; font-size:14px}
+.privacy b{color:var(--ok)}
+.layout{display:grid; grid-template-columns:270px minmax(0,1fr); gap:16px; align-items:start}
+@media (max-width:860px){ .layout{grid-template-columns:1fr} }
+nav.tools{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:8px; display:flex; flex-direction:column; gap:4px; position:sticky; top:12px}
+@media (max-width:860px){ nav.tools{position:static; flex-direction:row; overflow-x:auto} }
+nav.tools a{display:flex; gap:10px; align-items:center; padding:9px 10px; border-radius:8px; text-decoration:none; color:var(--ink); font-weight:600; font-size:14px; white-space:nowrap}
+nav.tools a span{font-family:var(--display); color:var(--muted); font-weight:800; min-width:20px}
+nav.tools a[aria-current="page"]{background:var(--ink); color:var(--bg)} nav.tools a[aria-current="page"] span{color:var(--spark)}
+.tool{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:18px}
+.tool > h2{font-size:22px}
+.tool > .lead{margin:4px 0 14px; color:var(--muted); font-size:14px; max-width:75ch}
+.cols{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px}
+@media (max-width:760px){ .cols{grid-template-columns:1fr} }
+.field{display:flex; flex-direction:column; gap:4px; margin-bottom:10px}
+.field label,.flabel{font-size:13px; font-weight:600}
+.field input,.field select,.field textarea{padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg); width:100%}
+.field textarea{min-height:120px; resize:vertical}
+.checks{display:flex; flex-direction:column; gap:6px; font-size:14px}
+.checks label{display:flex; gap:8px; align-items:flex-start; cursor:pointer}
+.checks input{margin-top:4px; accent-color:var(--accent)}
+.row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.btn{border:0; background:var(--accent); color:var(--accent-ink); padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.btn.small{padding:6px 12px; font-size:13px}
+.btn[disabled]{opacity:.5; cursor:not-allowed}
+.hint{font-size:12px; color:var(--muted)}
+.panel{border:1px solid var(--line); border-radius:var(--r); background:var(--bg); padding:14px}
+.result-empty{color:var(--muted); font-size:14px}
+.verdict{display:flex; gap:12px; align-items:center; margin-bottom:10px}
+.badge{font-family:var(--display); font-weight:800; font-size:15px; padding:6px 12px; border-radius:999px; color:#fff; white-space:nowrap}
+.lv-ok{background:var(--ok)} .lv-warn{background:var(--warn)} .lv-stop{background:var(--stop)} .lv-info{background:var(--accent); color:var(--accent-ink)}
+.gauge{flex:1; height:10px; background:var(--line); border-radius:999px; overflow:hidden}
+.gauge i{display:block; height:100%}
+.score{font-variant-numeric:tabular-nums; font-weight:700; min-width:3.5em; text-align:right}
+.reasons{margin:8px 0 0; padding-left:18px; font-size:14px; display:flex; flex-direction:column; gap:4px}
+.reasons b{font-variant-numeric:tabular-nums}
+.action{margin-top:12px; padding:10px 12px; border-radius:8px; background:var(--surface); border:1px solid var(--line); font-size:14px}
+.action strong{display:block; margin-bottom:2px}
+mark{background:color-mix(in srgb, var(--stop) 25%, transparent); color:inherit; border-radius:3px; padding:0 2px}
+.textview{white-space:pre-wrap; font-size:14px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:10px; margin-top:10px; overflow-wrap:anywhere}
+table{width:100%; border-collapse:collapse; font-size:13px}
+th,td{text-align:left; padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:top}
+th{font-size:12px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+.tablewrap{overflow-x:auto}
+.pill{font-size:12px; font-weight:700; padding:2px 8px; border-radius:999px; border:1px solid var(--line); white-space:nowrap}
+.pill.sens{border-color:var(--stop); color:var(--stop)}
+.switch{display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 0; border-bottom:1px dashed var(--line)}
+.switch:last-child{border-bottom:0}
+.switch .t{font-weight:600; font-size:14px} .switch .d{font-size:12px; color:var(--muted)}
+.tog{appearance:none; width:42px; height:24px; border-radius:999px; background:var(--line); position:relative; cursor:pointer; flex:none; transition:background .15s}
+.tog::after{content:""; position:absolute; top:3px; left:3px; width:18px; height:18px; border-radius:50%; background:#fff; transition:left .15s}
+.tog:checked{background:var(--ok)} .tog:checked::after{left:21px}
+.tog:disabled{opacity:.6; cursor:not-allowed}
+.sub{font-family:var(--display); font-size:16px; margin:18px 0 8px}
+.pause{font-family:var(--display); font-size:40px; font-weight:800; text-align:center; font-variant-numeric:tabular-nums}
+.hidden{display:none !important}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:999px; font-size:13px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .2s; z-index:10}
+.toast.show{opacity:1}
+.phone{border:2px solid var(--ink); border-radius:22px; padding:14px; background:var(--surface); max-width:320px}
+.phone .notif{background:var(--bg); border:1px solid var(--line); border-radius:12px; padding:10px; font-size:13px; margin-top:8px}
+footer{color:var(--muted); font-size:12px; padding-top:20px}
+@media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Phòng thử nghiệm chống lừa đảo &amp; bảo vệ dữ liệu</h1>
+      <p>Các ý tưởng trên trang Đổi mới sáng tạo được hiện thực thành công cụ chạy thử: kiểm tra người nhận, chấm điểm rủi ro, soi tin nhắn lừa đảo, xác minh cuộc gọi, passkey và cổng quyền dữ liệu cá nhân.</p>
+    </div>
+    <a class="back" href="index.html">← Về trang ý tưởng</a>
+  </header>
+
+  <div class="privacy" role="note">
+    <div><b>Bảo vệ dữ liệu cá nhân:</b> mọi tên, số tài khoản, cuộc gọi trong phòng thử nghiệm là <b>dữ liệu giả lập</b>. Công cụ xử lý ngay trên trình duyệt của bạn, không gửi đi máy chủ nào (trừ khi bạn chủ động bấm "Hỏi AI" trên bản claude.ai). Đừng nhập số thẻ, mật khẩu, OTP thật. <button class="btn ghost small" type="button" id="wipe">Xóa toàn bộ dữ liệu thử nghiệm</button></div>
+  </div>
+
+  <div class="layout">
+    <nav class="tools" aria-label="Công cụ">
+      <a href="#nguoi-nhan" data-v="nguoi-nhan"><span>1</span>Kiểm tra người nhận</a>
+      <a href="#rui-ro" data-v="rui-ro"><span>2</span>Chấm điểm rủi ro giao dịch</a>
+      <a href="#tin-nhan" data-v="tin-nhan"><span>3</span>Soi tin nhắn lừa đảo</a>
+      <a href="#cuoc-goi" data-v="cuoc-goi"><span>4</span>Xác minh cuộc gọi ngân hàng</a>
+      <a href="#passkey" data-v="passkey"><span>5</span>Đăng nhập bằng passkey</a>
+      <a href="#du-lieu" data-v="du-lieu"><span>6</span>Dữ liệu của tôi</a>
+    </nav>
+
+    <main>
+    <!-- 1. CoP -->
+    <section class="tool" id="v-nguoi-nhan">
+      <h2>1. Kiểm tra người nhận trước khi chuyển tiền</h2>
+      <p class="lead">Hiện thực ý tưởng "Confirmation of Payee" của Anh, kết hợp danh sách tài khoản nghi ngờ kiểu SIMO: so tên bạn nhập với tên chủ tài khoản (bỏ dấu, đảo thứ tự, thiếu tên đệm), rồi cộng thêm tín hiệu rủi ro của tài khoản nhận.</p>
+      <div class="cols">
+        <form id="f-cop">
+          <div class="field"><label for="cop-acc">Số tài khoản người nhận (giả lập)</label>
+            <select id="cop-acc"></select></div>
+          <div class="field"><label for="cop-name">Tên người nhận bạn nghĩ là</label>
+            <input id="cop-name" placeholder="Ví dụ: Nguyen Van An" autocomplete="off"></div>
+          <div class="field"><label for="cop-amt">Số tiền (đồng)</label>
+            <input id="cop-amt" inputmode="numeric" value="15000000"></div>
+          <button class="btn" type="submit">Kiểm tra</button>
+          <p class="hint">Danh bạ tài khoản trong công cụ là dữ liệu bịa ra để minh họa, không phải tài khoản thật.</p>
+        </form>
+        <div class="panel" id="cop-out"><p class="result-empty">Chọn tài khoản, nhập tên rồi bấm Kiểm tra.</p></div>
+      </div>
+    </section>
+
+    <!-- 2. Risk engine -->
+    <section class="tool hidden" id="v-rui-ro">
+      <h2>2. Động cơ chấm điểm rủi ro giao dịch theo thời gian thực</h2>
+      <p class="lead">Ghép tín hiệu danh tính, thiết bị, hành vi và giao dịch thành một điểm rủi ro 0–100, rồi chọn phản ứng theo tầng: cho qua, cảnh báo, yêu cầu sinh trắc học kèm 10 giây suy nghĩ, tạm giữ để gọi lại, hoặc chặn. Ngưỡng sinh trắc học theo Quyết định 2345/QĐ-NHNN (trên 10 triệu đồng/lần hoặc trên 20 triệu đồng/ngày).</p>
+      <div class="cols">
+        <form id="f-risk">
+          <div class="field"><label for="r-amt">Số tiền giao dịch (đồng)</label><input id="r-amt" inputmode="numeric" value="30000000"></div>
+          <div class="field"><label for="r-day">Tổng đã chuyển hôm nay, trước giao dịch này (đồng)</label><input id="r-day" inputmode="numeric" value="0"></div>
+          <div class="field"><label for="r-avg">Giao dịch trung bình thường ngày của khách (đồng)</label><input id="r-avg" inputmode="numeric" value="2000000"></div>
+          <div class="field"><label for="r-memo">Nội dung chuyển khoản</label><input id="r-memo" value="nop phi xac minh ho so"></div>
+          <span class="flabel">Tín hiệu thiết bị và hành vi</span>
+          <div class="checks" id="r-sig"></div>
+        </form>
+        <div class="panel" id="risk-out"></div>
+      </div>
+    </section>
+
+    <!-- 3. Scam text -->
+    <section class="tool hidden" id="v-tin-nhan">
+      <h2>3. Soi tin nhắn, cuộc gọi nghi lừa đảo</h2>
+      <p class="lead">Dán nội dung tin nhắn SMS, Zalo, Messenger hoặc tóm tắt cuộc gọi. Công cụ đánh dấu các dấu hiệu lừa đảo phổ biến tại Việt Nam (giả danh cơ quan, đòi OTP, bắt cài ứng dụng, "tài khoản an toàn", hối thúc...) và giải thích vì sao.</p>
+      <div class="cols">
+        <div>
+          <div class="field"><label for="sc-text">Nội dung cần kiểm tra</label>
+            <textarea id="sc-text" placeholder="Dán tin nhắn vào đây…"></textarea></div>
+          <div class="row">
+            <button class="btn" type="button" id="sc-run">Phân tích</button>
+            <button class="btn ghost small" type="button" id="sc-ex">Dùng ví dụ</button>
+            <button class="btn ghost small hidden" type="button" id="sc-ai">✦ Hỏi AI phân tích sâu</button>
+          </div>
+          <p class="hint">Hãy xóa số tài khoản, số điện thoại, tên thật trước khi bấm "Hỏi AI".</p>
+        </div>
+        <div class="panel" id="sc-out"><p class="result-empty">Kết quả sẽ hiện ở đây.</p></div>
+      </div>
+    </section>
+
+    <!-- 4. Call verification -->
+    <section class="tool hidden" id="v-cuoc-goi">
+      <h2>4. "Ngân hàng đang gọi cho bạn?" – xác minh cuộc gọi</h2>
+      <p class="lead">Mô phỏng ý tưởng chống giả danh nhân viên ngân hàng: mọi cuộc gọi chủ động của nhân viên được ghi vào hệ thống và gửi thông báo vào app. Khách nhận cuộc gọi lạ chỉ cần nhập số đang gọi để biết thật hay giả.</p>
+      <div class="cols">
+        <div>
+          <h3 class="sub" style="margin-top:0">Phía ngân hàng: nhân viên ghi nhận cuộc gọi</h3>
+          <form id="f-call">
+            <div class="field"><label for="c-staff">Nhân viên (giả lập)</label><select id="c-staff"></select></div>
+            <div class="field"><label for="c-purpose">Mục đích</label>
+              <select id="c-purpose"><option>Nhắc lịch thanh toán khoản vay</option><option>Xác nhận giao dịch giá trị lớn vừa thực hiện</option><option>Mời tham gia khảo sát dịch vụ</option></select></div>
+            <button class="btn" type="submit">Ghi nhận và gọi khách</button>
+          </form>
+          <div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>Giờ</th><th>Số gọi ra</th><th>Nhân viên</th><th>Mã</th></tr></thead><tbody id="c-log"></tbody></table></div>
+        </div>
+        <div>
+          <h3 class="sub" style="margin-top:0">Phía khách hàng: app ngân hàng</h3>
+          <div class="phone">
+            <b>App ngân hàng (mô phỏng)</b>
+            <div id="c-notifs"></div>
+            <form id="f-verify" style="margin-top:10px">
+              <div class="field"><label for="v-num">Số đang gọi cho bạn</label><input id="v-num" inputmode="tel" placeholder="Ví dụ: 1900 5454 xx"></div>
+              <div class="field"><label for="v-code">Mã người gọi đọc cho bạn (nếu có)</label><input id="v-code" inputmode="numeric" maxlength="6" placeholder="6 chữ số"></div>
+              <button class="btn" type="submit">Kiểm tra cuộc gọi</button>
+            </form>
+            <div id="v-out" style="margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Passkey -->
+    <section class="tool hidden" id="v-passkey">
+      <h2>5. Đăng nhập bằng passkey thay OTP qua SMS</h2>
+      <p class="lead">Passkey (chuẩn FIDO/WebAuthn) tạo cặp khóa mật mã gắn với thiết bị và tên miền thật, nên trang giả mạo không lấy được, không có mã nào để kẻ gian dụ bạn đọc ra. Thử tạo và dùng một passkey ngay trên thiết bị của bạn.</p>
+      <div class="cols">
+        <div>
+          <div class="row">
+            <button class="btn" type="button" id="pk-create">1. Tạo passkey thử nghiệm</button>
+            <button class="btn ghost" type="button" id="pk-get">2. Đăng nhập bằng passkey</button>
+          </div>
+          <p class="hint" style="margin-top:8px">Bản thử nghiệm không có máy chủ nên chỉ minh họa luồng trên thiết bị; ngân hàng thật phải kiểm tra chữ ký ở máy chủ. Passkey thử nghiệm có tên "Đổi mới sáng tạo – Demo", bạn có thể xóa trong phần quản lý mật khẩu của thiết bị.</p>
+        </div>
+        <div class="panel" id="pk-out"><p class="result-empty">Chưa có passkey nào được tạo trong phiên này.</p></div>
+      </div>
+      <h3 class="sub">So sánh nhanh</h3>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Tiêu chí</th><th>OTP qua SMS</th><th>Passkey</th></tr></thead>
+        <tbody>
+          <tr><td>Bị lừa đọc mã cho kẻ gian</td><td>Có thể</td><td>Không có mã để đọc</td></tr>
+          <tr><td>Trang web giả mạo lấy được</td><td>Có thể (nhập vào trang giả)</td><td>Không: khóa gắn với tên miền thật</td></tr>
+          <tr><td>Phụ thuộc mạng di động</td><td>Có</td><td>Không</td></tr>
+          <tr><td>Rò rỉ từ máy chủ</td><td>Mật khẩu kèm theo có thể bị lộ</td><td>Máy chủ chỉ giữ khóa công khai</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 6. Data rights portal -->
+    <section class="tool hidden" id="v-du-lieu">
+      <h2>6. "Dữ liệu của tôi" – cổng quyền dữ liệu cá nhân</h2>
+      <p class="lead">Hiện thực ý tưởng theo Luật Bảo vệ dữ liệu cá nhân 2025 (hiệu lực 1/1/2026): khách xem ngân hàng đang giữ dữ liệu gì, bật/tắt đồng ý theo từng mục đích, gửi yêu cầu xem/sửa/xóa/rút đồng ý và theo dõi hạn xử lý. Mọi thao tác được ghi nhật ký, phục vụ đánh giá tuân thủ định kỳ theo Nghị định 356/2025.</p>
+      <div class="cols">
+        <div>
+          <h3 class="sub" style="margin-top:0">Ngân hàng đang giữ gì về bạn (khách hàng giả lập)</h3>
+          <div class="tablewrap"><table><thead><tr><th>Dữ liệu</th><th>Giá trị</th><th>Loại</th></tr></thead><tbody id="d-inv"></tbody></table></div>
+          <h3 class="sub">Đồng ý theo mục đích</h3>
+          <div id="d-consent"></div>
+        </div>
+        <div>
+          <h3 class="sub" style="margin-top:0">Gửi yêu cầu</h3>
+          <form id="f-req">
+            <div class="field"><label for="d-type">Loại yêu cầu</label>
+              <select id="d-type"><option>Xem và nhận bản sao dữ liệu</option><option>Chỉnh sửa dữ liệu</option><option>Xóa dữ liệu</option><option>Rút lại sự đồng ý</option><option>Phản đối xử lý cho mục đích tiếp thị</option></select></div>
+            <div class="field"><label for="d-note">Ghi chú</label><input id="d-note" maxlength="200" placeholder="Ví dụ: cập nhật email mới"></div>
+            <div class="field"><label for="d-sla">Hạn xử lý nội bộ (ngày)</label><input id="d-sla" type="number" min="1" max="60" value="10"><span class="hint">Đặt theo quy định áp dụng cho từng loại yêu cầu; hãy kiểm tra Nghị định 356/2025 cho thời hạn chính xác.</span></div>
+            <button class="btn" type="submit">Gửi yêu cầu</button>
+          </form>
+          <div class="tablewrap" style="margin-top:10px"><table><thead><tr><th>Yêu cầu</th><th>Hạn</th><th>Trạng thái</th><th></th></tr></thead><tbody id="d-reqs"></tbody></table></div>
+        </div>
+      </div>
+      <h3 class="sub">Nhật ký xử lý dữ liệu</h3>
+      <div class="row" style="margin-bottom:6px"><button class="btn ghost small" type="button" id="d-copylog">Sao chép nhật ký (CSV)</button><span class="hint" id="d-logcount"></span></div>
+      <div class="tablewrap" style="max-height:260px; overflow-y:auto"><table><thead><tr><th>Thời điểm</th><th>Chủ thể</th><th>Hành động</th><th>Dữ liệu / mục đích</th></tr></thead><tbody id="d-log"></tbody></table></div>
+      <h3 class="sub">Tự đánh giá mức sẵn sàng tuân thủ (tham khảo)</h3>
+      <div class="cols">
+        <div class="checks" id="d-check"></div>
+        <div class="panel" id="d-score"></div>
+      </div>
+    </section>
+    </main>
+  </div>
+  <footer>Công cụ minh họa ý tưởng, không thay thế hệ thống an ninh, tư vấn pháp lý hay quy định chính thức của Ngân hàng Nhà nước. Nguồn ý tưởng xem tại trang Đổi mới sáng tạo.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const el = (tag, attrs={}, ...kids)=>{ const n=document.createElement(tag); for(const [k,v] of Object.entries(attrs)){ if(v==null||v===false) continue; if(k==="class") n.className=v; else if(k.startsWith("on")) n.addEventListener(k.slice(2),v); else n.setAttribute(k, v===true?"":v);} for(const c of kids.flat()){ if(c==null||c===false) continue; n.append(c.nodeType?c:document.createTextNode(String(c))); } return n; };
+  const esc = s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const vnd = n=>Math.round(n).toLocaleString("vi-VN")+" đ";
+  const num = s=>Number(String(s).replace(/[^\d]/g,""))||0;
+  const now = ()=>new Date().toLocaleString("vi-VN",{hour:"2-digit",minute:"2-digit",second:"2-digit",day:"2-digit",month:"2-digit"});
+  let tt; const toast = m=>{ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2200); };
+  const store = { get(k,d){ try{ const v=localStorage.getItem("dmst-lab-"+k); return v?JSON.parse(v):d; }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem("dmst-lab-"+k, JSON.stringify(v)); }catch(e){} } };
+  const level = (s, cuts)=> s>=cuts[1] ? {c:"lv-stop", col:"var(--stop)"} : s>=cuts[0] ? {c:"lv-warn", col:"var(--warn)"} : {c:"lv-ok", col:"var(--ok)"};
+  function verdict(label, score, cuts){
+    const lv = level(score, cuts);
+    return el("div",{class:"verdict"}, el("span",{class:"badge "+lv.c}, label),
+      el("div",{class:"gauge",role:"meter","aria-valuemin":0,"aria-valuemax":100,"aria-valuenow":score,"aria-label":"Điểm rủi ro"}, el("i",{style:`width:${score}%;background:${lv.col}`})),
+      el("span",{class:"score"}, score+"/100"));
+  }
+
+  /* ---------- Routing ---------- */
+  const V = ["nguoi-nhan","rui-ro","tin-nhan","cuoc-goi","passkey","du-lieu"];
+  function route(){ const h=(location.hash||"#nguoi-nhan").slice(1); const v=V.includes(h)?h:"nguoi-nhan";
+    V.forEach(k=>$("#v-"+k).classList.toggle("hidden",k!==v));
+    document.querySelectorAll("nav.tools a").forEach(a=>{ a.setAttribute("aria-current", a.dataset.v===v?"page":"false"); if(a.dataset.v===v && innerWidth<=860) a.scrollIntoView({block:"nearest",inline:"center"}); }); }
+  addEventListener("hashchange", route); route();
+
+  /* ---------- Shared: normalize Vietnamese names ---------- */
+  const norm = s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toUpperCase().replace(/[^A-Z0-9 ]/g," ").replace(/\s+/g," ").trim();
+  function lev(a,b){ const m=a.length,n=b.length; if(!m) return n; if(!n) return m; let p=Array.from({length:n+1},(_,j)=>j);
+    for(let i=1;i<=m;i++){ const c=[i]; for(let j=1;j<=n;j++) c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1)); p=c; } return p[n]; }
+  function nameMatch(entered, actual){
+    const A=norm(entered), B=norm(actual);
+    if(!A) return {k:"none", t:"Chưa nhập tên"};
+    if(A===B) return {k:"match", t:"Khớp"};
+    const ta=A.split(" "), tb=B.split(" ");
+    const sameSet = ta.length===tb.length && ta.slice().sort().join(" ")===tb.slice().sort().join(" ");
+    const subset = ta.length>=2 && ta.every(w=>tb.includes(w)) && ta[ta.length-1]===tb[tb.length-1];
+    const sim = 1 - lev(A,B)/Math.max(A.length,B.length);
+    if(sameSet) return {k:"close", t:"Gần khớp (đảo thứ tự tên)"};
+    if(subset) return {k:"close", t:"Gần khớp (thiếu tên đệm)"};
+    if(sim>=0.85) return {k:"close", t:"Gần khớp (sai chính tả nhỏ)"};
+    return {k:"no", t:"Không khớp"};
+  }
+
+  /* ---------- 1. CoP ---------- */
+  const ACCOUNTS = [
+    {acc:"0001 2345 6789", bank:"Ngân hàng A (giả lập)", name:"NGUYEN VAN AN", ageDays:2400, flagged:0, inbound24h:1, type:"Cá nhân"},
+    {acc:"9704 0000 1111", bank:"Ngân hàng B (giả lập)", name:"TRAN THI BICH", ageDays:3, flagged:7, inbound24h:19, type:"Cá nhân"},
+    {acc:"1234 5678 9000", bank:"Ngân hàng C (giả lập)", name:"CONG TY TNHH THUONG MAI MINH HOA", ageDays:12, flagged:0, inbound24h:31, type:"Doanh nghiệp"},
+    {acc:"5555 6666 7777", bank:"Ngân hàng A (giả lập)", name:"LE HOANG MINH", ageDays:900, flagged:0, inbound24h:0, type:"Cá nhân"}
+  ];
+  ACCOUNTS.forEach((a,i)=>$("#cop-acc").append(el("option",{value:i}, a.acc+" · "+a.bank)));
+  $("#f-cop").addEventListener("submit", e=>{
+    e.preventDefault();
+    const a = ACCOUNTS[$("#cop-acc").value], m = nameMatch($("#cop-name").value, a.name), amt = num($("#cop-amt").value);
+    const R = []; let s = 0;
+    if(m.k==="no"){ s+=45; R.push([45,"Tên bạn nhập không khớp với chủ tài khoản: rất có thể bạn đang chuyển nhầm hoặc bị dẫn dắt chuyển cho người khác."]); }
+    if(m.k==="close"){ s+=10; R.push([10,"Tên chỉ gần khớp: hãy chắc chắn đây đúng là người bạn định chuyển."]); }
+    if(a.flagged){ s+=40; R.push([40,`Tài khoản này có ${a.flagged} báo cáo nghi ngờ lừa đảo trong hệ thống chia sẻ cảnh báo (mô phỏng SIMO).`]); }
+    if(a.ageDays<30){ s+=15; R.push([15,`Tài khoản mới mở ${a.ageDays} ngày.`]); }
+    if(a.inbound24h>=10){ s+=15; R.push([15,`Nhận tiền từ ${a.inbound24h} người khác nhau trong 24 giờ qua, dấu hiệu tài khoản thu tiền hộ.`]); }
+    if(a.type==="Doanh nghiệp" && a.ageDays<30){ s+=10; R.push([10,"Tài khoản doanh nghiệp mới lập, cần thận trọng với 'công ty ma'."]); }
+    s = Math.min(100,s);
+    const out = $("#cop-out"); out.replaceChildren();
+    out.append(el("div",{class:"row",style:"margin-bottom:8px"}, el("span",{class:"pill"}, "Tên chủ tài khoản: "+a.name), el("span",{class:"badge "+(m.k==="match"?"lv-ok":m.k==="close"?"lv-warn":"lv-stop")}, m.t)));
+    out.append(verdict(s>=60?"Rủi ro cao":s>=25?"Cần cẩn trọng":"An toàn", s, [25,60]));
+    if(R.length) out.append(el("ul",{class:"reasons"}, R.map(([w,t])=>el("li",{}, el("b",{}, "+"+w+" "), t))));
+    else out.append(el("p",{style:"margin:6px 0 0;font-size:14px"}, "Không phát hiện dấu hiệu bất thường."));
+    const needBio = amt>10000000;
+    const act = el("div",{class:"action"}, el("strong",{}, s>=60 ? "Khuyến nghị: dừng giao dịch" : s>=25 ? "Khuyến nghị: dừng 10 giây và kiểm tra lại" : "Khuyến nghị: có thể tiếp tục"),
+      s>=60 ? "Đừng chuyển. Liên hệ trực tiếp người nhận qua số bạn đã biết từ trước (không dùng số trong tin nhắn), hoặc gọi tổng đài ngân hàng." :
+      s>=25 ? "Gọi lại cho người nhận qua kênh quen thuộc để xác nhận trước khi chuyển." : "Kiểm tra lại số tiền và nội dung trước khi xác nhận.",
+      needBio ? el("div",{class:"hint",style:"margin-top:6px"}, "Giao dịch trên 10 triệu đồng: cần xác thực sinh trắc học theo Quyết định 2345/QĐ-NHNN.") : null);
+    out.append(act);
+    if(s>=25){
+      const p = el("div",{class:"pause",style:"margin-top:10px"}, "10"); const go = el("button",{class:"btn",type:"button",disabled:true}, "Tôi đã kiểm tra, vẫn tiếp tục");
+      out.append(el("div",{class:"action"}, el("strong",{}, "Khoảng dừng suy nghĩ"), p, go));
+      let n=10; const t=setInterval(()=>{ n--; p.textContent=n; if(n<=0){ clearInterval(t); p.textContent="✓"; go.disabled=false; } },1000);
+      go.addEventListener("click", ()=>toast("Bản mô phỏng: giao dịch sẽ được chuyển sang bước xác thực."));
+    }
+  });
+
+  /* ---------- 2. Risk engine ---------- */
+  const SIG = [
+    ["newdev",25,"Đăng nhập trên thiết bị mới trong 24 giờ qua", true],
+    ["oncall",30,"Đang có cuộc gọi điện thoại trong lúc chuyển tiền", true],
+    ["newpayee",10,"Người nhận lần đầu", true],
+    ["youngacc",15,"Tài khoản nhận mở dưới 30 ngày", false],
+    ["flagged",40,"Tài khoản nhận nằm trong danh sách cảnh báo (kiểu SIMO)", false],
+    ["manyin",15,"Tài khoản nhận nhận tiền từ nhiều người lạ trong 24 giờ", false],
+    ["night",5,"Giao dịch lúc 0–5 giờ sáng", false],
+    ["remote",30,"Phát hiện ứng dụng điều khiển từ xa / chia sẻ màn hình đang chạy", false]
+  ];
+  SIG.forEach(([k,w,t,on])=> $("#r-sig").append(el("label",{}, el("input",{type:"checkbox",id:"s-"+k,checked:on}), el("span",{}, t+" ", el("span",{class:"hint"}, "(+"+w+")")))));
+  const MEMO_RX = /(phi|le phi)\s*(xac minh|ho so|giai ngan|bao hiem)|hoan tien|nop phat|dau tu|nhan thuong|tai khoan an toan|tam giu|kich hoat|mo khoa/;
+  function runRisk(){
+    const amt=num($("#r-amt").value), day=num($("#r-day").value), avg=num($("#r-avg").value)||1, memo=norm($("#r-memo").value).toLowerCase();
+    const R=[]; let s=0;
+    SIG.forEach(([k,w,t])=>{ if($("#s-"+k).checked){ s+=w; R.push([w,t]); } });
+    if(amt>=3*avg){ s+=15; R.push([15,`Số tiền gấp ${(amt/avg).toFixed(1)} lần mức thường ngày`]); }
+    if(MEMO_RX.test(memo)){ s+=15; R.push([15,"Nội dung chuyển khoản giống kịch bản lừa đảo (phí xác minh, hoàn tiền, nộp phạt, đầu tư...)"]); }
+    s=Math.min(100,s);
+    const bio = amt>10000000 || day+amt>20000000;
+    const tiers=[[80,"Chặn và báo cáo","Chặn giao dịch, khóa tạm thời kênh chuyển tiền, gọi lại khách qua số đã đăng ký, báo cáo tài khoản nhận lên hệ thống cảnh báo."],
+                 [60,"Tạm giữ để gọi lại","Tạm giữ giao dịch, nhân viên gọi lại khách qua số đã đăng ký để xác minh trước khi giải phóng."],
+                 [40,"Sinh trắc học + dừng 10 giây","Yêu cầu xác thực khuôn mặt, hiển thị cảnh báo kịch bản lừa đảo cụ thể và bắt khách chờ 10 giây."],
+                 [20,"Cảnh báo","Hiển thị cảnh báo rủi ro trên màn hình xác nhận."],
+                 [0,"Cho qua","Không cần bước bổ sung (ngoài xác thực theo quy định)."]];
+    const tier = tiers.find(t=>s>=t[0]);
+    const out=$("#risk-out"); out.replaceChildren(
+      verdict(tier[1], s, [20,60]),
+      el("ul",{class:"reasons"}, R.length ? R.map(([w,t])=>el("li",{}, el("b",{}, "+"+w+" "), t)) : el("li",{}, "Không có tín hiệu rủi ro.")),
+      el("div",{class:"action"}, el("strong",{}, "Phản ứng: "+tier[1]), tier[2]),
+      el("div",{class:"action"}, el("strong",{}, "Yêu cầu theo quy định"), bio ? `Bắt buộc xác thực sinh trắc học: giao dịch ${vnd(amt)}${amt>10000000?" (trên 10 triệu đồng/lần)":""}${day+amt>20000000?", tổng trong ngày "+vnd(day+amt)+" (trên 20 triệu đồng)":""}.` : "Dưới ngưỡng sinh trắc học bắt buộc của Quyết định 2345/QĐ-NHNN."),
+      el("p",{class:"hint",style:"margin:10px 0 0"}, "Trọng số là ví dụ minh họa để thảo luận. Hệ thống thật cần hiệu chỉnh trên dữ liệu lịch sử và theo dõi tỷ lệ báo động nhầm."));
+  }
+  $("#f-risk").addEventListener("input", runRisk); $("#f-risk").addEventListener("change", runRisk); runRisk();
+
+  /* ---------- 3. Scam text analyzer ---------- */
+  const RULES = [
+    [/(https?:\/\/|www\.)\S+|\b\S+\.(xyz|top|vip|click|link|info|cc|online|site|shop)\b/gi, 25, "Có đường link lạ", "Ngân hàng thường không gửi link đăng nhập qua tin nhắn; link lạ có thể dẫn tới trang giả mạo."],
+    [/bit\.ly|tinyurl|t\.co\/|shorturl|cutt\.ly/gi, 10, "Link rút gọn", "Link rút gọn che giấu địa chỉ thật."],
+    [/\botp\b|mã (xác thực|xác nhận|kích hoạt|bảo mật)/gi, 30, "Đòi mã OTP / mã xác thực", "Không ai hợp pháp được phép hỏi mã OTP của bạn, kể cả nhân viên ngân hàng."],
+    [/(cài|tải|cập nhật)[^.\n]{0,20}(ứng dụng|app|phần mềm)|\.apk\b|apk\b/gi, 30, "Yêu cầu cài ứng dụng", "Ứng dụng lạ có thể chiếm quyền điều khiển điện thoại và giao dịch thay bạn."],
+    [/công an|viện kiểm sát|tòa án|cơ quan thuế|cục thuế|ngân hàng nhà nước|bộ công an|điện lực|bưu điện|bảo hiểm xã hội/gi, 20, "Giả danh cơ quan nhà nước / dịch vụ", "Cơ quan nhà nước không làm việc qua tin nhắn, không yêu cầu chuyển tiền qua điện thoại."],
+    [/khẩn|gấp|ngay lập tức|trong vòng \d+ ?(giờ|phút)|khóa tài khoản|đình chỉ|phong tỏa|bị điều tra/gi, 20, "Hối thúc, đe dọa", "Tạo áp lực thời gian để bạn không kịp suy nghĩ, hỏi người thân."],
+    [/tài khoản (an toàn|tạm giữ|tạm quản lý)|chuyển (tiền )?(vào|sang)[^.\n]{0,25}(xác minh|kiểm tra)|phí (xác minh|hồ sơ|giải ngân|bảo hiểm khoản vay)/gi, 35, "Đòi chuyển tiền 'để xác minh' hoặc đóng phí trước", "Không có thủ tục nào yêu cầu chuyển tiền vào 'tài khoản an toàn' hay đóng phí trước để giải ngân."],
+    [/lợi nhuận|hoa hồng|việc nhẹ lương cao|trúng thưởng|nhận quà|làm nhiệm vụ|đầu tư[^.\n]{0,15}(sinh lời|lãi)/gi, 20, "Hứa lợi nhuận, quà, việc nhẹ lương cao", "Kịch bản dụ dỗ phổ biến: cho lãi nhỏ lúc đầu rồi lấy khoản lớn."],
+    [/(cập nhật|hỗ trợ|cài đặt|xác thực)[^.\n]{0,20}sinh trắc/gi, 25, "Giả 'hỗ trợ cài sinh trắc học'", "Ngân hàng không gọi điện hướng dẫn cài sinh trắc học qua ứng dụng lạ; hãy tự làm trong app chính thức hoặc ra quầy."],
+    [/(cung cấp|gửi|chụp)[^.\n]{0,25}(cccd|căn cước|số tài khoản|mật khẩu|mặt trước|mặt sau|số thẻ)/gi, 25, "Xin thông tin, giấy tờ cá nhân", "Ảnh CCCD, số thẻ, mật khẩu có thể bị dùng để mở tài khoản hoặc chiếm đoạt tiền."],
+    [/hoàn tiền|hoàn phí|tiền thừa|chuyển nhầm/gi, 15, "Kịch bản 'hoàn tiền / chuyển nhầm'", "Kẻ gian giả vờ chuyển nhầm rồi đòi bạn chuyển lại, hoặc dụ 'hoàn tiền' qua link."]
+  ];
+  const EX = "[Thông báo] Tài khoản của quý khách sẽ bị KHÓA trong vòng 24 giờ do chưa cập nhật sinh trắc học theo quy định Ngân hàng Nhà nước. Vui lòng tải ứng dụng hỗ trợ tại http://nganhang-capnhat.xyz và cung cấp mã OTP cho nhân viên để hoàn tất. Hotline hỗ trợ khẩn.";
+  function analyze(text){
+    const hits=[]; let s=0;
+    RULES.forEach(([rx,w,t,why])=>{ rx.lastIndex=0; const m=text.match(rx); if(m){ s+=w; hits.push({w,t,why,rx}); } });
+    return {s:Math.min(100,s), hits};
+  }
+  function highlight(text){
+    const ranges=[];
+    RULES.forEach(([rx])=>{ rx.lastIndex=0; let m; while((m=rx.exec(text))){ ranges.push([m.index, m.index+m[0].length]); if(!rx.global) break; } });
+    ranges.sort((a,b)=>a[0]-b[0]); const merged=[];
+    ranges.forEach(r=>{ const l=merged[merged.length-1]; if(l && r[0]<=l[1]) l[1]=Math.max(l[1],r[1]); else merged.push(r.slice()); });
+    let html="", i=0; merged.forEach(([a,b])=>{ html+=esc(text.slice(i,a))+"<mark>"+esc(text.slice(a,b))+"</mark>"; i=b; }); html+=esc(text.slice(i)); return html;
+  }
+  function runScam(){
+    const text=$("#sc-text").value.trim(); const out=$("#sc-out"); out.replaceChildren();
+    if(!text){ out.append(el("p",{class:"result-empty"}, "Hãy dán nội dung cần kiểm tra.")); return; }
+    const {s,hits}=analyze(text);
+    out.append(verdict(s>=50?"Rất có thể là lừa đảo":s>=20?"Có dấu hiệu đáng ngờ":"Chưa thấy dấu hiệu rõ", s, [20,50]));
+    if(hits.length) out.append(el("ul",{class:"reasons"}, hits.map(h=>el("li",{}, el("b",{}, h.t+" (+"+h.w+"): "), h.why))));
+    const tv=el("div",{class:"textview"}); tv.innerHTML=highlight(text); out.append(tv);
+    out.append(el("div",{class:"action"}, el("strong",{}, s>=20?"Nên làm ngay":"Lưu ý"),
+      s>=20 ? "Không bấm link, không cài ứng dụng, không đọc OTP. Gọi tổng đài in trên mặt sau thẻ hoặc trong app chính thức để kiểm tra. Nếu đã lỡ làm theo, khóa thẻ/tài khoản trong app và báo ngân hàng ngay."
+            : "Công cụ chỉ bắt các dấu hiệu phổ biến; kẻ gian luôn đổi kịch bản. Khi nghi ngờ, hãy tự liên hệ ngân hàng qua kênh chính thức."));
+  }
+  $("#sc-run").addEventListener("click", runScam);
+  $("#sc-ex").addEventListener("click", ()=>{ $("#sc-text").value=EX; runScam(); });
+  let sample=null;
+  $("#sc-ai").addEventListener("click", async ()=>{
+    const text=$("#sc-text").value.trim(); if(!text||!sample) return;
+    if(/(^|\D)\d{9,19}(\D|$)/.test(text.replace(/(\d)[\s.-](?=\d)/g,"$1"))){ toast("Nội dung có dãy số dài (số tài khoản/điện thoại). Hãy xóa trước khi gửi cho AI."); return; }
+    const btn=$("#sc-ai"); btn.disabled=true;
+    const box=el("div",{class:"action"}, el("strong",{}, "Phân tích của AI"), el("div",{}, "Đang phân tích…")); $("#sc-out").append(box);
+    try{
+      const r = await sample(`Bạn là chuyên gia phòng chống lừa đảo tài chính tại Việt Nam. Phân tích nội dung tin nhắn/cuộc gọi dưới đây: (1) đánh giá khả năng lừa đảo (thấp/trung bình/cao) và lý do, (2) kịch bản lừa đảo nhiều khả năng đang dùng, (3) 3–5 việc người nhận nên làm ngay. Trả lời ngắn gọn bằng tiếng Việt, gạch đầu dòng. Không hướng dẫn cách lừa đảo.\n\nNội dung:\n"""${text.slice(0,2000)}"""`, {modelTier:"quick", onText:({text:t})=>{ box.lastChild.textContent=t; }});
+      box.lastChild.textContent = (r && r.text) || "Không có câu trả lời.";
+    }catch(e){ box.lastChild.textContent = e && e.code==="not_granted" ? "Trang chưa được cấp quyền dùng AI." : e && e.code==="rate_limited" ? "AI đang bận, thử lại sau." : "Chưa phân tích được, hãy thử lại."; }
+    finally{ btn.disabled=false; }
+  });
+
+  /* ---------- 4. Call verification ---------- */
+  const STAFF = [["Phạm Thu Hà","1900 5454 01"],["Đỗ Minh Quân","1900 5454 02"],["Vũ Ngọc Lan","1900 5454 03"]];
+  STAFF.forEach((s,i)=>$("#c-staff").append(el("option",{value:i}, s[0]+" · "+s[1]+" (giả lập)")));
+  let calls = store.get("calls", []);
+  function renderCalls(){
+    $("#c-log").replaceChildren(...calls.slice().reverse().map(c=>el("tr",{}, el("td",{class:"num"}, new Date(c.t).toLocaleTimeString("vi-VN",{hour:"2-digit",minute:"2-digit"})), el("td",{class:"num"}, c.num), el("td",{}, c.staff), el("td",{class:"num"}, c.code))));
+    const recent = calls.filter(c=>Date.now()-c.t < 15*60*1000);
+    $("#c-notifs").replaceChildren(...(recent.length ? recent.slice(-2).reverse().map(c=>el("div",{class:"notif"}, el("b",{}, "Ngân hàng sắp gọi cho bạn"), el("div",{}, c.staff+" · "+c.num), el("div",{class:"hint"}, c.purpose+" · Mã xác minh: "+c.code)))
+      : [el("div",{class:"notif"}, el("span",{class:"hint"}, "Không có cuộc gọi nào từ ngân hàng trong 15 phút qua."))]));
+  }
+  $("#f-call").addEventListener("submit", e=>{ e.preventDefault();
+    const s=STAFF[$("#c-staff").value]; const code=String(Math.floor(100000+Math.random()*900000));
+    calls.push({t:Date.now(), staff:s[0], num:s[1], purpose:$("#c-purpose").value, code}); calls=calls.slice(-20); store.set("calls",calls); renderCalls();
+    toast("Đã ghi nhận cuộc gọi và gửi thông báo vào app khách hàng.");
+  });
+  $("#f-verify").addEventListener("submit", e=>{ e.preventDefault();
+    const n=$("#v-num").value.replace(/\D/g,""), code=$("#v-code").value.trim(), out=$("#v-out");
+    const recent=calls.filter(c=>Date.now()-c.t < 15*60*1000);
+    const hit=recent.find(c=>c.num.replace(/\D/g,"")===n);
+    if(!n){ out.replaceChildren(el("p",{class:"hint"}, "Nhập số đang gọi cho bạn.")); return; }
+    if(hit && (!code || code===hit.code)) out.replaceChildren(el("span",{class:"badge lv-ok"}, "Cuộc gọi thật từ ngân hàng"), el("p",{style:"font-size:13px;margin:6px 0 0"}, `${hit.staff} – ${hit.purpose}. Dù vậy, nhân viên thật không bao giờ hỏi OTP, mật khẩu hay bắt cài ứng dụng.`));
+    else if(hit && code!==hit.code) out.replaceChildren(el("span",{class:"badge lv-stop"}, "Mã không khớp"), el("p",{style:"font-size:13px;margin:6px 0 0"}, "Số giống ngân hàng nhưng mã sai: có thể là giả mạo số (spoofing). Hãy cúp máy và gọi lại tổng đài chính thức."));
+    else out.replaceChildren(el("span",{class:"badge lv-stop"}, "Không phải cuộc gọi của ngân hàng"), el("p",{style:"font-size:13px;margin:6px 0 0"}, "Ngân hàng không ghi nhận cuộc gọi nào tới bạn từ số này. Rất có thể là lừa đảo: hãy cúp máy, không làm theo hướng dẫn."));
+  });
+  renderCalls();
+
+  /* ---------- 5. Passkey (WebAuthn) ---------- */
+  const b64 = buf=>btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  const rand = n=>crypto.getRandomValues(new Uint8Array(n));
+  let pkId = null;
+  function pkMsg(cls, title, detail){ $("#pk-out").replaceChildren(el("span",{class:"badge "+cls}, title), el("p",{style:"font-size:14px;margin:8px 0 0;overflow-wrap:anywhere"}, detail)); }
+  function pkErr(e){
+    const m = e && e.name==="NotAllowedError" ? "Bạn đã hủy, hoặc trang đang chạy trong khung bị chặn WebAuthn. Hãy thử trên bản GitHub Pages mở trực tiếp trong trình duyệt."
+      : e && e.name==="SecurityError" ? "Trình duyệt chặn passkey ở ngữ cảnh này (khung nhúng hoặc tên miền không hợp lệ). Hãy mở trang trực tiếp trên GitHub Pages."
+      : "Không thực hiện được: "+(e && e.message || "lỗi không xác định");
+    pkMsg("lv-warn","Chưa thành công", m);
+  }
+  $("#pk-create").addEventListener("click", async ()=>{
+    if(!window.PublicKeyCredential || !navigator.credentials){ pkMsg("lv-warn","Thiết bị chưa hỗ trợ","Trình duyệt này chưa hỗ trợ WebAuthn/passkey."); return; }
+    try{
+      const cred = await navigator.credentials.create({publicKey:{
+        challenge: rand(32), rp:{name:"Đổi mới sáng tạo – Demo"},
+        user:{id: rand(16), name:"khach-demo", displayName:"Khách hàng thử nghiệm"},
+        pubKeyCredParams:[{type:"public-key",alg:-7},{type:"public-key",alg:-257}],
+        authenticatorSelection:{residentKey:"preferred", userVerification:"preferred"}, timeout:60000, attestation:"none"}});
+      pkId = cred.rawId;
+      pkMsg("lv-ok","Đã tạo passkey", "Mã định danh khóa: "+b64(cred.rawId).slice(0,24)+"… Khóa riêng nằm trong thiết bị của bạn, không rời khỏi máy. Máy chủ ngân hàng chỉ lưu khóa công khai.");
+    }catch(e){ pkErr(e); }
+  });
+  $("#pk-get").addEventListener("click", async ()=>{
+    if(!window.PublicKeyCredential){ pkMsg("lv-warn","Thiết bị chưa hỗ trợ","Trình duyệt này chưa hỗ trợ passkey."); return; }
+    try{
+      const a = await navigator.credentials.get({publicKey:{challenge: rand(32), allowCredentials: pkId ? [{type:"public-key", id:pkId}] : [], userVerification:"preferred", timeout:60000}});
+      pkMsg("lv-ok","Đăng nhập thành công", "Thiết bị đã ký thử thách bằng khóa riêng (chữ ký "+a.response.signature.byteLength+" byte). Không có mã OTP nào được gửi hay nhập. Ở hệ thống thật, máy chủ kiểm tra chữ ký bằng khóa công khai đã lưu.");
+    }catch(e){ pkErr(e); }
+  });
+
+  /* ---------- 6. Data rights portal ---------- */
+  const INV = [["Họ và tên","Nguyễn Thị Minh Họa","Cơ bản"],["Số điện thoại","09•• ••• 123","Cơ bản"],["Email","minhhoa•••@example.com","Cơ bản"],["Số CCCD","0••••••••789","Cơ bản"],
+    ["Ảnh khuôn mặt sinh trắc học","Mẫu đã mã hóa","Nhạy cảm"],["Thông tin tài khoản, lịch sử giao dịch","3 tài khoản, 1.240 giao dịch","Nhạy cảm"],["Thông tin vay, tín dụng","1 khoản vay","Nhạy cảm"],["Vị trí, thiết bị đăng nhập","2 thiết bị","Nhạy cảm"]];
+  $("#d-inv").replaceChildren(...INV.map(([a,b,c])=>el("tr",{}, el("td",{},a), el("td",{},b), el("td",{}, el("span",{class:"pill"+(c==="Nhạy cảm"?" sens":"")}, c)))));
+  const PURP = [["svc","Cung cấp dịch vụ ngân hàng","Cần thiết để mở và vận hành tài khoản",true,true],["fraud","Phòng chống gian lận, lừa đảo","Theo nghĩa vụ pháp lý và bảo vệ chính khách hàng",true,true],
+    ["mkt","Tiếp thị sản phẩm","Gửi ưu đãi qua app, email, SMS",false,false],["share","Chia sẻ cho đối tác qua Open API","Ví dụ: ứng dụng quản lý chi tiêu, sàn thương mại điện tử",false,false],["ai","Phân tích AI để cá nhân hóa","Gợi ý sản phẩm dựa trên hành vi chi tiêu",false,false]];
+  let consent = store.get("consent", Object.fromEntries(PURP.map(p=>[p[0],p[3]])));
+  let reqs = store.get("reqs", []), log = store.get("log", []);
+  function addLog(actor, action, what){ log.push({t:Date.now(), actor, action, what}); log=log.slice(-200); store.set("log",log); renderLog(); }
+  function renderLog(){
+    $("#d-log").replaceChildren(...log.slice().reverse().map(l=>el("tr",{}, el("td",{class:"num"}, new Date(l.t).toLocaleString("vi-VN")), el("td",{},l.actor), el("td",{},l.action), el("td",{},l.what))));
+    $("#d-logcount").textContent = log.length+" bản ghi, lưu trên trình duyệt này";
+  }
+  function renderConsent(){
+    $("#d-consent").replaceChildren(...PURP.map(([k,t,d,_,req])=>{
+      const id="cs-"+k;
+      return el("div",{class:"switch"}, el("label",{for:id}, el("div",{class:"t"}, t+(req?" (bắt buộc)":"")), el("div",{class:"d"}, d)),
+        el("input",{type:"checkbox",class:"tog",id, role:"switch", checked:!!consent[k], disabled:req, onchange:e=>{ consent[k]=e.target.checked; store.set("consent",consent); addLog("Khách hàng", e.target.checked?"Đồng ý":"Rút lại đồng ý", t); toast(e.target.checked?"Đã ghi nhận đồng ý":"Đã rút lại đồng ý, ngân hàng sẽ ngừng xử lý cho mục đích này"); }}));
+    }));
+  }
+  const ST = ["Đã tiếp nhận","Đang xử lý","Hoàn thành"];
+  function renderReqs(){
+    $("#d-reqs").replaceChildren(...(reqs.length ? reqs.slice().reverse().map(r=>{
+      const due=new Date(r.t + r.sla*86400000), left=Math.ceil((due-Date.now())/86400000), done=r.st===2;
+      const adv = done ? null : el("button",{class:"btn ghost small",type:"button",onclick:()=>{ r.st++; store.set("reqs",reqs); addLog("Ngân hàng (bộ phận bảo vệ dữ liệu)", "Cập nhật yêu cầu: "+ST[r.st], r.type); renderReqs(); }}, "→ "+ST[r.st+1]);
+      return el("tr",{}, el("td",{}, r.type, r.note? el("div",{class:"hint"}, r.note):null), el("td",{class:"num"}, due.toLocaleDateString("vi-VN"), el("div",{class:"hint"}, done?"":(left>=0? "còn "+left+" ngày" : "quá hạn "+(-left)+" ngày"))),
+        el("td",{}, el("span",{class:"pill"}, ST[r.st])), el("td",{}, adv));
+    }) : [el("tr",{}, el("td",{colspan:4,class:"hint"}, "Chưa có yêu cầu nào."))]));
+  }
+  $("#f-req").addEventListener("submit", e=>{ e.preventDefault();
+    const r={t:Date.now(), type:$("#d-type").value, note:$("#d-note").value.trim(), sla:Math.max(1,Math.min(60,Number($("#d-sla").value)||10)), st:0};
+    reqs.push(r); store.set("reqs",reqs); addLog("Khách hàng","Gửi yêu cầu", r.type); renderReqs(); $("#d-note").value=""; toast("Đã gửi yêu cầu, bạn có thể theo dõi hạn xử lý.");
+  });
+  $("#d-copylog").addEventListener("click", async ()=>{
+    const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+    const csv=["Thời điểm,Chủ thể,Hành động,Dữ liệu/mục đích"].concat(log.map(l=>[new Date(l.t).toISOString(),l.actor,l.action,l.what].map(q).join(","))).join("\n");
+    try{ await navigator.clipboard.writeText(csv); toast("Đã sao chép "+log.length+" dòng nhật ký"); }catch(e){ toast("Trình duyệt chặn sao chép."); }
+  });
+  const CHECK = ["Có bản đồ dữ liệu: biết thu thập dữ liệu gì, lưu ở đâu, chia sẻ cho ai","Có chính sách quyền riêng tư công khai, dễ hiểu","Thu thập sự đồng ý theo từng mục đích, cho phép rút lại dễ dàng","Phân loại và bảo vệ riêng dữ liệu nhạy cảm (sinh trắc học, tài chính, vị trí)","Có bộ phận/nhân sự phụ trách bảo vệ dữ liệu cá nhân","Ghi nhật ký toàn bộ hoạt động xử lý dữ liệu cá nhân","Đánh giá tuân thủ định kỳ hằng năm","Quy trình tiếp nhận và xử lý yêu cầu của chủ thể dữ liệu đúng hạn","Mã hóa, phân quyền truy cập, giám sát truy cập bất thường","Quy trình xử lý và thông báo sự cố lộ lọt dữ liệu","Hợp đồng ràng buộc với bên xử lý dữ liệu, đối tác Open API","Đào tạo nhân viên định kỳ về bảo vệ dữ liệu và chống lừa đảo"];
+  let checks = store.get("checks", {});
+  function renderCheck(){
+    $("#d-check").replaceChildren(...CHECK.map((t,i)=>el("label",{}, el("input",{type:"checkbox",checked:!!checks[i], onchange:e=>{ checks[i]=e.target.checked; store.set("checks",checks); renderScore(); }}), el("span",{},t))));
+    renderScore();
+  }
+  function renderScore(){
+    const done=CHECK.filter((_,i)=>checks[i]).length, pct=Math.round(done/CHECK.length*100), gaps=CHECK.filter((_,i)=>!checks[i]);
+    $("#d-score").replaceChildren(
+      el("div",{class:"verdict"}, el("span",{class:"badge "+(pct>=80?"lv-ok":pct>=50?"lv-warn":"lv-stop")}, pct>=80?"Sẵn sàng tốt":pct>=50?"Cần bổ sung":"Rủi ro cao"),
+        el("div",{class:"gauge"}, el("i",{style:`width:${pct}%;background:${pct>=80?"var(--ok)":pct>=50?"var(--warn)":"var(--stop)"}`})), el("span",{class:"score"}, done+"/"+CHECK.length)),
+      gaps.length ? el("div",{}, el("b",{style:"font-size:13px"}, "Việc cần làm tiếp:"), el("ol",{class:"reasons"}, gaps.slice(0,5).map(g=>el("li",{},g))), gaps.length>5? el("p",{class:"hint"}, "và "+(gaps.length-5)+" mục khác."):null)
+                  : el("p",{style:"font-size:14px"}, "Đã đủ các mục cơ bản. Hãy nhờ chuyên gia pháp lý rà soát chi tiết theo Luật 91/2025 và Nghị định 356/2025."),
+      el("p",{class:"hint",style:"margin:8px 0 0"}, "Danh mục mang tính tham khảo, tổng hợp từ yêu cầu chung của Luật Bảo vệ dữ liệu cá nhân 2025; không thay thế đánh giá pháp lý."));
+  }
+  if(!log.length) addLog("Hệ thống","Khởi tạo hồ sơ khách hàng giả lập","Dữ liệu cơ bản và nhạy cảm (ví dụ)");
+  renderConsent(); renderReqs(); renderLog(); renderCheck();
+
+  /* ---------- Wipe ---------- */
+  $("#wipe").addEventListener("click", ()=>{
+    try{ Object.keys(localStorage).filter(k=>k.startsWith("dmst-lab-")).forEach(k=>localStorage.removeItem(k)); }catch(e){}
+    calls=[]; reqs=[]; log=[]; checks={}; consent=Object.fromEntries(PURP.map(p=>[p[0],p[3]]));
+    addLog("Hệ thống","Xóa toàn bộ dữ liệu thử nghiệm theo yêu cầu","Tất cả"); renderCalls(); renderConsent(); renderReqs(); renderCheck(); $("#v-out").replaceChildren(); $("#pk-out").replaceChildren(el("p",{class:"result-empty"}, "Đã xóa.")); toast("Đã xóa dữ liệu thử nghiệm trên trình duyệt này.");
+  });
+
+  /* ---------- Optional AI (claude.ai only) ---------- */
+  if(window.claude && window.claude.use){ claude.use("sample").then(s=>{ if(s){ sample=s; $("#sc-ai").classList.remove("hidden"); } }).catch(()=>{}); }
+})();
+</script>
+</body>
+</html>
