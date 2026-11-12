@@ -2,7 +2,7 @@
 
 Trang tổng hợp **ý tưởng** và **dự án đổi mới sáng tạo đang được thực thi** trong giáo dục, nền tảng giao dịch, ngân hàng – fintech, mô hình kinh doanh và khoa học – công nghệ, ở Việt Nam và quốc tế.
 
-- 32 ý tưởng, 7 dự án đang thực thi, mỗi mục có link tới nguồn gốc.
+- 45 ý tưởng, 8 dự án đang thực thi, mỗi mục có link tới nguồn gốc.
 - Lọc theo lĩnh vực, khu vực (Việt Nam / Quốc tế), giai đoạn dự án; tìm kiếm theo từ khóa.
 - Tiến độ dự án tính theo các mốc đã hoàn thành.
 

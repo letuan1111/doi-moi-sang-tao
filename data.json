@@ -1,46 +1,880 @@
 {
-  "updated": "12/11/2026",
-  "ideas": [
-    {"id":"gd01","category":"Giáo dục","createdAt":1794480000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"EdCircuit","sourceUrl":"https://edcircuit.com/ai-in-education-what-the-new-year-brings-in-2026/amp/","status":"new","summary":"Hệ thống gia sư AI theo dõi các dấu hiệu như ngập ngừng, sai lặp lại hoặc chậm dần để can thiệp đúng lúc, thay vì chỉ trả lời khi được hỏi. Xu hướng 2026 là AI trở thành lớp hỗ trợ thường trực, không chỉ là phương án dự phòng.","title":"Gia sư AI biết nhận ra lúc học sinh \"bí\""},
-    {"id":"gd02","category":"Giáo dục","createdAt":1794479000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"THE Journal","sourceUrl":"https://thejournal.com/articles/2026/01/29/2026-predictions-for-ai-and-ed-tech-in-k12-education-what-industry-leaders-are-saying","status":"new","summary":"Thay vì để AI dạy trực tiếp, AI đóng vai huấn luyện viên cho đội gia sư người: gợi ý câu hỏi, phát hiện lỗ hổng kiến thức, soạn bài tập. Mô hình phù hợp trung tâm dạy thêm và chương trình phụ đạo quy mô lớn.","title":"AI làm \"trợ giảng\" cho gia sư thật, không thay thế họ"},
-    {"id":"gd03","category":"Giáo dục","createdAt":1794478000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"OctoProctor","sourceUrl":"https://octoproctor.com/blog/2026-q1-edtech-trends-to-watch","status":"new","summary":"Gắn trợ lý AI vào LMS (Moodle, Canvas…) để trả lời theo đúng tài liệu môn học. Câu trả lời từ LMS được sinh viên tin hơn chatbot chung, và nhà trường kiểm soát được nội dung, dữ liệu.","title":"Trợ lý AI tích hợp ngay trong hệ thống LMS của trường"},
-    {"id":"gd04","category":"Giáo dục","createdAt":1794477000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"Beginners in AI","sourceUrl":"https://beginnersinai.org/two-hour-learning-explained/","status":"new","summary":"Học sinh chỉ lên bài mới khi đã thành thạo bài trước; phần mềm dựng đồ thị các kỹ năng phụ thuộc nhau và ôn lại theo lịch lặp ngắt quãng. Ví dụ quốc tế: MathAcademy, Khan Academy + Khanmigo.","title":"Học theo mức thành thạo với \"bản đồ kiến thức\""},
-    {"id":"gd05","category":"Giáo dục","createdAt":1794476000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"TechnBrains","sourceUrl":"https://www.technbrains.com/blog/edtech-trends/","status":"new","summary":"Ghi nhận từng kỹ năng cụ thể (Excel nâng cao, Python cơ bản…) bằng chứng chỉ số có thể xác thực, giúp người học tích lũy dần và nhà tuyển dụng kiểm tra nhanh. Lưu ý: chứng chỉ trên blockchain đang bị đánh giá là xu hướng hạ nhiệt, nên ưu tiên chuẩn xác thực đơn giản.","title":"Chứng chỉ vi mô và \"hộ chiếu kỹ năng\" số"},
-    {"id":"gd06","category":"Giáo dục","createdAt":1794475000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"Edly","sourceUrl":"https://edly.io/blog/top-education-technology-trends/","status":"new","summary":"Tự động chấm trắc nghiệm, bài tính toán và bài lập trình có bộ test rõ ràng; giáo viên chỉ duyệt phần tự luận. Giải phóng thời gian để giáo viên tập trung phản hồi cá nhân.","title":"Chấm bài tự động bằng AI cho giáo viên"},
-    {"id":"gd07","category":"Giáo dục","createdAt":1794474000000,"createdBy":null,"impact":1,"region":"vn","sourceName":"Vietbao","sourceUrl":"https://vietbao.vn/con-om-may-tinh-ca-toi-phu-huynh-lo-qua-le-thuoc-ai-613955.html","status":"new","summary":"Hà Nội yêu cầu học sinh từ THCS khi dùng AI hỗ trợ sản phẩm học tập phải ghi rõ mục đích và phạm vi hỗ trợ. Ý tưởng có thể nhân rộng: mẫu \"nhãn AI\" chuẩn cho bài nộp ở trường và đại học.","title":"Học sinh kê khai minh bạch mức độ dùng AI"},
-    {"id":"gd08","category":"Giáo dục","createdAt":1794473000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Nhân Dân","sourceUrl":"https://nhandan.vn/trang-nguyen-education-hanh-trinh-10-nam-gieo-chu-post928805.html","status":"new","summary":"Mô hình \"4 trong 1\" của Trạng Nguyên kết hợp học, thi, trò chơi và văn hóa; dữ liệu bài học theo chuẩn chương trình GDPT 2018 giúp cá nhân hóa lộ trình cho học sinh Việt.","title":"Học thích ứng bám chương trình GDPT 2018, kết hợp trò chơi"},
-    {"id":"gd09","category":"Giáo dục","createdAt":1794472000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"BBW","sourceUrl":"https://bbw.vn/ha-tang-lop-hoc-truc-tuyen-quy-mo-lon-co-hoi-dau-tu-moi-trong-he-sinh-thai-edtech-viet-nam-56324.html","status":"new","summary":"EdTech Việt đang chuyển từ bán nội dung sang làm nền tảng: lớp học trực tuyến quy mô lớn, dữ liệu học tập và AI vận hành chung. Nền tảng nội địa có lợi thế ngôn ngữ, pháp lý và khả năng tích hợp với trường, doanh nghiệp.","title":"Hạ tầng lớp học trực tuyến cho hàng nghìn người cùng lúc"},
-    {"id":"gd10","category":"Giáo dục","createdAt":1794471000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"VnEconomy","sourceUrl":"https://vneconomy.vn/techconnect/hoc-tieng-anh-qua-ai-co-hoi-hay-rui-ro-cua-cac-edtech-viet-nam.htm","status":"new","summary":"AI luyện phát âm, hội thoại hằng ngày; giáo viên người xử lý phần AI còn yếu như động lực, ngữ cảnh văn hóa. Các chuyên gia EdTech Việt cho rằng kết hợp hai yếu tố này là chìa khóa bứt phá.","title":"Học tiếng Anh với AI + giáo viên (mô hình lai)"},
-    {"id":"gd11","category":"Giáo dục","createdAt":1794470000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"VNA","sourceUrl":"https://happyvietnam.vnanet.vn/en/education-ministry-targets-five-digital-technology-incubators-at-universities/57671.html","status":"new","summary":"Bộ GD&ĐT có kế hoạch hỗ trợ sinh viên khởi nghiệp giai đoạn 2026–2035, hướng tới các vườn ươm công nghệ số tại đại học. Trường có thể kết nối đề tài nghiên cứu, cuộc thi khởi nghiệp và doanh nghiệp đỡ đầu.","title":"Vườn ươm công nghệ số ngay trong trường đại học"},
-    {"id":"gd12","category":"Giáo dục","createdAt":1794469000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Luật sư Việt Nam","sourceUrl":"https://lsvn.vn/co-che-thu-nghiem-sandbox-trong-giao-duc-nghe-nghiep-tu-dinh-huong-cua-nghi-quyet-so-57-nq-tw-den-co-che-dac-thu-cua-luat-thu-do-a171874.html","status":"new","summary":"Đề xuất áp dụng cơ chế đặc thù của Hà Nội để thí điểm sandbox trong giáo dục nghề nghiệp: cho phép thử chương trình, hình thức đào tạo mới trong phạm vi và thời gian giới hạn.","title":"Thử nghiệm có kiểm soát (sandbox) cho giáo dục nghề nghiệp"},
-    {"id":"gd13","category":"Mô hình kinh doanh","createdAt":1794468000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Báo Đầu tư","sourceUrl":"https://baodautu.vn/edtech-startup-tien-cang-nhieu-chet-cang-nhanh-d42026.html","status":"new","summary":"Nhiều startup giáo dục có lượng người dùng lớn nhưng không tìm được doanh thu, hoặc gọi vốn trước khi có mô hình phù hợp. Khi thiết kế dự án giáo dục cần xác định sớm ai trả tiền: phụ huynh, nhà trường hay doanh nghiệp.","title":"Bài học từ EdTech: tránh \"nhiều người dùng nhưng không ai trả tiền\""},
-    {"id":"gx01","category":"Nền tảng giao dịch","createdAt":1794467000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"Cobo","sourceUrl":"https://www.cobo.com/post/asset-tokenization-platform","status":"new","summary":"Chuyển quyền sở hữu trái phiếu, bất động sản, hàng hóa thành token trên blockchain: chia nhỏ phần sở hữu, giao dịch 24/7 và tuân thủ quy định được lập trình sẵn. Các định chế lớn như BlackRock, JP Morgan đang phát hành hoặc thí điểm sản phẩm token hóa.","title":"Sàn token hóa tài sản thực (RWA)"},
-    {"id":"gx02","category":"Nền tảng giao dịch","createdAt":1794466000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"Antier","sourceUrl":"https://www.antiersolutions.com/blogs/?p=54099","status":"new","summary":"Biến tín chỉ carbon thành tài sản số có thể đo lường, truy vết và giao dịch, giải quyết vấn đề minh bạch. Phù hợp bối cảnh Việt Nam chuẩn bị thị trường carbon.","title":"Token hóa tín chỉ carbon và tài sản ESG"},
-    {"id":"gx03","category":"Nền tảng giao dịch","createdAt":1794465000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"The Defiant","sourceUrl":"https://thedefiant.io/news/defi/prediction-market-aggregator-stand-launches-counter-trading-tool","status":"new","summary":"Nền tảng cho phép sao chép lệnh của trader giỏi, kèm hệ thống chấm điểm nhiều chiều và giới hạn khối lượng theo từng người. Rủi ro: trader giỏi có thể đi trước đám đông nên sao chép đơn giản kém hiệu quả; chưa có nghiên cứu chặt chẽ chứng minh lợi nhuận.","title":"Copy trading có chấm điểm nhà giao dịch và quản trị rủi ro"},
-    {"id":"gx04","category":"Nền tảng giao dịch","createdAt":1794464000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"Beeble","sourceUrl":"https://beeble.com/en/blog/the-new-retail-frontier-why-prediction-markets-now-look-more-like-e-trade-than-gambling","status":"new","summary":"Hợp đồng \"có/không\" về sự kiện kinh tế được mua bán như cổ phiếu lẻ; phần lớn người dùng giao dịch dưới 500 USD, giống nhà đầu tư nhỏ lẻ. Tại Việt Nam cần rà soát kỹ khung pháp lý trước khi làm; có thể dùng bản không tiền thật để dự báo nội bộ.","title":"Thị trường dự đoán (prediction market) cho sự kiện kinh tế"},
-    {"id":"gx05","category":"Nền tảng giao dịch","createdAt":1794463000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"LCX","sourceUrl":"https://lcx.com/en/why-real-world-asset-tokenization-is-the-next-trillion-dollar-opportunity","status":"new","summary":"Sàn tuân thủ quy định ở châu Âu như LCX đã đưa trợ lý AI vào giao dịch, bên cạnh khung token hóa tài sản thực. Hướng đi: AI giải thích thị trường, cảnh báo rủi ro, hỗ trợ đặt lệnh có xác nhận của người dùng.","title":"Trợ lý AI giao dịch tích hợp trong sàn"},
-    {"id":"gx06","category":"Nền tảng giao dịch","createdAt":1794462000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"VnEconomy","sourceUrl":"https://vneconomy.vn/nha-dau-tu-trong-nuoc-co-san-tai-san-ma-hoa-moi-duoc-giao-dich-tai-san-viet-nam.htm","status":"new","summary":"Theo lãnh đạo Bitget Việt Nam, để giữ nhà đầu tư Việt ở lại sàn trong nước cần thanh khoản, trải nghiệm người dùng tốt, sản phẩm đa dạng và an toàn. Cơ hội cho các nhóm làm công cụ phân tích, giáo dục nhà đầu tư, kết nối ngân hàng.","title":"Sàn tài sản số nội địa cạnh tranh bằng trải nghiệm"},
-    {"id":"gx07","category":"Ngân hàng – Fintech","createdAt":1794461000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"Diễn đàn Doanh nghiệp","sourceUrl":"https://diendandoanhnghiep.vn/fintech-ptag.html","status":"new","summary":"Phí chuyển tiền quốc tế còn cao và dòng kiều hối đi qua nhiều lớp trung gian; các fintech do kiều bào sáng lập đang nhắm vào cơ hội hàng chục tỷ USD này.","title":"Chuyển kiều hối chi phí thấp qua fintech"},
-    {"id":"nh01","category":"Ngân hàng – Fintech","createdAt":1794460000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"Tạp chí Ngân hàng","sourceUrl":"https://tapchinganhang.gov.vn/ap-dung-mo-hinh-tai-chinh-nhung-tai-viet-nam-trong-boi-canh-cong-nghe-so-16939.html","status":"new","summary":"Đưa thanh toán, tín dụng, bảo hiểm, đầu tư vào ngay hành trình mua sắm hay giao hàng của khách thông qua Open API và mô hình ngân hàng như một dịch vụ (BaaS).","title":"Tài chính nhúng vào sàn TMĐT, logistics, viễn thông"},
-    {"id":"nh02","category":"Ngân hàng – Fintech","createdAt":1794459000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"WSO2","sourceUrl":"https://wso2.com/library/blogs/innovation-inclusion-interoperability-vietnams-leap-into-open-banking","status":"new","summary":"Khi khách hàng đồng ý chia sẻ dữ liệu qua Open API, ngân hàng và fintech có thể duyệt vay nhanh hơn cho người chưa có lịch sử tín dụng, cá nhân hóa hạn mức và ưu đãi.","title":"Chấm điểm tín dụng thay thế từ dữ liệu dòng tiền"},
-    {"id":"nh03","category":"Ngân hàng – Fintech","createdAt":1794458000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Thị trường Tài chính Tiền tệ","sourceUrl":"https://thitruongtaichinhtiente.vn/cong-nghe-tai-chinh-ptag.html","status":"new","summary":"VietinBank số hóa hành trình vay mua nhà và được vinh danh Sao Khuê 2026 mảng Fintech. Ý tưởng mở rộng: số hóa trọn quy trình vay cho các sản phẩm khác như vay mua xe, vay học phí.","title":"Hành trình vay mua nhà hoàn toàn trên kênh số"},
-    {"id":"kd01","category":"Mô hình kinh doanh","createdAt":1794457000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"IT Convergence","sourceUrl":"https://www.itconvergence.com/blog/from-tokens-to-outcomes-the-shift-to-value-based-ai-agent-billing-models/","status":"new","summary":"Khách chỉ trả tiền khi AI hoàn thành một việc cụ thể, ví dụ Zendesk tính phí trên mỗi yêu cầu được xác minh là đã giải quyết. Mô hình hiệu quả khi kết quả định nghĩa rõ, đo được và gắn được với AI.","title":"Định giá theo kết quả (outcome-based pricing)"},
-    {"id":"kd02","category":"Mô hình kinh doanh","createdAt":1794456000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"Orb","sourceUrl":"https://www.withorb.com/blog/outcome-based-pricing-statistics","status":"new","summary":"Kết hợp phí cố định để doanh thu ổn định, phí theo mức sử dụng và thưởng theo kết quả. Khảo sát ICONIQ 2026: gần một nửa doanh nghiệp AI dùng mô hình lai làm mô hình chính.","title":"Định giá lai: thuê bao + theo mức dùng + theo kết quả"},
-    {"id":"kd03","category":"Mô hình kinh doanh","createdAt":1794455000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"Citi Ventures","sourceUrl":"https://www.citi.com/ventures/perspectives/opinion/agentic-company-startups-role-enterprise-success.html","status":"new","summary":"Startup AI-native thiết kế cả mô hình kinh doanh xoay quanh AI agent thay vì chỉ dùng AI làm công cụ. Cần thận trọng: có dự báo hơn 40% dự án agentic sẽ bị hủy đến cuối 2027 vì chi phí và giá trị không rõ; nên bắt đầu nhỏ và đo hiệu quả.","title":"Doanh nghiệp \"agentic\": AI agent là hệ điều hành"},
-    {"id":"kd04","category":"Mô hình kinh doanh","createdAt":1794454000000,"createdBy":null,"impact":3,"region":"intl","sourceName":"Mean CEO","sourceUrl":"https://blog.mean.ceo/ai-startup-trends-may-2026/","status":"new","summary":"Thay vì công cụ AI đa năng, tập trung một ngành hẹp (pháp lý, kế toán, logistics…) với dữ liệu riêng, quy trình ngành, bước duyệt của con người và yêu cầu tuân thủ đặc thù. Đây là lợi thế khó sao chép.","title":"AI theo ngành dọc (vertical AI)"},
-    {"id":"kd05","category":"Mô hình kinh doanh","createdAt":1794453000000,"createdBy":null,"impact":2,"region":"intl","sourceName":"Vegavid","sourceUrl":"https://vegavid.com/blog/ai-agents-new-business-models","status":"new","summary":"Agent tự tìm kiếm, so sánh, đàm phán và đặt mua thay người dùng; khi agent được phép ra quyết định và giao dịch, cách doanh nghiệp tiếp thị và bán hàng phải thay đổi (sản phẩm cần \"đọc được\" bởi máy).","title":"Thương mại do AI agent thực hiện (agentic commerce)"},
-    {"id":"kd06","category":"Mô hình kinh doanh","createdAt":1794452000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Đầu tư Chứng khoán","sourceUrl":"https://www.tinnhanhchungkhoan.vn/ngan-hang-mo-tang-toc-post392103.html","status":"new","summary":"Phần lớn ngân hàng Việt chưa thu phí API; lợi ích lớn hơn là tăng tiền gửi không kỳ hạn (CASA), doanh thu giao dịch và dữ liệu dòng tiền để bán chéo. Mô hình \"miễn phí nền tảng, thu từ hệ sinh thái\".","title":"Open API: ngân hàng đổi phí API lấy tiền gửi và dữ liệu"},
-    {"id":"kh01","category":"Chính sách – Thể chế","createdAt":1794451000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"Sài Gòn Giải Phóng","sourceUrl":"https://www.sggp.org.vn/tphcm-tien-phong-trien-khai-sandbox-cong-nghe-moi-post858774.html","status":"new","summary":"TP.HCM thí điểm sandbox cho phương tiện bay không người lái và \"sandbox chính sách\", hướng tới mạng lưới sandbox liên kết để công nghệ mới được thử và nhân rộng trên cả nước.","title":"Mạng lưới sandbox liên kết các địa phương"},
-    {"id":"kh02","category":"Khoa học – Công nghệ","createdAt":1794450000000,"createdBy":null,"impact":3,"region":"vn","sourceName":"Quản lý Nhà nước","sourceUrl":"https://www.quanlynhanuoc.vn/?p=69122","status":"new","summary":"Nghị quyết 57 xác định chấp nhận rủi ro và độ trễ trong nghiên cứu, giao quyền tự chủ kinh phí và đẩy mạnh thương mại hóa kết quả. Ý tưởng: quỹ \"thử nhanh – sai nhanh\" cấp nhỏ cho nhóm nghiên cứu trẻ trong trường.","title":"Chấp nhận rủi ro trong nghiên cứu khoa học"},
-    {"id":"kh03","category":"Ngân hàng – Fintech","createdAt":1794449000000,"createdBy":null,"impact":2,"region":"vn","sourceName":"Thị trường Tài chính Tiền tệ","sourceUrl":"https://thitruongtaichinhtiente.vn/cong-nghe-tai-chinh-ptag.html","status":"new","summary":"Cake được Sao Khuê 2026 ghi nhận năng lực công nghệ \"AI-first\": AI nằm trong lõi vận hành (duyệt vay, chăm sóc khách, chống gian lận) thay vì là tính năng thêm vào.","title":"Ngân hàng AI-first"}
-  ],
-  "projects": [
-    {"id":"pj01","category":"Giáo dục","createdAt":1794440000000,"createdBy":null,"end":"2027-06-15","kpi":"12 tiết cốt lõi mỗi năm, lớp 1–12","lead":"Bộ Giáo dục và Đào tạo","milestones":[{"done":true,"t":"Xây dựng khung năng lực AI cho học sinh và giáo viên (2024–2025)"},{"done":true,"t":"Thí điểm tại một số trường (12/2025 – 5/2026)"},{"done":true,"t":"Ban hành Quyết định 2422/QĐ-BGDĐT về khung nội dung (8/2026)"},{"done":false,"t":"Triển khai đại trà năm học 2026–2027"},{"done":false,"t":"Sở GD&ĐT báo cáo kết quả trước 15/6"}],"region":"vn","sourceName":"Báo Đầu tư","sourceUrl":"https://baodautu.vn/tri-tue-nhan-tao-chinh-thuc-duoc-trien-khai-day-dai-tra-tu-nam-hoc-2026-2027-d678484.html","stage":"scale","start":"2025-12-01","summary":"Đưa nội dung giáo dục trí tuệ nhân tạo vào toàn bộ trường phổ thông từ lớp 1 đến lớp 12, theo khung gồm 4 mạch: tư duy lấy con người làm trung tâm, đạo đức AI, kỹ thuật và ứng dụng AI, thiết kế hệ thống AI.","title":"Giáo dục AI đại trà cho học sinh phổ thông","updatedAt":1794480000000},
-    {"id":"pj02","category":"Nền tảng giao dịch","createdAt":1794439000000,"createdBy":null,"end":"","kpi":"Sàn đầu tiên được cấp phép vận hành","lead":"Bộ Tài chính / UBCK Nhà nước","milestones":[{"done":true,"t":"Luật Công nghiệp công nghệ số có hiệu lực (1/1/2026)"},{"done":true,"t":"Ban hành thủ tục cấp phép thí điểm (QĐ 96/QĐ-BTC, 1/2026)"},{"done":true,"t":"5 doanh nghiệp được chấp thuận nguyên tắc"},{"done":false,"t":"Cấp phép và vận hành sàn đầu tiên"},{"done":false,"t":"Đánh giá thí điểm, hoàn thiện khung pháp lý"}],"region":"vn","sourceName":"VTC News","sourceUrl":"https://vtcnews.vn/khi-nao-thi-truong-tai-san-ma-hoa-van-hanh-loai-tai-san-nao-duoc-giao-dich-ar1034484.html","stage":"pilot","start":"2026-01-01","summary":"Đưa tài sản mã hóa ra khỏi \"vùng xám\" pháp lý bằng cơ chế thí điểm sàn giao dịch do doanh nghiệp Việt vận hành. Bộ Tài chính đã chấp thuận nguyên tắc cho 5 doanh nghiệp, trong đó có TCEX (Techcom), CAEX (VPBank), VIXEX.","title":"Thí điểm thị trường giao dịch tài sản mã hóa tại Việt Nam","updatedAt":1794479000000},
-    {"id":"pj03","category":"Ngân hàng – Fintech","createdAt":1794438000000,"createdBy":null,"end":"","kpi":"Kết nối an toàn, chuẩn hóa giữa ngân hàng và bên thứ ba","lead":"Ngân hàng Nhà nước Việt Nam","milestones":[{"done":true,"t":"Ban hành Thông tư 64 (31/12/2024)"},{"done":true,"t":"Thông tư có hiệu lực (1/3/2025)"},{"done":true,"t":"Các ngân hàng lớn ra mắt cổng Open API, môi trường sandbox"},{"done":false,"t":"Giai đoạn chia sẻ dữ liệu có sự đồng ý của khách hàng"}],"region":"vn","sourceName":"Thời báo Tài chính","sourceUrl":"https://thoibaotaichinhvietnam.vn/open-api-dinh-hinh-san-choi-moi-nganh-ngan-hang-con-khong-it-don-vi-cham-chan-186909.html","stage":"scale","start":"2025-03-01","summary":"Chuẩn hóa kết nối giữa ngân hàng với fintech và doanh nghiệp qua giao diện lập trình mở, làm nền cho tài chính nhúng và BaaS. Nhiều ngân hàng đã ra mắt cổng Open API, nhưng vẫn còn đơn vị chậm chân.","title":"Ngân hàng mở (Open API) theo Thông tư 64/2024/TT-NHNN","updatedAt":1794478000000},
-    {"id":"pj04","category":"Khoa học – Công nghệ","createdAt":1794437000000,"createdBy":null,"end":"","kpi":"Đánh giá và nhân rộng giải pháp sau sandbox","lead":"UBND TP Đà Nẵng","milestones":[{"done":true,"t":"Ban hành Nghị quyết 20/2026/NQ-HĐND về sandbox"},{"done":true,"t":"Cấp phép thử nghiệm Basal Pay và MIMO"},{"done":false,"t":"Đánh giá kết quả thử nghiệm"},{"done":false,"t":"Hoàn thiện quy định, cho phép triển khai rộng"}],"region":"vn","sourceName":"Đại biểu Nhân dân","sourceUrl":"https://daibieunhandan.vn/thuc-hien-nghi-quyet-57-nhin-tu-da-nang-bai-1-mo-huong-phat-trien-cong-nghe-tu-nhung-quyet-sach-dac-thu-10423295.html","stage":"pilot","start":"2026-01-01","summary":"Theo Nghị quyết 20/2026/NQ-HĐND, Đà Nẵng cho doanh nghiệp thử nghiệm giải pháp công nghệ chưa có quy định trong phạm vi và thời gian giới hạn, nhằm rút ngắn khoảng cách từ phòng thí nghiệm đến thị trường. Hai giải pháp blockchain đầu tiên đã được cấp phép.","title":"Sandbox blockchain Đà Nẵng: Basal Pay và MIMO","updatedAt":1794477000000},
-    {"id":"pj05","category":"Giáo dục","createdAt":1794436000000,"createdBy":null,"end":"2027-07-01","kpi":"Thí điểm từ kỳ thi 2027","lead":"Bộ Giáo dục và Đào tạo","milestones":[{"done":true,"t":"Ban hành hướng dẫn năm học 2026–2027"},{"done":false,"t":"Địa phương chuẩn bị phòng máy, ngân hàng câu hỏi"},{"done":false,"t":"Thi thử trên máy tính"},{"done":false,"t":"Thí điểm chính thức năm 2027"}],"region":"vn","sourceName":"Báo Lào Cai","sourceUrl":"https://baolaocai.vn/hoc-sinh-pho-thong-se-duoc-hoc-ai-dai-tra-tu-nam-hoc-2026-2027-post906613.html","stage":"kickoff","start":"2026-09-01","summary":"Bộ GD&ĐT yêu cầu các địa phương chuẩn bị điều kiện để từng bước thí điểm thi tốt nghiệp THPT trên máy tính từ năm 2027.","title":"Thi tốt nghiệp THPT trên máy tính","updatedAt":1794476000000},
-    {"id":"pj06","category":"Giáo dục","createdAt":1794435000000,"createdBy":null,"end":"","kpi":"Tăng trưởng điểm MAP so với học sinh cùng mức","lead":"Alpha School / 2 Hour Learning","milestones":[{"done":true,"t":"Vận hành tại các trường Alpha tư thục"},{"done":true,"t":"Cấp phép mô hình cho trường khác"},{"done":false,"t":"Mở rộng sang trường công lập/charter"},{"done":false,"t":"Đánh giá độc lập về hiệu quả"}],"region":"intl","sourceName":"DeepLearning.AI","sourceUrl":"https://www.deeplearning.ai/the-batch/inside-alpha-school-a-texas-based-program-using-algorithms-and-video-monitors-to-teach-children","stage":"scale","start":"","summary":"Học sinh học kiến thức cốt lõi khoảng 2 giờ/ngày trên phần mềm thích ứng theo mức thành thạo, thời gian còn lại dành cho dự án, kỹ năng sống và thể thao. Mô hình đang được cấp phép cho trường khác, nhưng vẫn gây tranh cãi: một số bang từ chối hồ sơ trường charter và giới phê bình cho rằng thiếu bằng chứng nghiên cứu chặt chẽ.","title":"Mô hình \"2 Hour Learning\" của Alpha School (Mỹ)","updatedAt":1794475000000},
-    {"id":"pj07","category":"Mô hình kinh doanh","createdAt":1794434000000,"createdBy":null,"end":"","kpi":"1,50 USD mỗi yêu cầu đã xác minh (cam kết khối lượng)","lead":"Zendesk","milestones":[{"done":true,"t":"Tái cấu trúc bảng giá thành 3 tầng (5/2026)"},{"done":true,"t":"Áp dụng cho khách hàng trả theo mức dùng và cam kết"},{"done":false,"t":"Đo tác động tới doanh thu và tỷ lệ rời bỏ"}],"region":"intl","sourceName":"Lago","sourceUrl":"https://getlago.com/blog/outcome-based-pricing","stage":"scale","start":"2026-05-01","summary":"Tháng 5/2026 Zendesk tái cấu trúc giá AI thành 3 tầng: chuyển tiếp và xử lý có hỗ trợ được miễn phí, chỉ tính tiền khi yêu cầu được xác minh là đã giải quyết. Trường hợp điển hình của mô hình kinh doanh trả theo kết quả.","title":"Zendesk chuyển sang tính phí AI theo kết quả","updatedAt":1794474000000}
-  ]
+ "updated": "12/11/2026",
+ "ideas": [
+  {
+   "id": "gd01",
+   "category": "Giáo dục",
+   "createdAt": 1794480000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "EdCircuit",
+   "sourceUrl": "https://edcircuit.com/ai-in-education-what-the-new-year-brings-in-2026/amp/",
+   "status": "new",
+   "summary": "Hệ thống gia sư AI theo dõi các dấu hiệu như ngập ngừng, sai lặp lại hoặc chậm dần để can thiệp đúng lúc, thay vì chỉ trả lời khi được hỏi. Xu hướng 2026 là AI trở thành lớp hỗ trợ thường trực, không chỉ là phương án dự phòng.",
+   "title": "Gia sư AI biết nhận ra lúc học sinh \"bí\""
+  },
+  {
+   "id": "gd02",
+   "category": "Giáo dục",
+   "createdAt": 1794479000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "THE Journal",
+   "sourceUrl": "https://thejournal.com/articles/2026/01/29/2026-predictions-for-ai-and-ed-tech-in-k12-education-what-industry-leaders-are-saying",
+   "status": "new",
+   "summary": "Thay vì để AI dạy trực tiếp, AI đóng vai huấn luyện viên cho đội gia sư người: gợi ý câu hỏi, phát hiện lỗ hổng kiến thức, soạn bài tập. Mô hình phù hợp trung tâm dạy thêm và chương trình phụ đạo quy mô lớn.",
+   "title": "AI làm \"trợ giảng\" cho gia sư thật, không thay thế họ"
+  },
+  {
+   "id": "gd03",
+   "category": "Giáo dục",
+   "createdAt": 1794478000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "OctoProctor",
+   "sourceUrl": "https://octoproctor.com/blog/2026-q1-edtech-trends-to-watch",
+   "status": "new",
+   "summary": "Gắn trợ lý AI vào LMS (Moodle, Canvas…) để trả lời theo đúng tài liệu môn học. Câu trả lời từ LMS được sinh viên tin hơn chatbot chung, và nhà trường kiểm soát được nội dung, dữ liệu.",
+   "title": "Trợ lý AI tích hợp ngay trong hệ thống LMS của trường"
+  },
+  {
+   "id": "gd04",
+   "category": "Giáo dục",
+   "createdAt": 1794477000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "Beginners in AI",
+   "sourceUrl": "https://beginnersinai.org/two-hour-learning-explained/",
+   "status": "new",
+   "summary": "Học sinh chỉ lên bài mới khi đã thành thạo bài trước; phần mềm dựng đồ thị các kỹ năng phụ thuộc nhau và ôn lại theo lịch lặp ngắt quãng. Ví dụ quốc tế: MathAcademy, Khan Academy + Khanmigo.",
+   "title": "Học theo mức thành thạo với \"bản đồ kiến thức\""
+  },
+  {
+   "id": "gd05",
+   "category": "Giáo dục",
+   "createdAt": 1794476000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "TechnBrains",
+   "sourceUrl": "https://www.technbrains.com/blog/edtech-trends/",
+   "status": "new",
+   "summary": "Ghi nhận từng kỹ năng cụ thể (Excel nâng cao, Python cơ bản…) bằng chứng chỉ số có thể xác thực, giúp người học tích lũy dần và nhà tuyển dụng kiểm tra nhanh. Lưu ý: chứng chỉ trên blockchain đang bị đánh giá là xu hướng hạ nhiệt, nên ưu tiên chuẩn xác thực đơn giản.",
+   "title": "Chứng chỉ vi mô và \"hộ chiếu kỹ năng\" số"
+  },
+  {
+   "id": "gd06",
+   "category": "Giáo dục",
+   "createdAt": 1794475000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Edly",
+   "sourceUrl": "https://edly.io/blog/top-education-technology-trends/",
+   "status": "new",
+   "summary": "Tự động chấm trắc nghiệm, bài tính toán và bài lập trình có bộ test rõ ràng; giáo viên chỉ duyệt phần tự luận. Giải phóng thời gian để giáo viên tập trung phản hồi cá nhân.",
+   "title": "Chấm bài tự động bằng AI cho giáo viên"
+  },
+  {
+   "id": "gd07",
+   "category": "Giáo dục",
+   "createdAt": 1794474000000,
+   "createdBy": null,
+   "impact": 1,
+   "region": "vn",
+   "sourceName": "Vietbao",
+   "sourceUrl": "https://vietbao.vn/con-om-may-tinh-ca-toi-phu-huynh-lo-qua-le-thuoc-ai-613955.html",
+   "status": "new",
+   "summary": "Hà Nội yêu cầu học sinh từ THCS khi dùng AI hỗ trợ sản phẩm học tập phải ghi rõ mục đích và phạm vi hỗ trợ. Ý tưởng có thể nhân rộng: mẫu \"nhãn AI\" chuẩn cho bài nộp ở trường và đại học.",
+   "title": "Học sinh kê khai minh bạch mức độ dùng AI"
+  },
+  {
+   "id": "gd08",
+   "category": "Giáo dục",
+   "createdAt": 1794473000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Nhân Dân",
+   "sourceUrl": "https://nhandan.vn/trang-nguyen-education-hanh-trinh-10-nam-gieo-chu-post928805.html",
+   "status": "new",
+   "summary": "Mô hình \"4 trong 1\" của Trạng Nguyên kết hợp học, thi, trò chơi và văn hóa; dữ liệu bài học theo chuẩn chương trình GDPT 2018 giúp cá nhân hóa lộ trình cho học sinh Việt.",
+   "title": "Học thích ứng bám chương trình GDPT 2018, kết hợp trò chơi"
+  },
+  {
+   "id": "gd09",
+   "category": "Giáo dục",
+   "createdAt": 1794472000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "BBW",
+   "sourceUrl": "https://bbw.vn/ha-tang-lop-hoc-truc-tuyen-quy-mo-lon-co-hoi-dau-tu-moi-trong-he-sinh-thai-edtech-viet-nam-56324.html",
+   "status": "new",
+   "summary": "EdTech Việt đang chuyển từ bán nội dung sang làm nền tảng: lớp học trực tuyến quy mô lớn, dữ liệu học tập và AI vận hành chung. Nền tảng nội địa có lợi thế ngôn ngữ, pháp lý và khả năng tích hợp với trường, doanh nghiệp.",
+   "title": "Hạ tầng lớp học trực tuyến cho hàng nghìn người cùng lúc"
+  },
+  {
+   "id": "gd10",
+   "category": "Giáo dục",
+   "createdAt": 1794471000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "VnEconomy",
+   "sourceUrl": "https://vneconomy.vn/techconnect/hoc-tieng-anh-qua-ai-co-hoi-hay-rui-ro-cua-cac-edtech-viet-nam.htm",
+   "status": "new",
+   "summary": "AI luyện phát âm, hội thoại hằng ngày; giáo viên người xử lý phần AI còn yếu như động lực, ngữ cảnh văn hóa. Các chuyên gia EdTech Việt cho rằng kết hợp hai yếu tố này là chìa khóa bứt phá.",
+   "title": "Học tiếng Anh với AI + giáo viên (mô hình lai)"
+  },
+  {
+   "id": "gd11",
+   "category": "Giáo dục",
+   "createdAt": 1794470000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "VNA",
+   "sourceUrl": "https://happyvietnam.vnanet.vn/en/education-ministry-targets-five-digital-technology-incubators-at-universities/57671.html",
+   "status": "new",
+   "summary": "Bộ GD&ĐT có kế hoạch hỗ trợ sinh viên khởi nghiệp giai đoạn 2026–2035, hướng tới các vườn ươm công nghệ số tại đại học. Trường có thể kết nối đề tài nghiên cứu, cuộc thi khởi nghiệp và doanh nghiệp đỡ đầu.",
+   "title": "Vườn ươm công nghệ số ngay trong trường đại học"
+  },
+  {
+   "id": "gd12",
+   "category": "Giáo dục",
+   "createdAt": 1794469000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Luật sư Việt Nam",
+   "sourceUrl": "https://lsvn.vn/co-che-thu-nghiem-sandbox-trong-giao-duc-nghe-nghiep-tu-dinh-huong-cua-nghi-quyet-so-57-nq-tw-den-co-che-dac-thu-cua-luat-thu-do-a171874.html",
+   "status": "new",
+   "summary": "Đề xuất áp dụng cơ chế đặc thù của Hà Nội để thí điểm sandbox trong giáo dục nghề nghiệp: cho phép thử chương trình, hình thức đào tạo mới trong phạm vi và thời gian giới hạn.",
+   "title": "Thử nghiệm có kiểm soát (sandbox) cho giáo dục nghề nghiệp"
+  },
+  {
+   "id": "gd13",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794468000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Báo Đầu tư",
+   "sourceUrl": "https://baodautu.vn/edtech-startup-tien-cang-nhieu-chet-cang-nhanh-d42026.html",
+   "status": "new",
+   "summary": "Nhiều startup giáo dục có lượng người dùng lớn nhưng không tìm được doanh thu, hoặc gọi vốn trước khi có mô hình phù hợp. Khi thiết kế dự án giáo dục cần xác định sớm ai trả tiền: phụ huynh, nhà trường hay doanh nghiệp.",
+   "title": "Bài học từ EdTech: tránh \"nhiều người dùng nhưng không ai trả tiền\""
+  },
+  {
+   "id": "gx01",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794467000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "Cobo",
+   "sourceUrl": "https://www.cobo.com/post/asset-tokenization-platform",
+   "status": "new",
+   "summary": "Chuyển quyền sở hữu trái phiếu, bất động sản, hàng hóa thành token trên blockchain: chia nhỏ phần sở hữu, giao dịch 24/7 và tuân thủ quy định được lập trình sẵn. Các định chế lớn như BlackRock, JP Morgan đang phát hành hoặc thí điểm sản phẩm token hóa.",
+   "title": "Sàn token hóa tài sản thực (RWA)"
+  },
+  {
+   "id": "gx02",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794466000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Antier",
+   "sourceUrl": "https://www.antiersolutions.com/blogs/?p=54099",
+   "status": "new",
+   "summary": "Biến tín chỉ carbon thành tài sản số có thể đo lường, truy vết và giao dịch, giải quyết vấn đề minh bạch. Phù hợp bối cảnh Việt Nam chuẩn bị thị trường carbon.",
+   "title": "Token hóa tín chỉ carbon và tài sản ESG"
+  },
+  {
+   "id": "gx03",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794465000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "The Defiant",
+   "sourceUrl": "https://thedefiant.io/news/defi/prediction-market-aggregator-stand-launches-counter-trading-tool",
+   "status": "new",
+   "summary": "Nền tảng cho phép sao chép lệnh của trader giỏi, kèm hệ thống chấm điểm nhiều chiều và giới hạn khối lượng theo từng người. Rủi ro: trader giỏi có thể đi trước đám đông nên sao chép đơn giản kém hiệu quả; chưa có nghiên cứu chặt chẽ chứng minh lợi nhuận.",
+   "title": "Copy trading có chấm điểm nhà giao dịch và quản trị rủi ro"
+  },
+  {
+   "id": "gx04",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794464000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Beeble",
+   "sourceUrl": "https://beeble.com/en/blog/the-new-retail-frontier-why-prediction-markets-now-look-more-like-e-trade-than-gambling",
+   "status": "new",
+   "summary": "Hợp đồng \"có/không\" về sự kiện kinh tế được mua bán như cổ phiếu lẻ; phần lớn người dùng giao dịch dưới 500 USD, giống nhà đầu tư nhỏ lẻ. Tại Việt Nam cần rà soát kỹ khung pháp lý trước khi làm; có thể dùng bản không tiền thật để dự báo nội bộ.",
+   "title": "Thị trường dự đoán (prediction market) cho sự kiện kinh tế"
+  },
+  {
+   "id": "gx05",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794463000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "LCX",
+   "sourceUrl": "https://lcx.com/en/why-real-world-asset-tokenization-is-the-next-trillion-dollar-opportunity",
+   "status": "new",
+   "summary": "Sàn tuân thủ quy định ở châu Âu như LCX đã đưa trợ lý AI vào giao dịch, bên cạnh khung token hóa tài sản thực. Hướng đi: AI giải thích thị trường, cảnh báo rủi ro, hỗ trợ đặt lệnh có xác nhận của người dùng.",
+   "title": "Trợ lý AI giao dịch tích hợp trong sàn"
+  },
+  {
+   "id": "gx06",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794462000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "VnEconomy",
+   "sourceUrl": "https://vneconomy.vn/nha-dau-tu-trong-nuoc-co-san-tai-san-ma-hoa-moi-duoc-giao-dich-tai-san-viet-nam.htm",
+   "status": "new",
+   "summary": "Theo lãnh đạo Bitget Việt Nam, để giữ nhà đầu tư Việt ở lại sàn trong nước cần thanh khoản, trải nghiệm người dùng tốt, sản phẩm đa dạng và an toàn. Cơ hội cho các nhóm làm công cụ phân tích, giáo dục nhà đầu tư, kết nối ngân hàng.",
+   "title": "Sàn tài sản số nội địa cạnh tranh bằng trải nghiệm"
+  },
+  {
+   "id": "gx07",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794461000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Diễn đàn Doanh nghiệp",
+   "sourceUrl": "https://diendandoanhnghiep.vn/fintech-ptag.html",
+   "status": "new",
+   "summary": "Phí chuyển tiền quốc tế còn cao và dòng kiều hối đi qua nhiều lớp trung gian; các fintech do kiều bào sáng lập đang nhắm vào cơ hội hàng chục tỷ USD này.",
+   "title": "Chuyển kiều hối chi phí thấp qua fintech"
+  },
+  {
+   "id": "nh01",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794460000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Tạp chí Ngân hàng",
+   "sourceUrl": "https://tapchinganhang.gov.vn/ap-dung-mo-hinh-tai-chinh-nhung-tai-viet-nam-trong-boi-canh-cong-nghe-so-16939.html",
+   "status": "new",
+   "summary": "Đưa thanh toán, tín dụng, bảo hiểm, đầu tư vào ngay hành trình mua sắm hay giao hàng của khách thông qua Open API và mô hình ngân hàng như một dịch vụ (BaaS).",
+   "title": "Tài chính nhúng vào sàn TMĐT, logistics, viễn thông"
+  },
+  {
+   "id": "nh02",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794459000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "WSO2",
+   "sourceUrl": "https://wso2.com/library/blogs/innovation-inclusion-interoperability-vietnams-leap-into-open-banking",
+   "status": "new",
+   "summary": "Khi khách hàng đồng ý chia sẻ dữ liệu qua Open API, ngân hàng và fintech có thể duyệt vay nhanh hơn cho người chưa có lịch sử tín dụng, cá nhân hóa hạn mức và ưu đãi.",
+   "title": "Chấm điểm tín dụng thay thế từ dữ liệu dòng tiền"
+  },
+  {
+   "id": "nh03",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794458000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Thị trường Tài chính Tiền tệ",
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/cong-nghe-tai-chinh-ptag.html",
+   "status": "new",
+   "summary": "VietinBank số hóa hành trình vay mua nhà và được vinh danh Sao Khuê 2026 mảng Fintech. Ý tưởng mở rộng: số hóa trọn quy trình vay cho các sản phẩm khác như vay mua xe, vay học phí.",
+   "title": "Hành trình vay mua nhà hoàn toàn trên kênh số"
+  },
+  {
+   "id": "kd01",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794457000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "IT Convergence",
+   "sourceUrl": "https://www.itconvergence.com/blog/from-tokens-to-outcomes-the-shift-to-value-based-ai-agent-billing-models/",
+   "status": "new",
+   "summary": "Khách chỉ trả tiền khi AI hoàn thành một việc cụ thể, ví dụ Zendesk tính phí trên mỗi yêu cầu được xác minh là đã giải quyết. Mô hình hiệu quả khi kết quả định nghĩa rõ, đo được và gắn được với AI.",
+   "title": "Định giá theo kết quả (outcome-based pricing)"
+  },
+  {
+   "id": "kd02",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794456000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Orb",
+   "sourceUrl": "https://www.withorb.com/blog/outcome-based-pricing-statistics",
+   "status": "new",
+   "summary": "Kết hợp phí cố định để doanh thu ổn định, phí theo mức sử dụng và thưởng theo kết quả. Khảo sát ICONIQ 2026: gần một nửa doanh nghiệp AI dùng mô hình lai làm mô hình chính.",
+   "title": "Định giá lai: thuê bao + theo mức dùng + theo kết quả"
+  },
+  {
+   "id": "kd03",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794455000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "Citi Ventures",
+   "sourceUrl": "https://www.citi.com/ventures/perspectives/opinion/agentic-company-startups-role-enterprise-success.html",
+   "status": "new",
+   "summary": "Startup AI-native thiết kế cả mô hình kinh doanh xoay quanh AI agent thay vì chỉ dùng AI làm công cụ. Cần thận trọng: có dự báo hơn 40% dự án agentic sẽ bị hủy đến cuối 2027 vì chi phí và giá trị không rõ; nên bắt đầu nhỏ và đo hiệu quả.",
+   "title": "Doanh nghiệp \"agentic\": AI agent là hệ điều hành"
+  },
+  {
+   "id": "kd04",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794454000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "intl",
+   "sourceName": "Mean CEO",
+   "sourceUrl": "https://blog.mean.ceo/ai-startup-trends-may-2026/",
+   "status": "new",
+   "summary": "Thay vì công cụ AI đa năng, tập trung một ngành hẹp (pháp lý, kế toán, logistics…) với dữ liệu riêng, quy trình ngành, bước duyệt của con người và yêu cầu tuân thủ đặc thù. Đây là lợi thế khó sao chép.",
+   "title": "AI theo ngành dọc (vertical AI)"
+  },
+  {
+   "id": "kd05",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794453000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Vegavid",
+   "sourceUrl": "https://vegavid.com/blog/ai-agents-new-business-models",
+   "status": "new",
+   "summary": "Agent tự tìm kiếm, so sánh, đàm phán và đặt mua thay người dùng; khi agent được phép ra quyết định và giao dịch, cách doanh nghiệp tiếp thị và bán hàng phải thay đổi (sản phẩm cần \"đọc được\" bởi máy).",
+   "title": "Thương mại do AI agent thực hiện (agentic commerce)"
+  },
+  {
+   "id": "kd06",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794452000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Đầu tư Chứng khoán",
+   "sourceUrl": "https://www.tinnhanhchungkhoan.vn/ngan-hang-mo-tang-toc-post392103.html",
+   "status": "new",
+   "summary": "Phần lớn ngân hàng Việt chưa thu phí API; lợi ích lớn hơn là tăng tiền gửi không kỳ hạn (CASA), doanh thu giao dịch và dữ liệu dòng tiền để bán chéo. Mô hình \"miễn phí nền tảng, thu từ hệ sinh thái\".",
+   "title": "Open API: ngân hàng đổi phí API lấy tiền gửi và dữ liệu"
+  },
+  {
+   "id": "kh01",
+   "category": "Chính sách – Thể chế",
+   "createdAt": 1794451000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Sài Gòn Giải Phóng",
+   "sourceUrl": "https://www.sggp.org.vn/tphcm-tien-phong-trien-khai-sandbox-cong-nghe-moi-post858774.html",
+   "status": "new",
+   "summary": "TP.HCM thí điểm sandbox cho phương tiện bay không người lái và \"sandbox chính sách\", hướng tới mạng lưới sandbox liên kết để công nghệ mới được thử và nhân rộng trên cả nước.",
+   "title": "Mạng lưới sandbox liên kết các địa phương"
+  },
+  {
+   "id": "kh02",
+   "category": "Khoa học – Công nghệ",
+   "createdAt": 1794450000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Quản lý Nhà nước",
+   "sourceUrl": "https://www.quanlynhanuoc.vn/?p=69122",
+   "status": "new",
+   "summary": "Nghị quyết 57 xác định chấp nhận rủi ro và độ trễ trong nghiên cứu, giao quyền tự chủ kinh phí và đẩy mạnh thương mại hóa kết quả. Ý tưởng: quỹ \"thử nhanh – sai nhanh\" cấp nhỏ cho nhóm nghiên cứu trẻ trong trường.",
+   "title": "Chấp nhận rủi ro trong nghiên cứu khoa học"
+  },
+  {
+   "id": "kh03",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794449000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Thị trường Tài chính Tiền tệ",
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/cong-nghe-tai-chinh-ptag.html",
+   "status": "new",
+   "summary": "Cake được Sao Khuê 2026 ghi nhận năng lực công nghệ \"AI-first\": AI nằm trong lõi vận hành (duyệt vay, chăm sóc khách, chống gian lận) thay vì là tính năng thêm vào.",
+   "title": "Ngân hàng AI-first"
+  },
+  {
+   "id": "kd07",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794496000000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Thị trường Tài chính Tiền tệ",
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/5-xu-huong-mang-xa-hoi-danh-cho-doanh-nghiep-viet-nam-nam-2026-77488.html",
+   "status": "new",
+   "summary": "Nhắn tin (Messenger, WhatsApp, Zalo) trở thành trung tâm bán hàng: AI trả lời, tư vấn, chốt đơn 24/7. Theo Meta Việt Nam, giải pháp AI và tự động hóa đã giúp nhà quảng cáo tại Việt Nam tăng 22% hiệu quả ROAS. Cơ hội: dịch vụ dựng chatbot bán hàng cho shop nhỏ.",
+   "title": "Kinh doanh hội thoại: bán hàng ngay trong tin nhắn"
+  },
+  {
+   "id": "kd08",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495900000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "Brands Vietnam",
+   "sourceUrl": "https://www.brandsvietnam.com/congdong/topic/tiktok-shop-affiliate-mua-cuoi-nam-2026-koc-can-chuan-bi-gi-khi-luat-choi-da-doi",
+   "status": "new",
+   "summary": "Phí hoa hồng TikTok Shop tăng lên khoảng 9–17,8% từ tháng 5/2026, quy định thay đổi liên tục. Nhãn hàng cần KOC có tài khoản sạch và hiểu dữ liệu hơn là KOC nhiều follower. Cơ hội: đơn vị đào tạo, quản trị tài khoản, dùng AI sản xuất nội dung hàng loạt và đo hiệu quả theo doanh số (GMV).",
+   "title": "Agency đào tạo và quản lý KOC cho TikTok Shop"
+  },
+  {
+   "id": "kd09",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495800000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "AffNinja",
+   "sourceUrl": "https://affninja.com/vietnam-affiliate-marketing-statistics/",
+   "status": "new",
+   "summary": "Khảo sát Q&Me 2026: livestream chiếm khoảng 67% chi tiêu mua sắm online của người được hỏi. GMV bốn sàn lớn quý I/2026 đạt khoảng 5,64 tỷ USD, tăng 47%. Mô hình: studio livestream cho thuê, đội host chuyên nghiệp bán hộ cho thương hiệu theo hoa hồng.",
+   "title": "Livestream bán hàng chuyên nghiệp (live commerce)"
+  },
+  {
+   "id": "kd10",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495700000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "Việt Nam News",
+   "sourceUrl": "https://vietnamnews.vn/society/1778516/medically-standardised-home-care-for-the-elderly-gains-ground-in-viet-nam.html",
+   "status": "new",
+   "summary": "Dịch vụ chăm sóc tại nhà chuẩn hóa y khoa đang mở rộng nhanh, mở ra phân khúc hàng tỷ USD trong nền kinh tế bạc của Việt Nam. Ví dụ: Bluecare áp dụng quy trình theo chuẩn Hà Lan; eDoctor triển khai mô hình một bác sĩ – một điều dưỡng khép kín.",
+   "title": "Chăm sóc người cao tuổi tại nhà theo chuẩn y khoa"
+  },
+  {
+   "id": "kd11",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495600000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Deutsche Bank",
+   "sourceUrl": "https://www.db.com/what-next/entrepreneurial-success/ageing/silver-economy-longevity-growth/",
+   "status": "new",
+   "summary": "Thị trường người 60+ ước khoảng 4.500 tỷ USD năm 2026, trong đó học tập suốt đời là mảng tăng nhanh. Mô hình hiệu quả dựa trên dịch vụ định kỳ và đối tác, phân phối đồng thời qua B2B, bán trực tiếp và hợp tác với hệ thống công. Ý tưởng tại VN: lớp học công nghệ, du lịch, cộng đồng cho người cao tuổi theo thuê bao.",
+   "title": "Kinh tế bạc: dịch vụ định kỳ thay vì bán một lần"
+  },
+  {
+   "id": "kd12",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495500000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "NewMarketPitch",
+   "sourceUrl": "https://newmarketpitch.com/blogs/news/circular-economy-market-news",
+   "status": "new",
+   "summary": "Recommerce gồm bán lại, sửa chữa, cho thuê, refill, đổi trả và phân phối lại hàng hóa. eBay mua Depop (sàn đồ cũ của Gen Z) giá 1,2 tỷ USD tháng 2/2026. Ý tưởng tại VN: sàn đồ cũ có kiểm định, dịch vụ thu mua lại cho thương hiệu thời trang.",
+   "title": "Thương mại tuần hoàn: bán lại, sửa chữa, cho thuê"
+  },
+  {
+   "id": "kd13",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495400000,
+   "createdBy": null,
+   "impact": 1,
+   "region": "intl",
+   "sourceName": "ShopAppy",
+   "sourceUrl": "https://shopappy.com/?p=6797",
+   "status": "new",
+   "summary": "Bán chất tẩy rửa, mỹ phẩm theo hình thức đổ đầy vỏ cũ. Khó nhất là khâu thu hồi vỏ rỗng, nên phần lớn mô hình gắn refill với điểm trả vỏ tại cửa hàng thay vì gửi qua bưu điện. Phù hợp chuỗi tạp hóa, siêu thị mini ở đô thị.",
+   "title": "Trạm refill (đổ đầy lại) tại cửa hàng"
+  },
+  {
+   "id": "kd14",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495300000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "VnBusiness",
+   "sourceUrl": "https://vnbusiness.vn/minh-bach-hoa-nguon-goc-tam-ho-chieu-so-nang-tam-nong-san-viet.html",
+   "status": "new",
+   "summary": "Nhiều nước coi truy xuất nguồn gốc là điều kiện bắt buộc với hàng nhập khẩu; doanh nghiệp có dữ liệu minh bạch sẽ có lợi thế. Mô hình: dịch vụ trọn gói giúp HTX, nông hộ số hóa nhật ký sản xuất, dán tem và kết nối hệ thống truy xuất quốc gia, thu phí theo lô hàng.",
+   "title": "Dịch vụ \"hộ chiếu số\" truy xuất nguồn gốc cho HTX nông sản"
+  },
+  {
+   "id": "kd15",
+   "category": "Khoa học – Công nghệ",
+   "createdAt": 1794495200000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "VnBusiness",
+   "sourceUrl": "https://vnbusiness.vn/ai-co-the-thay-nguoi-kiem-dinh-giup-nong-san-viet-nam-chinh-phuc-thi-truong-quoc-te.html",
+   "status": "new",
+   "summary": "Nhóm nghiên cứu thuộc Viện Hàn lâm KH&CN Việt Nam xây hệ thống AI từ hơn 14.400 ảnh xoài và thanh long để phân loại chất lượng, giúp doanh nghiệp và HTX giảm chi phí kiểm định. Cơ hội thương mại hóa: bán hoặc cho thuê thiết bị phân loại tại kho đóng gói.",
+   "title": "AI kiểm định chất lượng nông sản sau thu hoạch"
+  },
+  {
+   "id": "kd16",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495100000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "intl",
+   "sourceName": "Dodo Payments",
+   "sourceUrl": "https://dodopayments.com/blogs/micro-saas-ideas-2026",
+   "status": "new",
+   "summary": "Phần mềm nhỏ giải đúng một vấn đề cho một nhóm khách hẹp, thu phí thuê bao tháng. Nhờ công cụ AI viết code (\"vibe coding\"), một người có thể ra sản phẩm trong vài tuần với vốn rất nhỏ. Nguyên tắc: kiểm chứng nhu cầu bằng tiền thật trước khi làm nhiều.",
+   "title": "Micro-SaaS do một người làm nhờ AI viết code"
+  },
+  {
+   "id": "kd17",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794495000000,
+   "createdBy": null,
+   "impact": 2,
+   "region": "vn",
+   "sourceName": "The Leader",
+   "sourceUrl": "https://theleader.vn/news-1701344268722.htm",
+   "status": "new",
+   "summary": "Việt Nam có khoảng 16 triệu hộ kinh doanh. Sổ Bán Hàng thu phí thuê bao 100.000–300.000 đồng/tháng cho tính năng chuyên sâu theo từng ngành. Hướng mở rộng: gắn hóa đơn điện tử, kê khai thuế, vay vốn nhỏ từ dữ liệu bán hàng.",
+   "title": "Phần mềm bán hàng thuê bao cho hộ kinh doanh"
+  },
+  {
+   "id": "kd18",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794494900000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "VnEconomy",
+   "sourceUrl": "https://vneconomy.vn/techconnect/khi-ai-khong-con-la-dac-quyen-startup-viet-lay-gi-de-khong-bi-thay-the.htm",
+   "status": "new",
+   "summary": "Giảng viên RMIT Việt Nam cho rằng tập trung vào tầng ứng dụng là hướng thực tế với đa số startup AI Việt. Bài toán là biến dữ liệu riêng, hiểu biết ngành và độ gắn kết với khách hàng thành lợi thế dài hạn để không bị thay thế nhanh.",
+   "title": "Startup AI tầng ứng dụng, lấy dữ liệu riêng làm lợi thế"
+  },
+  {
+   "id": "kd19",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794494800000,
+   "createdBy": null,
+   "impact": 3,
+   "region": "vn",
+   "sourceName": "VnEconomy",
+   "sourceUrl": "https://vneconomy.vn/sau-giai-doan-dong-von-dau-tu-tram-lang-startup-viet-nam-ky-luat-hon.htm",
+   "status": "new",
+   "summary": "Sau giai đoạn vốn đầu tư trầm lắng, startup Việt kỷ luật hơn, tập trung mô hình hiệu quả và dịch chuyển từ thị trường nội địa sang toàn cầu, nhất là mảng AI. Mô hình: đội kỹ sư tại VN, sản phẩm và giá bán cho khách quốc tế.",
+   "title": "Startup Việt hướng ra thị trường toàn cầu từ ngày đầu"
+  }
+ ],
+ "projects": [
+  {
+   "id": "pj01",
+   "category": "Giáo dục",
+   "createdAt": 1794440000000,
+   "createdBy": null,
+   "end": "2027-06-15",
+   "kpi": "12 tiết cốt lõi mỗi năm, lớp 1–12",
+   "lead": "Bộ Giáo dục và Đào tạo",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Xây dựng khung năng lực AI cho học sinh và giáo viên (2024–2025)"
+    },
+    {
+     "done": true,
+     "t": "Thí điểm tại một số trường (12/2025 – 5/2026)"
+    },
+    {
+     "done": true,
+     "t": "Ban hành Quyết định 2422/QĐ-BGDĐT về khung nội dung (8/2026)"
+    },
+    {
+     "done": false,
+     "t": "Triển khai đại trà năm học 2026–2027"
+    },
+    {
+     "done": false,
+     "t": "Sở GD&ĐT báo cáo kết quả trước 15/6"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "Báo Đầu tư",
+   "sourceUrl": "https://baodautu.vn/tri-tue-nhan-tao-chinh-thuc-duoc-trien-khai-day-dai-tra-tu-nam-hoc-2026-2027-d678484.html",
+   "stage": "scale",
+   "start": "2025-12-01",
+   "summary": "Đưa nội dung giáo dục trí tuệ nhân tạo vào toàn bộ trường phổ thông từ lớp 1 đến lớp 12, theo khung gồm 4 mạch: tư duy lấy con người làm trung tâm, đạo đức AI, kỹ thuật và ứng dụng AI, thiết kế hệ thống AI.",
+   "title": "Giáo dục AI đại trà cho học sinh phổ thông",
+   "updatedAt": 1794480000000
+  },
+  {
+   "id": "pj02",
+   "category": "Nền tảng giao dịch",
+   "createdAt": 1794439000000,
+   "createdBy": null,
+   "end": "",
+   "kpi": "Sàn đầu tiên được cấp phép vận hành",
+   "lead": "Bộ Tài chính / UBCK Nhà nước",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Luật Công nghiệp công nghệ số có hiệu lực (1/1/2026)"
+    },
+    {
+     "done": true,
+     "t": "Ban hành thủ tục cấp phép thí điểm (QĐ 96/QĐ-BTC, 1/2026)"
+    },
+    {
+     "done": true,
+     "t": "5 doanh nghiệp được chấp thuận nguyên tắc"
+    },
+    {
+     "done": false,
+     "t": "Cấp phép và vận hành sàn đầu tiên"
+    },
+    {
+     "done": false,
+     "t": "Đánh giá thí điểm, hoàn thiện khung pháp lý"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "VTC News",
+   "sourceUrl": "https://vtcnews.vn/khi-nao-thi-truong-tai-san-ma-hoa-van-hanh-loai-tai-san-nao-duoc-giao-dich-ar1034484.html",
+   "stage": "pilot",
+   "start": "2026-01-01",
+   "summary": "Đưa tài sản mã hóa ra khỏi \"vùng xám\" pháp lý bằng cơ chế thí điểm sàn giao dịch do doanh nghiệp Việt vận hành. Bộ Tài chính đã chấp thuận nguyên tắc cho 5 doanh nghiệp, trong đó có TCEX (Techcom), CAEX (VPBank), VIXEX.",
+   "title": "Thí điểm thị trường giao dịch tài sản mã hóa tại Việt Nam",
+   "updatedAt": 1794479000000
+  },
+  {
+   "id": "pj03",
+   "category": "Ngân hàng – Fintech",
+   "createdAt": 1794438000000,
+   "createdBy": null,
+   "end": "",
+   "kpi": "Kết nối an toàn, chuẩn hóa giữa ngân hàng và bên thứ ba",
+   "lead": "Ngân hàng Nhà nước Việt Nam",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Ban hành Thông tư 64 (31/12/2024)"
+    },
+    {
+     "done": true,
+     "t": "Thông tư có hiệu lực (1/3/2025)"
+    },
+    {
+     "done": true,
+     "t": "Các ngân hàng lớn ra mắt cổng Open API, môi trường sandbox"
+    },
+    {
+     "done": false,
+     "t": "Giai đoạn chia sẻ dữ liệu có sự đồng ý của khách hàng"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "Thời báo Tài chính",
+   "sourceUrl": "https://thoibaotaichinhvietnam.vn/open-api-dinh-hinh-san-choi-moi-nganh-ngan-hang-con-khong-it-don-vi-cham-chan-186909.html",
+   "stage": "scale",
+   "start": "2025-03-01",
+   "summary": "Chuẩn hóa kết nối giữa ngân hàng với fintech và doanh nghiệp qua giao diện lập trình mở, làm nền cho tài chính nhúng và BaaS. Nhiều ngân hàng đã ra mắt cổng Open API, nhưng vẫn còn đơn vị chậm chân.",
+   "title": "Ngân hàng mở (Open API) theo Thông tư 64/2024/TT-NHNN",
+   "updatedAt": 1794478000000
+  },
+  {
+   "id": "pj04",
+   "category": "Khoa học – Công nghệ",
+   "createdAt": 1794437000000,
+   "createdBy": null,
+   "end": "",
+   "kpi": "Đánh giá và nhân rộng giải pháp sau sandbox",
+   "lead": "UBND TP Đà Nẵng",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Ban hành Nghị quyết 20/2026/NQ-HĐND về sandbox"
+    },
+    {
+     "done": true,
+     "t": "Cấp phép thử nghiệm Basal Pay và MIMO"
+    },
+    {
+     "done": false,
+     "t": "Đánh giá kết quả thử nghiệm"
+    },
+    {
+     "done": false,
+     "t": "Hoàn thiện quy định, cho phép triển khai rộng"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "Đại biểu Nhân dân",
+   "sourceUrl": "https://daibieunhandan.vn/thuc-hien-nghi-quyet-57-nhin-tu-da-nang-bai-1-mo-huong-phat-trien-cong-nghe-tu-nhung-quyet-sach-dac-thu-10423295.html",
+   "stage": "pilot",
+   "start": "2026-01-01",
+   "summary": "Theo Nghị quyết 20/2026/NQ-HĐND, Đà Nẵng cho doanh nghiệp thử nghiệm giải pháp công nghệ chưa có quy định trong phạm vi và thời gian giới hạn, nhằm rút ngắn khoảng cách từ phòng thí nghiệm đến thị trường. Hai giải pháp blockchain đầu tiên đã được cấp phép.",
+   "title": "Sandbox blockchain Đà Nẵng: Basal Pay và MIMO",
+   "updatedAt": 1794477000000
+  },
+  {
+   "id": "pj05",
+   "category": "Giáo dục",
+   "createdAt": 1794436000000,
+   "createdBy": null,
+   "end": "2027-07-01",
+   "kpi": "Thí điểm từ kỳ thi 2027",
+   "lead": "Bộ Giáo dục và Đào tạo",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Ban hành hướng dẫn năm học 2026–2027"
+    },
+    {
+     "done": false,
+     "t": "Địa phương chuẩn bị phòng máy, ngân hàng câu hỏi"
+    },
+    {
+     "done": false,
+     "t": "Thi thử trên máy tính"
+    },
+    {
+     "done": false,
+     "t": "Thí điểm chính thức năm 2027"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "Báo Lào Cai",
+   "sourceUrl": "https://baolaocai.vn/hoc-sinh-pho-thong-se-duoc-hoc-ai-dai-tra-tu-nam-hoc-2026-2027-post906613.html",
+   "stage": "kickoff",
+   "start": "2026-09-01",
+   "summary": "Bộ GD&ĐT yêu cầu các địa phương chuẩn bị điều kiện để từng bước thí điểm thi tốt nghiệp THPT trên máy tính từ năm 2027.",
+   "title": "Thi tốt nghiệp THPT trên máy tính",
+   "updatedAt": 1794476000000
+  },
+  {
+   "id": "pj06",
+   "category": "Giáo dục",
+   "createdAt": 1794435000000,
+   "createdBy": null,
+   "end": "",
+   "kpi": "Tăng trưởng điểm MAP so với học sinh cùng mức",
+   "lead": "Alpha School / 2 Hour Learning",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Vận hành tại các trường Alpha tư thục"
+    },
+    {
+     "done": true,
+     "t": "Cấp phép mô hình cho trường khác"
+    },
+    {
+     "done": false,
+     "t": "Mở rộng sang trường công lập/charter"
+    },
+    {
+     "done": false,
+     "t": "Đánh giá độc lập về hiệu quả"
+    }
+   ],
+   "region": "intl",
+   "sourceName": "DeepLearning.AI",
+   "sourceUrl": "https://www.deeplearning.ai/the-batch/inside-alpha-school-a-texas-based-program-using-algorithms-and-video-monitors-to-teach-children",
+   "stage": "scale",
+   "start": "",
+   "summary": "Học sinh học kiến thức cốt lõi khoảng 2 giờ/ngày trên phần mềm thích ứng theo mức thành thạo, thời gian còn lại dành cho dự án, kỹ năng sống và thể thao. Mô hình đang được cấp phép cho trường khác, nhưng vẫn gây tranh cãi: một số bang từ chối hồ sơ trường charter và giới phê bình cho rằng thiếu bằng chứng nghiên cứu chặt chẽ.",
+   "title": "Mô hình \"2 Hour Learning\" của Alpha School (Mỹ)",
+   "updatedAt": 1794475000000
+  },
+  {
+   "id": "pj07",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794434000000,
+   "createdBy": null,
+   "end": "",
+   "kpi": "1,50 USD mỗi yêu cầu đã xác minh (cam kết khối lượng)",
+   "lead": "Zendesk",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Tái cấu trúc bảng giá thành 3 tầng (5/2026)"
+    },
+    {
+     "done": true,
+     "t": "Áp dụng cho khách hàng trả theo mức dùng và cam kết"
+    },
+    {
+     "done": false,
+     "t": "Đo tác động tới doanh thu và tỷ lệ rời bỏ"
+    }
+   ],
+   "region": "intl",
+   "sourceName": "Lago",
+   "sourceUrl": "https://getlago.com/blog/outcome-based-pricing",
+   "stage": "scale",
+   "start": "2026-05-01",
+   "summary": "Tháng 5/2026 Zendesk tái cấu trúc giá AI thành 3 tầng: chuyển tiếp và xử lý có hỗ trợ được miễn phí, chỉ tính tiền khi yêu cầu được xác minh là đã giải quyết. Trường hợp điển hình của mô hình kinh doanh trả theo kết quả.",
+   "title": "Zendesk chuyển sang tính phí AI theo kết quả",
+   "updatedAt": 1794474000000
+  },
+  {
+   "id": "pj08",
+   "category": "Mô hình kinh doanh",
+   "createdAt": 1794494700000,
+   "createdBy": null,
+   "end": "2027-07-01",
+   "kpi": "Mở rộng cho toàn bộ nông sản từ 1/7/2027",
+   "lead": "Bộ Nông nghiệp và Môi trường",
+   "milestones": [
+    {
+     "done": true,
+     "t": "Ra mắt hệ thống (26/12/2025)"
+    },
+    {
+     "done": true,
+     "t": "Thí điểm với sầu riêng xuất khẩu (1–6/2026)"
+    },
+    {
+     "done": true,
+     "t": "Công bố chính thức sau thí điểm (30/6/2026)"
+    },
+    {
+     "done": false,
+     "t": "Kết nối, đề nghị Hải quan Trung Quốc công nhận dữ liệu"
+    },
+    {
+     "done": false,
+     "t": "Áp dụng cho toàn bộ nông sản (1/7/2027)"
+    }
+   ],
+   "region": "vn",
+   "sourceName": "Trung tâm WTO",
+   "sourceUrl": "https://trungtamwto.vn/an-pham/32755-hinh-thanh-ho-chieu-so-cho-nong-san-viet",
+   "stage": "scale",
+   "start": "2025-12-26",
+   "summary": "Bộ Nông nghiệp và Môi trường vận hành hệ thống truy xuất nguồn gốc nông sản, thí điểm trước với sầu riêng xuất khẩu. Đến giữa tháng 6/2026 đã truy xuất 18.500 sản phẩm của 547 nông hộ; Bộ đã gửi công hàm tới Hải quan Trung Quốc để hướng tới công nhận dữ liệu. Đây là nền tảng cho nhiều mô hình dịch vụ xuất khẩu.",
+   "title": "Hệ thống truy xuất nguồn gốc nông sản quốc gia",
+   "updatedAt": 1794496000000
+  }
+ ]
 }
