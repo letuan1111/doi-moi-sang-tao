@@ -1295,7 +1295,9 @@
      "t": "Soạn hồ sơ mẫu đăng ký sandbox cho một giải pháp fintech giả định",
      "owner": "claude",
      "kind": "doc",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj04/03-ho-so-mau-dang-ky-sandbox.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 4,
