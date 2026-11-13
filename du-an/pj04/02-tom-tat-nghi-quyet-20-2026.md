@@ -116,3 +116,9 @@ Theo Diễn đàn Doanh nghiệp (13/11/2026), Đà Nẵng hiện có **6 đơn 
 
 - Bước 3 (Claude): soạn hồ sơ mẫu (đơn, thuyết minh, ma trận rủi ro) cho một giải pháp fintech giả định, bám 7 tiêu chí ở mục 4.
 - Cần tìm bản gốc có Phụ lục I–III (Công báo Đà Nẵng hoặc cổng của Sở KH&CN) để chỉnh mẫu cho khớp; nếu bạn có bản PDF, hãy đưa vào thư mục này.
+
+### Bổ sung (lượt chạy song song, 13/11/2026)
+
+- **So với Nghị quyết 55/2024/NQ-HĐND (quy định cũ)**, theo [bản dịch tiếng Anh NQ 55 trên startupdanang.vn](https://startupdanang.vn/uploads/files/NQ55%20d%E1%BB%8Bch.pdf): thẩm định hồ sơ 30 ngày làm việc → nay 23 ngày; trình Hội đồng đánh giá 30 ngày làm việc → 22 ngày; UBND quyết định 15 ngày làm việc → 10 ngày; cơ quan kiểm soát cấp phép 7 → 6 ngày làm việc; báo không đạt 7 ngày làm việc → 5 ngày. Mốc 60 ngày làm việc để bắt đầu thử nghiệm giữ nguyên.
+- NQ 55/2024 giới hạn **địa điểm** thử nghiệm ở Khu Công nghệ cao, Khu Công viên phần mềm tập trung, Trung tâm Hỗ trợ khởi nghiệp và không gian đổi mới do ngân sách thành phố đầu tư; phần NQ 20 đọc được chưa thấy giới hạn này (địa điểm ghi trong quyết định từng giải pháp). NQ 55 còn có thủ tục gia hạn (nộp ít nhất 60 ngày trước khi hết hạn, Điều 5) và câu "tham gia thử nghiệm không đồng nghĩa được phép cung cấp sản phẩm, dịch vụ ra thị trường" (Điều 4 khoản 8). **Chưa kiểm chứng** NQ 20 có giữ hai nội dung này.
+- **Sửa hồ sơ dự án:** câu "Theo Nghị quyết 20/2026… hai giải pháp blockchain đầu tiên đã được cấp phép" ở bước 1 nên hiểu là hai sự kiện riêng: hai giải pháp được cấp phép 8/2025 và 12/2025 (khung cũ), còn NQ 20 áp dụng cho hồ sơ mới từ 10/6/2026.
