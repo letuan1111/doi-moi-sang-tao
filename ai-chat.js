@@ -214,6 +214,18 @@ ${kbText()}`;
 .finai-form button{border:0;border-radius:10px;padding:0 14px;background:var(--accent,#2440d6);color:var(--accent-ink,#fff);font-weight:700;cursor:pointer}
 .finai-form button:disabled{opacity:.5;cursor:not-allowed}
 .finai-note{font-size:11px;color:var(--muted,#666);padding:0 12px 8px}
+.finai-voice{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:6px 14px;border-bottom:1px solid var(--line,#ddd);font-size:12px;color:var(--muted,#666)}
+.finai-voice label{display:inline-flex;gap:5px;align-items:center;cursor:pointer}
+.finai-voice select{font:inherit;font-size:12px;border:1px solid var(--line,#ddd);border-radius:999px;padding:2px 8px;background:transparent;color:inherit}
+.finai-vs{font-size:12px;color:var(--muted,#666);padding:0 12px 4px;min-height:0}
+.finai-form .finai-mic{background:transparent;color:inherit;border:1px solid var(--line,#ddd);padding:0 11px;display:grid;place-items:center}
+.finai-form .finai-mic[hidden]{display:none}
+.finai-mic[data-state="listening"]{background:#b3261e!important;color:#fff!important;border-color:#b3261e!important;animation:finai-pulse 1.2s infinite}
+.finai-mic[data-state="thinking"]{opacity:.6}
+@keyframes finai-pulse{50%{box-shadow:0 0 0 6px rgba(179,38,30,.25)}}
+.fv-speak{display:inline-flex;align-items:center;gap:4px;margin-top:6px;border:1px solid var(--line,#ddd);background:var(--surface,#fff);color:inherit;border-radius:999px;padding:3px 9px;font-size:12px;cursor:pointer}
+.fv-speak[aria-pressed="true"]{background:var(--accent,#2440d6);color:var(--accent-ink,#fff);border-color:var(--accent,#2440d6)}
+@media (prefers-reduced-motion:reduce){.finai-mic[data-state="listening"]{animation:none}}
 @media print{#finai-fab,#finai-panel{display:none!important}}`;
 
   let openWithImpl = null;
@@ -226,8 +238,10 @@ ${kbText()}`;
     fab.innerHTML = "<b>✦</b> Hỏi AI tài chính";
     const p = document.createElement("section"); p.id = "finai-panel"; p.hidden = true; p.setAttribute("aria-label", "Trợ lý AI tài chính");
     p.innerHTML = `<div class="finai-head"><h3>Trợ lý AI tài chính<small id="finai-kb">Đang nạp dữ liệu…</small></h3><button type="button" data-a="new">Cuộc mới</button><button type="button" data-a="close" aria-label="Đóng">✕</button></div>
+      <div class="finai-voice" id="finai-voice" hidden><span>Giọng nói</span><select id="finai-vmode" aria-label="Chế độ giọng nói"><option value="nhanh">Nhanh (trình duyệt)</option><option value="rieng-tu">Riêng tư (AI chạy trên máy)</option></select><label><input type="checkbox" id="finai-autoread"> Tự đọc câu trả lời</label></div>
       <div class="finai-log" id="finai-log" aria-live="polite"></div>
-      <form class="finai-form" id="finai-form"><textarea id="finai-q" placeholder="Hỏi về vay, tiết kiệm, ngân hàng, chống lừa đảo, ý tưởng trên trang…" aria-label="Câu hỏi"></textarea><button type="submit" id="finai-send">Gửi</button></form>
+      <form class="finai-form" id="finai-form"><textarea id="finai-q" placeholder="Hỏi về vay, tiết kiệm, ngân hàng… hoặc bấm micro để nói" aria-label="Câu hỏi"></textarea><button type="button" class="finai-mic" id="finai-mic" hidden></button><button type="submit" id="finai-send">Gửi</button></form>
+      <div class="finai-vs" id="finai-vs" aria-live="polite"></div>
       <div class="finai-note">Không nhập số thẻ, số tài khoản, mật khẩu, OTP. Thông tin tham khảo, không phải tư vấn tài chính hay pháp lý.</div>`;
     document.body.append(p, fab);
     const log = p.querySelector("#finai-log"), q = p.querySelector("#finai-q"), send = p.querySelector("#finai-send"), kb = p.querySelector("#finai-kb");
@@ -247,7 +261,7 @@ ${kbText()}`;
       if (sensitive(text)) { bubble("assistant", "Câu hỏi có vẻ chứa số thẻ, số tài khoản hoặc mật khẩu. Hãy xóa thông tin đó rồi gửi lại."); return; }
       busy = true; send.disabled = true; q.value = "";
       bubble("user", text); const out = bubble("assistant", "Đang suy nghĩ…");
-      try { const t = await chat.ask(text, t => { out.innerHTML = md(t || "Đang suy nghĩ…"); log.scrollTop = log.scrollHeight; }); out.innerHTML = md(t); }
+      try { const t = await chat.ask(text, t => { out.innerHTML = md(t || "Đang suy nghĩ…"); log.scrollTop = log.scrollHeight; }); out.innerHTML = md(t); addSpeak(out, t); if (V && autoread.checked) V.speak(t, { onStatus: vstatus }); }
       catch (e) { out.innerHTML = md(errText(e)); }
       finally { busy = false; send.disabled = false; log.scrollTop = log.scrollHeight; }
     }
@@ -259,6 +273,20 @@ ${kbText()}`;
     p.querySelector("#finai-form").addEventListener("submit", e => { e.preventDefault(); go(q.value); });
     q.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); go(q.value); } });
     openWithImpl = text => { open(true); q.value = text; go(text); };
+    /* Giọng nói (voice.js) */
+    const V = window.FinVoice, vs = p.querySelector("#finai-vs"), autoread = p.querySelector("#finai-autoread");
+    const vstatus = m => { vs.textContent = m || ""; };
+    function addSpeak(el, text){ if (V && text) el.append(V.speakButton(() => text, { label: "Nghe", onStatus: vstatus })); }
+    if (V) {
+      const inf = V.info();
+      p.querySelector("#finai-voice").hidden = false;
+      const sel = p.querySelector("#finai-vmode"); sel.value = V.mode; sel.hidden = inf.sandboxed;
+      sel.onchange = () => { V.setMode(sel.value); vstatus(sel.value === "rieng-tu" ? "Chế độ riêng tư: lần đầu tải mô hình khoảng 40 MB, sau đó âm thanh không rời khỏi máy." : "Chế độ nhanh: dùng giọng nói có sẵn của trình duyệt."); };
+      autoread.checked = !!V.store.get("autoread", false); autoread.onchange = () => { V.store.set("autoread", autoread.checked); if (!autoread.checked) V.stop(); };
+      const mic = p.querySelector("#finai-mic"); mic.hidden = false;
+      V.attachMic(q, mic, { onDone: t => go(t), onStatus: vstatus });
+      if (inf.sandboxed) q.placeholder = "Hỏi về vay, tiết kiệm, ngân hàng… (trên điện thoại có thể nói bằng micro của bàn phím)";
+    }
     welcome();
     if (opts.hideWhen) { const upd = () => { const h = opts.hideWhen(); fab.style.display = h ? "none" : ""; if (h) open(false); }; addEventListener("hashchange", upd); upd(); }
   }

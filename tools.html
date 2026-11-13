@@ -356,6 +356,7 @@ footer{color:var(--muted); font-size:12px; padding-top:10px}
   document.querySelectorAll("[data-ask]").forEach(b=>b.addEventListener("click",()=>{ const q=QA[b.dataset.ask](); if(q && window.FinAI) FinAI.openWith(q); }));
 })();
 </script>
+<script src="voice.js"></script>
 <script src="ai-chat.js"></script>
 <script>if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }</script>
 </body>

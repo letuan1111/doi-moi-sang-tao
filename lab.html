@@ -92,6 +92,8 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 .sub{font-family:var(--display); font-size:16px; margin:18px 0 8px}
 .pause{font-family:var(--display); font-size:40px; font-weight:800; text-align:center; font-variant-numeric:tabular-nums}
 .hidden{display:none !important}
+#sc-mic:not([hidden]){display:inline-grid;place-items:center}
+#sc-mic[data-state="listening"]{background:var(--stop);color:#fff;border-color:var(--stop)}
 .toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:999px; font-size:13px; font-weight:600; opacity:0; pointer-events:none; transition:opacity .2s; z-index:10}
 .toast.show{opacity:1}
 .phone{border:2px solid var(--ink); border-radius:22px; padding:14px; background:var(--surface); max-width:320px}
@@ -172,9 +174,11 @@ footer{color:var(--muted); font-size:12px; padding-top:20px}
           <div class="row">
             <button class="btn" type="button" id="sc-run">Phân tích</button>
             <button class="btn ghost small" type="button" id="sc-ex">Dùng ví dụ</button>
+            <button class="btn ghost small" type="button" id="sc-mic" hidden></button>
             <button class="btn ghost small hidden" type="button" id="sc-ai">✦ Hỏi AI phân tích sâu</button>
           </div>
-          <p class="hint">Hãy xóa số tài khoản, số điện thoại, tên thật trước khi bấm "Hỏi AI".</p>
+          <p class="hint">Hãy xóa số tài khoản, số điện thoại, tên thật trước khi bấm "Hỏi AI". Bấm micro để đọc to nội dung một cuộc gọi đáng ngờ, công cụ sẽ chép lại và phân tích.</p>
+          <p class="hint" id="sc-vs" aria-live="polite"></p>
         </div>
         <div class="panel" id="sc-out"><p class="result-empty">Kết quả sẽ hiện ở đây.</p></div>
       </div>
@@ -569,7 +573,15 @@ footer{color:var(--muted); font-size:12px; padding-top:20px}
   if(window.claude && window.claude.use){ claude.use("sample").then(s=>{ if(s){ sample=s; $("#sc-ai").classList.remove("hidden"); } }).catch(()=>{}); }
 })();
 </script>
+<script src="voice.js"></script>
 <script src="ai-chat.js"></script>
-<script>if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }</script>
+<script>
+if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }
+if(window.FinVoice){
+  const b=document.getElementById("sc-mic"); b.hidden=false;
+  FinVoice.attachMic(document.getElementById("sc-text"), b, { onDone: ()=>document.getElementById("sc-run").click(), onStatus: m=>{ document.getElementById("sc-vs").textContent=m||""; } });
+  if(b.hidden) b.remove();
+}
+</script>
 </body>
 </html>

@@ -71,3 +71,14 @@ Nút nổi trên mọi trang. Nạp toàn bộ ý tưởng và dự án vào ng�
 ## Lộ trình thực thi (du-an.html)
 
 Mỗi dự án có `actionGoal` (mục tiêu hành động của trang) và `roadmap` gồm 6 bước `{n, t, owner: "claude"|"nguoi", kind, status: "todo"|"done", out?, doneAt?}`. Kết quả từng bước lưu ở `du-an/<id>/<NN>-<slug>.md`. Một tác vụ tự động hằng ngày chọn bước Claude tiếp theo (dự án ít bước xong nhất trước), thực hiện, lưu kết quả, đánh dấu xong và đăng lên cả GitHub lẫn bản claude.ai.
+
+## Giọng nói (voice.js)
+
+Nói để hỏi Trợ lý AI, nghe AI đọc câu trả lời và tài liệu dự án, đọc nội dung cuộc gọi nghi lừa đảo vào công cụ soi tin nhắn.
+
+| Chế độ | Nhận dạng giọng nói | Đọc to | Ghi chú |
+|---|---|---|---|
+| Nhanh (mặc định) | Web Speech API của trình duyệt (vi-VN) | speechSynthesis, giọng tiếng Việt của máy | Không tải gì. Chrome gửi âm thanh tới máy chủ Google để nhận dạng. |
+| Riêng tư | [Whisper tiny](https://huggingface.co/Xenova/whisper-tiny) chạy trên máy qua [Transformers.js](https://github.com/huggingface/transformers.js) | [MMS-TTS tiếng Việt](https://huggingface.co/Xenova/mms-tts-vie) chạy trên máy | Tải mô hình một lần (~40 MB mỗi mô hình), âm thanh không rời máy. MMS-TTS giấy phép CC-BY-NC 4.0: chỉ dùng phi thương mại. |
+
+Bản claude.ai chạy trong khung bảo mật nên micro và tải mô hình ngoài bị chặn; chỉ có đọc to bằng giọng của trình duyệt.
