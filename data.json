@@ -1211,7 +1211,9 @@
      "t": "Thiết kế luồng đồng ý chia sẻ dữ liệu đúng Luật Bảo vệ dữ liệu cá nhân 2025",
      "owner": "claude",
      "kind": "doc",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj03/03-luong-dong-y-chia-se-du-lieu.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 4,
