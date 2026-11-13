@@ -1118,7 +1118,9 @@
      "t": "Cập nhật tình trạng cấp phép 5 doanh nghiệp và điều kiện cấp phép theo QĐ 96/QĐ-BTC, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj02/02-tinh-trang-cap-phep-va-dieu-kien.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
