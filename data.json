@@ -1374,7 +1374,9 @@
      "t": "Cập nhật hướng dẫn mới nhất của Bộ GD&ĐT về thi trên máy tính, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj05/02-huong-dan-moi-nhat-thi-tren-may-tinh.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
