@@ -306,5 +306,10 @@ ${kbText()}`;
     try { const r = await fetch("data.json", { cache: "no-store" }); const d = await r.json(); setData(d.ideas, d.projects); } catch (e) {}
   }
 
+  /* Ứng dụng web cài đặt được: chỉ đăng ký service worker ngoài khung claude.ai */
+  if ("serviceWorker" in navigator && !(window.claude && window.claude.use) && /^(https:|http:\/\/(localhost|127\.0\.0\.1))/.test(location.href)) {
+    addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
+  }
+
   window.FinAI = { setData, brief, TOOLS, md, sensitive, makeChat, errText, mountWidget, openWith, autoload, getSample, kb: KB };
 })();

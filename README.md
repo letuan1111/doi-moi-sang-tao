@@ -1,3 +1,5 @@
+[![Kiểm thử](https://github.com/letuan1111/doi-moi-sang-tao/actions/workflows/kiem-thu.yml/badge.svg)](https://github.com/letuan1111/doi-moi-sang-tao/actions/workflows/kiem-thu.yml)
+
 # Đổi mới sáng tạo
 
 Trang tổng hợp **ý tưởng** và **dự án đổi mới sáng tạo đang được thực thi** trong giáo dục, nền tảng giao dịch, ngân hàng – fintech, mô hình kinh doanh và khoa học – công nghệ, ở Việt Nam và quốc tế.
@@ -82,3 +84,13 @@ Nói để hỏi Trợ lý AI, nghe AI đọc câu trả lời và tài liệu d
 | Riêng tư | [Whisper tiny](https://huggingface.co/Xenova/whisper-tiny) chạy trên máy qua [Transformers.js](https://github.com/huggingface/transformers.js) | [MMS-TTS tiếng Việt](https://huggingface.co/Xenova/mms-tts-vie) chạy trên máy | Tải mô hình một lần (~40 MB mỗi mô hình), âm thanh không rời máy. MMS-TTS giấy phép CC-BY-NC 4.0: chỉ dùng phi thương mại. |
 
 Bản claude.ai chạy trong khung bảo mật nên micro và tải mô hình ngoài bị chặn; chỉ có đọc to bằng giọng của trình duyệt.
+
+## Kiểm thử tự động
+
+`tests/smoke.py` kiểm tra dữ liệu (id không trùng, tệp kết quả lộ trình tồn tại), mở mọi trang ở cỡ máy tính và điện thoại (không lỗi JS, không tràn ngang) và chạy thử các công cụ chính. GitHub Actions (`.github/workflows/kiem-thu.yml`) chạy bộ kiểm thử sau mỗi lần đẩy lên `main` và mỗi pull request.
+
+Chạy tại máy: `pip install playwright && python -m playwright install chromium && python tests/smoke.py`
+
+## Ứng dụng web (PWA)
+
+Bản GitHub cài được lên màn hình điện thoại và máy tính (`manifest.webmanifest`, biểu tượng `icon.svg`/`icon-*.png`), và vẫn mở được các trang đã xem khi mất mạng (`sw.js`). Có `sitemap.xml`, `robots.txt` và trang `404.html`.

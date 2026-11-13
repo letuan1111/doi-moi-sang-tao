@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://letuan1111.github.io/doi-moi-sang-tao/sitemap.xml
