@@ -1030,7 +1030,9 @@
      "t": "Tổng hợp khung nội dung theo QĐ 2422/QĐ-BGDĐT: 4 mạch, số tiết từng cấp, có trích nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj01/02-khung-noi-dung-qd-2422.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
