@@ -1202,7 +1202,9 @@
      "t": "Lập danh sách ngân hàng đã có cổng Open API và sandbox, yêu cầu của Thông tư 64, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj03/02-ngan-hang-open-api-va-yeu-cau-tt64.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
