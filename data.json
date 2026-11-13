@@ -1286,7 +1286,9 @@
      "t": "Tóm tắt Nghị quyết 20/2026/NQ-HĐND: đối tượng, điều kiện, thủ tục, thời hạn, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj04/02-tom-tat-nghi-quyet-20-2026.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
