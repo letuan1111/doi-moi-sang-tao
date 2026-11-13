@@ -1458,7 +1458,9 @@
      "t": "Tổng hợp bằng chứng hiệu quả và phản biện độc lập về mô hình, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj06/02-bang-chung-va-phan-bien.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
