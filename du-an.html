@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lộ trình thực thi dự án – Đổi mới sáng tạo</title>
+<meta name="description" content="Lộ trình thực thi 12 dự án đổi mới: việc Claude AI làm dần từng bước, việc cần người thực hiện, kết quả đã có.">
+<meta property="og:title" content="Lộ trình thực thi dự án – Đổi mới sáng tạo">
+<meta property="og:description" content="Theo dõi từng bước thực thi, kết quả Claude AI làm ra và việc cần người thực hiện.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: bảng điều phối — dải tổng quan + hàng đợi việc của Claude ở trên, lưới thẻ dự án bên dưới, khung đọc kết quả trượt từ phải */
+:root{
+  --bg:#eef1f7; --surface:#ffffff; --ink:#141a2e; --muted:#5b6480; --line:#d6dbe8;
+  --accent:#2440d6; --accent-ink:#ffffff; --spark:#f2b200; --ok:#14805e; --warn:#b26a00; --grid:rgba(36,64,214,.06);
+  --display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --grid:rgba(123,140,255,.07); color-scheme:dark; } }
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 90px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.01em}
+button,select{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+a{color:var(--accent)}
+header.top{padding:24px 0 14px; display:flex; gap:14px; justify-content:space-between; align-items:flex-end; flex-wrap:wrap}
+header.top h1{font-size:28px; font-weight:800}
+header.top p{margin:4px 0 0; color:var(--muted); font-size:14px; max-width:72ch}
+.links{display:flex; gap:8px; flex-wrap:wrap}
+.back{font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px}
+.overview{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-bottom:14px}
+.stat{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:12px 14px}
+.stat .k{font-size:12px; color:var(--muted); font-weight:600}
+.stat .v{font-family:var(--display); font-size:26px; font-weight:800; font-variant-numeric:tabular-nums}
+.queue{background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--spark); border-radius:var(--r); padding:14px 16px; margin-bottom:16px}
+.queue h2{font-size:17px; margin-bottom:6px}
+.queue ol{margin:0; padding-left:20px; font-size:14px; display:flex; flex-direction:column; gap:3px}
+.queue .hint{font-size:12px; color:var(--muted); margin-top:8px}
+.filters{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+.chip{border:1px solid var(--line); background:var(--surface); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px}
+@media (max-width:420px){ .grid{grid-template-columns:1fr} }
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:16px; display:flex; flex-direction:column; gap:8px; scroll-margin-top:12px}
+.card.flash{outline:3px solid var(--spark)}
+.card .meta{font-size:12px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap}
+.card h3{font-size:17px}
+.goal{font-size:14px; margin:0}
+.goal b{color:var(--accent)}
+.prog{display:flex; align-items:center; gap:8px; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums}
+.track{flex:1; height:8px; background:var(--line); border-radius:999px; overflow:hidden; display:flex; gap:2px}
+.track i{flex:1; background:var(--line)} .track i.done{background:var(--ok)} .track i.next{background:var(--spark)}
+ol.steps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+ol.steps li{display:grid; grid-template-columns:22px 1fr; gap:8px; font-size:13.5px; align-items:start}
+.num{width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:800; border:1.5px solid var(--line); color:var(--muted)}
+li.done .num{background:var(--ok); border-color:var(--ok); color:#fff}
+li.next .num{border-color:var(--spark); color:var(--ink); background:color-mix(in srgb, var(--spark) 30%, transparent)}
+li.done .t{color:var(--muted)}
+.own{display:inline-block; font-size:11px; font-weight:700; padding:0 7px; border-radius:999px; border:1px solid var(--line); margin-left:4px; white-space:nowrap}
+.own.claude{border-color:var(--accent); color:var(--accent)}
+.own.nguoi{border-color:var(--warn); color:var(--warn)}
+.res{background:none; border:0; padding:0; color:var(--accent); font-weight:700; font-size:13px; cursor:pointer; text-decoration:underline; margin-left:4px}
+.card .foot{margin-top:auto; display:flex; justify-content:space-between; gap:8px; font-size:12px; color:var(--muted); flex-wrap:wrap}
+.drawer{position:fixed; inset:0 0 0 auto; width:min(760px,100vw); background:var(--surface); border-left:1px solid var(--line); box-shadow:-20px 0 50px rgba(0,0,0,.25); z-index:60; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .2s}
+.drawer.open{transform:none}
+.drawer .head{display:flex; gap:10px; align-items:center; padding:14px 18px; border-bottom:1px solid var(--line)}
+.drawer .head h2{flex:1; font-size:17px}
+.drawer .head button{border:1px solid var(--line); background:transparent; border-radius:999px; padding:5px 12px; cursor:pointer; font-size:13px}
+.doc{overflow-y:auto; padding:18px 22px 40px; font-size:15px}
+.doc h4{font-family:var(--display); font-size:18px; margin:18px 0 6px}
+.doc p{margin:0 0 10px} .doc ul,.doc ol{margin:0 0 10px; padding-left:22px}
+.doc table{border-collapse:collapse; font-size:13px; margin:8px 0; display:block; overflow-x:auto}
+.doc td{border:1px solid var(--line); padding:5px 8px}
+.doc code{font-size:13px; background:var(--bg); padding:0 4px; border-radius:4px}
+.scrim{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:59; display:none}
+.scrim.open{display:block}
+.empty{color:var(--muted); font-size:14px}
+footer{color:var(--muted); font-size:12px; padding-top:18px}
+@media (prefers-reduced-motion:reduce){ .drawer{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Lộ trình thực thi dự án</h1>
+      <p>Mỗi dự án được chia thành các bước nhỏ. Claude AI làm dần các bước của mình theo lịch tự động hằng ngày, mỗi lần một bước, và đăng kết quả ở đây. Các bước có nhãn "Người" cần bạn hoặc đối tác thực hiện; Claude chuẩn bị tài liệu sẵn.</p>
+    </div>
+    <div class="links"><a class="back" href="index.html#du-an">← Dự án</a><a class="back" href="tools.html">Công cụ tài chính</a><a class="back" href="lab.html">Phòng thử nghiệm</a></div>
+  </header>
+
+  <div class="overview" id="ov"></div>
+  <section class="queue" aria-labelledby="q-h"><h2 id="q-h">Claude sẽ làm tiếp theo</h2><ol id="queue"></ol><div class="hint">Thứ tự ưu tiên: dự án có ít bước hoàn thành nhất được làm trước. Bước của người không chặn các dự án khác.</div></section>
+  <section class="queue" style="border-left-color:var(--warn)" aria-labelledby="n-h"><h2 id="n-h">Việc đang chờ người thực hiện</h2><ol id="human"></ol></section>
+
+  <div class="filters" id="filters" role="group" aria-label="Lọc"></div>
+  <div class="grid" id="grid"><p class="empty">Đang tải…</p></div>
+  <footer>Kết quả do Claude AI soạn là tài liệu tham khảo; số liệu được dẫn nguồn, hãy kiểm tra văn bản gốc trước khi dùng cho quyết định quan trọng.</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="d-title">
+  <div class="head"><h2 id="d-title">Kết quả</h2><button type="button" id="d-ai">✦ Hỏi AI</button><button type="button" id="d-close" aria-label="Đóng">✕</button></div>
+  <article class="doc" id="d-body"></article>
+</aside>
+
+<script src="ai-chat.js"></script>
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const esc = s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  const OWN = {claude:"Claude", nguoi:"Người"};
+  let projects = [], filter = "all";
+
+  function nextStep(p){ return (p.roadmap||[]).find(s=>s.status!=="done"); }
+  function render(){
+    const all = projects.filter(p=>Array.isArray(p.roadmap));
+    const steps = all.flatMap(p=>p.roadmap.map(s=>({p,s})));
+    const cl = steps.filter(x=>x.s.owner==="claude"), hu = steps.filter(x=>x.s.owner==="nguoi");
+    const done = steps.filter(x=>x.s.status==="done");
+    $("#ov").innerHTML = [
+      ["Dự án đang thực thi", all.length],
+      ["Bước Claude đã xong", cl.filter(x=>x.s.status==="done").length+"/"+cl.length],
+      ["Bước người đã xong", hu.filter(x=>x.s.status==="done").length+"/"+hu.length],
+      ["Tiến độ chung", (steps.length? Math.round(done.length/steps.length*100):0)+"%"]
+    ].map(([k,v])=>`<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
+    // Claude queue: next claude step per project, fewest done first
+    const q = all.map(p=>{ const n=nextStep(p); return {p, n, d:p.roadmap.filter(s=>s.status==="done").length}; })
+      .filter(x=>x.n && x.n.owner==="claude").sort((a,b)=>a.d-b.d || a.p.id.localeCompare(b.p.id)).slice(0,5);
+    $("#queue").innerHTML = q.length ? q.map(x=>`<li><b>${esc(x.p.title)}</b>: ${esc(x.n.t)}</li>`).join("") : "<li>Không còn bước nào của Claude đang chờ.</li>";
+    const h = all.map(p=>({p,n:nextStep(p)})).filter(x=>x.n && x.n.owner==="nguoi");
+    $("#human").innerHTML = h.length ? h.map(x=>`<li><b>${esc(x.p.title)}</b>: ${esc(x.n.t)}</li>`).join("") : "<li>Chưa có. Bước của người sẽ hiện ở đây khi các bước trước của Claude xong.</li>";
+    // filters
+    const cats = ["all", ...new Set(all.map(p=>p.category).filter(Boolean))];
+    $("#filters").innerHTML = cats.map(c=>`<button type="button" class="chip" aria-pressed="${c===filter}" data-c="${esc(c)}">${c==="all"?"Tất cả":esc(c)}</button>`).join("");
+    const list = all.filter(p=>filter==="all"||p.category===filter);
+    $("#grid").innerHTML = list.map(card).join("") || '<p class="empty">Không có dự án.</p>';
+  }
+  function card(p){
+    const rm=p.roadmap, n=nextStep(p), d=rm.filter(s=>s.status==="done").length;
+    const last = rm.filter(s=>s.doneAt).map(s=>s.doneAt).sort().pop();
+    return `<article class="card" id="${esc(p.id)}">
+      <div class="meta"><span>${esc(p.category||"")}</span><span>${p.region==="intl"?"Quốc tế":"Việt Nam"}</span></div>
+      <h3>${esc(p.title)}</h3>
+      ${p.actionGoal?`<p class="goal"><b>Mục tiêu hành động:</b> ${esc(p.actionGoal)}</p>`:""}
+      <div class="prog"><div class="track" role="img" aria-label="${d} trên ${rm.length} bước">${rm.map(s=>`<i class="${s.status==="done"?"done":(s===n?"next":"")}"></i>`).join("")}</div>${d}/${rm.length}</div>
+      <ol class="steps">${rm.map(s=>`<li class="${s.status==="done"?"done":(s===n?"next":"")}"><span class="num">${s.status==="done"?"✓":s.n}</span><span class="t">${esc(s.t)}<span class="own ${esc(s.owner)}">${OWN[s.owner]||""}</span>${s.out?`<button type="button" class="res" data-out="${esc(s.out)}" data-p="${esc(p.id)}" data-t="${esc(s.t)}">Xem kết quả</button>`:""}</span></li>`).join("")}</ol>
+      <div class="foot"><span>${n?("Tiếp theo: "+(n.owner==="claude"?"Claude":"người thực hiện")):"Đã hoàn thành lộ trình"}</span><span>${last?"Cập nhật "+esc(last.split("-").reverse().join("/")):""}</span></div>
+    </article>`;
+  }
+
+  /* Drawer */
+  let lastFocus=null, curDoc=null;
+  async function openDoc(path, title, pid){
+    if(!/^du-an\/[a-z0-9_\/.-]+\.md$/i.test(path)) return;
+    lastFocus=document.activeElement;
+    $("#d-title").textContent = title; $("#d-body").innerHTML = "<p>Đang tải…</p>";
+    $("#drawer").classList.add("open"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").classList.add("open"); $("#d-close").focus();
+    try{ const r=await fetch(path,{cache:"no-cache"}); if(!r.ok) throw 0; const t=await r.text(); curDoc={t, title, pid};
+      $("#d-body").innerHTML = window.FinAI ? FinAI.md(t) : "<pre>"+esc(t)+"</pre>";
+      $("#d-body").querySelectorAll("a").forEach(a=>{ a.target="_blank"; a.rel="noopener noreferrer"; });
+    }catch(e){ $("#d-body").innerHTML = "<p>Chưa tải được kết quả. Tệp có thể chưa được đăng lên phiên bản này của trang.</p>"; curDoc=null; }
+  }
+  function closeDoc(){ $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden","true"); $("#scrim").classList.remove("open"); if(lastFocus) lastFocus.focus(); }
+  $("#d-close").onclick=closeDoc; $("#scrim").onclick=closeDoc;
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#drawer").classList.contains("open")) closeDoc(); });
+  $("#d-ai").onclick=()=>{ if(!curDoc||!window.FinAI) return; closeDoc(); FinAI.openWith(`Về kết quả "${curDoc.title}" của dự án ${curDoc.pid}: hãy tóm tắt điểm chính và đề xuất việc nên làm tiếp.`); };
+  document.addEventListener("click",e=>{
+    const b=e.target.closest(".res"); if(b){ openDoc(b.dataset.out, b.dataset.t, b.dataset.p); return; }
+    const c=e.target.closest(".chip"); if(c){ filter=c.dataset.c; render(); }
+  });
+  function focusHash(){ const id=location.hash.slice(1); if(!id) return; const c=document.getElementById(id); if(c){ c.scrollIntoView({block:"start"}); c.classList.add("flash"); setTimeout(()=>c.classList.remove("flash"),1800); } }
+
+  /* Data */
+  function set(list){ projects = (list||[]).slice().sort((a,b)=>String(a.id).localeCompare(String(b.id))); render(); focusHash(); }
+  async function fromStatic(){ try{ const r=await fetch("data.json",{cache:"no-cache"}); const d=await r.json(); set(d.projects); }catch(e){ $("#grid").innerHTML='<p class="empty">Không tải được dữ liệu.</p>'; } }
+  (async function(){
+    if(window.claude && window.claude.use){
+      try{ const db=await claude.use("db"); if(db){ let first=true;
+        db.collection("projects").onSnapshot(s=>{ const a=Array.isArray(s)?s:(s.docs||[]); const list=a.map(d=>(d&&typeof d.data==="function")?Object.assign({id:d.id},d.data()):d).filter(Boolean); if(first||list.length){ first=false; set(list); } }, ()=>fromStatic());
+        return; } }catch(e){}
+    }
+    fromStatic();
+  })();
+  addEventListener("hashchange", focusHash);
+  if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }
+})();
+</script>
+</body>
+</html>

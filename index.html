@@ -66,6 +66,7 @@ header.top{padding:28px 0 18px; display:flex; flex-wrap:wrap; gap:16px; align-it
 nav.tabs{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:4px}
 nav.tabs a{padding:8px 16px; border-radius:999px; text-decoration:none; color:var(--muted); font-weight:600; font-size:14px; white-space:nowrap}
 @media (max-width:520px){ nav.tabs{width:100%; overflow-x:auto} nav.tabs a{padding:8px 12px; font-size:13px; flex:1 0 auto; text-align:center} }
+a.rmlink{font-size:13px; font-weight:700; color:var(--accent); text-decoration:none; align-self:flex-start} a.rmlink:hover{text-decoration:underline}
 nav.tabs a[aria-current="page"]{background:var(--ink); color:var(--bg)}
 
 /* Pipeline */
@@ -280,6 +281,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
       <a href="#ma-tran" data-view="ma-tran">Ma trận ưu tiên</a>
       <a href="#du-an" data-view="du-an">Dự án đang thực thi</a>
       <a href="#tro-ly" data-view="tro-ly">✦ Trợ lý AI</a>
+      <a href="du-an.html">Lộ trình thực thi</a>
       <a href="tools.html">Công cụ tài chính</a>
       <a href="lab.html">Phòng thử nghiệm</a>
     </nav>
@@ -764,6 +766,7 @@ footer{color:var(--muted); font-size:12px; padding:30px 0 40px}
         el("div",{class:"prog"}, el("div",{class:"track",role:"progressbar","aria-valuenow":pct,"aria-valuemin":0,"aria-valuemax":100,"aria-label":"Tiến độ"}, el("i",{style:"width:"+pct+"%"})), el("b",{}, pct+"%")),
         kv.childNodes.length? kv : null,
         ms.length? msList : null,
+        Array.isArray(p.roadmap)&&p.roadmap.length ? el("a",{class:"rmlink",href:"du-an.html#"+encodeURIComponent(p.id)}, "Lộ trình thực thi: "+p.roadmap.filter(r=>r.status==="done").length+"/"+p.roadmap.length+" bước →") : null,
         el("div",{class:"foot"}, el("span",{class:"meta"}, "Cập nhật "+fmtDate(p.updatedAt||p.createdAt)), acts)
       );
   }

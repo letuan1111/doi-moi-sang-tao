@@ -67,3 +67,7 @@ Mỗi công cụ có nút "Hỏi AI" gửi kết quả hiện tại sang Trợ l
 ## Trợ lý AI tài chính (ai-chat.js)
 
 Nút nổi trên mọi trang. Nạp toàn bộ ý tưởng và dự án vào ngữ cảnh, có công cụ: tìm kho, xem chi tiết, tính vay, tính tiết kiệm, chấm điểm rủi ro giao dịch, soi tin nhắn lừa đảo. Chặn gửi câu hỏi chứa số thẻ, số tài khoản, mật khẩu.
+
+## Lộ trình thực thi (du-an.html)
+
+Mỗi dự án có `actionGoal` (mục tiêu hành động của trang) và `roadmap` gồm 6 bước `{n, t, owner: "claude"|"nguoi", kind, status: "todo"|"done", out?, doneAt?}`. Kết quả từng bước lưu ở `du-an/<id>/<NN>-<slug>.md`. Một tác vụ tự động hằng ngày chọn bước Claude tiếp theo (dự án ít bước xong nhất trước), thực hiện, lưu kết quả, đánh dấu xong và đăng lên cả GitHub lẫn bản claude.ai.

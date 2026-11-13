@@ -1,5 +1,5 @@
 {
- "updated": "12/11/2026",
+ "updated": "13/11/2026",
  "ideas": [
   {
    "id": "gd01",
@@ -1013,7 +1013,54 @@
    "start": "2025-12-01",
    "summary": "Đưa nội dung giáo dục trí tuệ nhân tạo vào toàn bộ trường phổ thông từ lớp 1 đến lớp 12, theo khung gồm 4 mạch: tư duy lấy con người làm trung tâm, đạo đức AI, kỹ thuật và ứng dụng AI, thiết kế hệ thống AI.",
    "title": "Giáo dục AI đại trà cho học sinh phổ thông",
-   "updatedAt": 1794480000000
+   "updatedAt": 1794480000000,
+   "actionGoal": "Đưa giáo dục AI vào lớp học thật: giáo án mẫu và học liệu tương tác miễn phí cho giáo viên",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj01/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tổng hợp khung nội dung theo QĐ 2422/QĐ-BGDĐT: 4 mạch, số tiết từng cấp, có trích nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Soạn bộ 3 giáo án mẫu về đạo đức AI và dùng AI an toàn cho lớp 6",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Xây trang \"Lớp học AI\" trên web: bài học ngắn và câu hỏi tương tác cho học sinh",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Dạy thử với một lớp học thật, thu phiếu phản hồi giáo viên và học sinh",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Tổng hợp phản hồi, chỉnh sửa giáo án, báo cáo kết quả",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj02",
@@ -1052,7 +1099,54 @@
    "start": "2026-01-01",
    "summary": "Đưa tài sản mã hóa ra khỏi \"vùng xám\" pháp lý bằng cơ chế thí điểm sàn giao dịch do doanh nghiệp Việt vận hành. Bộ Tài chính đã chấp thuận nguyên tắc cho 5 doanh nghiệp, trong đó có TCEX (Techcom), CAEX (VPBank), VIXEX.",
    "title": "Thí điểm thị trường giao dịch tài sản mã hóa tại Việt Nam",
-   "updatedAt": 1794479000000
+   "updatedAt": 1794479000000,
+   "actionGoal": "Giúp nhà đầu tư nhỏ phân biệt sàn tài sản mã hóa hợp pháp và sàn lừa đảo trong giai đoạn thí điểm",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj02/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Cập nhật tình trạng cấp phép 5 doanh nghiệp và điều kiện cấp phép theo QĐ 96/QĐ-BTC, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Bảng so sánh khung pháp lý Việt Nam với EU (MiCA) và Singapore",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Công cụ \"Kiểm tra sàn trước khi nạp tiền\": danh sách dấu hiệu sàn lừa đảo, câu hỏi tự kiểm tra",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Nhờ luật sư hoặc chuyên gia tài chính phản biện nội dung",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Theo dõi khi sàn đầu tiên vận hành, cập nhật công cụ và báo cáo",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj03",
@@ -1087,7 +1181,54 @@
    "start": "2025-03-01",
    "summary": "Chuẩn hóa kết nối giữa ngân hàng với fintech và doanh nghiệp qua giao diện lập trình mở, làm nền cho tài chính nhúng và BaaS. Nhiều ngân hàng đã ra mắt cổng Open API, nhưng vẫn còn đơn vị chậm chân.",
    "title": "Ngân hàng mở (Open API) theo Thông tư 64/2024/TT-NHNN",
-   "updatedAt": 1794478000000
+   "updatedAt": 1794478000000,
+   "actionGoal": "Mẫu sản phẩm tài chính nhúng qua Open API, đặt quyền đồng ý của khách hàng lên trước",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj03/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Lập danh sách ngân hàng đã có cổng Open API và sandbox, yêu cầu của Thông tư 64, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Thiết kế luồng đồng ý chia sẻ dữ liệu đúng Luật Bảo vệ dữ liệu cá nhân 2025",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Demo ứng dụng quản lý chi tiêu dùng API giả lập, có màn hình cấp và thu hồi quyền",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Đăng ký sandbox của một ngân hàng thật để thử kết nối",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Đánh giá kết quả, viết hướng dẫn cho startup fintech",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj04",
@@ -1122,7 +1263,54 @@
    "start": "2026-01-01",
    "summary": "Theo Nghị quyết 20/2026/NQ-HĐND, Đà Nẵng cho doanh nghiệp thử nghiệm giải pháp công nghệ chưa có quy định trong phạm vi và thời gian giới hạn, nhằm rút ngắn khoảng cách từ phòng thí nghiệm đến thị trường. Hai giải pháp blockchain đầu tiên đã được cấp phép.",
    "title": "Sandbox blockchain Đà Nẵng: Basal Pay và MIMO",
-   "updatedAt": 1794477000000
+   "updatedAt": 1794477000000,
+   "actionGoal": "Bộ hồ sơ mẫu giúp startup Việt đăng ký thử nghiệm có kiểm soát (sandbox) tại Đà Nẵng",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj04/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tóm tắt Nghị quyết 20/2026/NQ-HĐND: đối tượng, điều kiện, thủ tục, thời hạn, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Soạn hồ sơ mẫu đăng ký sandbox cho một giải pháp fintech giả định",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Bộ chỉ số và checklist rủi ro để đánh giá một đợt sandbox",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Liên hệ Sở Khoa học và Công nghệ Đà Nẵng hoặc một startup để góp ý hồ sơ",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Theo dõi kết quả Basal Pay và MIMO, báo cáo bài học",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj05",
@@ -1157,7 +1345,54 @@
    "start": "2026-09-01",
    "summary": "Bộ GD&ĐT yêu cầu các địa phương chuẩn bị điều kiện để từng bước thí điểm thi tốt nghiệp THPT trên máy tính từ năm 2027.",
    "title": "Thi tốt nghiệp THPT trên máy tính",
-   "updatedAt": 1794476000000
+   "updatedAt": 1794476000000,
+   "actionGoal": "Phòng thi thử trên máy tính giúp học sinh làm quen trước kỳ thi tốt nghiệp 2027",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj05/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Cập nhật hướng dẫn mới nhất của Bộ GD&ĐT về thi trên máy tính, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Xây \"Phòng thi thử\" trên web: đề trắc nghiệm, đồng hồ, chấm điểm, xem lại đáp án",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Cẩm nang chuẩn bị cho học sinh và nhà trường",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Cho một nhóm học sinh thi thử, thu phản hồi về giao diện",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Chỉnh sửa theo phản hồi, báo cáo kết quả",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj06",
@@ -1192,7 +1427,54 @@
    "start": "",
    "summary": "Học sinh học kiến thức cốt lõi khoảng 2 giờ/ngày trên phần mềm thích ứng theo mức thành thạo, thời gian còn lại dành cho dự án, kỹ năng sống và thể thao. Mô hình đang được cấp phép cho trường khác, nhưng vẫn gây tranh cãi: một số bang từ chối hồ sơ trường charter và giới phê bình cho rằng thiếu bằng chứng nghiên cứu chặt chẽ.",
    "title": "Mô hình \"2 Hour Learning\" của Alpha School (Mỹ)",
-   "updatedAt": 1794475000000
+   "updatedAt": 1794475000000,
+   "actionGoal": "Thiết kế mô hình học theo mức thành thạo kiểu \"2 giờ mỗi ngày\" phù hợp Việt Nam và thí điểm nhỏ",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj06/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tổng hợp bằng chứng hiệu quả và phản biện độc lập về mô hình, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Kế hoạch kinh doanh thí điểm cho một trung tâm học thêm: chi phí, giá, vận hành",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Mẫu bài học theo mức thành thạo cho một chủ đề Toán lớp 6 trên web",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Thí điểm 4 tuần với khoảng 10 học sinh, đo điểm trước và sau",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Phân tích kết quả, quyết định mở rộng hay dừng",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj07",
@@ -1223,7 +1505,54 @@
    "start": "2026-05-01",
    "summary": "Tháng 5/2026 Zendesk tái cấu trúc giá AI thành 3 tầng: chuyển tiếp và xử lý có hỗ trợ được miễn phí, chỉ tính tiền khi yêu cầu được xác minh là đã giải quyết. Trường hợp điển hình của mô hình kinh doanh trả theo kết quả.",
    "title": "Zendesk chuyển sang tính phí AI theo kết quả",
-   "updatedAt": 1794474000000
+   "updatedAt": 1794474000000,
+   "actionGoal": "Áp dụng định giá theo kết quả cho doanh nghiệp phần mềm và dịch vụ AI tại Việt Nam",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj07/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tổng hợp các mô hình định giá theo kết quả trên thế giới, ưu nhược điểm, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Khung chọn mô hình giá: theo người dùng, theo mức dùng, theo kết quả",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Công cụ so sánh doanh thu khi tính giá theo người dùng và theo kết quả",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Phỏng vấn 5 doanh nghiệp phần mềm về khả năng áp dụng",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Tổng hợp phỏng vấn, báo cáo khuyến nghị",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj08",
@@ -1262,7 +1591,54 @@
    "start": "2025-12-26",
    "summary": "Bộ Nông nghiệp và Môi trường vận hành hệ thống truy xuất nguồn gốc nông sản, thí điểm trước với sầu riêng xuất khẩu. Đến giữa tháng 6/2026 đã truy xuất 18.500 sản phẩm của 547 nông hộ; Bộ đã gửi công hàm tới Hải quan Trung Quốc để hướng tới công nhận dữ liệu. Đây là nền tảng cho nhiều mô hình dịch vụ xuất khẩu.",
    "title": "Hệ thống truy xuất nguồn gốc nông sản quốc gia",
-   "updatedAt": 1794496000000
+   "updatedAt": 1794496000000,
+   "actionGoal": "Hướng dẫn hợp tác xã nông sản tham gia truy xuất nguồn gốc để xuất khẩu",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj08/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Cập nhật tiến độ hệ thống truy xuất quốc gia và yêu cầu của thị trường Trung Quốc, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Cẩm nang từng bước cho hợp tác xã: mã vùng trồng, nhật ký canh tác, tem truy xuất",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Demo trang truy xuất một lô hàng giả lập qua mã QR",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Thử cẩm nang với một hợp tác xã, ghi lại khó khăn thực tế",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Chỉnh sửa cẩm nang, báo cáo kết quả",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj09",
@@ -1301,7 +1677,54 @@
     }
    ],
    "sourceUrl": "https://thitruongtaichinhtiente.vn/loai-bo-tai-khoan-ao-tai-khoan-rac-ngan-chan-lua-dao-trong-linh-vuc-ngan-hang-86857.html",
-   "sourceName": "Thị trường Tài chính Tiền tệ"
+   "sourceName": "Thị trường Tài chính Tiền tệ",
+   "actionGoal": "Bổ trợ SIMO từ phía người dùng: nhận diện kịch bản lừa đảo mới và truyền thông cho người dễ bị tổn thương",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj09/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Cập nhật số liệu SIMO và các kịch bản lừa đảo mới nhất được cảnh báo, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Mở rộng bộ luật soi tin nhắn trong Phòng thử nghiệm với kịch bản mới",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Bộ tài liệu truyền thông cho người cao tuổi: tờ rơi, tin nhắn mẫu cho con cháu gửi bố mẹ",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Chia sẻ tài liệu qua nhóm cộng đồng hoặc ngân hàng, thu phản hồi",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Theo dõi kết quả, báo cáo",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj10",
@@ -1340,7 +1763,54 @@
     }
    ],
    "sourceUrl": "https://doanhnghiephoinhap.vn/nhieu-giai-phap-chong-lua-dao-lay-tien-trong-tai-khoan-ngan-hang-nam-2025-94372.html",
-   "sourceName": "Doanh nghiệp Hội nhập"
+   "sourceName": "Doanh nghiệp Hội nhập",
+   "actionGoal": "Bộ kiểm tra chống deepfake cho quy trình xác thực sinh trắc học",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj10/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tổng hợp các thủ đoạn vượt sinh trắc học và deepfake đã ghi nhận, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Checklist phòng thủ nhiều lớp cho ngân hàng và ví điện tử",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Mô phỏng trong Phòng thử nghiệm: các lớp kiểm tra thiết bị, camera, hành vi",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Nhờ chuyên gia bảo mật phản biện checklist",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Hoàn thiện, báo cáo",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj11",
@@ -1375,7 +1845,54 @@
     }
    ],
    "sourceUrl": "https://sbv.gov.vn/en/w/tri%E1%BB%83n-khai-thi-h%C3%A0nh-lu%E1%BA%ADt-b%E1%BA%A3o-v%E1%BB%87-d%E1%BB%AF-li%E1%BB%87u-c%C3%A1-nh%C3%A2n-1",
-   "sourceName": "Ngân hàng Nhà nước"
+   "sourceName": "Ngân hàng Nhà nước",
+   "actionGoal": "Bộ công cụ tuân thủ Luật Bảo vệ dữ liệu cá nhân cho doanh nghiệp tài chính nhỏ",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj11/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tổng hợp nghĩa vụ chính trong Luật 91/2025 và Nghị định 356/2025, dẫn điều khoản",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Bộ mẫu: chính sách quyền riêng tư, mẫu xin đồng ý, sổ nhật ký xử lý dữ liệu",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Nâng cổng \"Dữ liệu của tôi\" thành bộ tự đánh giá gắn từng điều khoản",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Nhờ luật sư rà soát bộ mẫu",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Cập nhật theo góp ý, báo cáo",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   },
   {
    "id": "pj12",
@@ -1414,7 +1931,54 @@
     }
    ],
    "sourceUrl": "https://www.psr.org.uk/news-and-updates/latest-news/news/fraud-victims-get-243-million-back-as-psr-marks-a-year-of-progress/",
-   "sourceName": "Payment Systems Regulator (Anh)"
+   "sourceName": "Payment Systems Regulator (Anh)",
+   "actionGoal": "Đề xuất cơ chế hoàn tiền nạn nhân lừa đảo chuyển khoản phù hợp Việt Nam, học từ Anh",
+   "roadmap": [
+    {
+     "n": 1,
+     "t": "Hồ sơ dự án và kế hoạch hành động",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "done",
+     "out": "du-an/pj12/01-ho-so.md",
+     "doneAt": "2026-11-13"
+    },
+    {
+     "n": 2,
+     "t": "Tóm tắt đánh giá độc lập 7/2026 và số liệu mới nhất của Anh, có nguồn",
+     "owner": "claude",
+     "kind": "research",
+     "status": "todo"
+    },
+    {
+     "n": 3,
+     "t": "Dự thảo đề xuất chính sách cho Việt Nam: phạm vi, mức hoàn, chia trách nhiệm",
+     "owner": "claude",
+     "kind": "doc",
+     "status": "todo"
+    },
+    {
+     "n": 4,
+     "t": "Mô phỏng chia sẻ tổn thất giữa ngân hàng gửi, ngân hàng nhận và khách hàng",
+     "owner": "claude",
+     "kind": "build",
+     "status": "todo"
+    },
+    {
+     "n": 5,
+     "t": "Gửi đề xuất cho chuyên gia hoặc hiệp hội để lấy ý kiến",
+     "owner": "nguoi",
+     "kind": "field",
+     "status": "todo"
+    },
+    {
+     "n": 6,
+     "t": "Tổng hợp ý kiến, báo cáo",
+     "owner": "claude",
+     "kind": "report",
+     "status": "todo"
+    }
+   ]
   }
  ]
 }
