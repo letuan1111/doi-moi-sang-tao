@@ -29,7 +29,7 @@
 - Singapore: Khung chia sẻ trách nhiệm (SRF) từ 16/12/2024 giữa ngân hàng và nhà mạng với lừa đảo phishing.
 - Deepfake: tấn công "injection" có thể vượt kiểm tra liveness; cần phòng thủ nhiều lớp. Passkey (FIDO) chống lừa đảo tốt hơn OTP.`;
 
-  const LAB = `Phòng thử nghiệm của trang (lab.html) có 6 công cụ người dùng tự thử được: (1) Kiểm tra người nhận (so tên, danh sách cảnh báo), (2) Chấm điểm rủi ro giao dịch theo tầng, (3) Soi tin nhắn lừa đảo, (4) Xác minh cuộc gọi ngân hàng, (5) Passkey thay OTP, (6) "Dữ liệu của tôi" – đồng ý, yêu cầu quyền, nhật ký, tự đánh giá tuân thủ. Gợi ý người dùng mở công cụ phù hợp khi liên quan.`;
+  const LAB = `Phòng thử nghiệm của trang (lab.html) có 6 công cụ người dùng tự thử được: (1) Kiểm tra người nhận (so tên, danh sách cảnh báo), (2) Chấm điểm rủi ro giao dịch theo tầng, (3) Soi tin nhắn lừa đảo, (4) Xác minh cuộc gọi ngân hàng, (5) Passkey thay OTP, (6) "Dữ liệu của tôi" – đồng ý, yêu cầu quyền, nhật ký, tự đánh giá tuân thủ. Trang Công cụ tài chính (tools.html) có: máy tính khoản vay và lịch trả nợ (trả đều / gốc đều, trả thêm), so sánh gói vay lãi ưu đãi rồi thả nổi kèm phí, tiết kiệm theo mục tiêu có lạm phát, ngân sách 50/30/20 và quỹ khẩn cấp. Gợi ý người dùng mở công cụ phù hợp khi liên quan.`;
 
   function brief(){
     return `Bạn là "Trợ lý AI Tài chính" của trang Đổi mới sáng tạo. Bạn đã được nạp TOÀN BỘ dữ liệu của trang (bên dưới) và trả lời mọi câu hỏi thuộc lĩnh vực tài chính: ngân hàng, fintech, thanh toán, tín dụng và vay vốn, tiết kiệm, tài chính cá nhân và gia đình, tài chính doanh nghiệp và khởi nghiệp (dòng tiền, gọi vốn, mô hình doanh thu), đầu tư (kiến thức nền), bảo hiểm, bảo mật – chống lừa đảo, dữ liệu cá nhân, chính sách tiền tệ và quy định tài chính ở Việt Nam và quốc tế.
@@ -215,6 +215,8 @@ ${kbText()}`;
 .finai-note{font-size:11px;color:var(--muted,#666);padding:0 12px 8px}
 @media print{#finai-fab,#finai-panel{display:none!important}}`;
 
+  let openWithImpl = null;
+  function openWith(q){ if (openWithImpl) openWithImpl(q); }
   function mountWidget(opts){
     opts = opts || {};
     if (document.getElementById("finai-fab")) return;
@@ -255,6 +257,7 @@ ${kbText()}`;
     p.addEventListener("keydown", e => { if (e.key === "Escape") { open(false); fab.focus(); } });
     p.querySelector("#finai-form").addEventListener("submit", e => { e.preventDefault(); go(q.value); });
     q.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); go(q.value); } });
+    openWithImpl = text => { open(true); q.value = text; go(text); };
     welcome();
     if (opts.hideWhen) { const upd = () => { const h = opts.hideWhen(); fab.style.display = h ? "none" : ""; if (h) open(false); }; addEventListener("hashchange", upd); upd(); }
   }
@@ -274,5 +277,5 @@ ${kbText()}`;
     try { const r = await fetch("data.json", { cache: "no-store" }); const d = await r.json(); setData(d.ideas, d.projects); } catch (e) {}
   }
 
-  window.FinAI = { setData, brief, TOOLS, md, sensitive, makeChat, errText, mountWidget, autoload, getSample, kb: KB };
+  window.FinAI = { setData, brief, TOOLS, md, sensitive, makeChat, errText, mountWidget, openWith, autoload, getSample, kb: KB };
 })();

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Công cụ tài chính – Đổi mới sáng tạo</title>
+<meta name="description" content="Máy tính khoản vay có lịch trả nợ, so sánh gói vay lãi ưu đãi, kế hoạch tiết kiệm theo mục tiêu, ngân sách 50/30/20 và quỹ khẩn cấp. Chạy trên trình duyệt, không gửi dữ liệu đi.">
+<meta property="og:title" content="Công cụ tài chính – Đổi mới sáng tạo">
+<meta property="og:description" content="Tính khoản vay, so sánh gói vay, lập kế hoạch tiết kiệm và ngân sách, ngay trên trình duyệt.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: bàn tính — mỗi công cụ là một thẻ hai cột: tham số bên trái, kết quả lớn + biểu đồ bên phải */
+:root{
+  --bg:#eef1f7; --surface:#ffffff; --ink:#141a2e; --muted:#5b6480; --line:#d6dbe8;
+  --accent:#2440d6; --accent-ink:#ffffff; --spark:#f2b200; --ok:#14805e; --warn:#b26a00; --stop:#b3261e;
+  --s1:#2440d6; --s2:#c2570c; --grid:rgba(36,64,214,.06); --gridline:#e3e7f0;
+  --display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --s1:#6b7cf5; --s2:#cc7a30; --grid:rgba(123,140,255,.07); --gridline:#252c48; color-scheme:dark; } }
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px 90px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.01em}
+button,input,select{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+a{color:var(--accent)}
+header.top{padding:24px 0 14px; display:flex; gap:14px; justify-content:space-between; align-items:flex-end; flex-wrap:wrap}
+header.top h1{font-size:28px; font-weight:800}
+header.top p{margin:4px 0 0; color:var(--muted); font-size:14px; max-width:70ch}
+.links{display:flex; gap:8px; flex-wrap:wrap}
+.back{font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px}
+nav.jump{display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; margin-bottom:14px}
+nav.jump a{white-space:nowrap; text-decoration:none; color:var(--ink); background:var(--surface); border:1px solid var(--line); padding:7px 14px; border-radius:999px; font-weight:600; font-size:14px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px; scroll-margin-top:12px}
+.card > h2{font-size:22px}
+.lead{margin:4px 0 14px; color:var(--muted); font-size:14px; max-width:80ch}
+.cols{display:grid; grid-template-columns:300px minmax(0,1fr); gap:18px}
+@media (max-width:860px){ .cols{grid-template-columns:1fr} }
+.field{display:flex; flex-direction:column; gap:4px; margin-bottom:10px}
+.field label{font-size:13px; font-weight:600}
+.field input,.field select{padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg); width:100%; font-variant-numeric:tabular-nums}
+.field .hint{font-size:12px; color:var(--muted)}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:12px}
+.stat{border:1px solid var(--line); border-radius:var(--r); padding:10px 12px; background:var(--bg)}
+.stat .k{font-size:12px; color:var(--muted); font-weight:600}
+.stat .v{font-family:var(--display); font-size:22px; font-weight:800; font-variant-numeric:tabular-nums; line-height:1.2; margin-top:2px; overflow-wrap:anywhere}
+.stat .s{font-size:12px; color:var(--muted)}
+.btn{border:0; background:var(--accent); color:var(--accent-ink); padding:9px 16px; border-radius:999px; font-weight:700; cursor:pointer; font-size:14px}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.btn.small{padding:6px 12px; font-size:13px}
+.row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.chart{position:relative; margin-top:6px}
+.chart svg{display:block; width:100%; height:auto; overflow:visible}
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:var(--muted); margin:4px 0}
+.legend span{display:inline-flex; gap:6px; align-items:center}
+.legend i{width:14px; height:3px; border-radius:2px; display:inline-block}
+.tip{position:absolute; pointer-events:none; background:var(--ink); color:var(--bg); font-size:12px; padding:6px 9px; border-radius:8px; white-space:nowrap; transform:translate(-50%,-110%); opacity:0; transition:opacity .1s; font-variant-numeric:tabular-nums; z-index:2}
+.tip b{display:block; font-weight:700}
+table{width:100%; border-collapse:collapse; font-size:13px}
+th,td{text-align:right; padding:6px 8px; border-bottom:1px solid var(--line); font-variant-numeric:tabular-nums; white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-size:12px; color:var(--muted); font-weight:600}
+tr.best td{font-weight:700}
+.tablewrap{overflow-x:auto; max-height:360px; overflow-y:auto; border:1px solid var(--line); border-radius:8px}
+.tablewrap thead th{position:sticky; top:0; background:var(--surface)}
+details summary{cursor:pointer; font-weight:600; font-size:14px; margin:10px 0 6px}
+.note{font-size:12px; color:var(--muted); margin:10px 0 0}
+.pill{font-size:12px; font-weight:700; padding:2px 8px; border-radius:999px; background:var(--ok); color:#fff}
+.offers{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-bottom:12px}
+.offer{border:1px solid var(--line); border-radius:var(--r); padding:12px; background:var(--bg)}
+.offer h3{font-size:15px; margin-bottom:8px}
+.offer .field input{background:var(--surface)}
+.bar{height:12px; border-radius:999px; background:var(--line); overflow:hidden; display:flex; gap:2px}
+.bar i{display:block; height:100%}
+.alloc{display:grid; gap:10px}
+.alloc .r{display:grid; grid-template-columns:150px 1fr auto; gap:10px; align-items:center; font-size:14px}
+@media (max-width:520px){ .alloc .r{grid-template-columns:1fr auto} .alloc .r .bar{grid-column:1/-1} }
+.alloc .r b{font-variant-numeric:tabular-nums}
+.askai{margin-top:12px}
+footer{color:var(--muted); font-size:12px; padding-top:10px}
+@media print{ nav.jump,.askai,.links{display:none} .card{break-inside:avoid} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Công cụ tài chính</h1>
+      <p>Tính trước khi ký: khoản vay trả bao nhiêu mỗi tháng, gói lãi ưu đãi nào thật sự rẻ, cần để dành bao nhiêu để đạt mục tiêu, chia thu nhập thế nào. Mọi phép tính chạy trên trình duyệt của bạn, không gửi số liệu đi đâu.</p>
+    </div>
+    <div class="links"><a class="back" href="index.html">← Ý tưởng</a><a class="back" href="lab.html">Phòng thử nghiệm</a></div>
+  </header>
+  <nav class="jump" aria-label="Công cụ">
+    <a href="#vay">Khoản vay</a><a href="#so-sanh">So sánh gói vay</a><a href="#tiet-kiem">Tiết kiệm theo mục tiêu</a><a href="#ngan-sach">Ngân sách 50/30/20</a>
+  </nav>
+
+  <!-- 1. Loan -->
+  <section class="card" id="vay">
+    <h2>Khoản vay và lịch trả nợ</h2>
+    <p class="lead">So sánh hai cách tính phổ biến: trả góp đều mỗi tháng và trả gốc đều, lãi tính trên dư nợ giảm dần. Thêm khoản trả thêm hằng tháng để xem rút ngắn được bao lâu.</p>
+    <div class="cols">
+      <form id="f-loan" autocomplete="off">
+        <div class="field"><label for="l-p">Số tiền vay (đồng)</label><input id="l-p" inputmode="numeric" value="500.000.000"></div>
+        <div class="two">
+          <div class="field"><label for="l-r">Lãi suất (%/năm)</label><input id="l-r" inputmode="decimal" value="9"></div>
+          <div class="field"><label for="l-y">Thời hạn (năm)</label><input id="l-y" inputmode="decimal" value="15"></div>
+        </div>
+        <div class="field"><label for="l-x">Trả thêm vào gốc mỗi tháng (đồng)</label><input id="l-x" inputmode="numeric" value="0"><span class="hint">Kiểm tra phí trả nợ trước hạn trong hợp đồng.</span></div>
+        <div class="field"><label for="l-show">Lịch trả nợ hiển thị theo</label><select id="l-show"><option value="a">Trả góp đều</option><option value="d">Gốc đều, dư nợ giảm dần</option></select></div>
+      </form>
+      <div>
+        <div class="stats" id="l-stats"></div>
+        <div class="legend" id="l-legend"></div>
+        <div class="chart" id="l-chart"></div>
+        <details><summary>Xem lịch trả nợ chi tiết</summary>
+          <div class="row" style="margin-bottom:6px"><button class="btn ghost small" type="button" id="l-csv">Sao chép bảng (CSV)</button></div>
+          <div class="tablewrap"><table><thead><tr><th>Kỳ</th><th>Trả kỳ này</th><th>Gốc</th><th>Lãi</th><th>Dư nợ còn</th></tr></thead><tbody id="l-table"></tbody></table></div>
+        </details>
+        <button class="btn ghost small askai" type="button" data-ask="loan">✦ Hỏi AI về khoản vay này</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Compare offers -->
+  <section class="card" id="so-sanh">
+    <h2>So sánh gói vay có lãi ưu đãi</h2>
+    <p class="lead">Nhiều gói vay mua nhà, mua xe quảng cáo lãi thấp trong năm đầu, sau đó thả nổi bằng lãi cơ sở cộng biên độ. Nhập lãi dự kiến sau ưu đãi và phí để thấy tổng chi phí thật trên cả thời hạn.</p>
+    <div class="row" style="margin-bottom:10px">
+      <div class="field" style="margin:0;min-width:200px"><label for="c-p">Số tiền vay (đồng)</label><input id="c-p" inputmode="numeric" value="1.000.000.000"></div>
+      <div class="field" style="margin:0;width:140px"><label for="c-y">Thời hạn (năm)</label><input id="c-y" inputmode="decimal" value="20"></div>
+    </div>
+    <div class="offers" id="c-offers"></div>
+    <div class="tablewrap" style="max-height:none"><table><thead><tr><th>Gói</th><th>Trả tháng đầu</th><th>Trả tháng sau ưu đãi</th><th>Tổng lãi</th><th>Phí</th><th>Tổng chi phí vay</th></tr></thead><tbody id="c-table"></tbody></table></div>
+    <p class="note">Giả định: trả góp đều, lãi sau ưu đãi giữ cố định đến hết hạn (thực tế thả nổi theo thị trường). Lãi suất trong ô là ví dụ, không phải lãi suất hiện hành của ngân hàng nào. Hãy hỏi ngân hàng công thức lãi thả nổi, phí trả trước hạn và bảo hiểm đi kèm.</p>
+    <button class="btn ghost small askai" type="button" data-ask="compare">✦ Hỏi AI nên chọn gói nào</button>
+  </section>
+
+  <!-- 3. Savings goal -->
+  <section class="card" id="tiet-kiem">
+    <h2>Tiết kiệm theo mục tiêu</h2>
+    <p class="lead">Đặt mục tiêu (mua nhà, học phí, quỹ hưu) và thời gian, công cụ tính số tiền cần để dành mỗi tháng với lãi kép, có tính lạm phát để mục tiêu giữ nguyên sức mua.</p>
+    <div class="cols">
+      <form id="f-sav" autocomplete="off">
+        <div class="field"><label for="s-g">Mục tiêu theo giá hôm nay (đồng)</label><input id="s-g" inputmode="numeric" value="1.000.000.000"></div>
+        <div class="two">
+          <div class="field"><label for="s-y">Sau bao nhiêu năm</label><input id="s-y" inputmode="decimal" value="8"></div>
+          <div class="field"><label for="s-r">Lợi suất (%/năm)</label><input id="s-r" inputmode="decimal" value="6"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="s-i">Đã có sẵn (đồng)</label><input id="s-i" inputmode="numeric" value="100.000.000"></div>
+          <div class="field"><label for="s-inf">Lạm phát (%/năm)</label><input id="s-inf" inputmode="decimal" value="3.5"></div>
+        </div>
+      </form>
+      <div>
+        <div class="stats" id="s-stats"></div>
+        <div class="legend" id="s-legend"></div>
+        <div class="chart" id="s-chart"></div>
+        <p class="note">Giả định: góp cuối mỗi tháng, lãi nhập gốc hằng tháng, lợi suất và lạm phát cố định, chưa trừ thuế, phí. Lợi suất cao hơn thường đi kèm rủi ro cao hơn.</p>
+        <button class="btn ghost small askai" type="button" data-ask="sav">✦ Hỏi AI cách đạt mục tiêu này</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Budget -->
+  <section class="card" id="ngan-sach">
+    <h2>Ngân sách 50/30/20 và quỹ khẩn cấp</h2>
+    <p class="lead">Quy tắc phổ biến để bắt đầu: 50% thu nhập cho nhu cầu thiết yếu, 30% cho mong muốn, 20% cho tiết kiệm và trả nợ. Điều chỉnh tỷ lệ theo hoàn cảnh của bạn.</p>
+    <div class="cols">
+      <form id="f-bud" autocomplete="off">
+        <div class="field"><label for="b-inc">Thu nhập sau thuế mỗi tháng (đồng)</label><input id="b-inc" inputmode="numeric" value="25.000.000"></div>
+        <div class="two">
+          <div class="field"><label for="b-n">Thiết yếu (%)</label><input id="b-n" inputmode="numeric" value="50"></div>
+          <div class="field"><label for="b-w">Mong muốn (%)</label><input id="b-w" inputmode="numeric" value="30"></div>
+        </div>
+        <div class="field"><label for="b-debt">Đang trả nợ mỗi tháng (đồng)</label><input id="b-debt" inputmode="numeric" value="5.071.000"><span class="hint">Tổng các khoản trả góp, thẻ tín dụng.</span></div>
+        <div class="two">
+          <div class="field"><label for="b-ef">Quỹ khẩn cấp đang có</label><input id="b-ef" inputmode="numeric" value="20.000.000"></div>
+          <div class="field"><label for="b-m">Mục tiêu (tháng chi tiêu)</label><select id="b-m"><option>3</option><option selected>6</option><option>9</option><option>12</option></select></div>
+        </div>
+      </form>
+      <div>
+        <div class="alloc" id="b-alloc"></div>
+        <div class="stats" id="b-stats" style="margin-top:14px"></div>
+        <button class="btn ghost small askai" type="button" data-ask="bud">✦ Hỏi AI tối ưu ngân sách</button>
+      </div>
+    </div>
+  </section>
+  <footer>Công cụ tham khảo, không phải tư vấn tài chính. Kết quả làm tròn; số thật phụ thuộc hợp đồng và chính sách của từng tổ chức tín dụng.</footer>
+</div>
+
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const num = s=>{ const t=String(s).trim().replace(/\s/g,""); if(/^\d{1,3}([.,]\d{3})+$/.test(t)) return Number(t.replace(/[.,]/g,"")); return Number(t.replace(",", "."))||0; };
+  const vnd = n=>Math.round(n).toLocaleString("vi-VN")+" đ";
+  const short = n=>{ const a=Math.abs(n); return a>=1e9 ? (n/1e9).toLocaleString("vi-VN",{maximumFractionDigits:2})+" tỷ" : a>=1e6 ? (n/1e6).toLocaleString("vi-VN",{maximumFractionDigits:1})+" tr" : Math.round(n).toLocaleString("vi-VN"); };
+  const esc = s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+  const stat = (k,v,s)=>`<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div>${s?`<div class="s">${esc(s)}</div>`:""}</div>`;
+  const store = { get(k,d){ try{ const v=localStorage.getItem("dmst-tools-"+k); return v?JSON.parse(v):d; }catch(e){ return d; } }, set(k,v){ try{ localStorage.setItem("dmst-tools-"+k, JSON.stringify(v)); }catch(e){} } };
+  // format money inputs with thousand separators on blur
+  document.querySelectorAll('input[inputmode="numeric"]').forEach(i=>i.addEventListener("blur",()=>{ const n=num(i.value); if(n>=1000) i.value=n.toLocaleString("vi-VN"); }));
+
+  /* ---------- Line chart (shared) ---------- */
+  function lineChart(box, legendBox, {x, series, fmtX, fmtY}){
+    const W=640, H=260, L=52, R=86, T=12, B=28, iw=W-L-R, ih=H-T-B;
+    const n=x.length, max=Math.max(1,...series.flatMap(s=>s.values));
+    const nice = (()=>{ const p=Math.pow(10,Math.floor(Math.log10(max))); const m=max/p; return (m<=2?2:m<=5?5:10)*p; })();
+    const X=i=>L+(n<=1?0:i/(n-1)*iw), Y=v=>T+ih-(v/nice)*ih;
+    let g="";
+    for(let k=0;k<=4;k++){ const v=nice*k/4, y=Y(v); g+=`<line x1="${L}" x2="${L+iw}" y1="${y}" y2="${y}" stroke="var(--gridline)" stroke-width="1"/><text x="${L-6}" y="${y+4}" text-anchor="end" font-size="11" fill="var(--muted)">${short(v)}</text>`; }
+    const step=Math.max(1,Math.ceil((n-1)/6)), idx=[]; for(let i=0;i<n;i+=step) idx.push(i); if(idx[idx.length-1]!==n-1){ if(n-1-idx[idx.length-1]<step/2) idx.pop(); idx.push(n-1); } for(const i of idx){ g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(fmtX(x[i]))}</text>`; }
+    // end labels, nudged apart
+    const ends=series.map(s=>({s, y:Y(s.values[n-1])})).sort((a,b)=>a.y-b.y);
+    for(let k=1;k<ends.length;k++) if(ends[k].y-ends[k-1].y<14) ends[k].y=ends[k-1].y+14;
+    const paths=series.map(s=>`<path d="${s.values.map((v,i)=>(i?"L":"M")+X(i).toFixed(1)+" "+Y(v).toFixed(1)).join("")}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`).join("");
+    const labels=ends.filter(e=>e.s.values[n-1]>nice*0.02).map(e=>`<text x="${L+iw+6}" y="${e.y+4}" font-size="11" fill="var(--ink)"><tspan font-weight="700">${short(e.s.values[n-1])}</tspan> ${esc(e.s.short||"")}</text>`).join("");
+    box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(series.map(s=>s.name).join(", "))}">${g}${paths}${labels}<line class="cx" y1="${T}" y2="${T+ih}" stroke="var(--muted)" stroke-width="1" stroke-dasharray="3 3" opacity="0"/>${series.map((s,j)=>`<circle class="dot${j}" r="4.5" fill="${s.color}" stroke="var(--surface)" stroke-width="2" opacity="0"/>`).join("")}<rect x="${L}" y="${T}" width="${iw}" height="${ih}" fill="transparent"/></svg><div class="tip"></div>`;
+    legendBox.innerHTML = series.length>1 ? series.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join("") : "";
+    const svg=box.querySelector("svg"), tip=box.querySelector(".tip"), cx=svg.querySelector(".cx");
+    const move=e=>{
+      const r=svg.getBoundingClientRect(), px=(e.clientX-r.left)/r.width*W;
+      const i=Math.max(0,Math.min(n-1,Math.round((px-L)/iw*(n-1))));
+      cx.setAttribute("x1",X(i)); cx.setAttribute("x2",X(i)); cx.setAttribute("opacity",1);
+      series.forEach((s,j)=>{ const d=svg.querySelector(".dot"+j); d.setAttribute("cx",X(i)); d.setAttribute("cy",Y(s.values[i])); d.setAttribute("opacity",1); });
+      tip.innerHTML=`<b>${esc(fmtX(x[i],true))}</b>`+series.map(s=>`${esc(s.name)}: ${esc(fmtY(s.values[i]))}`).join("<br>");
+      tip.style.left=(X(i)/W*r.width)+"px"; tip.style.top=(Math.min(...series.map(s=>Y(s.values[i])))/H*r.height)+"px"; tip.style.opacity=1;
+    };
+    const leave=()=>{ tip.style.opacity=0; cx.setAttribute("opacity",0); svg.querySelectorAll("circle").forEach(c=>c.setAttribute("opacity",0)); };
+    svg.addEventListener("pointermove",move); svg.addEventListener("pointerleave",leave);
+  }
+
+  /* ---------- Loan math ---------- */
+  function schedule(P, ratePct, months, method, extra){
+    const r=ratePct/100/12, rows=[]; let bal=P, totalI=0;
+    const pay = r===0 ? P/months : P*r/(1-Math.pow(1+r,-months)), g0=P/months;
+    for(let k=1; k<=months && bal>0.5; k++){
+      const i=bal*r; let principal = method==="d" ? g0 : pay-i; principal=Math.min(bal, principal+(extra||0));
+      bal-=principal; totalI+=i; rows.push({k, pay:principal+i, principal, i, bal:Math.max(0,bal)});
+    }
+    return {rows, totalI};
+  }
+  let lastLoan=null;
+  function runLoan(){
+    const P=num($("#l-p").value), rate=num($("#l-r").value), yrs=num($("#l-y").value), extra=num($("#l-x").value), months=Math.round(yrs*12);
+    if(!(P>0 && months>0 && rate>=0)){ $("#l-stats").innerHTML=stat("Kiểm tra lại","Nhập số tiền, thời hạn hợp lệ"); return; }
+    const A=schedule(P,rate,months,"a",extra), D=schedule(P,rate,months,"d",extra), A0=extra?schedule(P,rate,months,"a",0):A;
+    const save = extra ? `Trả thêm giúp tiết kiệm ${short(A0.totalI-A.totalI)} lãi, xong sớm ${months-A.rows.length} tháng` : "";
+    $("#l-stats").innerHTML =
+      stat("Trả góp đều: mỗi tháng", vnd(A.rows[0].pay), "Tổng lãi "+short(A.totalI)) +
+      stat("Dư nợ giảm dần: tháng đầu", vnd(D.rows[0].pay), "Tháng cuối "+vnd(D.rows[D.rows.length-1].pay)) +
+      stat("Chênh lệch tổng lãi", short(A.totalI-D.totalI), "Dư nợ giảm dần rẻ hơn, nhưng tháng đầu nặng hơn") +
+      stat("Thời gian trả xong", (A.rows.length/12).toLocaleString("vi-VN",{maximumFractionDigits:1})+" năm", save || (months+" kỳ"));
+    // yearly balance points
+    const yearsN=Math.ceil(Math.max(A.rows.length,D.rows.length)/12), xs=[...Array(yearsN+1).keys()];
+    const balAt=(S,y)=> y===0 ? P : (S.rows[Math.min(S.rows.length,y*12)-1]||{bal:0}).bal;
+    lineChart($("#l-chart"), $("#l-legend"), {x:xs, fmtX:(y,long)=> long? "Hết năm "+y : "Năm "+y, fmtY:vnd,
+      series:[{name:"Dư nợ – trả góp đều", short:"trả đều", color:"var(--s1)", values:xs.map(y=>balAt(A,y))},
+              {name:"Dư nợ – gốc đều", short:"gốc đều", color:"var(--s2)", values:xs.map(y=>balAt(D,y))}]});
+    const S = $("#l-show").value==="d" ? D : A;
+    $("#l-table").innerHTML = S.rows.map(r=>`<tr><td>${r.k}</td><td>${vnd(r.pay)}</td><td>${vnd(r.principal)}</td><td>${vnd(r.i)}</td><td>${vnd(r.bal)}</td></tr>`).join("");
+    lastLoan={P,rate,yrs,extra,A,D,S};
+    store.set("loan",{p:$("#l-p").value,r:$("#l-r").value,y:$("#l-y").value,x:$("#l-x").value});
+  }
+  $("#l-csv").addEventListener("click", async ()=>{
+    if(!lastLoan) return; const csv=["Ky,Tra,Goc,Lai,DuNo"].concat(lastLoan.S.rows.map(r=>[r.k,r.pay,r.principal,r.i,r.bal].map(v=>Math.round(v)).join(","))).join("\n");
+    try{ await navigator.clipboard.writeText(csv); flash($("#l-csv"),"Đã sao chép"); }catch(e){ flash($("#l-csv"),"Trình duyệt chặn sao chép"); }
+  });
+  function flash(b,t){ const o=b.textContent; b.textContent=t; setTimeout(()=>b.textContent=o,1600); }
+
+  /* ---------- Compare offers ---------- */
+  const OFFERS = store.get("offers", [
+    {name:"Gói A", promo:6.5, months:12, after:10.5, fee:0},
+    {name:"Gói B", promo:7.9, months:36, after:10.0, fee:1},
+    {name:"Gói C", promo:8.8, months:240, after:8.8, fee:0.5}
+  ]);
+  function offerCost(P, months, o){
+    const r1=o.promo/100/12, r2=o.after/100/12, pm=Math.min(o.months, months);
+    const pay1 = r1===0? P/months : P*r1/(1-Math.pow(1+r1,-months));
+    let bal=P, I=0;
+    for(let k=1;k<=pm;k++){ const i=bal*r1; I+=i; bal-=pay1-i; }
+    const rest=months-pm; let pay2=pay1;
+    if(rest>0){ pay2 = r2===0? bal/rest : bal*r2/(1-Math.pow(1+r2,-rest)); for(let k=1;k<=rest;k++){ const i=bal*r2; I+=i; bal-=pay2-i; } }
+    const fee=P*o.fee/100; return {pay1, pay2, I, fee, total:I+fee};
+  }
+  function buildOffers(){
+    $("#c-offers").innerHTML = OFFERS.map((o,j)=>`<div class="offer"><h3>${esc(o.name)}</h3>
+      <div class="two"><div class="field"><label for="o${j}p">Lãi ưu đãi (%)</label><input id="o${j}p" data-j="${j}" data-k="promo" inputmode="decimal" value="${o.promo}"></div>
+      <div class="field"><label for="o${j}m">Số tháng ưu đãi</label><input id="o${j}m" data-j="${j}" data-k="months" inputmode="numeric" value="${o.months}"></div></div>
+      <div class="two"><div class="field"><label for="o${j}a">Lãi sau ưu đãi (%)</label><input id="o${j}a" data-j="${j}" data-k="after" inputmode="decimal" value="${o.after}"></div>
+      <div class="field"><label for="o${j}f">Phí (% khoản vay)</label><input id="o${j}f" data-j="${j}" data-k="fee" inputmode="decimal" value="${o.fee}"></div></div></div>`).join("");
+  }
+  let lastCompare=null;
+  function runCompare(){
+    const P=num($("#c-p").value), months=Math.round(num($("#c-y").value)*12); if(!(P>0&&months>0)) return;
+    const res=OFFERS.map(o=>({o, ...offerCost(P,months,o)})), best=Math.min(...res.map(r=>r.total));
+    $("#c-table").innerHTML = res.map(r=>`<tr class="${r.total===best?"best":""}"><td>${esc(r.o.name)} ${r.total===best?'<span class="pill">Rẻ nhất</span>':""}</td><td>${vnd(r.pay1)}</td><td>${r.o.months<months?vnd(r.pay2):"—"}</td><td>${vnd(r.I)}</td><td>${vnd(r.fee)}</td><td>${vnd(r.total)}</td></tr>`).join("");
+    lastCompare={P,months,res}; store.set("offers",OFFERS);
+  }
+  $("#c-offers").addEventListener("input", e=>{ const t=e.target; if(!t.dataset.k) return; OFFERS[t.dataset.j][t.dataset.k]=num(t.value); runCompare(); });
+
+  /* ---------- Savings goal ---------- */
+  let lastSav=null;
+  function runSav(){
+    const G=num($("#s-g").value), yrs=num($("#s-y").value), rate=num($("#s-r").value), init=num($("#s-i").value), inf=num($("#s-inf").value), n=Math.round(yrs*12);
+    if(!(G>0&&n>0)) return;
+    const target=G*Math.pow(1+inf/100, yrs), r=rate/100/12, grow=Math.pow(1+r,n);
+    const need = Math.max(0, r===0 ? (target-init)/n : (target-init*grow)*r/(grow-1));
+    let b=init, c=init; const xs=[0], bal=[init], con=[init];
+    for(let k=1;k<=n;k++){ b=b*(1+r)+need; c+=need; if(k%12===0||k===n){ xs.push(Math.round(k/12*10)/10); bal.push(b); con.push(c); } }
+    $("#s-stats").innerHTML = stat("Cần để dành mỗi tháng", vnd(need), need===0? "Số tiền sẵn có đã đủ nhờ lãi kép" : "") +
+      stat("Mục tiêu sau lạm phát", short(target), "Bằng "+short(G)+" theo giá hôm nay") +
+      stat("Tổng tiền tự góp", short(c), "") + stat("Phần lãi sinh ra", short(b-c), Math.round((b-c)/b*100)+"% số dư cuối");
+    lineChart($("#s-chart"), $("#s-legend"), {x:xs, fmtX:(y,long)=> long ? "Sau "+y+" năm" : "Năm "+y, fmtY:vnd,
+      series:[{name:"Số dư có lãi kép", short:"số dư", color:"var(--s1)", values:bal},{name:"Tiền tự góp", short:"tự góp", color:"var(--s2)", values:con}]});
+    lastSav={G,yrs,rate,init,inf,need,target}; store.set("sav",{g:$("#s-g").value,y:$("#s-y").value,r:$("#s-r").value,i:$("#s-i").value,f:$("#s-inf").value});
+  }
+
+  /* ---------- Budget ---------- */
+  let lastBud=null;
+  function runBud(){
+    const inc=num($("#b-inc").value), pn=num($("#b-n").value), pw=num($("#b-w").value), ps=Math.max(0,100-pn-pw), debt=num($("#b-debt").value), ef=num($("#b-ef").value), m=num($("#b-m").value);
+    if(!(inc>0)) return;
+    const rows=[["Thiết yếu",pn,"var(--s1)","Nhà, ăn uống, đi lại, điện nước, học phí"],["Mong muốn",pw,"var(--s2)","Giải trí, mua sắm, du lịch"],["Tiết kiệm & trả nợ",ps,"var(--ok)","Quỹ khẩn cấp, đầu tư, trả nợ nhanh"]];
+    $("#b-alloc").innerHTML = rows.map(([k,p,c,d])=>`<div class="r"><div><b>${k}</b> · ${p}%<div class="note" style="margin:0">${d}</div></div><div class="bar" role="img" aria-label="${k} ${p}%"><i style="width:${p}%;background:${c}"></i></div><b>${vnd(inc*p/100)}</b></div>`).join("");
+    const monthlySpend=inc*(pn+pw)/100, efTarget=monthlySpend*m, dti=debt/inc*100, gap=Math.max(0,efTarget-ef), save=inc*ps/100;
+    const monthsToEF = gap===0 ? 0 : save>0 ? Math.ceil(gap/(save*0.5)) : Infinity;
+    $("#b-stats").innerHTML = stat("Tỷ lệ trả nợ / thu nhập", dti.toLocaleString("vi-VN",{maximumFractionDigits:1})+"%", dti>40?"Cao: nên giảm nợ trước khi vay thêm":dti>30?"Cần thận trọng":"Trong vùng an toàn thường dùng (dưới 30%)") +
+      stat("Quỹ khẩn cấp mục tiêu", short(efTarget), m+" tháng chi tiêu") +
+      stat("Còn thiếu", gap? short(gap) : "Đã đủ", gap && isFinite(monthsToEF) ? `Dành một nửa phần tiết kiệm: khoảng ${monthsToEF} tháng` : "") +
+      (pn+pw>100 ? stat("Cảnh báo","Tỷ lệ vượt 100%","Giảm thiết yếu hoặc mong muốn") : "");
+    lastBud={inc,pn,pw,ps,debt,dti,ef,efTarget,m}; store.set("bud",{i:$("#b-inc").value,n:$("#b-n").value,w:$("#b-w").value,d:$("#b-debt").value,e:$("#b-ef").value,m:$("#b-m").value});
+  }
+
+  /* ---------- Restore, bind ---------- */
+  const L0=store.get("loan",null); if(L0){ $("#l-p").value=L0.p; $("#l-r").value=L0.r; $("#l-y").value=L0.y; $("#l-x").value=L0.x; }
+  const S0=store.get("sav",null); if(S0){ $("#s-g").value=S0.g; $("#s-y").value=S0.y; $("#s-r").value=S0.r; $("#s-i").value=S0.i; $("#s-inf").value=S0.f; }
+  const B0=store.get("bud",null); if(B0){ $("#b-inc").value=B0.i; $("#b-n").value=B0.n; $("#b-w").value=B0.w; $("#b-debt").value=B0.d; $("#b-ef").value=B0.e; $("#b-m").value=B0.m; }
+  $("#f-loan").addEventListener("input",runLoan); $("#f-loan").addEventListener("change",runLoan);
+  ["#c-p","#c-y"].forEach(s=>$(s).addEventListener("input",runCompare));
+  $("#f-sav").addEventListener("input",runSav); $("#f-bud").addEventListener("input",runBud); $("#f-bud").addEventListener("change",runBud);
+  buildOffers(); runLoan(); runCompare(); runSav(); runBud();
+
+  /* ---------- Ask AI about current result ---------- */
+  const QA = {
+    loan: ()=>lastLoan && `Mình đang tính khoản vay ${vnd(lastLoan.P)}, lãi ${lastLoan.rate}%/năm, ${lastLoan.yrs} năm${lastLoan.extra?`, trả thêm ${vnd(lastLoan.extra)}/tháng`:""}. Trả góp đều ${vnd(lastLoan.A.rows[0].pay)}/tháng, tổng lãi ${vnd(lastLoan.A.totalI)}; gốc đều tháng đầu ${vnd(lastLoan.D.rows[0].pay)}, tổng lãi ${vnd(lastLoan.D.totalI)}. Nên chọn cách nào và có cách nào giảm lãi?`,
+    compare: ()=>lastCompare && `So sánh các gói vay ${vnd(lastCompare.P)} trong ${lastCompare.months/12} năm: ` + lastCompare.res.map(r=>`${r.o.name}: ưu đãi ${r.o.promo}% trong ${r.o.months} tháng, sau đó ${r.o.after}%, phí ${r.o.fee}%, tổng chi phí ${vnd(r.total)}`).join("; ") + ". Nên chọn gói nào, rủi ro lãi thả nổi thế nào và cần hỏi ngân hàng những gì?",
+    sav: ()=>lastSav && `Mục tiêu ${vnd(lastSav.G)} theo giá hôm nay sau ${lastSav.yrs} năm (lạm phát ${lastSav.inf}%/năm, đã có ${vnd(lastSav.init)}), lợi suất giả định ${lastSav.rate}%/năm, cần để dành ${vnd(lastSav.need)}/tháng. Làm sao để đạt được, nên phân bổ vào đâu ở mức kiến thức chung?`,
+    bud: ()=>lastBud && `Thu nhập ${vnd(lastBud.inc)}/tháng, chia ${lastBud.pn}/${lastBud.pw}/${lastBud.ps}, đang trả nợ ${vnd(lastBud.debt)}/tháng (${lastBud.dti.toFixed(1)}% thu nhập), quỹ khẩn cấp ${vnd(lastBud.ef)} / mục tiêu ${vnd(lastBud.efTarget)}. Gợi ý cách tối ưu ngân sách.`
+  };
+  document.querySelectorAll("[data-ask]").forEach(b=>b.addEventListener("click",()=>{ const q=QA[b.dataset.ask](); if(q && window.FinAI) FinAI.openWith(q); }));
+})();
+</script>
+<script src="ai-chat.js"></script>
+<script>if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }</script>
+</body>
+</html>

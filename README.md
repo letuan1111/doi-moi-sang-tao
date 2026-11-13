@@ -54,3 +54,16 @@ Các ý tưởng bảo mật, chống lừa đảo, dữ liệu cá nhân đư�
 6. **Dữ liệu của tôi**: đồng ý theo mục đích, yêu cầu quyền chủ thể có hạn xử lý, nhật ký, tự đánh giá tuân thủ Luật 91/2025 và NĐ 356/2025.
 
 Không có máy chủ: dữ liệu demo nằm trong localStorage và xóa được bằng một nút.
+
+## Công cụ tài chính (tools.html)
+
+- **Khoản vay và lịch trả nợ:** trả góp đều và gốc đều (dư nợ giảm dần), trả thêm vào gốc, biểu đồ dư nợ, bảng chi tiết sao chép được dạng CSV.
+- **So sánh gói vay:** lãi ưu đãi trong N tháng, sau đó lãi thả nổi giả định, kèm phí; xếp hạng theo tổng chi phí.
+- **Tiết kiệm theo mục tiêu:** số tiền cần để dành mỗi tháng với lãi kép, có tính lạm phát.
+- **Ngân sách 50/30/20 và quỹ khẩn cấp:** tỷ lệ trả nợ trên thu nhập, mục tiêu quỹ khẩn cấp.
+
+Mỗi công cụ có nút "Hỏi AI" gửi kết quả hiện tại sang Trợ lý AI tài chính (chỉ trên bản claude.ai). Số liệu nhập được lưu trong trình duyệt.
+
+## Trợ lý AI tài chính (ai-chat.js)
+
+Nút nổi trên mọi trang. Nạp toàn bộ ý tưởng và dự án vào ngữ cảnh, có công cụ: tìm kho, xem chi tiết, tính vay, tính tiết kiệm, chấm điểm rủi ro giao dịch, soi tin nhắn lừa đảo. Chặn gửi câu hỏi chứa số thẻ, số tài khoản, mật khẩu.
