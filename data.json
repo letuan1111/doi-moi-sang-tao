@@ -1794,7 +1794,9 @@
      "t": "Tổng hợp các thủ đoạn vượt sinh trắc học và deepfake đã ghi nhận, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj10/02-thu-doan-vuot-sinh-trac-hoc-va-deepfake.md",
+     "doneAt": "2026-11-13"
     },
     {
      "n": 3,
