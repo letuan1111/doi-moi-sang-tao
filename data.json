@@ -1,5 +1,5 @@
 {
- "updated": "13/11/2026",
+ "updated": "14/11/2026",
  "ideas": [
   {
    "id": "gd01",
@@ -973,6 +973,66 @@
    "summary": "Nghị định 356/2025 yêu cầu đơn vị đánh giá tuân thủ bảo vệ dữ liệu cá nhân định kỳ mỗi năm một lần và ghi nhật ký toàn bộ hoạt động xử lý dữ liệu cá nhân. Ý tưởng: công cụ tự ghi nhật ký truy cập, chia sẻ dữ liệu từ các hệ thống lõi, tự sinh báo cáo đánh giá, cảnh báo khi có truy cập bất thường.",
    "sourceUrl": "https://thitruongtaichinhtiente.vn/du-lieu-duoc-bao-ve-nguoi-dung-yen-tam-hon-trong-thanh-toan-75974.html",
    "sourceName": "Thị trường Tài chính Tiền tệ"
+  },
+  {
+   "id": "bs10",
+   "title": "Tra soát, truy vết và giữ lại dòng tiền lừa đảo liên ngân hàng trong 'giờ vàng'",
+   "summary": "Bộ Công an đang phối hợp NHNN thí điểm hệ thống tra soát, truy vết dòng tiền lừa đảo để thu hồi tài sản cho nạn nhân; hệ thống giám sát của NHNN đã kết nối gần 100 tổ chức và gắn cờ hơn 668.000 tài khoản có dấu hiệu vi phạm. Hiệp hội Ngân hàng đề xuất phòng thủ 3 lớp: cảnh báo trong app, tự động tạm dừng giao dịch rủi ro cao, hỗ trợ khóa tài khoản tức thì. Ý tưởng: quy trình chuẩn để nạn nhân báo cáo một lần, các ngân hàng nhận và trung gian cùng tạm giữ tiền theo chuỗi chuyển khoản trong vài giờ đầu.",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "vn",
+   "impact": 3,
+   "capital": 3,
+   "steps": [
+    "Theo dõi kết quả thí điểm và hướng dẫn chính thức của Bộ Công an – NHNN về truy vết dòng tiền",
+    "Thiết kế mẫu báo cáo lừa đảo một lần (trong app/hotline) chuyển thẳng tới ngân hàng nhận tiền",
+    "Xây quy tắc tạm giữ tự động theo chuỗi chuyển tiếp nhiều tầng, có thời hạn và cơ chế giải tỏa",
+    "Đo thời gian từ khi nạn nhân báo đến khi tiền được giữ lại và tỷ lệ thu hồi"
+   ],
+   "status": "new",
+   "sourceUrl": "https://congan.com.vn/vu-an/phong-chong-toi-pham-tren-khong-gian-mang/bo-cong-an-phoi-hop-ngan-hang-nha-nuoc-thi-diem-van-hanh-he-thong-tra-soat-truy-vet-dong-tien-lua-dao_199634.html",
+   "sourceName": "Báo Công an TP.HCM (6/11/2026)",
+   "createdAt": 1794630544061,
+   "createdBy": null
+  },
+  {
+   "id": "gd14",
+   "title": "Học liệu XR và phòng thí nghiệm ảo theo chương trình GDPT 2018",
+   "summary": "Quyết định 3190/QĐ-BGDĐT phê duyệt nhiệm vụ phát triển nền tảng giáo dục thông minh quốc gia: AI có kiểm soát (gia sư AI tiếng Việt, đúng ≥95%, thử ở ≥30 trường, 20.000 học sinh) và hệ thống thực–ảo Eduverse (WebXR, công cụ no-code tạo học liệu, ≥30 học liệu XR, 4 phòng thí nghiệm ảo với ≥20 thí nghiệm), làm trong tối đa 36 tháng, tuyển chọn tổ chức thực hiện. Cơ hội: nhóm EdTech/trường đại học tham gia tuyển chọn hoặc làm học liệu XR tương thích nền tảng chung.",
+   "category": "Giáo dục",
+   "region": "vn",
+   "impact": 2,
+   "capital": 2,
+   "steps": [
+    "Đọc Quyết định 3190/QĐ-BGDĐT và thông báo tuyển chọn để nắm yêu cầu, tiêu chí",
+    "Chọn 1-2 chủ đề (ví dụ Lịch sử – Địa lý hoặc STEM) làm thử học liệu WebXR chạy được trên điện thoại",
+    "Thử nghiệm với một lớp học, đo mức độ chấp nhận của giáo viên và học sinh",
+    "Tìm đối tác (trường đại học, viện) để cùng nộp hồ sơ hoặc cung cấp học liệu cho nền tảng"
+   ],
+   "status": "new",
+   "sourceUrl": "https://www.vietnamplus.vn/bo-gd-dt-dat-hang-xay-dung-nen-tang-phat-trien-giao-duc-thong-minh-quoc-gia-post1146504.vnp",
+   "sourceName": "VietnamPlus (6/11/2026)",
+   "createdAt": 1794630544062,
+   "createdBy": null
+  },
+  {
+   "id": "dl05",
+   "title": "Xác thực trả kết quả 'có/không' thay vì chia sẻ dữ liệu gốc",
+   "summary": "Trình bày dự án Luật Định danh và xác thực điện tử (4/11/2026), Bộ trưởng Bộ Công an nêu nguyên tắc: chỉ thu thập dữ liệu tối thiểu, có sự đồng ý; không đồng bộ nội dung giao dịch; không chia sẻ kết quả xác thực ngoài phạm vi cho phép. Thông tư 117/2026/TT-BCA cũng hướng tới ưu tiên kết quả xác thực đúng/sai thay vì dữ liệu sinh trắc học gốc. Ý tưởng: thiết kế dịch vụ (ngân hàng, sàn, ví) chỉ hỏi và lưu kết quả xác thực cần thiết, không lưu bản sao giấy tờ hay ảnh khuôn mặt.",
+   "category": "Dữ liệu cá nhân",
+   "region": "vn",
+   "impact": 2,
+   "capital": 1,
+   "steps": [
+    "Rà soát quy trình hiện tại: đang lưu những dữ liệu định danh nào và có thật sự cần không",
+    "Thay bước lưu bản sao giấy tờ/ảnh bằng lưu kết quả xác thực (đúng/sai, thời điểm, mã tham chiếu)",
+    "Theo dõi tiến trình Luật Định danh và xác thực điện tử và văn bản hướng dẫn để điều chỉnh",
+    "Công bố rõ cho người dùng những gì được lưu và không được lưu"
+   ],
+   "status": "new",
+   "sourceUrl": "https://thanhnien.vn/bo-truong-bo-cong-an-bao-ve-quyen-rieng-tu-khi-thu-thap-du-lieu-ca-nhan-185261104113527352.htm",
+   "sourceName": "Thanh Niên (4/11/2026)",
+   "createdAt": 1794630544063,
+   "createdBy": null
   }
  ],
  "projects": [
