@@ -2068,7 +2068,9 @@
      "t": "Tóm tắt đánh giá độc lập 7/2026 và số liệu mới nhất của Anh, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj12/02-danh-gia-doc-lap-va-so-lieu-anh.md",
+     "doneAt": "2026-11-14"
     },
     {
      "n": 3,
