@@ -1640,7 +1640,9 @@
      "t": "Tổng hợp các mô hình định giá theo kết quả trên thế giới, ưu nhược điểm, có nguồn",
      "owner": "claude",
      "kind": "research",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj07/02-cac-mo-hinh-dinh-gia-theo-ket-qua.md",
+     "doneAt": "2026-11-14"
     },
     {
      "n": 3,
