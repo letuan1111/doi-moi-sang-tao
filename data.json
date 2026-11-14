@@ -1033,6 +1033,48 @@
    "sourceName": "Thanh Niên (4/11/2026)",
    "createdAt": 1794630544063,
    "createdBy": null
+  },
+  {
+   "id": "nh04",
+   "title": "Bảng điều khiển ủy quyền cho AI tự động chuyển tiền: hạn mức, tạm dừng, thu hồi",
+   "category": "Ngân hàng – Fintech",
+   "region": "vn",
+   "impact": 3,
+   "capital": 2,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794630591396,
+   "summary": "Thông tư 53/2026/TT-NHNN (hiệu lực 15/11/2026) xếp hệ thống AI tự động chuyển tiền vào nhóm rủi ro cao khi vượt 10 triệu đồng/giao dịch hoặc 20 triệu đồng/ngày với khách cá nhân (50 triệu/100 triệu với tổ chức). Ngân hàng phải thỏa thuận trước với khách về phạm vi, hạn mức, thời hạn; tổng chi qua AI không quá 100 triệu đồng/ngày (cá nhân) hoặc 500 triệu đồng/ngày (tổ chức); khách phải có công cụ tạm dừng, thu hồi quyền; phải có ngắt khẩn cấp và nhật ký. Hệ thống đang chạy phải đáp ứng trước 1/3/2027. Ý tưởng: một mô-đun 'ủy quyền AI' dùng chung cho ngân hàng, ví điện tử, gồm màn hình đặt hạn mức, nút tạm dừng/thu hồi một chạm, nhật ký từng lệnh AI thực hiện và luồng khiếu nại có người duyệt.",
+   "steps": [
+    "Đọc kỹ văn bản gốc Thông tư 53/2026/TT-NHNN, lập danh sách yêu cầu bắt buộc cho nhóm rủi ro cao",
+    "Thiết kế mẫu màn hình: đặt phạm vi, hạn mức theo lệnh và theo ngày, thời hạn ủy quyền, nút tạm dừng/thu hồi",
+    "Xây lớp kiểm soát độc lập với AI: chặn lệnh vượt hạn mức, ngắt khẩn cấp, ghi nhật ký không sửa được",
+    "Thêm luồng khiếu nại: lệnh AI bị phản đối được chuyển cho nhân viên xem xét",
+    "Chào thử với 1–2 ngân hàng nhỏ, ví điện tử cần kịp hạn 1/3/2027"
+   ],
+   "sourceUrl": "https://thitruongtaichinhtiente.vn/tu-15-11-ai-tu-dong-chuyen-tien-tren-10-trieu-dong-thuoc-nhom-rui-ro-cao-86892.html",
+   "sourceName": "Thị trường Tài chính Tiền tệ"
+  },
+  {
+   "id": "bs11",
+   "title": "Quy trình xác minh hai kênh cho lệnh chi lớn, chống giả CEO và luật sư bằng deepfake",
+   "category": "Bảo mật – Chống lừa đảo",
+   "region": "intl",
+   "impact": 3,
+   "capital": 1,
+   "status": "new",
+   "createdBy": null,
+   "createdAt": 1794630590396,
+   "summary": "Ngày 5/11/2026, Công tố liên bang Mỹ (SDNY) công bố cáo trạng một đường dây bị cáo buộc dùng AI giả giọng, giả hình CEO trong cuộc gọi video, rồi giới thiệu 'luật sư' mạo danh luật sư thật ở châu Âu, ép kế toán chuyển tiền cho thương vụ 'bí mật'. Công tố xác định 6 vụ thành công khoảng 32 triệu USD, cả đường dây khoảng 129 triệu USD. Kẻ gian không phá sinh trắc học mà khai thác lòng tin vào giọng nói, gương mặt quen. Ý tưởng: bộ quy trình và công cụ cho doanh nghiệp Việt: lệnh chi lớn hoặc 'bí mật' phải xác nhận qua kênh thứ hai do công ty tự liên hệ (số điện thoại lưu sẵn, không dùng số trong email), cấm quy tắc 'không được nói với ai', và có người thứ hai duyệt.",
+   "steps": [
+    "Soạn quy trình mẫu: ngưỡng chi cần xác minh hai kênh, danh bạ liên hệ đã kiểm chứng, hai người duyệt",
+    "Làm kịch bản đào tạo cho phòng kế toán dựa trên chiêu thức 'thương vụ bí mật + luật sư' trong vụ án",
+    "Tích hợp nhắc kiểm tra vào phần mềm kế toán hoặc internet banking doanh nghiệp khi có người nhận mới, lệnh gấp",
+    "Diễn tập giả lập định kỳ (cuộc gọi giả CEO) và đo tỉ lệ nhân viên làm đúng quy trình",
+    "Đóng gói thành dịch vụ cho doanh nghiệp vừa và nhỏ, kết hợp với ngân hàng"
+   ],
+   "sourceUrl": "https://www.biometricupdate.com/202611/deepfake-ceos-stolen-lawyer-identities-fuel-alleged-129m-fraud",
+   "sourceName": "Biometric Update"
   }
  ],
  "projects": [
