@@ -71,6 +71,7 @@ li.done .t{color:var(--muted)}
 .own.claude{border-color:var(--accent); color:var(--accent)}
 .own.nguoi{border-color:var(--warn); color:var(--warn)}
 .res{background:none; border:0; padding:0; color:var(--accent); font-weight:700; font-size:13px; cursor:pointer; text-decoration:underline; margin-left:4px}
+.appbtn{align-self:flex-start; background:var(--accent); color:var(--accent-ink); text-decoration:none; font-weight:700; font-size:14px; padding:8px 14px; border-radius:999px}
 .card .foot{margin-top:auto; display:flex; justify-content:space-between; gap:8px; font-size:12px; color:var(--muted); flex-wrap:wrap}
 .drawer{position:fixed; inset:0 0 0 auto; width:min(760px,100vw); background:var(--surface); border-left:1px solid var(--line); box-shadow:-20px 0 50px rgba(0,0,0,.25); z-index:60; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .2s}
 .drawer.open{transform:none}
@@ -125,6 +126,7 @@ footer{color:var(--muted); font-size:12px; padding-top:18px}
   const OWN = {claude:"Claude", nguoi:"Người"};
   let projects = [], filter = "all";
 
+  const appOk = a => typeof a==="string" && /^app-[a-z0-9-]+\.html$/.test(a);
   function nextStep(p){ return (p.roadmap||[]).find(s=>s.status!=="done"); }
   function render(){
     const all = projects.filter(p=>Array.isArray(p.roadmap));
@@ -135,6 +137,7 @@ footer{color:var(--muted); font-size:12px; padding-top:18px}
       ["Dự án đang thực thi", all.length],
       ["Bước Claude đã xong", cl.filter(x=>x.s.status==="done").length+"/"+cl.length],
       ["Bước người đã xong", hu.filter(x=>x.s.status==="done").length+"/"+hu.length],
+      ["Sản phẩm chạy trên web", all.filter(p=>p.roadmap.some(x=>appOk(x.app)&&x.status==="done")).length+"/"+all.length],
       ["Tiến độ chung", (steps.length? Math.round(done.length/steps.length*100):0)+"%"]
     ].map(([k,v])=>`<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
     // Claude queue: next claude step per project, fewest done first
@@ -156,8 +159,9 @@ footer{color:var(--muted); font-size:12px; padding-top:18px}
       <div class="meta"><span>${esc(p.category||"")}</span><span>${p.region==="intl"?"Quốc tế":"Việt Nam"}</span></div>
       <h3>${esc(p.title)}</h3>
       ${p.actionGoal?`<p class="goal"><b>Mục tiêu hành động:</b> ${esc(p.actionGoal)}</p>`:""}
+      ${(()=>{ const a=rm.find(x=>appOk(x.app)&&x.status==="done"); return a?`<a class="appbtn" href="${esc(a.app)}">▶ Dùng thử sản phẩm của dự án</a>`:""; })()}
       <div class="prog"><div class="track" role="img" aria-label="${d} trên ${rm.length} bước">${rm.map(s=>`<i class="${s.status==="done"?"done":(s===n?"next":"")}"></i>`).join("")}</div>${d}/${rm.length}</div>
-      <ol class="steps">${rm.map(s=>`<li class="${s.status==="done"?"done":(s===n?"next":"")}"><span class="num">${s.status==="done"?"✓":s.n}</span><span class="t">${esc(s.t)}<span class="own ${esc(s.owner)}">${OWN[s.owner]||""}</span>${s.out?`<button type="button" class="res" data-out="${esc(s.out)}" data-p="${esc(p.id)}" data-t="${esc(s.t)}">Xem kết quả</button>`:""}</span></li>`).join("")}</ol>
+      <ol class="steps">${rm.map(s=>`<li class="${s.status==="done"?"done":(s===n?"next":"")}"><span class="num">${s.status==="done"?"✓":s.n}</span><span class="t">${esc(s.t)}<span class="own ${esc(s.owner)}">${OWN[s.owner]||""}</span>${s.out?`<button type="button" class="res" data-out="${esc(s.out)}" data-p="${esc(p.id)}" data-t="${esc(s.t)}">Xem kết quả</button>`:""}${appOk(s.app)?`<a class="res" href="${esc(s.app)}">Mở sản phẩm</a>`:""}</span></li>`).join("")}</ol>
       <div class="foot"><span>${n?("Tiếp theo: "+(n.owner==="claude"?"Claude":"người thực hiện")):"Đã hoàn thành lộ trình"}</span><span>${last?"Cập nhật "+esc(last.split("-").reverse().join("/")):""}</span></div>
     </article>`;
   }
