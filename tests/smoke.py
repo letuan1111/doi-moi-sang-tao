@@ -22,6 +22,13 @@ for p in d["projects"]:
             check((ROOT / s["out"]).exists(), f"{p['id']} bước {s['n']}: tệp kết quả {s['out']} tồn tại")
         check(s.get("owner") in ("claude", "nguoi") and s.get("status") in ("todo", "done"), f"{p['id']} bước {s['n']}: owner/status hợp lệ")
 
+hp = ROOT / "hien-thuc.json"
+if hp.exists():
+    h = json.loads(hp.read_text(encoding="utf-8"))
+    for f in h.get("features", []):
+        page = f.get("page", "").split("#")[0]
+        check(not page or (ROOT / page).exists(), f"hien-thuc.json: trang {page} của {f.get('id')} tồn tại")
+
 # 2. Trang
 class Quiet(http.server.SimpleHTTPRequestHandler):
     def log_message(self, *a): pass
@@ -37,7 +44,9 @@ with sync_playwright() as pw:
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto(BASE + path); pg.wait_for_timeout(900)
         return pg, errs
-    for path, sel in [("index.html", "nav.tabs"), ("lab.html", "#v-nguoi-nhan"), ("tools.html", "#l-stats .stat"), ("du-an.html", ".card"), ("ket-qua.html", "#ideas .card"), ("404.html", "h1")]:
+    pages = [("index.html", "nav.tabs"), ("lab.html", "#v-nguoi-nhan"), ("tools.html", "#l-stats .stat"), ("du-an.html", ".card"), ("ket-qua.html", "#ideas .card"), ("404.html", "h1")]
+    pages += [(f.name, "h1") for f in sorted(ROOT.glob("app-*.html"))]  # sản phẩm của từng dự án
+    for path, sel in pages:
         if not (ROOT / path).exists(): continue
         for vw in (1280, 390):
             pg, errs = page(path, vw)
