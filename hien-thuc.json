@@ -306,6 +306,27 @@
    ],
    "ideas": [],
    "projects": []
+  },
+  {
+   "id": "f-sandbox-da-nang",
+   "title": "Bộ công cụ sandbox Đà Nẵng",
+   "page": "app-sandbox-da-nang.html",
+   "group": "Sản phẩm dự án",
+   "scope": "y-tuong",
+   "since": "2026-11-14",
+   "desc": "Tự kiểm tra điều kiện tham gia thử nghiệm có kiểm soát theo Nghị quyết 20/2026/NQ-HĐND, checklist hồ sơ có tiến độ và ước tính mốc thời gian, bộ 22 chỉ số đánh giá Xanh/Vàng/Đỏ kèm kết luận gợi ý, bản tóm tắt để sao chép.",
+   "how": [
+    "Thẻ 1: đánh dấu điều kiện và 7 tiêu chí đã có bằng chứng",
+    "Thẻ 2: tick hồ sơ đã xong, chọn ngày nộp để xem các mốc",
+    "Thẻ 3: nạp số liệu mẫu hoặc nhập số liệu kỳ báo cáo",
+    "Thẻ 4: sao chép hoặc tải bản tóm tắt"
+   ],
+   "ideas": [
+    "kh01"
+   ],
+   "projects": [
+    "pj04"
+   ]
   }
  ],
  "projectIdeas": {

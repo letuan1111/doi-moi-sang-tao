@@ -1408,7 +1408,9 @@
      "t": "Bộ chỉ số và checklist rủi ro để đánh giá một đợt sandbox",
      "owner": "claude",
      "kind": "doc",
-     "status": "todo"
+     "status": "done",
+     "out": "du-an/pj04/04-bo-chi-so-checklist-rui-ro.md",
+     "doneAt": "2026-11-14"
     },
     {
      "n": 5,

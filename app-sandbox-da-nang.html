@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Bộ công cụ sandbox Đà Nẵng: tự kiểm tra điều kiện tham gia theo Nghị quyết 20/2026/NQ-HĐND, checklist hồ sơ có tiến độ, bộ chỉ số đánh giá đợt thử nghiệm và bản tóm tắt để sao chép.">
+<meta property="og:title" content="Bộ công cụ sandbox Đà Nẵng">
+<meta property="og:description" content="Tự kiểm tra điều kiện, checklist hồ sơ, bộ chỉ số đánh giá đợt thử nghiệm có kiểm soát tại Đà Nẵng. Chạy trên trình duyệt, không gửi dữ liệu đi.">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2440d6">
+<meta property="og:image" content="https://letuan1111.github.io/doi-moi-sang-tao/icon-512.png">
+<title>Bộ công cụ sandbox Đà Nẵng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#eef1f7; --surface:#ffffff; --ink:#141a2e; --muted:#5b6480; --line:#d6dbe8;
+  --accent:#2440d6; --accent-ink:#ffffff; --spark:#f2b200;
+  --ok:#14805e; --warn:#b26a00; --stop:#b3261e; --grid:rgba(36,64,214,.06);
+  --display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07); color-scheme:dark; } }
+:root[data-theme="dark"]{ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --stop:#ff7a70; --grid:rgba(123,140,255,.07); color-scheme:dark; }
+*{box-sizing:border-box} html,body{margin:0}
+body{background:var(--bg); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 16px 48px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.01em}
+button,input,select,textarea{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+a{color:var(--accent)}
+header.top{padding:24px 0 14px; display:flex; gap:14px; justify-content:space-between; align-items:flex-end; flex-wrap:wrap}
+header.top h1{font-size:28px; font-weight:800}
+header.top p{margin:4px 0 0; color:var(--muted); font-size:14px; max-width:72ch}
+.back{font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px; white-space:nowrap}
+.navs{display:flex; gap:8px; flex-wrap:wrap}
+.privacy{display:flex; gap:10px; align-items:flex-start; background:var(--surface); border:1px solid var(--line); border-left:5px solid var(--ok); border-radius:var(--r); padding:12px 14px; margin-bottom:16px; font-size:14px}
+.privacy b{color:var(--ok)}
+.layout{display:grid; grid-template-columns:250px minmax(0,1fr); gap:16px; align-items:start}
+@media (max-width:860px){ .layout{grid-template-columns:1fr} }
+nav.tools{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:8px; display:flex; flex-direction:column; gap:4px; position:sticky; top:12px}
+@media (max-width:860px){ nav.tools{position:static; flex-direction:row; flex-wrap:wrap} }
+nav.tools button{display:flex; gap:10px; align-items:center; padding:9px 10px; border-radius:8px; border:0; background:transparent; text-align:left; color:var(--ink); font-weight:600; font-size:14px; cursor:pointer}
+nav.tools button span{font-family:var(--display); color:var(--muted); font-weight:800; min-width:18px}
+nav.tools button[aria-selected="true"]{background:var(--ink); color:var(--bg)} nav.tools button[aria-selected="true"] span{color:var(--spark)}
+nav.tools .meta{font-size:12px; color:var(--muted); padding:8px 10px 4px; border-top:1px solid var(--line); margin-top:4px}
+@media (max-width:860px){ nav.tools .meta{display:none} }
+.tool{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:18px}
+.tool[hidden]{display:none}
+.tool > h2{font-size:22px}
+.tool > .lead{margin:4px 0 14px; color:var(--muted); font-size:14px; max-width:78ch}
+.cols{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px}
+@media (max-width:760px){ .cols{grid-template-columns:1fr} }
+fieldset{border:1px solid var(--line); border-radius:var(--r); padding:10px 14px 12px; margin:0 0 12px}
+legend{font-weight:700; font-size:14px; padding:0 6px}
+.checks{display:flex; flex-direction:column; gap:7px; font-size:14px}
+.checks label{display:flex; gap:8px; align-items:flex-start; cursor:pointer}
+.checks input{margin-top:4px; accent-color:var(--accent); flex:none}
+.checks small{color:var(--muted); display:block}
+.field{display:flex; flex-direction:column; gap:4px; margin-bottom:10px}
+.field label{font-size:13px; font-weight:600}
+.field input,.field select{padding:9px 11px; border:1px solid var(--line); border-radius:8px; background:var(--bg); width:100%}
+.row{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.btn{border:0; background:var(--accent); color:var(--accent-ink); padding:10px 16px; border-radius:999px; font-weight:700; cursor:pointer}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.btn.small{padding:6px 12px; font-size:13px}
+.hint{font-size:12px; color:var(--muted)}
+.panel{border:1px solid var(--line); border-radius:var(--r); background:var(--bg); padding:14px}
+.verdict{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:8px}
+.badge{font-family:var(--display); font-weight:800; font-size:14px; padding:5px 12px; border-radius:999px; color:#fff; white-space:nowrap}
+.lv-ok{background:var(--ok)} .lv-warn{background:var(--warn)} .lv-stop{background:var(--stop)} .lv-na{background:var(--muted)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .badge{color:#0e1222} }
+:root[data-theme="dark"] .badge{color:#0e1222}
+.list{margin:6px 0 0; padding-left:18px; font-size:14px; display:flex; flex-direction:column; gap:4px}
+.progress{height:12px; background:var(--line); border-radius:999px; overflow:hidden; margin:6px 0 4px}
+.progress i{display:block; height:100%; background:var(--ok); transition:width .25s}
+.big{font-family:var(--display); font-size:30px; font-weight:800; font-variant-numeric:tabular-nums}
+.tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r)}
+table{border-collapse:collapse; width:100%; font-size:14px}
+th,td{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top}
+th{background:var(--bg); font-size:13px}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+.ind{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1.2fr) auto; gap:10px; align-items:center; padding:10px 0; border-bottom:1px dashed var(--line)}
+.ind:last-child{border-bottom:0}
+@media (max-width:620px){ .ind{grid-template-columns:1fr} }
+.ind .name{font-size:14px; font-weight:600}
+.ind .name small{display:block; font-weight:400; color:var(--muted); font-size:12px}
+.ind .inp{display:flex; gap:6px; flex-wrap:wrap}
+.ind .inp input{width:110px; padding:7px 9px; border:1px solid var(--line); border-radius:8px; background:var(--bg); font-variant-numeric:tabular-nums}
+.ind .inp label{display:flex; flex-direction:column; font-size:11px; color:var(--muted); gap:2px}
+.ind .out{display:flex; gap:8px; align-items:center; justify-content:flex-end; min-width:150px}
+@media (max-width:620px){ .ind .out{justify-content:flex-start} }
+.ind .val{font-variant-numeric:tabular-nums; font-size:13px; color:var(--muted)}
+h3.grp{font-size:16px; margin:16px 0 2px}
+.counts{display:flex; gap:8px; flex-wrap:wrap; margin:6px 0}
+textarea.sum{width:100%; min-height:340px; padding:12px; border:1px solid var(--line); border-radius:8px; background:var(--bg); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; line-height:1.5}
+.note{font-size:13px; color:var(--muted); margin-top:12px}
+.toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:var(--ink); color:var(--bg); padding:10px 16px; border-radius:999px; font-weight:600; font-size:14px; opacity:0; transition:opacity .2s; pointer-events:none; z-index:50}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Bộ công cụ sandbox Đà Nẵng</h1>
+      <p>Chuẩn bị và tự đánh giá một đợt thử nghiệm có kiểm soát theo Nghị quyết 20/2026/NQ-HĐND: kiểm tra điều kiện, theo dõi hồ sơ, chấm bộ chỉ số rủi ro và xuất bản tóm tắt. Sản phẩm của dự án <a href="du-an.html">pj04 – Sandbox blockchain Đà Nẵng</a>.</p>
+    </div>
+    <div class="navs"><a class="back" href="index.html">← Ý tưởng</a><a class="back" href="du-an.html">Lộ trình dự án</a></div>
+  </header>
+
+  <div class="privacy" role="note"><span aria-hidden="true">🔒</span><div><b>Chạy hoàn toàn trên trình duyệt.</b> Không gửi dữ liệu đi; nháp được lưu trên máy này và xóa được bằng nút "Xóa dữ liệu". Số liệu mẫu là giả định. Ngưỡng xanh/vàng/đỏ là gợi ý, không thay thế quy chế thử nghiệm do cơ quan có thẩm quyền ban hành. Không phải tư vấn pháp lý.</div></div>
+
+  <div class="layout">
+    <nav class="tools" role="tablist" aria-label="Công cụ">
+      <button role="tab" id="t-dk" aria-controls="v-dk" aria-selected="true"><span>1</span>Tự kiểm tra điều kiện</button>
+      <button role="tab" id="t-hs" aria-controls="v-hs" aria-selected="false"><span>2</span>Checklist hồ sơ</button>
+      <button role="tab" id="t-cs" aria-controls="v-cs" aria-selected="false"><span>3</span>Bộ chỉ số đánh giá</button>
+      <button role="tab" id="t-tt" aria-controls="v-tt" aria-selected="false"><span>4</span>Bản tóm tắt</button>
+      <div class="meta">Tài liệu gốc:<br><a href="du-an/pj04/02-tom-tat-nghi-quyet-20-2026.md">Tóm tắt NQ 20</a> · <a href="du-an/pj04/03-ho-so-mau-dang-ky-sandbox.md">Hồ sơ mẫu</a> · <a href="du-an/pj04/04-bo-chi-so-checklist-rui-ro.md">Bộ chỉ số</a><br><br><button class="btn ghost small" id="reset" type="button">Xóa dữ liệu</button></div>
+    </nav>
+
+    <main>
+      <!-- 1. Điều kiện -->
+      <section class="tool" id="v-dk" role="tabpanel" aria-labelledby="t-dk">
+        <h2>Tự kiểm tra điều kiện tham gia</h2>
+        <p class="lead">Đánh dấu những gì tổ chức của bạn đã có. Điều kiện đầu vào theo Điều 1 khoản 2 và Điều 2 khoản 2 của Quy định ban hành kèm NQ 20/2026; 7 tiêu chí theo Điều 2 khoản 1.</p>
+        <div class="cols">
+          <div>
+            <fieldset><legend>Điều kiện đầu vào (bắt buộc)</legend><div class="checks" id="dk-req"></div></fieldset>
+            <fieldset><legend>7 tiêu chí của giải pháp – đã có bằng chứng</legend><div class="checks" id="dk-crit"></div></fieldset>
+            <div class="field"><label for="dk-sector">Lĩnh vực của giải pháp</label>
+              <select id="dk-sector">
+                <option value="khac">Công nghệ khác (du lịch, đô thị, logistics…)</option>
+                <option value="tsmh">Tài sản mã hóa, chuyển đổi tài sản số</option>
+                <option value="tt">Thanh toán, ví, điểm thưởng liên thông</option>
+                <option value="nh">Chấm điểm tín dụng, Open API ngân hàng, cho vay ngang hàng</option>
+                <option value="dl">Dữ liệu cá nhân, định danh điện tử (eKYC)</option>
+                <option value="ck">Chứng khoán, gọi vốn</option>
+              </select>
+            </div>
+          </div>
+          <div><div class="panel" id="dk-out" aria-live="polite"></div></div>
+        </div>
+      </section>
+
+      <!-- 2. Hồ sơ -->
+      <section class="tool" id="v-hs" role="tabpanel" aria-labelledby="t-hs" hidden>
+        <h2>Checklist hồ sơ có tiến độ</h2>
+        <p class="lead">Thành phần hồ sơ theo Điều 3 khoản 3 Quy định (nộp 01 bộ về Sở Khoa học và Công nghệ), chia nhỏ thành việc cần làm theo hồ sơ mẫu ở bước 3. Đánh dấu khi xong.</p>
+        <div class="cols">
+          <div id="hs-list"></div>
+          <div>
+            <div class="panel">
+              <div class="row" style="justify-content:space-between"><b>Tiến độ hồ sơ</b><span class="big" id="hs-pct">0%</span></div>
+              <div class="progress" aria-hidden="true"><i id="hs-bar" style="width:0%"></i></div>
+              <div class="hint" id="hs-count"></div>
+              <ul class="list" id="hs-next"></ul>
+            </div>
+            <div class="panel" style="margin-top:14px">
+              <b>Ước tính mốc thời gian</b>
+              <div class="field" style="margin-top:8px"><label for="hs-date">Ngày Sở nhận hồ sơ đầy đủ, hợp lệ</label><input type="date" id="hs-date"></div>
+              <div class="tablewrap"><table><thead><tr><th>Mốc</th><th>Muộn nhất</th></tr></thead><tbody id="hs-tl"></tbody></table></div>
+              <p class="hint">Cộng các thời hạn tối đa ở Điều 3 khoản 1 Quy định, giả sử hồ sơ đạt ngay và không phải giải trình. "Ngày" tính theo ngày lịch, "ngày làm việc" bỏ thứ Bảy, Chủ nhật (chưa trừ ngày lễ). Hãy hỏi Sở cách tính chính thức.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Chỉ số -->
+      <section class="tool" id="v-cs" role="tabpanel" aria-labelledby="t-cs" hidden>
+        <h2>Bộ chỉ số đánh giá đợt thử nghiệm</h2>
+        <p class="lead">22 chỉ số trong 5 nhóm. Nhập số liệu kỳ báo cáo, công cụ tự xếp mức Xanh / Vàng / Đỏ theo ngưỡng gợi ý và đề xuất kết luận (tiếp tục, mở rộng, gia hạn, thu hẹp/chấm dứt) theo khoản 4 Điều 14 NQ 136/2024/QH15. Ô để trống được bỏ qua.</p>
+        <div class="row" style="margin-bottom:6px">
+          <button class="btn small" id="cs-sample" type="button">Nạp số liệu mẫu "Điểm Xanh" tháng 6</button>
+          <button class="btn ghost small" id="cs-clear" type="button">Xóa số liệu</button>
+          <button class="btn ghost small" id="cs-ai" type="button" hidden>Hỏi trợ lý AI về kết quả</button>
+        </div>
+        <div class="panel" id="cs-out" aria-live="polite" style="margin:10px 0"></div>
+        <div id="cs-list"></div>
+      </section>
+
+      <!-- 4. Tóm tắt -->
+      <section class="tool" id="v-tt" role="tabpanel" aria-labelledby="t-tt" hidden>
+        <h2>Bản tóm tắt để sao chép</h2>
+        <p class="lead">Gộp kết quả ba công cụ thành văn bản Markdown để dán vào báo cáo nội bộ, email gửi cố vấn hoặc ghi chú cuộc họp với Sở.</p>
+        <div class="field"><label for="tt-name">Tên giải pháp (giả định hoặc của bạn)</label><input id="tt-name" value="Điểm Xanh (giả định)"></div>
+        <textarea class="sum" id="tt-out" readonly aria-label="Bản tóm tắt"></textarea>
+        <div class="row" style="margin-top:10px"><button class="btn" id="tt-copy" type="button">Sao chép</button><button class="btn ghost" id="tt-dl" type="button">Tải tệp .md</button></div>
+        <p class="note">Căn cứ: Nghị quyết 20/2026/NQ-HĐND TP Đà Nẵng (hiệu lực 10/6/2026); Điều 14 Nghị quyết 136/2024/QH15 sửa đổi bởi NQ 259/2025/QH15; hướng dẫn "How to Build a Regulatory Sandbox" (CGAP/World Bank, 2020). Chi tiết và link nguồn trong các tài liệu ở cột trái.</p>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const KEY="sandbox-dn-v1";
+let S={req:{},crit:{},sector:"khac",docs:{},date:"",ind:{},name:"Điểm Xanh (giả định)"};
+try{ const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw)); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(S)); }catch(e){} }
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("show"); setTimeout(()=>el.classList.remove("show"),1800); }
+
+/* ---------- Tab ---------- */
+const tabs=[...document.querySelectorAll('[role="tab"]')];
+function show(id){ tabs.forEach(t=>{ const on=t.id===id; t.setAttribute("aria-selected",on); document.getElementById(t.getAttribute("aria-controls")).hidden=!on; }); if(id==="t-tt") renderSum(); }
+tabs.forEach(t=>t.addEventListener("click",()=>{ show(t.id); history.replaceState(null,"","#"+t.id.slice(2)); }));
+const h=location.hash.slice(1); if(["dk","hs","cs","tt"].includes(h)) show("t-"+h);
+
+/* ---------- 1. Điều kiện ---------- */
+const REQ=[
+  ["org","Là tổ chức thành lập theo pháp luật Việt Nam","Văn bản nói \"tổ chức\", không nêu cá nhân đứng tên"],
+  ["hq","Có trụ sở chính tại TP Đà Nẵng","Điều 1 khoản 2 Quy định"],
+  ["tax","Đã thực hiện đủ nghĩa vụ thuế, BHXH, bảo vệ môi trường","Cần giấy xác nhận đến thời điểm xin phép"],
+  ["res","Đủ nguồn lực kỹ thuật, nhân lực, tài chính để thử nghiệm và kiểm soát","Điều 2 khoản 2 Quy định"]
+];
+const CRIT=[
+  ["a","a. Tính đổi mới; lĩnh vực pháp luật chưa quy định, chưa cho phép hoặc chưa phù hợp","Chỉ ra điều luật cụ thể, có ý kiến pháp lý"],
+  ["b","b. Giải quyết vấn đề cụ thể về xã hội, kinh tế, môi trường","Có số liệu, đối tượng hưởng lợi"],
+  ["c","c. Có khả năng hoàn thiện, mở rộng tại Việt Nam sau thử nghiệm","Lộ trình nhân rộng"],
+  ["d","d. Phù hợp nguồn lực, hạ tầng tại địa điểm đề xuất","Địa điểm, hạ tầng, thư hợp tác"],
+  ["dd","đ. Không ảnh hưởng an ninh, bảo mật, lợi ích người dùng","Đánh giá dữ liệu, KYC/AML, an toàn hệ thống"],
+  ["e","e. Kế hoạch, quy trình vận hành, quản lý rủi ro, phương án khắc phục","Giai đoạn, ma trận rủi ro, quỹ bồi hoàn, kế hoạch thoát"],
+  ["g","g. Chiến lược phát triển sau thử nghiệm","Mô hình kinh doanh, đề xuất cơ chế quản lý"]
+];
+const SECTOR={
+  khac:"Lĩnh vực không có yêu cầu riêng nêu trong tiêu chí đ; vẫn cần đánh giá dữ liệu cá nhân nếu thu thập.",
+  tsmh:"Tiêu chí đ có yêu cầu riêng về an ninh tiền tệ. Đà Nẵng đã có 6 giải pháp tài sản số được thử nghiệm (Basal Pay, MIMO, PayD, TORA, Umi Pay, Money X-Border); nên đọc kỹ cách các giải pháp này đặt giới hạn. Cân nhắc thêm kênh VIFC Đà Nẵng và khung thí điểm quốc gia.",
+  tt:"Có thể chạm tới quy định về trung gian thanh toán, phương tiện thanh toán: chuẩn bị ý kiến pháp lý và giới hạn giá trị chặt (như hồ sơ mẫu Điểm Xanh).",
+  nh:"Ba lĩnh vực này có sandbox riêng của Ngân hàng Nhà nước theo Nghị định 94/2025/NĐ-CP (hiệu lực 1/7/2025, thử nghiệm tối đa 2 năm). Nên so sánh kênh NHNN với kênh Đà Nẵng trước khi nộp.",
+  dl:"Tiêu chí đ có yêu cầu riêng về dữ liệu và xác minh danh tính trực tuyến: cần đánh giá tác động xử lý dữ liệu cá nhân, thu thập tối thiểu, lưu trữ tại Việt Nam.",
+  ck:"Tiêu chí đ có yêu cầu riêng về chứng khoán: cần ý kiến pháp lý rất rõ về ranh giới chào bán, gọi vốn."
+};
+function checks(el,list,obj){
+  el.innerHTML=list.map(([k,t,s])=>`<label><input type="checkbox" data-k="${k}" ${obj[k]?"checked":""}><span>${esc(t)}<small>${esc(s)}</small></span></label>`).join("");
+  el.addEventListener("change",e=>{ const k=e.target.dataset.k; if(!k) return; obj[k]=e.target.checked; save(); renderDK(); });
+}
+checks($("#dk-req"),REQ,S.req); checks($("#dk-crit"),CRIT,S.crit);
+$("#dk-sector").value=S.sector;
+$("#dk-sector").addEventListener("change",e=>{ S.sector=e.target.value; save(); renderDK(); });
+function dkResult(){
+  const missR=REQ.filter(r=>!S.req[r[0]]), missC=CRIT.filter(c=>!S.crit[c[0]]);
+  let lv,label,msg;
+  if(missR.length){ lv="stop"; label="Chưa đủ điều kiện đầu vào"; msg="Cần đáp ứng toàn bộ điều kiện bắt buộc trước khi nộp."; }
+  else if(missC.length){ lv="warn"; label="Cần bổ sung bằng chứng"; msg=`Đã đủ điều kiện đầu vào; còn ${missC.length}/7 tiêu chí chưa có bằng chứng.`; }
+  else { lv="ok"; label="Đủ điều kiện cơ bản để nộp"; msg="Đủ điều kiện đầu vào và đã có bằng chứng cho 7 tiêu chí. Bước tiếp: hoàn thiện hồ sơ và hỏi Sở KH&CN về mẫu Phụ lục II, III."; }
+  return {lv,label,msg,missR,missC};
+}
+function renderDK(){
+  const r=dkResult();
+  let html=`<div class="verdict"><span class="badge lv-${r.lv}">${r.label}</span></div><p style="margin:0 0 6px">${esc(r.msg)}</p>`;
+  if(r.missR.length) html+=`<b>Điều kiện còn thiếu</b><ul class="list">${r.missR.map(x=>`<li>${esc(x[1])}</li>`).join("")}</ul>`;
+  if(r.missC.length) html+=`<b style="display:block;margin-top:8px">Tiêu chí cần thêm bằng chứng</b><ul class="list">${r.missC.map(x=>`<li>${esc(x[1])} – <span class="hint">${esc(x[2])}</span></li>`).join("")}</ul>`;
+  html+=`<b style="display:block;margin-top:10px">Lưu ý theo lĩnh vực</b><p style="margin:4px 0 0;font-size:14px">${esc(SECTOR[S.sector])}</p>`;
+  if(!S.req.hq) html+=`<p class="hint" style="margin-top:8px">Startup ở tỉnh khác: cần tính phương án lập trụ sở chính hoặc pháp nhân tại Đà Nẵng.</p>`;
+  $("#dk-out").innerHTML=html;
+}
+
+/* ---------- 2. Hồ sơ ---------- */
+const DOCS=[
+  ["Đơn đề nghị (Phụ lục II)",[["d1","Lấy mẫu Phụ lục II gốc từ Sở KH&CN"],["d2","Điền phạm vi: địa điểm, số người dùng, giới hạn giá trị"],["d3","Ghi thời hạn đề nghị (tối đa 3 năm)"],["d4","Ký, đóng dấu người đại diện theo pháp luật"]]],
+  ["Hồ sơ pháp lý",[["p1","Giấy chứng nhận đăng ký doanh nghiệp (hoặc ghi mã số để Sở tra cứu)"]]],
+  ["Thuyết minh giải pháp (Phụ lục III)",[["t1","Khoảng trống pháp lý + ý kiến pháp lý (tiêu chí a)"],["t2","Vấn đề, lợi ích, cách đo (tiêu chí b)"],["t3","Khả năng mở rộng (c) và phù hợp địa điểm (d)"],["t4","An ninh, dữ liệu, quyền lợi người dùng (đ)"],["t5","Kế hoạch giai đoạn, ma trận rủi ro, quỹ bồi hoàn, kế hoạch thoát (e)"],["t6","Bộ chỉ số theo dõi và ngưỡng dừng"],["t7","Chiến lược sau thử nghiệm (g)"]]],
+  ["Chứng minh chi phí thử nghiệm (nếu có)",[["c1","Hợp đồng thiết bị, hóa đơn"],["c2","Bảng chi phí nhân lực vận hành"]]],
+  ["Xác nhận nghĩa vụ",[["x1","Xác nhận nghĩa vụ thuế"],["x2","Xác nhận đóng BHXH"],["x3","Chấp hành quy định bảo vệ môi trường"]]],
+  ["Tài liệu khác (nên có)",[["k1","Báo cáo hoặc kế hoạch kiểm thử xâm nhập"],["k2","Đánh giá tác động xử lý dữ liệu cá nhân"],["k3","Điều khoản sử dụng, chính sách quyền riêng tư (nháp)"],["k4","Thư ý định hợp tác của đối tác tại địa điểm"]]]
+];
+const ALL=DOCS.flatMap(g=>g[1]);
+$("#hs-list").innerHTML=DOCS.map(([g,items],i)=>`<fieldset><legend>${i+1}. ${esc(g)}</legend><div class="checks">${items.map(([k,t])=>`<label><input type="checkbox" data-d="${k}" ${S.docs[k]?"checked":""}><span>${esc(t)}</span></label>`).join("")}</div></fieldset>`).join("");
+$("#hs-list").addEventListener("change",e=>{ const k=e.target.dataset.d; if(!k) return; S.docs[k]=e.target.checked; save(); renderHS(); });
+function hsDone(){ return ALL.filter(x=>S.docs[x[0]]).length; }
+function renderHS(){
+  const n=hsDone(), p=Math.round(n*100/ALL.length);
+  $("#hs-pct").textContent=p+"%"; $("#hs-bar").style.width=p+"%";
+  $("#hs-count").textContent=`Đã xong ${n}/${ALL.length} việc`;
+  const next=ALL.filter(x=>!S.docs[x[0]]).slice(0,3);
+  $("#hs-next").innerHTML=next.length?next.map(x=>`<li>Tiếp theo: ${esc(x[1])}</li>`).join(""):"<li>Hồ sơ đã đủ. Nộp 01 bộ về Sở KH&CN (qua Trung tâm Phục vụ hành chính công).</li>";
+  renderTL();
+}
+function addDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+function addWork(d,n){ const x=new Date(d); while(n>0){ x.setDate(x.getDate()+1); const w=x.getDay(); if(w!==0&&w!==6) n--; } return x; }
+const fmt=d=>d.toLocaleDateString("vi-VN",{day:"2-digit",month:"2-digit",year:"numeric"});
+function timeline(){
+  if(!S.date) return null;
+  const d0=new Date(S.date+"T00:00:00"); if(isNaN(d0)) return null;
+  const b=addDays(d0,23), dd=addDays(b,22), g=addDays(dd,8), hh=addDays(g,10), i=addWork(hh,6), k=addWork(i,60);
+  return [["Tổ thẩm định xong, kể cả kiểm tra thực tế (23 ngày)",b],["Hội đồng đánh giá họp (22 ngày)",dd],["Sở trình UBND (8 ngày)",g],["UBND quyết định thử nghiệm (10 ngày)",hh],["Cơ quan kiểm soát cấp phép, ban hành quy chế (6 ngày làm việc)",i],["Hạn chót phải bắt đầu thử nghiệm (60 ngày làm việc)",k]];
+}
+function renderTL(){
+  const t=timeline();
+  $("#hs-tl").innerHTML=t?t.map(([a,d])=>`<tr><td>${esc(a)}</td><td class="num">${fmt(d)}</td></tr>`).join(""):`<tr><td colspan="2" class="hint">Chọn ngày để xem các mốc.</td></tr>`;
+}
+$("#hs-date").value=S.date||"";
+$("#hs-date").addEventListener("input",e=>{ S.date=e.target.value; save(); renderTL(); });
+
+/* ---------- 3. Chỉ số ---------- */
+// lv(v): trả về "ok" | "warn" | "stop"
+const lv3=(v,okFn,warnFn)=>okFn(v)?"ok":(warnFn(v)?"warn":"stop");
+const pct=v=>(Math.round(v*10)/10).toLocaleString("vi-VN")+"%";
+const IND=[
+ {g:1,id:"1.1",n:"Mức dùng trần người dùng",s:"Xanh < 80% · Đỏ > 100%",f:[["u","Tài khoản hoạt động"],["cap","Trần trong giấy phép"]],c:v=>{ if(!v.cap) return null; const r=v.u/v.cap*100; return [pct(r),lv3(r,x=>x<80,x=>x<=100)]; }},
+ {g:1,id:"1.2",n:"Mức dùng trần giá trị",s:"Xanh < 80% · Đỏ > 100%",f:[["val","Giá trị đang lưu hành (triệu đ)"],["cap","Trần (triệu đ)"]],c:v=>{ if(!v.cap) return null; const r=v.val/v.cap*100; return [pct(r),lv3(r,x=>x<80,x=>x<=100)]; }},
+ {g:1,id:"1.3",n:"Giao dịch ngoài địa bàn/đối tượng được phép",s:"Xanh = 0 · Đỏ ≥ 1",f:[["n","Số giao dịch"]],c:v=>[v.n+"",v.n>0?"stop":"ok"]},
+ {g:1,id:"1.4",n:"Báo cáo trễ hạn",s:"Xanh = 0 ngày · Vàng ≤ 3 · Đỏ > 3 hoặc thiếu",f:[["d","Số ngày trễ"]],c:v=>[v.d+" ngày",lv3(v.d,x=>x<=0,x=>x<=3)]},
+ {g:1,id:"1.5",n:"Thời gian còn lại của giấy phép",s:"Xanh > 6 tháng · Đỏ < 2 tháng",f:[["m","Số tháng"]],c:v=>[v.m+" tháng",lv3(v.m,x=>x>6,x=>x>=2)]},
+ {g:2,id:"2.1",n:"Khiếu nại / 1.000 người dùng hoạt động",s:"Xanh < 5 · Đỏ > 15",f:[["k","Số khiếu nại"],["a","Người dùng hoạt động"]],c:v=>{ if(!v.a) return null; const r=v.k/v.a*1000; return [(Math.round(r*10)/10).toLocaleString("vi-VN"),lv3(r,x=>x<5,x=>x<=15)]; }},
+ {g:2,id:"2.2",n:"Khiếu nại quá hạn 7 ngày",s:"Xanh < 2% · Đỏ ≥ 5%",f:[["o","Số quá hạn"],["k","Tổng khiếu nại"]],c:v=>{ if(!v.k) return null; const r=v.o/v.k*100; return [pct(r),lv3(r,x=>x<2,x=>x<5)]; }},
+ {g:2,id:"2.3",n:"Thiệt hại đã bồi hoàn",s:"Xanh 100% · Đỏ < 90%",f:[["p","% đã bồi hoàn"]],c:v=>[pct(v.p),lv3(v.p,x=>x>=100,x=>x>=90)]},
+ {g:2,id:"2.4",n:"Độ phủ quỹ bồi hoàn",s:"Xanh ≥ 100% · Đỏ < 80%",f:[["p","Quỹ ÷ giá trị lưu hành (%)"]],c:v=>[pct(v.p),lv3(v.p,x=>x>=100,x=>x>=80)]},
+ {g:2,id:"2.5",n:"Người dùng đã xác nhận thông báo \"đang thử nghiệm\"",s:"Xanh 100% · Đỏ < 95%",f:[["p","%"]],c:v=>[pct(v.p),lv3(v.p,x=>x>=100,x=>x>=95)]},
+ {g:3,id:"3.1",n:"Sự cố an ninh nghiêm trọng",s:"Xanh = 0 · Đỏ ≥ 1",f:[["n","Số sự cố"]],c:v=>[v.n+"",v.n>0?"stop":"ok"]},
+ {g:3,id:"3.2",n:"Thời gian hoạt động",s:"Xanh ≥ 99,5% · Đỏ < 97%",f:[["p","%"]],c:v=>[pct(v.p),lv3(v.p,x=>x>=99.5,x=>x>=97)]},
+ {g:3,id:"3.3",n:"Giao dịch bị cảnh báo bất thường",s:"Xanh < 0,5% · Đỏ ≥ 2%",f:[["p","%"]],c:v=>[pct(v.p),lv3(v.p,x=>x<0.5,x=>x<2)]},
+ {g:3,id:"3.4",n:"Ngày đối soát lệch chưa khắc phục",s:"Xanh = 0 · Vàng 1–2 · Đỏ > 2",f:[["n","Số ngày"]],c:v=>[v.n+" ngày",lv3(v.n,x=>x<=0,x=>x<=2)]},
+ {g:3,id:"3.5",n:"Lỗ hổng mức cao mở quá 30 ngày",s:"Xanh = 0 · Vàng 1 · Đỏ ≥ 2",f:[["n","Số lỗ hổng"]],c:v=>[v.n+"",lv3(v.n,x=>x<=0,x=>x<=1)]},
+ {g:4,id:"4.1",n:"Mức sử dụng thực",s:"Xanh ≥ 30% · Đỏ < 10%",f:[["a","Hoạt động"],["r","Đã đăng ký"]],c:v=>{ if(!v.r) return null; const r=v.a/v.r*100; return [pct(r),lv3(r,x=>x>=30,x=>x>=10)]; }},
+ {g:4,id:"4.2",n:"Chỉ số lợi ích chính so với mục tiêu",s:"Xanh ≥ 100% mục tiêu · Đỏ < 50%",f:[["x","Thực tế"],["t","Mục tiêu"]],c:v=>{ if(!v.t) return null; const r=v.x/v.t*100; return [pct(r)+" mục tiêu",lv3(r,x=>x>=100,x=>x>=50)]; }},
+ {g:4,id:"4.3",n:"Mức hài lòng (1–5)",s:"Xanh ≥ 4,0 · Đỏ < 3,0",f:[["s","Điểm"]],c:v=>[v.s.toLocaleString("vi-VN"),lv3(v.s,x=>x>=4,x=>x>=3)]},
+ {g:4,id:"4.4",n:"Thay đổi chi phí / người dùng hoạt động",s:"Xanh ≤ 0% · Vàng ≤ 20% · Đỏ > 20%",f:[["p","% so với kỳ trước"]],c:v=>[pct(v.p),lv3(v.p,x=>x<=0,x=>x<=20)]},
+ {g:5,id:"5.1",n:"Câu hỏi pháp lý đã có dữ liệu trả lời",s:"Đạt ≥ 80%",f:[["p","%"]],c:v=>[pct(v.p),v.p>=80?"ok":"warn"]},
+ {g:5,id:"5.2",n:"Đã gửi đề xuất cơ chế quản lý (1 = có, 0 = chưa)",s:"Chậm nhất 6 tháng trước khi hết hạn",f:[["y","1/0"]],c:v=>[v.y?"Đã gửi":"Chưa",v.y?"ok":"warn"]},
+ {g:5,id:"5.3",n:"Đã diễn tập kế hoạch thoát (1 = có, 0 = chưa)",s:"Ít nhất 1 lần, có biên bản",f:[["y","1/0"]],c:v=>[v.y?"Đã diễn tập":"Chưa",v.y?"ok":"warn"]}
+];
+const GROUPS={1:"Nhóm 1 · Tuân thủ phạm vi và giới hạn",2:"Nhóm 2 · Bảo vệ người dùng",3:"Nhóm 3 · An toàn hệ thống và dữ liệu",4:"Nhóm 4 · Hiệu quả và lợi ích",5:"Nhóm 5 · Bằng chứng chính sách"};
+const LVNAME={ok:"Xanh",warn:"Vàng",stop:"Đỏ"};
+const SAMPLE={"1.1":{u:4300,cap:5000},"1.2":{val:2100,cap:4000},"1.3":{n:0},"1.4":{d:0},"1.5":{m:18},"2.1":{k:42,a:4300},"2.2":{o:1,k:42},"2.3":{p:100},"2.4":{p:112},"2.5":{p:100},"3.1":{n:0},"3.2":{p:99.7},"3.3":{p:0.3},"3.4":{n:0},"3.5":{n:0},"4.1":{a:4300,r:6100},"4.2":{x:31,t:40},"4.3":{s:4.2},"4.4":{p:-6},"5.1":{p:50},"5.2":{y:0},"5.3":{y:0}};
+let html="",lastG=0;
+IND.forEach(it=>{
+  if(it.g!==lastG){ html+=`<h3 class="grp">${GROUPS[it.g]}</h3>`; lastG=it.g; }
+  html+=`<div class="ind" data-id="${it.id}"><div class="name">${it.id}. ${esc(it.n)}<small>${esc(it.s)}</small></div><div class="inp">${it.f.map(([k,l])=>`<label>${esc(l)}<input type="number" step="any" inputmode="decimal" data-f="${k}" aria-label="${esc(it.id+" "+l)}"></label>`).join("")}</div><div class="out"><span class="val"></span><span class="badge lv-na">—</span></div></div>`;
+});
+$("#cs-list").innerHTML=html;
+function fillInputs(){ document.querySelectorAll(".ind").forEach(row=>{ const v=S.ind[row.dataset.id]||{}; row.querySelectorAll("input").forEach(inp=>{ inp.value=(v[inp.dataset.f]??""); }); }); }
+function evalInd(it){
+  const v=S.ind[it.id]||{}; if(it.f.some(([k])=>v[k]===undefined||v[k]===""||isNaN(v[k]))) return null;
+  const o={}; it.f.forEach(([k])=>o[k]=Number(v[k])); return it.c(o);
+}
+function conclude(res){
+  const filled=res.filter(r=>r.r);
+  if(!filled.length) return null;
+  const red=g=>filled.filter(r=>r.it.g===g&&r.r[1]==="stop").length;
+  const cnt=k=>filled.filter(r=>r.r[1]===k).length;
+  const g4=filled.filter(r=>r.it.g===4), g5=filled.filter(r=>r.it.g===5);
+  const g4ok=g4.length&&g4.filter(r=>r.r[1]==="ok").length/g4.length>=0.5;
+  const g4red=g4.length&&g4.filter(r=>r.r[1]==="stop").length/g4.length>0.5;
+  const g5ok=g5.length===3&&g5.every(r=>r.r[1]==="ok");
+  const nearCap=filled.some(r=>(r.it.id==="1.1"||r.it.id==="1.2")&&r.r[1]==="warn");
+  const months=(S.ind["1.5"]||{}).m;
+  let lv,label,why;
+  if(red(2)+red(3)>0){ lv="stop"; label="Tạm dừng phần liên quan · đề xuất thu hẹp hoặc chấm dứt"; why="Có chỉ số Đỏ ở nhóm Bảo vệ người dùng hoặc An toàn hệ thống. Báo cơ quan kiểm soát trong 24 giờ và có kế hoạch khắc phục; không được miễn trách nhiệm nếu biết rủi ro mà không có biện pháp hoặc không báo cáo kịp thời (khoản 5 Điều 14 NQ 136)."; }
+  else if(red(1)>0){ lv="stop"; label="Vượt phạm vi được phép · dừng phần vượt, báo cáo ngay"; why="Có chỉ số Đỏ ở nhóm Tuân thủ phạm vi. Chỉ mở rộng phạm vi khi có quyết định của UBND (như QĐ 3776/QĐ-UBND với Basal Pay)."; }
+  else if(g4red){ lv="warn"; label="Cân nhắc tự rút có trật tự"; why="Phần lớn chỉ số Hiệu quả ở mức Đỏ: giải pháp chưa tạo lợi ích rõ. Nên trao đổi với cơ quan kiểm soát về điều chỉnh hoặc kết thúc, thực hiện kế hoạch thoát."; }
+  else if(g4ok&&g5ok){ lv="ok"; label="Đủ bằng chứng đề xuất mở rộng hoặc cơ chế quản lý chính thức"; why="Không có chỉ số Đỏ, nhóm Hiệu quả phần lớn Xanh, nhóm Bằng chứng chính sách đạt. Nhớ: mở rộng hay kết thúc thử nghiệm không đồng nghĩa với được cấp phép cung cấp dịch vụ chính thức."; }
+  else if(months!==undefined&&months!==""&&Number(months)<=6){ lv="warn"; label="Chuẩn bị gia hạn có điều kiện hoặc kết thúc"; why="Không có chỉ số Đỏ nhưng bằng chứng chưa đủ và giấy phép còn ≤ 6 tháng. Gửi đề xuất gia hạn (tối đa 1 lần, không quá 3 năm) kèm kế hoạch bổ sung dữ liệu."; }
+  else { lv="ok"; label="Tiếp tục, giữ phạm vi hiện tại"; why="Không có chỉ số Đỏ. Theo dõi sát các chỉ số Vàng và bổ sung bằng chứng ở nhóm 4–5 trước kỳ đánh giá."; }
+  const todo=[];
+  if(nearCap) todo.push("Sắp chạm trần người dùng hoặc giá trị: chuẩn bị đề nghị chuyển giai đoạn, chờ văn bản đồng ý, không tự vượt.");
+  filled.filter(r=>r.r[1]!=="ok"&&r.it.g!==5&&!["1.1","1.2"].includes(r.it.id)).slice(0,4).forEach(r=>todo.push(`${r.it.id} ${r.it.n}: ${r.r[0]} (${LVNAME[r.r[1]]})`));
+  if(g5.some(r=>r.r[1]!=="ok")) todo.push("Bổ sung bằng chứng chính sách: dữ liệu cho câu hỏi pháp lý, đề xuất cơ chế quản lý, diễn tập kế hoạch thoát.");
+  return {lv,label,why,todo,counts:{ok:cnt("ok"),warn:cnt("warn"),stop:cnt("stop")},n:filled.length};
+}
+let LAST={res:[],con:null};
+function renderCS(){
+  const res=IND.map(it=>({it,r:evalInd(it)}));
+  res.forEach(({it,r})=>{ const row=document.querySelector(`.ind[data-id="${it.id}"]`); const b=row.querySelector(".badge"); row.querySelector(".val").textContent=r?r[0]:""; b.className="badge lv-"+(r?r[1]:"na"); b.textContent=r?LVNAME[r[1]]:"—"; });
+  const con=conclude(res); LAST={res,con};
+  $("#cs-out").innerHTML=con?`<div class="verdict"><span class="badge lv-${con.lv}">${esc(con.label)}</span></div>
+    <div class="counts"><span class="badge lv-ok">${con.counts.ok} Xanh</span><span class="badge lv-warn">${con.counts.warn} Vàng</span><span class="badge lv-stop">${con.counts.stop} Đỏ</span><span class="hint" style="align-self:center">${con.n}/${IND.length} chỉ số có số liệu</span></div>
+    <p style="margin:6px 0;font-size:14px">${esc(con.why)}</p>${con.todo.length?`<b>Việc trước kỳ báo cáo tới</b><ul class="list">${con.todo.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}`
+    :`<span class="hint">Nhập số liệu hoặc bấm "Nạp số liệu mẫu" để xem kết luận gợi ý.</span>`;
+  $("#cs-ai").hidden=!(con&&window.FinAI&&typeof FinAI.openWith==="function");
+}
+$("#cs-list").addEventListener("input",e=>{ const inp=e.target; if(!inp.dataset.f) return; const id=inp.closest(".ind").dataset.id; S.ind[id]=S.ind[id]||{}; S.ind[id][inp.dataset.f]=inp.value===""?"":Number(inp.value); save(); renderCS(); });
+$("#cs-sample").addEventListener("click",()=>{ S.ind=JSON.parse(JSON.stringify(SAMPLE)); save(); fillInputs(); renderCS(); toast("Đã nạp số liệu mẫu (giả định)"); });
+$("#cs-clear").addEventListener("click",()=>{ S.ind={}; save(); fillInputs(); renderCS(); });
+$("#cs-ai").addEventListener("click",()=>{ if(!LAST.con||!window.FinAI) return; FinAI.openWith(`Tôi đang tự đánh giá một đợt thử nghiệm có kiểm soát (sandbox) tại Đà Nẵng với số liệu giả định. Kết luận gợi ý: "${LAST.con.label}". Các chỉ số chưa đạt: ${LAST.res.filter(r=>r.r&&r.r[1]!=="ok").map(r=>r.it.id+" "+r.it.n+" = "+r.r[0]).join("; ")||"không có"}. Hãy gợi ý cách cải thiện và những gì nên báo cáo với cơ quan kiểm soát.`); });
+
+/* ---------- 4. Tóm tắt ---------- */
+function renderSum(){
+  const r=dkResult(), n=hsDone(), t=timeline(); const {res,con}=LAST;
+  const L=[];
+  L.push(`# Tóm tắt sandbox Đà Nẵng – ${S.name||"Giải pháp"}`,`*Lập ngày ${fmt(new Date())} bằng Bộ công cụ sandbox Đà Nẵng. Số liệu do người dùng nhập; ngưỡng là gợi ý.*`,"");
+  L.push("## 1. Điều kiện tham gia (NQ 20/2026/NQ-HĐND)",`- Kết quả: **${r.label}**`);
+  if(r.missR.length) L.push(`- Điều kiện còn thiếu: ${r.missR.map(x=>x[1]).join("; ")}`);
+  if(r.missC.length) L.push(`- Tiêu chí chưa có bằng chứng: ${r.missC.map(x=>x[1].split(".")[0]).join(", ")}`);
+  L.push(`- Lưu ý lĩnh vực: ${SECTOR[S.sector]}`,"");
+  L.push("## 2. Hồ sơ",`- Tiến độ: ${n}/${ALL.length} việc (${Math.round(n*100/ALL.length)}%)`);
+  const left=ALL.filter(x=>!S.docs[x[0]]); if(left.length) L.push(`- Còn lại: ${left.map(x=>x[1]).join("; ")}`);
+  if(t){ L.push(`- Mốc ước tính (hồ sơ hợp lệ ngày ${fmt(new Date(S.date+"T00:00:00"))}, không phải giải trình):`); t.forEach(([a,d])=>L.push(`  - ${a}: ${fmt(d)}`)); }
+  L.push("");
+  L.push("## 3. Bộ chỉ số đánh giá");
+  if(con){ L.push(`- Kết luận gợi ý: **${con.label}**`,`- ${con.counts.ok} Xanh · ${con.counts.warn} Vàng · ${con.counts.stop} Đỏ (${con.n}/${IND.length} chỉ số có số liệu)`,`- Lý do: ${con.why}`,"","| Chỉ số | Giá trị | Mức |","|---|---|---|");
+    res.filter(x=>x.r).forEach(x=>L.push(`| ${x.it.id} ${x.it.n} | ${x.r[0]} | ${LVNAME[x.r[1]]} |`));
+    if(con.todo.length){ L.push("","**Việc trước kỳ báo cáo tới**"); con.todo.forEach(x=>L.push(`- ${x}`)); } }
+  else L.push("- Chưa nhập số liệu.");
+  L.push("","---","Căn cứ: NQ 20/2026/NQ-HĐND TP Đà Nẵng; Điều 14 NQ 136/2024/QH15 (sửa đổi bởi NQ 259/2025/QH15); CGAP/World Bank (2020) How to Build a Regulatory Sandbox. Không phải tư vấn pháp lý.");
+  $("#tt-out").value=L.join("\n");
+}
+$("#tt-name").value=S.name||"";
+$("#tt-name").addEventListener("input",e=>{ S.name=e.target.value; save(); renderSum(); });
+$("#tt-copy").addEventListener("click",async()=>{ renderSum(); const ta=$("#tt-out"); try{ await navigator.clipboard.writeText(ta.value); }catch(e){ ta.select(); try{ document.execCommand("copy"); }catch(_){} } toast("Đã sao chép bản tóm tắt"); });
+$("#tt-dl").addEventListener("click",()=>{ renderSum(); const b=new Blob([$("#tt-out").value],{type:"text/markdown;charset=utf-8"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download="tom-tat-sandbox-da-nang.md"; document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },500); });
+
+$("#reset").addEventListener("click",()=>{ if(!confirm("Xóa toàn bộ dữ liệu đã nhập trên trang này?")) return; try{ localStorage.removeItem(KEY); }catch(e){} location.reload(); });
+
+renderDK(); renderHS(); fillInputs(); renderCS(); renderSum();
+window.SandboxDN={dkResult,timeline,conclude:()=>LAST.con};
+})();
+</script>
+<script src="voice.js"></script>
+<script src="ai-chat.js"></script>
+<script>if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }</script>
+</body>
+</html>
