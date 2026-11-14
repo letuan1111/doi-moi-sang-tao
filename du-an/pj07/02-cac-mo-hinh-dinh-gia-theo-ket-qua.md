@@ -89,6 +89,18 @@ Bên cạnh đó có các mô hình **theo mức dùng** dễ nhầm với theo 
 - Thông tin Chargeflow là do chính hãng công bố; điều khoản "ROI 4 lần" không công khai.
 - Giá ghi bằng USD, chưa gồm thuế, có thể khác theo khu vực và gói.
 
+## Bổ sung (lượt tra cứu thứ hai, 14/11/2026)
+
+*Các ý dưới đây chưa có trong bản trên, mỗi ý dẫn trang đã mở và đọc.*
+
+- **Zendesk mở rộng sang "ngân sách kết quả" (11/11/2026):** khách đặt một ngân sách kết quả, trả cho vấn đề đủ điều kiện được giải quyết và công việc hoàn thành thay vì mua ghế; gói "Zendesk Unlimited" bỏ giới hạn số ghế, tính năng AI khác nhau theo gói; kết quả được "đánh giá chất lượng và độ đầy đủ trước khi tính vào ngân sách". Bài báo chưa nêu giá. Nguồn: [IT Brief Australia, 11/11/2026](https://itbrief.com.au/story/zendesk-launches-outcome-ai-platform-with-new-pricing)
+- **Hạn mức và phần vượt của Zendesk** (theo bên thứ ba, cần đối chiếu trang chính thức): gói Support Team/Suite Team kèm 5 lượt giải quyết tự động mỗi nhân viên mỗi tháng, Suite Professional 10 lượt, tối đa 10.000 lượt/năm; từ 1/2026 phần vượt cam kết tự động tính tiền, không có trần hay cảnh báo, cách kiểm soát duy nhất là tạm dừng AI. Nguồn: [eesel.ai, sửa 23/10/2026](https://www.eesel.ai/blog/a-complete-guide-to-zendesk-ai-agents-setup-costs-and-best-practices). → Lý do nên có **trần chi phí tháng** trong hợp đồng (mục 6, gợi ý 3).
+- **Sở thích của bên mua (Futurum, khảo sát nửa đầu 2026):** 43% thích giá theo mức dùng, 27% thích theo kết quả, dưới 20% còn thích theo người dùng; thông cáo không nêu cỡ mẫu. Nguồn: [Futurum, 12/5/2026](https://futurumgroup.com/press-release/are-outcome-based-and-hybrid-ai-pricing-models-rewriting-the-vendor-playbook/)
+- **Mức áp dụng khác nhau tùy định nghĩa** (trích qua bài tổng hợp của Orb, chưa mở báo cáo gốc): ICONIQ State of AI 2026 — 23% nhà phát triển AI có dùng một phần giá theo kết quả (18% sáu tháng trước), 37% dự định đổi mô hình giá trong 12 tháng; Orb 2026 (80 công ty AI agent) — 3,8% dùng thuần theo kết quả, 95% dùng giá lai. Nguồn: [Orb](https://www.withorb.com/blog/outcome-based-pricing-statistics)
+- **Gartner** nêu 55% sản phẩm AI sẽ gắn giá với kết quả (trang không ghi năm) và 63% lãnh đạo CNTT khó tính ROI của AI; đề xuất khung OVP (Outcome, Volumetric, Predictability) để tránh chi phí AI "chạy mất kiểm soát". Nguồn: [Gartner](https://www.gartner.com/en/product-management/insights/agentic-ai-pricing-models)
+- **Sierra theo lời Bret Taylor:** phần mềm "hoàn thành công việc" thì mô hình hợp lý là "trả tiền cho việc làm tốt"; đổi mô hình kinh doanh rất khó với hãng đang có doanh thu theo thuê bao, là lợi thế của công ty mới. Nguồn: [Sequoia – Inference, 8/5/2025](https://inferencebysequoia.substack.com/p/how-ai-is-reinventing-software-business)
+- **Rolls-Royce TotalCare:** ngoài chuyển rủi ro, động lực chung giúp kéo dài chu kỳ đại tu khoảng 25%. Nguồn: [Rolls-Royce – câu chuyện TotalCare](https://www.rolls-royce.com/media/our-stories/discover/2017/totalcare.aspx)
+
 ## Nguồn đã đọc (14/11/2026)
 
 - Zendesk Support — [About the automated resolutions platform prior to resolution tiers](https://support.zendesk.com/hc/en-us/articles/5352026794010-About-the-automated-resolutions-platform-prior-to-resolution-tiers); [Resolution tiers](https://support.zendesk.com/hc/en-us/articles/10479528943130)
