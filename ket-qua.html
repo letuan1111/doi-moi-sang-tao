@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2440d6">
+<meta property="og:image" content="https://letuan1111.github.io/doi-moi-sang-tao/icon-512.png">
+<title>Từ ý tưởng đến sản phẩm – Đổi mới sáng tạo</title>
+<meta name="description" content="Xem toàn bộ ý tưởng, ý tưởng nào đã được hiện thực thành công cụ chạy trên web, ý tưởng nào đang được thực thi qua dự án, và mọi tài liệu đã hoàn thành.">
+<meta property="og:title" content="Từ ý tưởng đến sản phẩm – Đổi mới sáng tạo">
+<meta property="og:description" content="Bản đồ hiện thực: ý tưởng → dự án → sản phẩm trên web và tài liệu đã làm.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: bản đồ hiện thực — dải số liệu + phễu ở trên, thanh mục dính, 4 khu: sản phẩm, tài liệu, toàn bộ ý tưởng, nhật ký; khung chi tiết trượt từ phải */
+:root{
+  --bg:#eef1f7; --surface:#ffffff; --ink:#141a2e; --muted:#5b6480; --line:#d6dbe8;
+  --accent:#2440d6; --accent-ink:#ffffff; --spark:#f2b200; --ok:#14805e; --warn:#b26a00; --grid:rgba(36,64,214,.06);
+  --display:"Bricolage Grotesque","Be Vietnam Pro",system-ui,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --grid:rgba(123,140,255,.07); color-scheme:dark; } }
+:root[data-theme="dark"]{ --bg:#0e1222; --surface:#161b30; --ink:#e8ebf6; --muted:#9aa3c2; --line:#2a3152; --accent:#7b8cff; --accent-ink:#0e1222; --spark:#ffc933; --ok:#4fd1a1; --warn:#ffb547; --grid:rgba(123,140,255,.07); color-scheme:dark; }
+*{box-sizing:border-box} html,body{margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
+body{background:var(--bg); background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:28px 28px; color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1180px; margin:0 auto; padding:0 16px 90px}
+h1,h2,h3{font-family:var(--display); margin:0; text-wrap:balance; letter-spacing:-.01em}
+button,select,input{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+a{color:var(--accent)}
+header.top{padding:24px 0 14px; display:flex; gap:14px; justify-content:space-between; align-items:flex-end; flex-wrap:wrap}
+header.top h1{font-size:30px; font-weight:800}
+header.top p{margin:4px 0 0; color:var(--muted); font-size:14px; max-width:72ch}
+.links{display:flex; gap:8px; flex-wrap:wrap}
+.back{font-weight:600; text-decoration:none; border:1px solid var(--line); background:var(--surface); padding:8px 14px; border-radius:999px; font-size:14px}
+
+.overview{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:10px; margin-bottom:14px}
+.stat{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:12px 14px}
+.stat .k{font-size:12px; color:var(--muted); font-weight:600}
+.stat .v{font-family:var(--display); font-size:28px; font-weight:800; font-variant-numeric:tabular-nums}
+.stat .s{font-size:12px; color:var(--muted)}
+.stat.ok{border-top:4px solid var(--ok)} .stat.acc{border-top:4px solid var(--accent)} .stat.sp{border-top:4px solid var(--spark)}
+
+.panel{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:16px; margin-bottom:16px}
+.panel h2{font-size:18px; margin-bottom:4px}
+.panel .sub{color:var(--muted); font-size:13px; margin:0 0 12px}
+.funnel{display:grid; grid-template-columns:repeat(4,1fr); gap:8px}
+@media (max-width:720px){ .funnel{grid-template-columns:1fr 1fr} }
+.fstage{border:1px solid var(--line); border-radius:8px; padding:10px 12px; position:relative}
+.fstage .lbl{font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.fstage .n{font-family:var(--display); font-size:24px; font-weight:800}
+.fstage .bar{height:6px; background:var(--line); border-radius:999px; overflow:hidden; margin-top:6px}
+.fstage .bar i{display:block; height:100%; background:var(--accent)}
+.fstage.ok .bar i{background:var(--ok)} .fstage.sp .bar i{background:var(--spark)}
+.cats{display:flex; flex-direction:column; gap:7px; margin-top:14px}
+.catrow{display:grid; grid-template-columns:minmax(120px,210px) 1fr 44px; gap:10px; align-items:center; font-size:13px}
+.catrow .name{font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.stack{display:flex; height:14px; border-radius:4px; overflow:hidden; background:var(--line); gap:2px}
+.stack i{display:block; height:100%}
+.stack .a{background:var(--ok)} .stack .b{background:var(--accent)} .stack .c{background:color-mix(in srgb,var(--muted) 35%,transparent)}
+.catrow .tot{text-align:right; font-variant-numeric:tabular-nums; color:var(--muted)}
+@media (max-width:560px){ .catrow{grid-template-columns:1fr 36px; gap:2px 8px} .catrow .name{grid-column:1/-1} }
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--muted); margin-top:8px}
+.legend span::before{content:""; display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px; background:var(--c)}
+
+nav.jump{position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 92%,transparent); backdrop-filter:blur(6px); padding:8px 0; margin-bottom:8px; display:flex; gap:6px; overflow-x:auto; scrollbar-width:none}
+nav.jump a{flex:none; text-decoration:none; color:var(--ink); border:1px solid var(--line); background:var(--surface); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600}
+nav.jump a.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+section.blk{scroll-margin-top:56px; margin-bottom:26px}
+section.blk > h2{font-size:22px; margin:6px 0 2px}
+section.blk > .sub{color:var(--muted); font-size:14px; margin:0 0 12px; max-width:80ch}
+
+.chip{border:1px solid var(--line); background:var(--surface); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.chip .c{opacity:.7; font-weight:500; margin-left:4px}
+.filters{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; align-items:center}
+.filters select,.filters input{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:6px 12px; font-size:13px; max-width:100%}
+.filters input{flex:1 1 200px; min-width:0}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:12px}
+@media (max-width:420px){ .grid{grid-template-columns:1fr} }
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--r); padding:14px 16px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.card h3{font-size:16.5px}
+.card p{margin:0; font-size:14px}
+.card .meta{font-size:12px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.card .foot{margin-top:auto; display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+.feat{border-left:4px solid var(--ok)}
+.feat.ho-tro{border-left-color:var(--accent)} .feat.nen-tang{border-left-color:var(--spark)}
+.feat ol{margin:0; padding-left:18px; font-size:13px; color:var(--muted)}
+.tag{display:inline-block; font-size:11px; font-weight:700; padding:1px 8px; border-radius:999px; border:1px solid var(--line); white-space:nowrap}
+.tag.sp{border-color:var(--ok); color:var(--ok)} .tag.tt{border-color:var(--accent); color:var(--accent)} .tag.yt{color:var(--muted)}
+.tag.ns{border-color:var(--warn); color:var(--warn)}
+.refs{display:flex; gap:5px; flex-wrap:wrap}
+.ref{border:1px dashed var(--line); background:transparent; border-radius:6px; padding:2px 8px; font-size:12px; cursor:pointer; text-align:left; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.ref:hover{border-color:var(--accent); color:var(--accent)}
+a.ref{text-decoration:none; color:inherit}
+.btn{display:inline-flex; align-items:center; gap:6px; border:0; background:var(--accent); color:var(--accent-ink); padding:7px 14px; border-radius:999px; font-weight:700; font-size:13px; cursor:pointer; text-decoration:none}
+.btn.ghost{background:transparent; color:var(--ink); border:1px solid var(--line)}
+.idea .sum{display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; color:var(--ink)}
+.idea.sp{border-top:4px solid var(--ok)} .idea.tt{border-top:4px solid var(--accent)}
+.dots{display:inline-flex; gap:2px; vertical-align:middle}
+.dots i{width:7px; height:7px; border-radius:50%; background:var(--line)} .dots i.on{background:var(--spark)}
+
+.docs{display:flex; flex-direction:column; gap:6px}
+.drow{display:grid; grid-template-columns:92px 1fr auto; gap:12px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:10px 12px}
+@media (max-width:560px){ .drow{grid-template-columns:1fr; gap:4px} }
+.drow .d{font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums}
+.drow .t{font-weight:600; font-size:14px}
+.drow .p{font-size:12px; color:var(--muted)}
+
+.log{border-left:2px solid var(--line); margin-left:6px; padding-left:16px; display:flex; flex-direction:column; gap:14px}
+.log .day{position:relative}
+.log .day::before{content:""; position:absolute; left:-23px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--bg)}
+.log .day h3{font-size:15px; margin-bottom:4px}
+.log ul{margin:0; padding-left:18px; font-size:14px}
+
+.drawer{position:fixed; inset:0 0 0 auto; width:min(780px,100vw); background:var(--surface); border-left:1px solid var(--line); box-shadow:-20px 0 50px rgba(0,0,0,.25); z-index:60; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .2s; visibility:hidden}
+.drawer.open{transform:none; visibility:visible}
+.drawer .head{display:flex; gap:8px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line)}
+.drawer .head h2{flex:1; font-size:16px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.drawer .head button{border:1px solid var(--line); background:transparent; border-radius:999px; padding:5px 12px; cursor:pointer; font-size:13px; flex:none}
+.drawer .head .fv-speak{margin:0;padding:5px 12px;font-size:13px}
+.doc{overflow-y:auto; padding:18px 22px 40px; font-size:15px}
+.doc h3{font-size:22px; margin-bottom:6px}
+.doc h4{font-family:var(--display); font-size:17px; margin:20px 0 8px}
+.doc p{margin:0 0 10px} .doc ul,.doc ol{margin:0 0 10px; padding-left:22px}
+.doc table{border-collapse:collapse; font-size:13px; margin:8px 0; display:block; overflow-x:auto}
+.doc td,.doc th{border:1px solid var(--line); padding:5px 8px; vertical-align:top}
+.doc code{font-size:13px; background:var(--bg); padding:0 4px; border-radius:4px}
+.doc blockquote{margin:8px 0; padding:6px 12px; border-left:3px solid var(--spark); color:var(--muted)}
+.doc .box{border:1px solid var(--line); border-radius:8px; padding:12px 14px; margin-bottom:10px}
+.doc .box h5{font-size:15px; margin:0 0 4px; font-family:var(--display)}
+.doc .actions{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0}
+.prog{display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; font-variant-numeric:tabular-nums; margin:6px 0}
+.track{flex:1; height:8px; border-radius:999px; overflow:hidden; display:flex; gap:2px}
+.track i{flex:1; background:var(--line)} .track i.done{background:var(--ok)} .track i.next{background:var(--spark)}
+ol.steps{list-style:none; margin:6px 0 0; padding:0; display:flex; flex-direction:column; gap:5px}
+ol.steps li{display:grid; grid-template-columns:22px 1fr; gap:8px; font-size:13.5px}
+.num{width:22px; height:22px; border-radius:50%; display:grid; place-items:center; font-size:11px; font-weight:800; border:1.5px solid var(--line); color:var(--muted)}
+li.done .num{background:var(--ok); border-color:var(--ok); color:#fff}
+li.next .num{border-color:var(--spark)}
+.res{background:none; border:0; padding:0; color:var(--accent); font-weight:700; font-size:13px; cursor:pointer; text-decoration:underline; margin-left:4px}
+.scrim{position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:59; display:none}
+.scrim.open{display:block}
+.empty{color:var(--muted); font-size:14px}
+.more{display:block; margin:12px auto 0}
+footer{color:var(--muted); font-size:12px; padding-top:18px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){ .drawer{transition:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Từ ý tưởng đến sản phẩm</h1>
+      <p>Một chỗ để xem hết: toàn bộ ý tưởng trong kho, ý tưởng nào đã thành công cụ chạy được ngay trên trang này, ý tưởng nào đang được thực thi qua dự án, và mọi tài liệu đã làm xong. Bấm vào bất kỳ ý tưởng nào để xem chi tiết.</p>
+    </div>
+    <div class="links"><a class="back" href="index.html">← Trang chính</a><a class="back" href="du-an.html">Lộ trình thực thi</a><a class="back" href="lab.html">Phòng thử nghiệm</a><a class="back" href="tools.html">Công cụ tài chính</a></div>
+  </header>
+
+  <div class="overview" id="ov"><p class="empty">Đang tải…</p></div>
+
+  <section class="panel" aria-labelledby="fn-h">
+    <h2 id="fn-h">Hành trình của các ý tưởng</h2>
+    <p class="sub">Ý tưởng được gắn với dự án thực thi khi có đơn vị thật đang triển khai; được tính là "đã có sản phẩm" khi trang này có công cụ chạy được hiện thực ý tưởng đó (dữ liệu giả lập).</p>
+    <div class="funnel" id="funnel"></div>
+    <div class="cats" id="cats"></div>
+    <div class="legend"><span style="--c:var(--ok)">Đã có sản phẩm trên web</span><span style="--c:var(--accent)">Đang thực thi qua dự án</span><span style="--c:color-mix(in srgb,var(--muted) 35%,transparent)">Chưa triển khai</span></div>
+  </section>
+
+  <nav class="jump" id="jump" aria-label="Các mục">
+    <a href="#san-pham">Sản phẩm trên web</a>
+    <a href="#tai-lieu">Tài liệu đã làm</a>
+    <a href="#du-an-lien-ket">Dự án và ý tưởng</a>
+    <a href="#tat-ca">Toàn bộ ý tưởng</a>
+    <a href="#nhat-ky">Nhật ký</a>
+  </nav>
+
+  <section class="blk" id="san-pham" aria-labelledby="sp-h">
+    <h2 id="sp-h">Sản phẩm đang chạy trên web</h2>
+    <p class="sub">Mọi công cụ chạy ngay trên trình duyệt, chỉ dùng dữ liệu giả lập, không gửi dữ liệu đi. Viền xanh lá: hiện thực một ý tưởng cụ thể; viền xanh dương: công cụ hỗ trợ; viền vàng: tính năng chung của trang.</p>
+    <div class="filters" id="f-feat" role="group" aria-label="Lọc sản phẩm"></div>
+    <div class="grid" id="feats"></div>
+  </section>
+
+  <section class="blk" id="tai-lieu" aria-labelledby="tl-h">
+    <h2 id="tl-h">Tài liệu đã hoàn thành</h2>
+    <p class="sub">Kết quả từng bước của lộ trình thực thi: nghiên cứu có dẫn nguồn, tài liệu mẫu, báo cáo. Bấm Đọc để xem ngay trên trang.</p>
+    <div class="filters">
+      <label class="sr" for="doc-p">Lọc theo dự án</label><select id="doc-p"></select>
+      <label class="sr" for="doc-k">Lọc theo loại</label><select id="doc-k"></select>
+    </div>
+    <div class="docs" id="docs"></div>
+  </section>
+
+  <section class="blk" id="du-an-lien-ket" aria-labelledby="dl-h">
+    <h2 id="dl-h">Dự án và ý tưởng liên quan</h2>
+    <p class="sub">Mỗi dự án đang thực thi ngoài đời được gắn với các ý tưởng trong kho mà nó minh chứng, kèm tiến độ lộ trình của trang.</p>
+    <div class="grid" id="projs"></div>
+  </section>
+
+  <section class="blk" id="tat-ca" aria-labelledby="all-h">
+    <h2 id="all-h">Toàn bộ ý tưởng</h2>
+    <p class="sub">Lọc theo trạng thái hiện thực, lĩnh vực, khu vực hoặc tìm theo từ khóa. Phím tắt: <kbd>/</kbd> để tìm.</p>
+    <div class="filters" id="f-status" role="group" aria-label="Lọc theo trạng thái"></div>
+    <div class="filters">
+      <label class="sr" for="q">Tìm ý tưởng</label><input id="q" type="search" placeholder="Tìm ý tưởng, ví dụ: passkey, sandbox, AI…" autocomplete="off">
+      <label class="sr" for="f-cat">Lĩnh vực</label><select id="f-cat"></select>
+      <label class="sr" for="f-reg">Khu vực</label><select id="f-reg"><option value="">Mọi khu vực</option><option value="vn">Việt Nam</option><option value="intl">Quốc tế</option></select>
+      <label class="sr" for="f-sort">Sắp xếp</label><select id="f-sort"><option value="status">Sắp theo trạng thái</option><option value="impact">Tác động cao trước</option><option value="new">Mới thêm trước</option><option value="az">Tên A–Z</option></select>
+    </div>
+    <p class="empty" id="count" aria-live="polite"></p>
+    <div class="grid" id="ideas"></div>
+    <button type="button" class="btn ghost more" id="more" hidden>Xem thêm</button>
+  </section>
+
+  <section class="blk" id="nhat-ky" aria-labelledby="nk-h">
+    <h2 id="nk-h">Nhật ký cập nhật</h2>
+    <p class="sub">Những gì đã được làm, theo ngày.</p>
+    <div class="log" id="log"></div>
+  </section>
+
+  <footer>Mô tả ý tưởng được viết lại bằng tiếng Việt từ nguồn công khai, có link nguồn gốc. Công cụ trên trang là bản minh họa với dữ liệu giả lập, không phải sản phẩm của ngân hàng hay cơ quan nào. Tài liệu do Claude AI soạn là tham khảo; hãy kiểm tra văn bản gốc trước khi dùng cho quyết định quan trọng.</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="d-title" role="dialog">
+  <div class="head"><button type="button" id="d-back" hidden>← Quay lại</button><h2 id="d-title">Chi tiết</h2><span id="d-spk"></span><button type="button" id="d-ai">✦ Hỏi AI</button><button type="button" id="d-close" aria-label="Đóng">✕</button></div>
+  <article class="doc" id="d-body"></article>
+</aside>
+
+<script src="voice.js"></script>
+<script src="ai-chat.js"></script>
+<script>
+(function(){
+  const $ = s=>document.querySelector(s);
+  const esc = s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+  const fold = s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D").toLowerCase();
+  const vnDate = d=>d? String(d).split("-").reverse().join("/") : "";
+  const KIND = {research:"Nghiên cứu", doc:"Tài liệu", build:"Xây dựng", field:"Thực địa", report:"Báo cáo"};
+  const SCOPE = {"y-tuong":"Hiện thực ý tưởng", "ho-tro":"Công cụ hỗ trợ", "nen-tang":"Tính năng chung"};
+  const ST = {sp:"Đã có sản phẩm trên web", tt:"Đang thực thi qua dự án", yt:"Chưa triển khai"};
+  const ST_SHORT = {sp:"Có sản phẩm", tt:"Đang thực thi", yt:"Ý tưởng"};
+  const STEP_PAGE = 24;
+
+  let ideas=[], projects=[], map={features:[], projectIdeas:{}};
+  let ix = {}, featByIdea = {}, projByIdea = {};
+  const ui = {status:"all", cat:"", reg:"", q:"", sort:"status", shown:STEP_PAGE, featGroup:"all", docP:"", docK:""};
+
+  /* ---------- Chỉ mục ---------- */
+  function index(){
+    ix = {}; featByIdea = {}; projByIdea = {};
+    ideas.forEach(i=>{ ix[i.id]=i; });
+    (map.features||[]).forEach(f=>{ if(f.scope==="nen-tang") return; (f.ideas||[]).forEach(id=>{ (featByIdea[id]=featByIdea[id]||[]).push(f); }); });
+    const pi = map.projectIdeas||{};
+    projects.forEach(p=>{ (pi[p.id]||p.ideas||[]).forEach(id=>{ (projByIdea[id]=projByIdea[id]||[]).push(p); }); });
+  }
+  const statusOf = i=> featByIdea[i.id] ? "sp" : (projByIdea[i.id] ? "tt" : "yt");
+  const ideaTitle = id=> ix[id] ? ix[id].title : id;
+  function doneDocs(){
+    const out=[];
+    projects.forEach(p=>(p.roadmap||[]).forEach(s=>{ if(s.status==="done" && s.out) out.push({p,s}); }));
+    return out.sort((a,b)=>String(b.s.doneAt||"").localeCompare(String(a.s.doneAt||"")) || a.p.id.localeCompare(b.p.id) || b.s.n-a.s.n);
+  }
+
+  /* ---------- Tổng quan ---------- */
+  function renderTop(){
+    const sp = ideas.filter(i=>statusOf(i)==="sp").length;
+    const linked = ideas.filter(i=>projByIdea[i.id]).length;
+    const any = ideas.filter(i=>featByIdea[i.id]||projByIdea[i.id]).length;
+    const docs = doneDocs().length;
+    const feats = (map.features||[]).length;
+    const steps = projects.flatMap(p=>p.roadmap||[]);
+    const sd = steps.filter(s=>s.status==="done").length;
+    $("#ov").innerHTML = [
+      ["", "Ý tưởng trong kho", ideas.length, new Set(ideas.map(i=>i.category)).size+" lĩnh vực"],
+      ["ok", "Đã có sản phẩm trên web", sp, "ý tưởng chạy được ngay"],
+      ["acc", "Gắn với dự án thực thi", linked, projects.length+" dự án ngoài đời"],
+      ["sp", "Tài liệu đã hoàn thành", docs, sd+"/"+steps.length+" bước lộ trình"],
+      ["", "Tính năng trên web", feats, "công cụ và tính năng"]
+    ].map(([c,k,v,s])=>`<div class="stat ${c}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="s">${esc(s)}</div></div>`).join("");
+    const N = Math.max(ideas.length,1);
+    $("#funnel").innerHTML = [
+      ["", "01 · Ý tưởng", ideas.length],
+      ["", "02 · Có hướng triển khai", any],
+      ["", "03 · Gắn dự án thực thi", linked],
+      ["ok", "04 · Có sản phẩm trên web", sp]
+    ].map(([c,l,n])=>`<div class="fstage ${c}"><div class="lbl">${esc(l)}</div><div class="n">${n}</div><div class="bar"><i style="width:${Math.round(n/N*100)}%"></i></div></div>`).join("");
+    const cats = {};
+    ideas.forEach(i=>{ const c=cats[i.category]=cats[i.category]||{sp:0,tt:0,yt:0,t:0}; c[statusOf(i)]++; c.t++; });
+    const rows = Object.entries(cats).sort((a,b)=>b[1].t-a[1].t);
+    const max = Math.max(1,...rows.map(r=>r[1].t));
+    $("#cats").innerHTML = rows.map(([name,c])=>`<div class="catrow"><span class="name" title="${esc(name)}">${esc(name)}</span>
+      <div class="stack" style="width:${Math.max(8,Math.round(c.t/max*100))}%" role="img" aria-label="${esc(name)}: ${c.sp} có sản phẩm, ${c.tt} đang thực thi, ${c.yt} chưa triển khai">${c.sp?`<i class="a" style="flex:${c.sp}"></i>`:""}${c.tt?`<i class="b" style="flex:${c.tt}"></i>`:""}${c.yt?`<i class="c" style="flex:${c.yt}"></i>`:""}</div>
+      <span class="tot">${c.t}</span></div>`).join("");
+  }
+
+  /* ---------- Sản phẩm ---------- */
+  function renderFeats(){
+    const fs = map.features||[];
+    const groups = ["all", ...new Set(fs.map(f=>f.group))];
+    $("#f-feat").innerHTML = groups.map(g=>`<button type="button" class="chip" data-fg="${esc(g)}" aria-pressed="${g===ui.featGroup}">${g==="all"?"Tất cả":esc(g)}<span class="c">${g==="all"?fs.length:fs.filter(f=>f.group===g).length}</span></button>`).join("");
+    const list = fs.filter(f=>ui.featGroup==="all"||f.group===ui.featGroup);
+    $("#feats").innerHTML = list.map(f=>`<article class="card feat ${esc(f.scope)}">
+      <div class="meta"><span class="tag">${esc(f.group)}</span><span>${esc(SCOPE[f.scope]||"")}</span>${f.since?`<span>từ ${esc(vnDate(f.since))}</span>`:""}</div>
+      <h3>${esc(f.title)}</h3>
+      <p>${esc(f.desc)}</p>
+      ${(f.how||[]).length?`<ol>${f.how.map(h=>`<li>${esc(h)}</li>`).join("")}</ol>`:""}
+      ${(f.ideas||[]).length?`<div><div class="meta" style="margin-bottom:4px">Hiện thực ý tưởng</div><div class="refs">${f.ideas.filter(id=>ix[id]).map(id=>`<button type="button" class="ref" data-idea="${esc(id)}" title="${esc(ideaTitle(id))}">${esc(ideaTitle(id))}</button>`).join("")}</div></div>`:""}
+      ${(f.projects||[]).length?`<div><div class="meta" style="margin-bottom:4px">Dự án liên quan</div><div class="refs">${f.projects.map(pid=>{const p=projects.find(x=>x.id===pid); return p?`<a class="ref" href="du-an.html#${esc(pid)}" title="${esc(p.title)}">${esc(p.title)}</a>`:"";}).join("")}</div></div>`:""}
+      <div class="foot"><a class="btn" href="${esc(f.page)}">Mở công cụ →</a></div>
+    </article>`).join("") || '<p class="empty">Chưa có sản phẩm.</p>';
+  }
+
+  /* ---------- Tài liệu ---------- */
+  function renderDocs(){
+    const all = doneDocs();
+    const ps = [...new Set(all.map(x=>x.p.id))];
+    const sel = (el, opts, val)=>{ el.innerHTML = opts.map(([v,t])=>`<option value="${esc(v)}"${v===val?" selected":""}>${esc(t)}</option>`).join(""); };
+    sel($("#doc-p"), [["","Mọi dự án"], ...ps.map(id=>[id, (projects.find(p=>p.id===id)||{}).title||id])], ui.docP);
+    const ks = [...new Set(all.map(x=>x.s.kind))];
+    sel($("#doc-k"), [["","Mọi loại"], ...ks.map(k=>[k, KIND[k]||k])], ui.docK);
+    const list = all.filter(x=>(!ui.docP||x.p.id===ui.docP)&&(!ui.docK||x.s.kind===ui.docK));
+    $("#docs").innerHTML = list.map(x=>`<div class="drow"><span class="d">${esc(vnDate(x.s.doneAt))}</span>
+      <div><div class="t">Bước ${x.s.n}. ${esc(x.s.t)}</div><div class="p"><span class="tag">${esc(KIND[x.s.kind]||x.s.kind)}</span> ${esc(x.p.title)}</div></div>
+      <button type="button" class="btn ghost" data-doc="${esc(x.s.out)}" data-title="${esc("Bước "+x.s.n+". "+x.s.t)}" data-pid="${esc(x.p.id)}">Đọc</button></div>`).join("") || '<p class="empty">Chưa có tài liệu.</p>';
+  }
+
+  /* ---------- Dự án ---------- */
+  function progress(p){
+    const rm=p.roadmap||[], n=rm.find(s=>s.status!=="done"), d=rm.filter(s=>s.status==="done").length;
+    return `<div class="prog"><div class="track" role="img" aria-label="${d} trên ${rm.length} bước">${rm.map(s=>`<i class="${s.status==="done"?"done":(s===n?"next":"")}"></i>`).join("")}</div>${d}/${rm.length}</div>`;
+  }
+  function renderProjs(){
+    const pi = map.projectIdeas||{};
+    $("#projs").innerHTML = projects.map(p=>{
+      const ids=(pi[p.id]||[]).filter(id=>ix[id]);
+      const last=(p.roadmap||[]).filter(s=>s.status==="done"&&s.out).pop();
+      return `<article class="card">
+        <div class="meta"><span>${esc(p.category||"")}</span><span>${p.region==="intl"?"Quốc tế":"Việt Nam"}</span></div>
+        <h3>${esc(p.title)}</h3>
+        ${p.actionGoal?`<p><b>Mục tiêu của trang:</b> ${esc(p.actionGoal)}</p>`:""}
+        ${progress(p)}
+        <div><div class="meta" style="margin-bottom:4px">Ý tưởng được minh chứng</div><div class="refs">${ids.length?ids.map(id=>`<button type="button" class="ref" data-idea="${esc(id)}" title="${esc(ideaTitle(id))}">${esc(ideaTitle(id))}</button>`).join(""):'<span class="empty" style="font-size:12px">Chưa gắn ý tưởng trong kho</span>'}</div></div>
+        <div class="foot">${last?`<button type="button" class="btn ghost" data-doc="${esc(last.out)}" data-title="${esc("Bước "+last.n+". "+last.t)}" data-pid="${esc(p.id)}">Đọc kết quả mới nhất</button>`:"<span></span>"}<a href="du-an.html#${esc(p.id)}" style="font-size:13px;font-weight:600">Lộ trình →</a></div>
+      </article>`; }).join("") || '<p class="empty">Chưa có dự án.</p>';
+  }
+
+  /* ---------- Ý tưởng ---------- */
+  function filtered(){
+    const q = fold(ui.q).trim();
+    let list = ideas.filter(i=>
+      (ui.status==="all"||statusOf(i)===ui.status) && (!ui.cat||i.category===ui.cat) && (!ui.reg||i.region===ui.reg) &&
+      (!q || fold(i.title+" "+i.summary+" "+i.category+" "+(i.steps||[]).join(" ")).includes(q)));
+    const rank={sp:0,tt:1,yt:2};
+    const by = {
+      status:(a,b)=>rank[statusOf(a)]-rank[statusOf(b)] || (b.impact||0)-(a.impact||0) || a.id.localeCompare(b.id),
+      impact:(a,b)=>(b.impact||0)-(a.impact||0) || rank[statusOf(a)]-rank[statusOf(b)],
+      "new":(a,b)=>(b.createdAt||0)-(a.createdAt||0) || b.id.localeCompare(a.id),
+      az:(a,b)=>a.title.localeCompare(b.title,"vi")
+    }[ui.sort];
+    return list.sort(by);
+  }
+  function renderIdeas(){
+    const counts={all:ideas.length, sp:0, tt:0, yt:0}; ideas.forEach(i=>counts[statusOf(i)]++);
+    $("#f-status").innerHTML = [["all","Tất cả"],["sp",ST.sp],["tt",ST.tt],["yt",ST.yt]].map(([k,t])=>`<button type="button" class="chip" data-st="${k}" aria-pressed="${ui.status===k}">${esc(t)}<span class="c">${counts[k]}</span></button>`).join("");
+    const cats=[...new Set(ideas.map(i=>i.category))].sort((a,b)=>a.localeCompare(b,"vi"));
+    $("#f-cat").innerHTML = `<option value="">Mọi lĩnh vực</option>`+cats.map(c=>`<option${c===ui.cat?" selected":""}>${esc(c)}</option>`).join("");
+    const list = filtered();
+    $("#count").textContent = list.length+" ý tưởng phù hợp";
+    $("#ideas").innerHTML = list.slice(0,ui.shown).map(ideaCard).join("") || '<p class="empty">Không có ý tưởng phù hợp bộ lọc.</p>';
+    $("#more").hidden = list.length<=ui.shown;
+    $("#more").textContent = "Xem thêm ("+(list.length-ui.shown)+")";
+  }
+  function dots(n){ n=Math.max(0,Math.min(3,n||0)); return `<span class="dots" aria-label="Tác động ${n}/3">${[1,2,3].map(k=>`<i class="${k<=n?"on":""}"></i>`).join("")}</span>`; }
+  function ideaCard(i){
+    const st=statusOf(i), fs=featByIdea[i.id]||[], ps=projByIdea[i.id]||[];
+    return `<article class="card idea ${st}">
+      <div class="meta"><span class="tag ${st}">${esc(ST_SHORT[st])}</span><span>${esc(i.category)}</span><span>${i.region==="intl"?"Quốc tế":"Việt Nam"}</span><span>Tác động ${dots(i.impact)}</span></div>
+      <h3>${esc(i.title)}</h3>
+      <p class="sum">${esc(i.summary)}</p>
+      ${fs.length?`<div class="refs">${fs.map(f=>`<a class="ref" href="${esc(f.page)}" title="Mở: ${esc(f.title)}">▶ ${esc(f.title)}</a>`).join("")}</div>`:""}
+      ${ps.length?`<div class="refs">${ps.map(p=>`<a class="ref" href="du-an.html#${esc(p.id)}" title="${esc(p.title)}">◆ ${esc(p.title)}</a>`).join("")}</div>`:""}
+      <div class="foot"><button type="button" class="btn ghost" data-idea="${esc(i.id)}">Xem chi tiết</button><a href="${esc(i.sourceUrl)}" target="_blank" rel="noopener noreferrer" style="font-size:12px">Nguồn: ${esc(i.sourceName||"link")}</a></div>
+    </article>`;
+  }
+
+  /* ---------- Nhật ký ---------- */
+  function renderLog(){
+    const days={};
+    doneDocs().forEach(x=>{ const d=x.s.doneAt||"?"; (days[d]=days[d]||[]).push(`<b>${esc(x.p.title)}</b>: hoàn thành bước ${x.s.n} – ${esc(x.s.t)}`); });
+    (map.features||[]).forEach(f=>{ if(!f.since) return; (days[f.since]=days[f.since]||[]).push(`Ra mắt trên web: <a href="${esc(f.page)}">${esc(f.title)}</a>`); });
+    const keys=Object.keys(days).sort().reverse();
+    $("#log").innerHTML = keys.map(k=>`<div class="day"><h3>${esc(vnDate(k))}</h3><ul>${days[k].map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("") || '<p class="empty">Chưa có mục nào.</p>';
+  }
+
+  function renderAll(){ index(); renderTop(); renderFeats(); renderDocs(); renderProjs(); renderIdeas(); renderLog(); }
+
+  /* ---------- Khung chi tiết ---------- */
+  let lastFocus=null, history=[], cur=null;
+  function openDrawer(){ if(!$("#drawer").classList.contains("open")){ lastFocus=document.activeElement; } $("#drawer").classList.add("open"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").classList.add("open"); $("#d-close").focus(); }
+  function closeDrawer(){ if(window.FinVoice) FinVoice.stop(); $("#drawer").classList.remove("open"); $("#drawer").setAttribute("aria-hidden","true"); $("#scrim").classList.remove("open"); history=[]; cur=null; if(/^#(idea|doc)=/.test(location.hash)) window.history.replaceState(null,"",location.pathname+location.search); if(lastFocus) lastFocus.focus(); }
+  function show(view, push){
+    if(push && cur) history.push(cur);
+    cur=view; $("#d-back").hidden=!history.length;
+    $("#d-spk").replaceChildren();
+    if(view.type==="idea") showIdea(view.id); else showDoc(view);
+    openDrawer(); $("#d-body").scrollTop=0;
+  }
+  function showIdea(id){
+    const i=ix[id]; if(!i){ $("#d-title").textContent="Không tìm thấy"; $("#d-body").innerHTML='<p>Không tìm thấy ý tưởng này.</p>'; return; }
+    const st=statusOf(i), fs=featByIdea[id]||[], ps=projByIdea[id]||[];
+    const cap = {1:"Vốn thấp",2:"Vốn vừa",3:"Vốn cao"}[i.capital];
+    $("#d-title").textContent = i.title;
+    let h = `<div class="meta" style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:8px"><span class="tag ${st}">${esc(ST[st])}</span><span>${esc(i.category)}</span><span>${i.region==="intl"?"Quốc tế":"Việt Nam"}</span><span>Tác động ${dots(i.impact)}</span>${cap?`<span class="tag ns">${esc(cap)}</span>`:""}</div>
+      <h3>${esc(i.title)}</h3><p>${esc(i.summary)}</p>
+      <p style="font-size:13px">Nguồn: <a href="${esc(i.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(i.sourceName||i.sourceUrl)}</a></p>`;
+    if((i.steps||[]).length) h += `<h4>Bắt đầu từ đâu</h4><ol>${i.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>`;
+    h += `<h4>Đã hiện thực trên web</h4>`;
+    h += fs.length ? fs.map(f=>`<div class="box"><h5>${esc(f.title)}</h5><p style="font-size:14px">${esc(f.desc)}</p>${(f.how||[]).length?`<ol style="font-size:13px">${f.how.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:""}<a class="btn" href="${esc(f.page)}">Mở công cụ →</a></div>`).join("")
+      : `<p class="empty">Chưa có công cụ trên web cho ý tưởng này. Bạn có thể lập kế hoạch nhanh bằng Lean Canvas ở trang chính, hoặc hỏi Trợ lý AI cách thử nghiệm nhỏ.</p>`;
+    h += `<h4>Dự án đang thực thi liên quan</h4>`;
+    h += ps.length ? ps.map(p=>`<div class="box"><h5>${esc(p.title)}</h5>${p.summary?`<p style="font-size:14px">${esc(p.summary)}</p>`:""}${p.actionGoal?`<p style="font-size:14px"><b>Mục tiêu của trang:</b> ${esc(p.actionGoal)}</p>`:""}${progress(p)}
+      <ol class="steps">${(p.roadmap||[]).map(s=>{ const n=(p.roadmap||[]).find(x=>x.status!=="done"); return `<li class="${s.status==="done"?"done":(s===n?"next":"")}"><span class="num">${s.status==="done"?"✓":s.n}</span><span>${esc(s.t)} <span class="tag">${s.owner==="nguoi"?"Người":"Claude"}</span>${s.out?`<button type="button" class="res" data-doc="${esc(s.out)}" data-title="${esc("Bước "+s.n+". "+s.t)}" data-pid="${esc(p.id)}">Đọc</button>`:""}</span></li>`; }).join("")}</ol>
+      <p style="margin:8px 0 0;font-size:13px"><a href="du-an.html#${esc(p.id)}">Xem lộ trình đầy đủ →</a>${p.sourceUrl?` · <a href="${esc(p.sourceUrl)}" target="_blank" rel="noopener noreferrer">Nguồn dự án</a>`:""}</p></div>`).join("")
+      : `<p class="empty">Chưa gắn với dự án thực thi nào.</p>`;
+    h += `<div class="actions"><a class="btn ghost" href="index.html#idea-${esc(id)}">Mở ở trang chính (Lean Canvas)</a><button type="button" class="btn ghost" id="d-copy">Sao chép link</button></div>`;
+    $("#d-body").innerHTML = h;
+    $("#d-copy").onclick = async e=>{ const url=location.origin+location.pathname+"#idea="+id; try{ await navigator.clipboard.writeText(url); e.target.textContent="Đã sao chép"; }catch(_){ e.target.textContent=url; } };
+    if(location.hash!=="#idea="+id) window.history.replaceState(null,"","#idea="+id);
+  }
+  async function showDoc(v){
+    $("#d-title").textContent = v.title || "Tài liệu";
+    if(!/^du-an\/[a-z0-9_\/.-]+\.md$/i.test(v.path)){ $("#d-body").innerHTML="<p>Đường dẫn không hợp lệ.</p>"; return; }
+    const p=projects.find(x=>x.id===v.pid);
+    $("#d-body").innerHTML = (p?`<p class="empty" style="margin-bottom:12px">Dự án: <a href="du-an.html#${esc(p.id)}">${esc(p.title)}</a></p>`:"")+"<p>Đang tải…</p>";
+    try{ const r=await fetch(v.path,{cache:"no-cache"}); if(!r.ok) throw 0; const t=await r.text(); v.text=t;
+      if(cur!==v) return;
+      $("#d-body").innerHTML = (p?`<p class="empty" style="margin-bottom:12px">Dự án: <a href="du-an.html#${esc(p.id)}">${esc(p.title)}</a> · <a href="https://github.com/letuan1111/doi-moi-sang-tao/blob/main/${esc(v.path)}" target="_blank" rel="noopener noreferrer">Xem trên GitHub</a></p>`:"") + (window.FinAI ? FinAI.md(t) : "<pre style='white-space:pre-wrap'>"+esc(t)+"</pre>");
+      $("#d-body").querySelectorAll("a[href^='http']").forEach(a=>{ a.target="_blank"; a.rel="noopener noreferrer"; });
+      if(window.FinVoice && FinVoice.speakButton) $("#d-spk").replaceChildren(FinVoice.speakButton(()=>t,{label:"Nghe"}));
+      if(location.hash!=="#doc="+v.path) window.history.replaceState(null,"","#doc="+v.path);
+    }catch(e){ if(cur===v) $("#d-body").innerHTML="<p>Chưa tải được tài liệu. Tệp có thể chưa được đăng lên phiên bản này của trang.</p>"; }
+  }
+  $("#d-back").onclick=()=>{ const v=history.pop(); if(v){ cur=null; show(v,false); } };
+  $("#d-close").onclick=closeDrawer; $("#scrim").onclick=closeDrawer;
+  $("#d-ai").onclick=()=>{ if(!cur||!window.FinAI) return; const q = cur.type==="idea" ? `Về ý tưởng "${(ix[cur.id]||{}).title}": giải thích ngắn, ví dụ ở Việt Nam, và cách thử nghiệm nhỏ trong 30 ngày.` : `Về tài liệu "${cur.title}": tóm tắt điểm chính và đề xuất việc nên làm tiếp.`; closeDrawer(); FinAI.openWith(q); };
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape" && $("#drawer").classList.contains("open")) closeDrawer();
+    if(e.key==="/" && !/input|textarea|select/i.test(document.activeElement.tagName)){ e.preventDefault(); $("#q").focus(); }
+  });
+
+  /* ---------- Sự kiện ---------- */
+  document.addEventListener("click",e=>{
+    const t=e.target.closest("[data-idea],[data-doc],[data-st],[data-fg]"); if(!t) return;
+    if(t.dataset.idea){ show({type:"idea", id:t.dataset.idea}, $("#drawer").contains(t)); return; }
+    if(t.dataset.doc){ show({type:"doc", path:t.dataset.doc, title:t.dataset.title, pid:t.dataset.pid}, $("#drawer").contains(t)); return; }
+    if(t.dataset.st){ ui.status=t.dataset.st; ui.shown=STEP_PAGE; renderIdeas(); return; }
+    if(t.dataset.fg){ ui.featGroup=t.dataset.fg; renderFeats(); }
+  });
+  let qt; $("#q").addEventListener("input",e=>{ clearTimeout(qt); qt=setTimeout(()=>{ ui.q=e.target.value; ui.shown=STEP_PAGE; renderIdeas(); },120); });
+  $("#f-cat").onchange=e=>{ ui.cat=e.target.value; ui.shown=STEP_PAGE; renderIdeas(); };
+  $("#f-reg").onchange=e=>{ ui.reg=e.target.value; ui.shown=STEP_PAGE; renderIdeas(); };
+  $("#f-sort").onchange=e=>{ ui.sort=e.target.value; renderIdeas(); };
+  $("#more").onclick=()=>{ ui.shown+=STEP_PAGE; renderIdeas(); };
+  $("#doc-p").onchange=e=>{ ui.docP=e.target.value; renderDocs(); };
+  $("#doc-k").onchange=e=>{ ui.docK=e.target.value; renderDocs(); };
+
+  // Đánh dấu mục đang xem trên thanh mục
+  if("IntersectionObserver" in window){
+    const links=[...document.querySelectorAll("#jump a")];
+    const io=new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.classList.toggle("on", a.getAttribute("href")==="#"+en.target.id)); } }); },{rootMargin:"-40% 0px -55% 0px"});
+    document.querySelectorAll("section.blk").forEach(s=>io.observe(s));
+  }
+
+  function fromHash(){
+    const h=decodeURIComponent(location.hash.slice(1));
+    if(h.startsWith("idea=")){ const id=h.slice(5); if(ix[id]) show({type:"idea", id}, false); }
+    else if(h.startsWith("doc=")){ const path=h.slice(4); const d=doneDocs().find(x=>x.s.out===path); show({type:"doc", path, title:d?("Bước "+d.s.n+". "+d.s.t):"Tài liệu", pid:d?d.p.id:""}, false); }
+  }
+  addEventListener("hashchange", ()=>{ if(/^#(idea|doc)=/.test(location.hash)) fromHash(); });
+
+  /* ---------- Dữ liệu ---------- */
+  let ready=false;
+  function setData(d){
+    if(d.ideas) ideas=d.ideas.filter(i=>i&&i.id&&i.title);
+    if(d.projects) projects=d.projects.filter(p=>p&&p.id).sort((a,b)=>String(a.id).localeCompare(String(b.id)));
+    renderAll();
+    if(!ready){ ready=true; fromHash(); const sec=document.getElementById(location.hash.slice(1)); if(sec&&sec.classList.contains("blk")) sec.scrollIntoView(); }
+  }
+  async function loadMap(){ try{ const r=await fetch("hien-thuc.json",{cache:"no-cache"}); if(r.ok) map=await r.json(); }catch(e){} }
+  async function fromStatic(){ try{ const r=await fetch("data.json",{cache:"no-cache"}); setData(await r.json()); }catch(e){ $("#ov").innerHTML='<p class="empty">Không tải được dữ liệu.</p>'; } }
+  (async function(){
+    await loadMap();
+    if(window.claude && window.claude.use){
+      try{ const db=await claude.use("db"); if(db){
+        const snap=(name,key)=>db.collection(name).onSnapshot(s=>{ const a=Array.isArray(s)?s:(s.docs||[]); const list=a.map(x=>(x&&typeof x.data==="function")?Object.assign({id:x.id},x.data()):x).filter(Boolean); if(list.length) setData({[key]:list}); }, ()=>{});
+        await fromStatic(); snap("ideas","ideas"); snap("projects","projects"); return; } }catch(e){}
+    }
+    fromStatic();
+  })();
+  if(window.FinAI){ FinAI.autoload(); FinAI.mountWidget(); }
+})();
+</script>
+</body>
+</html>

@@ -94,3 +94,16 @@ Chạy tại máy: `pip install playwright && python -m playwright install chrom
 ## Ứng dụng web (PWA)
 
 Bản GitHub cài được lên màn hình điện thoại và máy tính (`manifest.webmanifest`, biểu tượng `icon.svg`/`icon-*.png`), và vẫn mở được các trang đã xem khi mất mạng (`sw.js`). Có `sitemap.xml`, `robots.txt` và trang `404.html`.
+
+## Từ ý tưởng đến sản phẩm (ket-qua.html)
+
+Trang tổng hợp để xem hết trong một chỗ:
+
+- **Số liệu và hành trình:** bao nhiêu ý tưởng, bao nhiêu đã có công cụ chạy trên web, bao nhiêu gắn với dự án thực thi, bao nhiêu tài liệu đã xong; biểu đồ theo lĩnh vực.
+- **Sản phẩm đang chạy trên web:** mọi công cụ của Phòng thử nghiệm, Công cụ tài chính và tính năng chung, kèm cách dùng, ý tưởng mà công cụ hiện thực và dự án liên quan.
+- **Tài liệu đã hoàn thành:** mọi kết quả lộ trình, lọc theo dự án và loại, đọc ngay trên trang (có nút nghe).
+- **Dự án và ý tưởng liên quan:** tiến độ từng dự án và các ý tưởng nó minh chứng.
+- **Toàn bộ ý tưởng:** lọc theo trạng thái (Đã có sản phẩm / Đang thực thi / Chưa triển khai), lĩnh vực, khu vực, tìm kiếm, sắp xếp; khung chi tiết có "Bắt đầu từ đâu", công cụ đã làm, lộ trình dự án và tài liệu.
+- **Nhật ký cập nhật** theo ngày. Link trực tiếp: `ket-qua.html#idea=<id>`, `ket-qua.html#doc=<đường dẫn md>`.
+
+Liên kết ý tưởng – sản phẩm – dự án nằm ở `hien-thuc.json`. **Khi xây tính năng mới, thêm một mục vào `features`** (`ideas`, `projects` là id trong `data.json`; `scope`: `y-tuong`, `ho-tro` hoặc `nen-tang`). Kiểm thử tự động kiểm tra id và trang đích hợp lệ.

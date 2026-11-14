@@ -37,7 +37,7 @@ with sync_playwright() as pw:
         pg.on("pageerror", lambda e: errs.append(str(e)))
         pg.goto(BASE + path); pg.wait_for_timeout(900)
         return pg, errs
-    for path, sel in [("index.html", "nav.tabs"), ("lab.html", "#v-nguoi-nhan"), ("tools.html", "#l-stats .stat"), ("du-an.html", ".card"), ("404.html", "h1")]:
+    for path, sel in [("index.html", "nav.tabs"), ("lab.html", "#v-nguoi-nhan"), ("tools.html", "#l-stats .stat"), ("du-an.html", ".card"), ("ket-qua.html", "#ideas .card"), ("404.html", "h1")]:
         if not (ROOT / path).exists(): continue
         for vw in (1280, 390):
             pg, errs = page(path, vw)
@@ -59,6 +59,22 @@ with sync_playwright() as pw:
     pg, errs = page("du-an.html")
     pg.locator(".res").first.click(); pg.wait_for_timeout(500)
     check(len(pg.inner_text("#d-body")) > 200, "trang lộ trình mở được tài liệu kết quả")
+    pg.close()
+    # Bản đồ hiện thực
+    hm = json.loads((ROOT / "hien-thuc.json").read_text(encoding="utf-8"))
+    for f in hm["features"]:
+        check(all(i in ids for i in f.get("ideas", [])), f"hien-thuc {f['id']}: id ý tưởng hợp lệ")
+        check((ROOT / f["page"].split("#")[0]).exists(), f"hien-thuc {f['id']}: trang {f['page']} tồn tại")
+    pg, errs = page("ket-qua.html")
+    check(pg.locator("#feats .card").count() == len(hm["features"]), "ket-qua: hiển thị đủ sản phẩm")
+    check(pg.locator("#docs .drow").count() > 0, "ket-qua: có danh sách tài liệu")
+    pg.click("[data-st='sp']"); pg.wait_for_timeout(200)
+    check(pg.locator("#ideas .card.sp").count() > 0 and pg.locator("#ideas .card.yt").count() == 0, "ket-qua: lọc 'đã có sản phẩm' đúng")
+    pg.locator("#ideas [data-idea]").first.click(); pg.wait_for_timeout(300)
+    check("Đã hiện thực trên web" in pg.inner_text("#d-body"), "ket-qua: mở chi tiết ý tưởng")
+    pg.locator("#d-body [data-doc]").first.click(); pg.wait_for_timeout(600)
+    check(len(pg.inner_text("#d-body")) > 200 and pg.is_visible("#d-back"), "ket-qua: đọc tài liệu trong khung chi tiết, có nút quay lại")
+    check(not errs, f"ket-qua: không lỗi JS khi thao tác {errs[:1] if errs else ''}")
     pg.close()
     b.close()
 srv.shutdown()
